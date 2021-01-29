@@ -1,0 +1,7 @@
+{
+    "0" : "LibKvStoreThreadsPerCore",
+    "1" : "LibKvStoreRunsPerThread",
+    "2" : "LibKvStoreRandomLoopIterations",
+    "3" : "LibKvStoreCommonStoreTestEnabled"
+}
+

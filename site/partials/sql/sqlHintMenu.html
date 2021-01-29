@@ -1,0 +1,23 @@
+<div id="sqlHintMenu" class="menu mainMenu" data-submenu="sqlHintSubMenu">
+  <ul>
+    <li class="tables parentMenu" data-submenu="tables">
+      Tables
+    </li>
+    <li class="sqlFunc parentMenu" data-submenu="sqlFunc">
+      <%= dicts.SQLFunc.Title %>
+    </li>
+    <li class="columns parentMenu" data-submenu="columns">
+      Columns
+    </li>
+    <li class="udf parentMenu" data-submenu="udf">
+      <%= dicts.fileManager.UDF %>
+    </li>
+  </ul>
+</div>
+<div id="sqlHintSubMenu" class="menu subMenu">
+  <ul class="tables"></ul>
+  <ul class="sqlFunc"></ul>
+  <ul class="columns"></ul>
+  <ul class="udf"></ul>
+  include "../../util/menuScrollArea.html"
+</div>

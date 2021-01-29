@@ -1,0 +1,47 @@
+<div data-xcid="templateColumnRename" style="display:none">
+    <div class="joinSection renameSection">
+        <div class="subHeading clearfix">
+            <div><%= dicts.common.RenameDupeCols %></div>
+            <i class="qMark icon xi-unknown"
+            data-toggle="tooltip"
+            data-container="body"
+            data-placement="auto top"
+            data-title="<%= dicts.common.ColRenameInstr2 %>">
+            </i>
+        </div>
+        <div><APP-PREFIXRENAME></APP-PREFIXRENAME></div>
+        <div><APP-DERIVEDRENAME></APP-DERIVEDRENAME></div>
+    </div>
+</div>
+
+<div data-xcid="templateRenameList" style="display:none">
+    <div class="row row-subheading">
+        <div class="col col-left">{{oldColTitle}}</div>
+        <div class="bulkIcon">
+            include "joinRenameOption.html"
+        </div>
+        <div class="col col-right">{{newColTitle}}</div>
+    </div>
+    <APP-RENAMES></APP-RENAMES>
+</div>
+
+<div data-xcid="templateRenameRow" style="display:none">
+    <div><APP-ERRMSG></APP-ERRMSG></div>
+    <div class="row row-rename">
+        <div class="col col-left"><input class="{{colErrCss}}" type="text" spellcheck="false" disabled value="{{oldName}}"/></div>
+        <div class="renameIcon" (click)="onClickRename">
+            <div class="iconWrapper"><i class="icon xi-play-outline fa-14"></i></div>
+        </div>
+        <div class="col col-right"><input type="text" spellcheck="false" value="{{newName}}" (input)="onNameChange"/></div>
+    </div>
+</div>
+
+<div data-xcid="templateRenameTable" style="display:none">
+    <div class="flexContainer tableHeader">
+        <div class="flexWrap flex-left title">{{renameHeader}}</div>
+        <div class="flexWrap flex-mid"></div>
+    </div>
+    <!-- <div class="subHeading clearfix"><div class="subSubHeading light">{{renameHeader}}</div></div> -->
+    <div><APP-LEFTRENAME></APP-LEFTRENAME></div>
+    <div><APP-RIGHTRENAME></APP-RIGHTRENAME></div>
+</div>

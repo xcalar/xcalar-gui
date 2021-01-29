@@ -1,0 +1,24 @@
+{
+  "name": "cron-parser",
+  "main": "./dist/cron-parser.js",
+  "ignore": [],
+  "keywords": [
+    "cron",
+    "crontab",
+    "parser"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/cotag/cron-parser",
+  "version": "1.1.0",
+  "_release": "1.1.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.1.0",
+    "commit": "b3d49b426d670a7a7f726a02d8425d1c140a6830"
+  },
+  "_source": "https://github.com/cotag/cron-parser.git",
+  "_target": "^1.1.0",
+  "_originalSource": "cron-parser",
+  "_direct": true
+}

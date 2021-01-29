@@ -1,0 +1,136 @@
+<!-- Support Ticket Modal -->
+<div id="supTicketModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.monitor.GenSub %></span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.supportTicket.CloseForm %>" >
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Instruction -->
+  <section class="modalInstruction">
+    <div class="text defaultText"><%= dicts.supportTicket.GenSupInstr %></div>
+    <span class="text errorText"></span>
+  </section>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="formRow">
+      <span class="label">1. <%= dicts.supportTicket.TypeIssue %>:</span>
+      <div class="dropDownList yesclickable issueList">
+        <input class="text" type="text" spellcheck="false" autocomplete="off" disabled="disabled" value="<%= dicts.common.New %>">
+        <div class="iconWrapper">
+          <i class="icon xi-arrow-down"></i>
+        </div>
+        <div class="list">
+          <ul>
+            <li data-val="new"><%= dicts.common.New %></li>
+            <li data-val="existing"><%= dicts.common.Existing %></li>
+          </ul>
+          include "../../util/menuScrollArea.html"
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="modalMain severitySection">
+    <div class="formRow">
+      <span class="label">2. <%= dicts.supportTicket.Severity %>:</span>
+      <div class="dropDownList yesclickable severityList">
+        <input class="text" type="text" spellcheck="false" autocomplete="off" disabled="disabled" value="4 - <%= dicts.supportTicket.Severity4 %>" data-val="4">
+        <div class="iconWrapper">
+          <i class="icon xi-arrow-down"></i>
+        </div>
+        <div class="list">
+          <ul>
+            <li data-val="4">4 - <%= dicts.supportTicket.Severity4 %></li>
+            <li data-val="3">3 - <%= dicts.supportTicket.Severity3 %><i class="icon xi-unknown qMark" data-toggle="tooltip" data-container="body" data-delay="1" data-placement="auto top" title="<%= dicts.TooltipTStr.Severity3 %>"></i></li>
+            <li data-val="2">2 - <%= dicts.supportTicket.Severity2 %><i class="icon xi-unknown qMark" data-toggle="tooltip" data-container="body" data-delay="1" data-placement="auto top" title="<%= dicts.TooltipTStr.Severity2 %>"></i></li>
+            <li data-val="1">1 - <%= dicts.supportTicket.Severity1 %><i class="icon xi-unknown qMark" data-toggle="tooltip" data-container="body" data-delay="1" data-placement="auto top" title="<%= dicts.TooltipTStr.Severity1 %>"></i></li>
+          </ul>
+          include "../../util/menuScrollArea.html"
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="modalMain ticketIDSection xc-hidden">
+    <div class="formRow">
+      <span class="label">2. <%= dicts.monitor.SelectTicket %>:</span>
+      <div class="refresh">
+        <i class="icon xi-refresh fa-17 xc-action"></i>
+      </div>
+    </div>
+    <div class="table">
+      <div class="tableHeader">
+        <div class="row">
+          <div class="th"><%= dicts.monitor.TicketID %></div>
+          <div class="th"><%= dicts.monitor.Status %></div>
+          <div class="th"><%= dicts.sched.created %></div>
+          <div class="th"><%= dicts.sched.details %></div>
+        </div>
+      </div>
+      <div class="tableBody">
+        <div class="row">
+          <div class="td"></div>
+          <div class="td"></div>
+          <div class="td details"></div>
+        </div>
+      </div>
+    </div>
+    <div class="formRow customTicketRow">
+      <span class="label"><%= dicts.supportTicket.ExistingTicketId %>: </span>
+      <input type="text" class="xc-input" spellcheck="false" autocomplete="off">
+      <i class="icon xi-unknown qMark" data-toggle="tooltip" data-container="body" data-delay="1" data-placement="auto top" title="<%= dicts.TooltipTStr.CustomTicketId %>"></i>
+    </div>
+  </section>
+  <section class="modalSubMain commentSection">
+    <div class="formRow genBundleRow">
+      <span class="label">3. <%= dicts.supportTicket.AdditionalInfo %>:</span>
+      <div class="options">
+        <div class="checkboxSection genBundleBox" data-toggle="tooltip" data-container="#supTicketModal" data-placement="auto top" data-original-title="<%= dicts.supportTicket.GenBundleTip %>">
+          <div class="text"><%= dicts.supportTicket.GenBundle %>?</div>
+          <div class="checkbox">
+            <i class="icon xi-ckbox-empty"></i>
+            <i class="icon xi-ckbox-selected"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="commentArea">
+      <div class="emailArea">
+        <div class="text"><%= dicts.supportTicket.Email %>:</div>
+        <input type="email" class="xc-input emailInput" spellcheck="false" autocomplete="off">
+      </div>
+      <div class="subjectArea">
+        <div class="text"><%= dicts.supportTicket.Subject %>:</div>
+        <input type="text" class="xc-input subjectInput" spellcheck="false" autocomplete="off">
+        <div class="textLimitArea"><span class="remainingChar">100</span> <%= dicts.supportTicket.CharRemaining %></div>
+      </div>
+      <div class="descriptionArea">
+        <div class="text"><%= dicts.supportTicket.Comments %>:</div>
+        <textarea class="xc-textArea" spellcheck="false"></textarea>
+      </div>
+    </div>
+    <div class="bundleArea">
+      <div class="bundleText">
+       <%= dicts.supportTicket.GeneratingBundle %>
+      </div>
+    </div>
+    <div class="downloadMsg">
+      <%= dicts.supportTicket.BundleComplete %><br/>
+      <%= dicts.supportTicket.DownloadZendesk %>
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.supportTicket.FileTicketBtn %></button>
+    <button type="button" class="btn download"><%= dicts.common.Download %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+    <button type="button" class="btn close"><%= dicts.common.Close %></button>
+  </section>
+</div>
+<!-- End of Support Ticket Modal -->

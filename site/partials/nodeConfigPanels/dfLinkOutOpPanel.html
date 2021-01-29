@@ -1,0 +1,39 @@
+<!-- Dataflow Link Out Panel -->
+<section id="dfLinkOutPanel" class="xc-hidden opPanel">
+    <!-- Header -->
+    <header class="headerSection">
+      <div class="row">
+            <div class="title"><%= dicts.DFOut.Header %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <!-- content -->
+    <div class="mainContent">
+      <div class="opSection">
+        <p class="mainInstructions instrText">
+          <%= dicts.DFOut.Instr %>
+        </p>
+        <div class="argsSection">
+          <!-- node name -->
+          <div class="row clearfix linkOutName">
+            <div class="subHeading clearfix">
+              <div class="label"><%= dicts.DFOut.ReferenceName %>:</div>
+              <i class="qMark icon xi-unknown"
+              data-toggle="tooltip"
+              data-container="body"
+              data-placement="auto top"
+              data-title="<%= dicts.DFOut.ReferenceNameHint %>">
+              </i>
+            </div>
+            <div class="inputWrap">
+              <input type="text" autocomplete="off">
+            </div>
+          </div>
+        </div>
+      </div>
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </section>
+  <!-- End Of Dataflow Link Out Panel -->

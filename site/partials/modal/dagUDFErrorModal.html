@@ -1,0 +1,37 @@
+<div id="dagUDFErrorModal" class="modalContainer large">
+    <!-- Header -->
+    <header class="modalHeader flexContainer">
+        <span class="text">Scalar Function failure report (<span class="numErrors"></span> failures)</span>
+        <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+            <i class="icon xi-close"></i>
+        </div>
+    </header>
+    <!-- Instruction -->
+    <section class="modalInstruction">
+        <div class="modalInstructionSection extraErrors">
+            <i class="icon xi-error"></i>
+            There are more failures than reported below. To discover additional errors, fix the ones reported, and re-run the scalar function operation.
+        </div>
+        <div class="modalInstructionSection optimizedMsg">
+          <i class="icon xi-error"></i>
+          To view summarized error information, re-execute the function in an non-optimized manner.
+      </div>
+    </section>
+    <section class="modalTopMain">
+        <div class="columnHeader">
+            Column name
+        </div>
+        <div class="expandAll toggleAll xc-action">Expand all</div>
+        <div class="collapseAll toggleAll xc-action">Collapse all</div>
+    </section>
+    <div class="divider"></div>
+    <!-- Main Section -->
+    <section class="modalMain">
+        <div class="errorList"></div>
+    </section>
+
+    <section class="modalBottom">
+        <button type="button" class="btn btn-large btn-submit genErrorTable">Generate table of errors</button>
+        <button type="button" class="btn cancel"><%= dicts.common.Close %></button>
+    </section>
+</div>

@@ -1,0 +1,49 @@
+{
+  "name": "passport-buttercup",
+  "version": "1.0.0",
+  "description": "Buttercup password vault authentication strategy for Passport.",
+  "keywords": [
+    "passport",
+    "buttercup",
+    "auth",
+    "authn",
+    "authentication",
+    "username",
+    "password"
+  ],
+  "author": {
+    "name": "Ted Haining",
+    "email": "thaining@xcalar.com",
+    "url": "http://www.xcalar.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jaredhanson/passport-local.git"
+  },
+  "bugs": {
+    "url": "http://github.com/jaredhanson/passport-local/issues"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "passport-strategy": "1.x.x",
+    "buttercup": "^1.x.x"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "chai": "1.x.x",
+    "chai-passport-strategy": "0.1.x"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+  }
+}

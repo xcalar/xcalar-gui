@@ -1,0 +1,7 @@
+{
+    "LibAppFuncTotalThreadCount" : 0,
+    "LibAppFuncBigTestThreadCount" : 1,
+    "LibAppFuncLittleTestIters" : 2,
+    "LibAppFuncBigTestIters" : 3
+}
+

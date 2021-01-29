@@ -1,0 +1,16 @@
+# Build products
+target/
+build/
+
+# IntelliJ data
+*.iml
+.idea/
+.ipr
+
+# Eclipse
+.checkstyle
+.classpath
+.project
+.settings/
+
+.DS_Store

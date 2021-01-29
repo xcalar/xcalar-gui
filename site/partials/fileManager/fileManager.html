@@ -1,0 +1,117 @@
+<div class="fileManager">
+  <div class="fileManagerBar">
+    <div class="fileTypeArea">
+      <div class="fileTypeBox">
+        <div class="fileTypeContent">
+          <%= dicts.fileManager.UDF %>
+        </div>
+        <i class="icon fileTypeIcon xi-arrow-down clickable"></i>
+      </div>
+      <div class="menu fileTypeMenu" data-mixpanel-id="fileManagerTypeMenu">
+        <li class="fileTypeMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.Dataflow %></span>
+        </li>
+        <li class="fileTypeMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.UDF %></span>
+        </li>
+      </div>
+    </div>
+    <div class="navigationArea">
+      <div class="navigationButton">
+        <i class="icon xi-previous2 xc-icon-action"></i>
+      </div>
+      <div class="navigationButton">
+        <i class="icon xi-next2 xc-icon-action"></i>
+      </div>
+      <div class="navigationButton navigationButtonRefresh">
+        <i class="icon xi-refresh xc-icon-action"></i>
+      </div>
+    </div>
+
+    <div class="addressArea">
+      <div class="addressBox">
+        <input type="text" class="addressContent xc-input" placeholder="/" spellcheck="false" autocomplete="off">
+      </div>
+    </div>
+    <div class="actionArea">
+      <div class="actionBox">
+        <i class="icon actionIcon xi-arrow-down clickable">
+        </i>
+        <div class="actionContent">
+          <%= dicts.fileManager.Actions %>
+        </div>
+      </div>
+      <div class="menu actionMenu" data-mixpanel-id="fileManagerActionMenu">
+        <li class="actionMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.Open %></span>
+        </li>
+        <li class="actionMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.Download %></span>
+        </li>
+        <li class="actionMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.Delete %></span>
+        </li>
+        <li class="actionMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.Duplicate %></span>
+        </li>
+        <li class="actionMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.CopyTo %></span>
+        </li>
+        <li class="actionMenuSection">
+          <span class="label">
+            <%= dicts.fileManager.Share %></span>
+        </li>
+      </div>
+    </div>
+    <div class="operationArea operationAreaCreateFolder">
+      <div class="operationContent">
+        <%= dicts.fileManager.CreateFolder %>
+      </div>
+    </div>
+    <div class="operationArea operationAreaUpload">
+      <button class="operationContent btn btn-secondary">
+        <%= dicts.fileManager.Upload %>
+      </buttom>
+      <input class="uploadButton" spellcheck="false" type="file" style="display: none;">
+    </div>
+  </div>
+  <div class="fileManagerSearchBar">
+    <div class="searchBox">
+      <i class="icon searchIcon xi-search"></i>
+      <input type="text" class="searchInput xc-input" placeholder="Search" spellcheck="false" autocomplete="off">
+    </div>
+  </div>
+  <div class="fileManagerMainArea">
+    <div class="section titleSection">
+      <div class="row">
+        <div class="checkBox">
+          <i class="icon xi-ckbox-empty"></i>
+        </div>
+        <div class="field nameField">
+          <span class="label">
+            <%= dicts.fileManager.Name %></span>
+          <i class="icon xi-sort"></i>
+        </div>
+        <div class="field dateField">
+          <span class="label">
+            <%= dicts.fileManager.Date %></span>
+          <i class="icon xi-sort"></i>
+        </div>
+        <div class="field typeField">
+          <span class="label">
+            <%= dicts.fileManager.Size %></span>
+          <i class="icon xi-sort"></i>
+        </div>
+      </div>
+    </div>
+    <div class="section mainSection">
+    </div>
+  </div>
+</div>

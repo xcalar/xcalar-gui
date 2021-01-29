@@ -1,0 +1,30 @@
+<!-- dataset target menu -->
+<div class="topSection">
+  <div class="titleSection">
+    <header>
+      <span><%= dicts.ds.Targets %> (<span class="numDSTargets">0</span>)</span>
+    </header>
+  </div>
+  <div class="iconSection">
+    <!-- switch data target view -->
+    <i id="dsTarget-view" class="switchView right icon xi-view-as-list-2 gridView" data-toggle="tooltip" data-placement="auto top" data-original-title="<%= dicts.TooltipTStr.SwitchToListView %>" data-container="body"></i>
+    <!-- refresh icon -->
+    <i id="dsTarget-refresh" class="refresh right icon xi-refresh" data-toggle="tooltip" data-placement="auto top" data-container="body" title="" data-original-title="<%= dicts.common.Refresh %>"></i>
+  </div>
+</div>
+<div class="buttonSection">
+    <button id="backToImport" class="btn btn-submit btn-secondary">
+        <span>Back to Load</span>
+    </button>
+  <button id="dsTarget-create" class="btn btn-submit btn-secondary">
+    <i class="icon xi-plus fa-11"></i>
+    <span><%= dicts.dsTarget.Create %></span>
+  </button>
+</div>
+<div id="dsTarget-list" class="mainSection no-selection">
+  <!-- Grid View -->
+  <div class="gridViewWrapper">
+    <div class="gridView gridItems xc-grid"></div>
+  </div>
+</div>
+include "dsTargetGridMenu.html"

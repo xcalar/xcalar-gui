@@ -1,0 +1,89 @@
+<div id="dsPreviewWrap" class="cardMain">
+    <!-- Preview Section -->
+    <header class="titleSection">
+        <div class="info">
+            <div class="title previewTitle"><%= dicts.dsPreview.Previewing %>:</div>
+            <div class="url">
+            <div id="preview-file" class="dropDownList rowContent">
+                <input class="text tooltipOverflow" type="text" spellcheck="false" disabled>
+                <div class="iconWrapper">
+                <i class="icon xi-arrow-down"></i>
+                </div>
+                <div class="list">
+                <ul>
+                </ul>
+                include "../../util/menuScrollArea.html"
+                </div>
+            </div>
+            </div>
+            <div class="buttonGroup">
+            <button id="preview-parser" class="btn iconBtn loadHidden" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.common.InBeta %>">
+                <i class="icon xi-parse fa-17"></i> <%= dicts.dsForm.Parser %>
+            </button>
+            </div>
+        </div>
+        <div class="info">
+            <div id="dsForm-warning" class="loadHidden hidden">
+            <i class="icon xi-warning fa-15"></i>
+            <span class="text"><%= dicts.dsPreview.HeaderChangeWarn %></span>
+            </div>
+            <div id="dsForm-highlighter" class="buttonGroup loadHidden">
+            <button class="rmHightLight btn btn-small" title="<%= dicts.dsPreview.RmHighlight %>" data-toggle="tooltip" data-placement="auto top" data-container="body">
+                <i class="icon xi-undo-highlight fa-15"></i>
+            </button>
+            <button class="highlight btn btn-small" title="<%= dicts.dsPreview.ApplyHighlight %>" data-toggle="tooltip" data-placement="auto top" data-container="body">
+                <i class="icon xi-highlight fa-15"></i>
+            </button>
+            </div>
+        </div>
+    </header>
+    <!-- Waiting Part -->
+    <div class="waitSection hidden">
+        <div class="spinnySection">
+            <div class="icon spinnyIcon"></div>
+            <div class="text"><%= dicts.common.PleaseWait %>...</div>
+        </div>
+        <div class="progressSection"></div>
+    </div>
+    <!-- Error Message Part -->
+    <div class="errorSection hidden">
+        <div class="topSection">
+            <div class="title"><%= dicts.query.Error %>:</div>
+            <div class="content"></div>
+        </div>
+        <div class="bottomSection"></div>
+        <div class="cancelSection">
+            <i class="icon xi-warning"></i>
+            <div class="text"><%= dicts.dsForm.SelectFile %></div>
+        </div>
+    </div>
+    <!-- Preview -->
+    <div class="previewSection">
+    <div id="dsPreviewTableWrap" class="datasetTableWrap">
+        <!-- Preview Part -->
+        <div class="datasetTbodyWrap loadHidden">
+        <table id="previewTable" class="datasetTable dataTable"></table>
+        <div class="previewBottom">
+            <span class="buttonSection action xc-action"><%= dicts.dsPreview.MoreRows %></span>
+            <div class="loadSection">
+            include "../../util/animatedEllipsis.html"
+            </div>
+            <div class="endSection"><%= dicts.dsPreview.EndOfPreview %></div>
+        </div>
+        </div>
+    </div>
+    </div>
+    <!-- End Of Preview Section -->
+    <ul class="menu castDropdown">
+    <% _(types).each(function(type) { %><li class="flexContainer flexRow typeList type-<%=type.toLowerCase() %>" data-type="<%=type.toLowerCase() %>">
+        <div class="flexWrap flex-left">
+        <span class="type icon"></span>
+        </div>
+        <div class="flexWrap flex-right">
+        <span class="label"><%= type %></span>
+        </div>
+        <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <% }) %>
+    </ul>
+</div>

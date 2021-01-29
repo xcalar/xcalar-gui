@@ -1,0 +1,45 @@
+[{
+	"name": "Tableau Plugin Extension",
+	"version": "1.0.0",
+	"description": "This package contains the ability to push data up into Xcalar's Tableau cloud instance and visualize your data in any of the common formats.",
+	"main": "tableau.ext.js",
+	"repository": {
+		"type": "market",
+		"url": "www.xcalar.com/marketplace/tableau.tar.gz"
+	},
+	"author": "Jerene Yang",
+	"category": "Partner",
+	"imageUrl": "",
+	"website": "www.xcalar.com"
+},
+{
+	"name": "Xcalar Default Extension",
+	"version": "1.0.2",
+	"description": "This package contains some common functionality like windowing and horizontal partitioning that can greatly increase productivity.",
+	"main": "xcalarDef.ext.js",
+	"repository": {
+		"type": "market",
+		"url": "www.xcalar.com/marketplace/xcalarDef.tar.gz"
+	},
+	"author": "Cheng Zhang",
+	"category": "Main",
+	"imageUrl": "",
+	"website": "www.xcalar.com"
+},
+{
+	"name": "Xcalar ML Library",
+	"version": "1.0.0",
+	"description": "This package contains Linear Regression and K Means Clustering extensions. This package will be updated when more ML libraries become available.",
+	"main": "xcalarML.ext.js",
+	"repository": {
+		"type": "market",
+		"url": "www.xcalar.com/marketplace/xcalarML.tar.gz"
+	},
+	"author": "Bohan Li",
+	"devDependencies": {
+		"xcalarDef": "^1.0.0"
+	},
+	"category": "Main",
+	"imageUrl": "",
+	"website": "www.xcalar.com"
+}]

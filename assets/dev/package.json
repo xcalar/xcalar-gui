@@ -1,0 +1,15 @@
+{
+  "name": "dev",
+  "version": "1.0.0",
+  "description": "Installs the packages that are required to run items in assets/dev",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "express": "^4.17.1"
+  }
+}

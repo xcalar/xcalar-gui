@@ -1,0 +1,64 @@
+<div id="dsForm-s3Config" class="cardContainer xc-hidden">
+  <div class="cardInstruction oneLine">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span>Select an Amazon S3 connector</span>
+    </div>
+  </div>
+  <div class="cardMain">
+    <!-- connector -->
+    <div class="content target">
+      <label>S3 Connector:</label>
+      <!-- s3 connector dropdown -->
+      <div class="dropDownList long connector">
+        <input class="text" type="text" placeholder="Select a S3 connector" spellcheck="false" disabled>
+        <div class="iconWrapper">
+          <i class="icon xi-arrow-down"></i>
+        </div>
+        <!-- s3 connector Menu -->
+        <div class="list">
+          <ul></ul>
+          include "../../util/menuScrollArea.html"
+        </div>
+      </div>
+    </div>
+    <!-- path -->
+    <div class="pathSection">
+      <div class="content path">
+        <label>Data Source Path:</label>
+        <div class="dropDownList long">
+          <input type="text" spellcheck="false">
+        </div>
+      </div>
+    </div>
+    <div class="content addPathSection">
+      <div class="addPath xc-action">
+        <i class="icon xi-plus-circle-outline xc-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-title="Add path"></i>
+        <span class="text">Add Path</span>
+      </div>
+      <div class="orBrowser">
+        <span class="text">or</span>
+        <button class="btn btn-secondary browse" type="button"><%= dicts.common.Browse %>...</button>
+      </div>
+    </div>
+    <!-- import option -->
+    <div class="content multiDS">
+      <label>Import As:</label>
+      <div class="dropDownList switchWrap">
+        <div class="switchLabel highlighted">
+          <%= dicts.common.OneDataset %>
+        </div>
+        <div class="xc-switch switch">
+          <div class="slider"></div>
+        </div>
+        <div class="switchLabel">
+          <%= dicts.common.MultiDatasets %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cardBottom">
+    <button class="btn btn-submit confirm"><%= dicts.common.Next %></button>
+    <button class="btn btn-secondary back"><%= dicts.common.Cancel %></button>
+  </div>
+</div>

@@ -1,0 +1,72 @@
+<div id="dagSearch" class="modalContainer noBackground">
+  <header class="modalHeader">
+    <span class="text"><%= dicts.dagSearch.Find %>...</span>
+    <div class="close">
+      <i class="icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </div>
+  </header>
+  <section class="modalMain">
+    <!-- search group -->
+    <div class="group search">
+      <span class="semibold"><%= dicts.dagSearch.Keyword %>:</span>
+      <div class="searchArea">
+        <input class="xc-input white" type="text" placeholder="Search" spellcheck="false" autocomplete="off">
+        <div class="counter">
+          <span class="position"></span>
+          <span class="total"></span>
+        </div>
+        <div class="arrows">
+          <i class="upArrow icon xi-up xc-icon-action"></i>
+          <i class="downArrow icon xi-down xc-icon-action"></i>
+        </div>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <!-- status filter -->
+    <div class="group advanceSection status">
+      <div class="row">
+        <span class="subTitle sectionToggle"><%= dicts.dagSearch.Filters %></span>
+        <div class="action sectionToggle xc-icon-action">
+          <i class="icon xi-minus"></i>
+          <i class="icon xi-plus"></i>
+        </div>
+        <div class="action reset xc-action"><%= dicts.dagSearch.ClearFilters %></div>
+      </div>
+      <div class="options"></div>
+    </div>
+    <div class="divider"></div>
+    <div class="group advanceSection type">
+      <div class="row">
+        <span class="subTitle sectionToggle"><%= dicts.dagSearch.FindWithin %></span>
+        <div class="action sectionToggle xc-icon-action">
+          <i class="icon xi-minus"></i>
+          <i class="icon xi-plus"></i>
+        </div>
+        <div class="action reset xc-action"><%= dicts.dagSearch.ResetOptions %></div>
+      </div>
+      <!-- search scope -->
+      <div class="scope">
+        <div class="radioButtonGroup">
+          <div class="choice radioButton" data-option="all">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">
+              <%= dicts.dagSearch.AllTabs %>
+            </div>
+          </div>
+          <div class="choice radioButton" data-option="current">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">
+              <%= dicts.dagSearch.CurrentTab %>
+            </div>
+          </div>
+      </div>
+      <div class="options"></div>
+    </div>
+  </section>
+</div>

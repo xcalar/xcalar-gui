@@ -1,0 +1,32 @@
+<!-- SQLFuncSetting Modal -->
+<div id="sqlFuncSettingModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader has-subHeader">
+    <span class="text"><%= dicts.SQL.AddFunc %></span>
+    <div class="close" data-container="body" data-toggle="tooltip" 
+    data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+    <div class="subHeader instr">
+      <%= dicts.SQLEditor.SQLFuncShortHint %>
+    </div>
+  </header>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="row fnName">
+      <div class="label"><%= dicts.SQL.FunctionName %>:</div>
+      <input class="xc-input" type="text" spellcheck="false" autocomplete="off">
+    </div>
+    <div class="row numInput">
+      <div class="label"><%= dicts.SQL.NumOfInput %>:</div>
+      <input class="xc-input" type="number" min="0">
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End of SQLFuncSetting Modal -->
+      

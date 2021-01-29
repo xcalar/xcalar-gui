@@ -1,0 +1,39 @@
+<div class="cardContainer">
+  <div class="cardHeader noTransform">
+    <header class="title"><%= dicts.Table.Preview %></header>
+  </div>
+  <div class="cardInstruction">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span></span>
+    </div>
+  </div>
+  <!-- cardTop -->
+  <div class="cardTopMain">
+    <div class="infoSection"></div>
+  </div>
+  <!-- cardMain -->
+  <div class="cardMain">
+    <div class="schemaSection xc-gridList xc-hidden"></div>
+    <div class="tableArea xc-viewMode xc-tableArea">
+      <div class="errorSection xc-errorView"></div>
+      <div class="loadingSection xc-loadView"></div>
+      <div class="tableSection xc-contentView"></div>
+      <div class="bottomSection">
+          <div class="tblSchema">
+            <div class="textSection rowContent">
+              <div class="schemaError"></div>
+              <textarea class="xc-textArea textarea"
+                 placeholder='Example: [{"name": "Column1", "type": "integer"}, {"name": "Column2", "type": "string"}]'></textarea>
+            </div>
+            <div class="schemaWizard rowContent xc-wizard">
+              <%= dicts.dsForm.UseSchemaWizard %>
+            </div>
+          </div>
+          <div class="buttonSection">
+              <button type="button" class="btn btn-submit createTable"><%= dicts.Table.Create %></button>
+          </div>
+      </div>
+    </div>
+  </div>
+</div>

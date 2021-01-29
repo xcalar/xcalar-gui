@@ -1,0 +1,47 @@
+body {
+	padding: 0px;
+	margin: 0px;
+	font-family: "Helvetica Neue", Arial;
+}
+.table {
+    font-family: "Helvetica Neue", Arial;
+    margin-bottom: 15px;
+	.row {
+		width: 100%;
+		margin-bottom: 5px;
+		.key {
+			font-weight: 400;
+			text-transform: capitalize;
+			font-size: 14px;
+			width: 150px;
+			display: inline-block;
+			vertical-align: top;
+			padding-top: 1px;
+		}
+		.value {
+			font-size: 14px;
+			font-weight: 300;
+			width: ~"calc(100% - 160px)";
+			display: inline-block;
+			word-wrap: break-word;
+		}
+	}
+	&.expired {
+		opacity: 0.5;
+	}
+}
+
+hr {
+	height: 1px;
+	background-color: #92ceea;
+	border: 0px;
+}
+
+p {
+	line-height: 18px;
+	font-size: 14px;
+}
+
+h1 {
+	text-align: center;
+}

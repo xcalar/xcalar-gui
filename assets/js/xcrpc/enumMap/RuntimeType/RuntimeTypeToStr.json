@@ -1,0 +1,7 @@
+{
+    "0" : "RuntimeTypeLatency",
+    "1" : "RuntimeTypeThroughput",
+    "2" : "RuntimeTypeImmediate",
+    "3" : "RuntimeTypeInvalid"
+}
+

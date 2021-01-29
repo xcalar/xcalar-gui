@@ -1,0 +1,9 @@
+{
+    "LibDsFuncStressUsers" : 0,
+    "LibDsFuncStressThreads" : 1,
+    "LibDsQaYelpReviewsUrl" : 2,
+    "LibDsQaRandomJsonUrl" : 3,
+    "LibDsQaYelpUserUrl" : 4,
+    "LibDsQaGDeltUrl" : 5
+}
+

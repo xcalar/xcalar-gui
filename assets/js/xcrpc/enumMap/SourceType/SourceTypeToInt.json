@@ -1,0 +1,8 @@
+{
+    "SrcUnknown" : 0,
+    "SrcDataset" : 1,
+    "SrcTable" : 2,
+    "SrcConstant" : 3,
+    "SrcExport" : 4
+}
+

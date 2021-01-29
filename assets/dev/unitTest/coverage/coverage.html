@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="base.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="pad1">
+            <h1 id="path"></h1>
+            <div class="clearfix">
+                <div id="totalCoverage" class="fl pad1y space-right2"></div>
+            </div>
+        </div>
+        <div id="totalStatus" class="status-line"></div>
+        <div id="summary" class="pad1">
+            <table class="coverage-summary">
+                <thead>
+                    <tr>
+                        <td>File</td>
+                        <td>Coverage (Bytes)</td>
+                        <td>Percentage</td>
+                    </tr>
+                </thead>
+                <tbody id="report"></tbody>
+            </table>
+        </div>
+        <div id="entry">
+            <pre>
+                <table class="coverage">
+                    <tbody>
+                        <tr>
+                            <td id="lineNum" class="line-count quiet"></td>
+                            <td class="line-coverage quiet"></td>
+                            <td id="content" class="text"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </pre>
+        </div>
+    </div>
+    
+    <script src="coverage.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        const greenPercentage = 85;
+
+        showCoverageSummary();
+
+        function showEntryEvent(event) {
+            event.preventDefault();
+            const index = Number(event.target.getAttribute("data-index"));
+            showEntrySummary(coverage[index]);
+        }
+
+        function showAllFilesEvent(event) {
+            event.preventDefault();
+            showCoverageSummary();
+        }
+
+        function stripUrl(url) {
+            const pattern = "assets/js";
+            const index = url.indexOf(pattern);
+            if (index >= 0) {
+                url = url.substring(index + pattern.length);
+            }
+            return url
+        }
+
+        function showTotalPercantage(usedBytes, totalBytes) {
+            const percentage = usedBytes / totalBytes * 100;
+            const html = '<span class="strong">' +
+                            `${percentage.toFixed(2)}%` +
+                        '</span>' +
+                        '<span class="quiet">  Total(in bytes)  </span>' +
+                        '<span class="fraction">' +
+                            `${usedBytes}/${totalBytes}`
+                        '</span>';
+
+            document.getElementById("totalCoverage").innerHTML = html;
+
+            const ele = document.getElementById("totalStatus");
+            if (percentage >= greenPercentage) {
+                ele.classList.add("high");
+                ele.classList.remove("low");
+            } else {
+                ele.classList.add("low");
+                ele.classList.remove("high");
+            }
+        }
+
+        function getCoverageInfo(entry) {
+            const totalBytes = entry.text.length;
+            let usedBytes = 0;
+            for (const range of entry.ranges) {
+                usedBytes += range.end - range.start - 1;
+            }
+
+            return {
+                totalBytes: totalBytes,
+                usedBytes: usedBytes,
+                percentage: usedBytes / totalBytes * 100
+            }
+        }
+
+        function showCoverageSummary() {
+            let html = "";
+            let usedBytes = 0;
+            let totalBytes = 0;
+            coverage.sort((a, b) => {
+                const aUrl = a.url;
+                const bUrl = b.url;
+                if (aUrl < bUrl) {
+                    return -1;
+                }
+                if (aUrl > bUrl) {
+                    return 1;
+                }
+                return 0;
+            });
+
+            coverage.forEach((entry, i) => {
+                const covInfo = getCoverageInfo(entry);
+                usedBytes += covInfo.usedBytes;
+                totalBytes += covInfo.totalBytes;
+
+                const classes = (covInfo.percentage >= greenPercentage ?
+                                "high" : "low") + " item";
+                const url = stripUrl(entry.url);
+                html += '<tr class="' + classes + '">' + 
+                            '<td class="url">' +
+                                '<a onClick="showEntryEvent(event)"' +
+                                ' href="' + url + '"' +
+                                ' data-index="' + i + '">' +
+                                    url +
+                                '</a>' +
+                            '</td>' +
+                            '<td class="coverage">' +
+                                `${covInfo.usedBytes}/${covInfo.totalBytes}` +
+                            '</td>' +
+                            '<td class="percentage">' +
+                                `${covInfo.percentage.toFixed(2)}%`
+                            '</td>' +
+                        '</tr>';
+            });
+
+            document.getElementById("report").innerHTML = html;
+            document.getElementById("summary").classList.remove("hidden");
+            document.getElementById("entry").classList.add("hidden");
+            document.getElementById("path").innerHTML = "/";
+            showTotalPercantage(usedBytes, totalBytes);
+        }
+
+        function showEntrySummary(entry) {
+            document.getElementById("report").innerHTML = "";
+            document.getElementById("summary").classList.add("hidden")
+            document.getElementById("entry").classList.remove("hidden");
+
+            const path = '<a href="/" onClick="showAllFilesEvent(event)">' +
+                            'all files' +
+                        '</a>   ' +
+                        stripUrl(entry.url);
+            const ranges = entry.ranges;
+            let rangeTracker = 0;
+            let bytesTracker = -1;
+            let lineNum = "";
+            let content = "";
+
+            const lines = entry.text.split("\n");
+            lines.forEach((line, i) => {
+                line = line + '\n';
+                bytesTracker += line.length;
+
+                let notCover = false;
+                if (rangeTracker >= ranges.length) {
+                    notCover = true;
+                } else if (bytesTracker < ranges[rangeTracker].start) {
+                    notCover = true;
+                } else if (bytesTracker <= ranges[rangeTracker].end) {
+                    // in the range
+                    notCover = false;
+                } else {
+                    // more than the range
+                    while (rangeTracker < ranges.length && bytesTracker > ranges[rangeTracker].end) {
+                        rangeTracker++;
+                    }
+                    notCover = (rangeTracker >= ranges.length) ||
+                                (bytesTracker < ranges[rangeTracker].start);
+                }
+
+                const classes = notCover ? 'cstat-no' : 'cline-yes';
+                lineNum += '<span class="' + classes + '">'
+                                + (i + 1) + '\n' +
+                            '</span>';
+                content += '<span class="' + classes + '">' +
+                                    escapeHTMLSpecialChar(line) +
+                                '</span>';
+            });
+
+            document.getElementById("lineNum").innerHTML = lineNum;
+            document.getElementById("content").innerHTML = content;
+            document.getElementById("path").innerHTML = path;
+
+            const covInfo = getCoverageInfo(entry);
+            showTotalPercantage(covInfo.usedBytes, covInfo.totalBytes);
+        }
+
+        function escapeHTMLSpecialChar(str) {
+            try {
+                // esacpe & to &amp;, so text &quot; will not become " in html
+                // escape < & > so external html doesn't get injected
+                str = str.replace(/\&/g, '&amp;')
+                        .replace(/\</g, '&lt;')
+                        .replace(/\>/g, '&gt;')
+                        .replace(/\\t/g, '&emsp;');
+            } catch (e) {
+
+            }
+
+            return str;
+        }
+    </script>
+</body>
+</html>

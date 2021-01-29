@@ -1,0 +1,8 @@
+This unit test engine use puppteer to run the unit test.
+Reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browseruseragent
+
+Setup Instruction:
+
+1. npm install
+2. node test
+3. (Optional) open coverage/coverage.html to check code coverage after test finished

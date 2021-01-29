@@ -1,0 +1,8 @@
+{
+    "DagRefNone" : 0,
+    "DagRefApi" : 1,
+    "DagRefOperator" : 2,
+    "DagRefNode" : 3,
+    "DagRefResultSet" : 4
+}
+

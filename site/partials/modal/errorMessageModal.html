@@ -1,0 +1,52 @@
+ <!--error Log Modal -->
+<div id="errorMessageModal" class="modalContainer">
+  <div class="modalHeader">
+    <span class="text"><%= dicts.installer.title %></span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </div>
+  <div class="modalInstruction">
+    <div class="cancel">
+      <i class="icon xi-cancel"></i>
+    </div>
+    <div class="text">
+      <span class="up"><%= dicts.installer.instrUp %></span>
+      <span class="down"><%= dicts.installer.instrDown %></span>
+    </div>
+  </div>
+  <div class="formWrap">
+    <div class="errorCode section">
+      <div class="name"><%= dicts.installer.errorCode %></div>
+      <div class="text"></div>
+    </div>
+    <!--<div class="description section">
+      <div class="name"><%= dicts.installer.description %></div>
+      <div class="text"></div>
+    </div> -->
+    <div class="errorMessage section">
+      <div class="name"><%= dicts.installer.errorMessage %></div>
+      <div class="text"></div>
+    </div>
+    <div class="showHide section">
+      <div class="name"><%= dicts.installer.showHide %></div>
+      <div class="showHideButton">
+        <i class="icon xi-down"></i>
+      </div>
+    </div>
+  </div>
+  <div class="logWrap">
+    <div class="logArea">
+    </div>
+  </div>
+  <div class="modalBottom clearfix">
+    <button class="btn btn-cancel close"><%= dicts.common.Close %></button>
+  </div>
+</div>
+<!-- End Of error Log Modal -->

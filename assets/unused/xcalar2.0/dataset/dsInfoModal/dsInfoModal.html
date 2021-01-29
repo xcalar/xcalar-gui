@@ -1,0 +1,27 @@
+<!-- DS Info Modal -->
+<div id="dsInfoModal" class="modalContainer xc-viewMode">
+  <header class="modalHeader">
+    <span class="text"><%= dicts.ds.DSInfo %></span>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- modalMain -->
+  <section class="modalMain">
+    <div class="infoSection text-selection">
+      <div class="section name">
+        <div class="label"><%= dicts.dsForm.DSName %>:</div>
+        <div class="content tooltipOverflow" data-toggle="tooltip" data-container="body" data-placement="auto top"></div>
+      </div>
+      <div class="section owner">
+        <div class="label"><%= dicts.dsTable.CreatedBy %>:</div>
+        <div class="content tooltipOverflow" data-toggle="tooltip" data-container="body" data-placement="auto top"></div>
+      </div>
+      <div class="section user">
+        <div class="label"><%= dicts.ds.UsedBy %>:</div>
+        <div class="content"></div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- End of DS Info Modal -->

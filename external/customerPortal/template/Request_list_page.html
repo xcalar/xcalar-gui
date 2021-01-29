@@ -1,0 +1,99 @@
+<header class="my-activities-header">
+  {{breadcrumbs}}
+</header>
+
+<nav class="my-activities-nav nav-bordered">
+  <ul>
+    <li>{{t 'requests'}}</li>
+    <li>{{link 'contributions'}}</li>
+    <li>{{link 'subscriptions'}}</li>
+  </ul>
+</nav>
+
+<nav class="my-activities-sub-nav nav-spaced">
+  <ul>
+    {{#each filters}}
+      <li>
+        {{#if selected}}
+          {{name}}
+        {{else}}
+          <a href="{{url}}">{{name}}</a>
+        {{/if}}
+      </li>
+    {{/each}}
+  </ul>
+</nav>
+
+{{#form 'requests_filter' class='request-table-toolbar'}}
+  {{input 'query' id='quick-search' type='search' class='requests-search'}}
+  <div class="request-table-filters">
+    {{label 'organization' for='request-organization-select' class='request-filter'}}
+    {{select 'organization' id='request-organization-select' class='request-filter'}}
+    {{subscribe}}
+    {{label 'status' for='request-status-select' class='request-filter'}}
+    {{select 'status' id='request-status-select' class='request-filter'}}
+  </div>
+{{/form}}
+
+{{#if query}}
+  <div class="requests-search-info meta-group">
+    <span>{{t 'requests_search_results_info' count=requests.length query=query}}</span>
+  </div>
+{{else}}
+  {{#unless requests}}
+    <p>{{t 'no_requests'}}</p>
+  {{/unless}}
+{{/if}}
+
+<div class="my-activities-table">
+  {{#if requests}}
+    <table id="request-table" class="request-table {{current_filter.identifier}}-requests">
+      <thead>
+        <tr>
+          <th>{{t 'id'}}</th>
+          <th>{{t 'subject'}}</th>
+          <th>
+            {{#is current_filter.identifier 'my'}}
+              {{#link 'requests' sort_by='created_at'}}{{t 'created'}}{{/link}}
+            {{else}}
+              {{t 'requester'}}
+            {{/is}}
+          </th>
+          <th>{{#link 'requests' sort_by='updated_at'}}{{t 'last_activity'}}{{/link}}</th>
+          <th>{{t 'status'}}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each requests}}
+          <tr>
+            <td>{{id}}</td>
+            <td>
+              <a href="{{url}}">
+                {{#if subject}}
+                  {{subject}}
+                {{else}}
+                  {{excerpt description characters=50}}
+                {{/if}}
+              </a>
+            </td>
+            <td>
+              {{#is ../current_filter.identifier 'my'}}
+                {{date created_at timeago=true}}
+              {{else}}
+                {{requester.name}}
+              {{/is}}
+            </td>
+            <td>{{date updated_at timeago=true}}</td>
+            <td>
+              <span class="request-status request-{{status}}" title="{{status_description}}">
+                {{status_name}}
+              </span>
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  {{/if}}
+
+  {{pagination}}
+</div>

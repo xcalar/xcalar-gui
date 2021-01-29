@@ -1,0 +1,1179 @@
+@import "partials/mixins/common.less";
+@import "partials/mixins/flex.less";
+@import "partials/icon.less";
+@import "partials/basic.less";
+@div-width: 650px;
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-width: 780px;
+    height: 100%;
+    font: 13px @font-base;
+    font-weight: 600;
+    .box-sizing;
+    .flex-display(flex);
+    .flex-direction(column);
+}
+
+table, tr, td, th, input, textarea, header, p, div {
+    margin: 0;
+    padding: 0;
+    .box-sizing;
+    border: none;
+}
+input {
+    font: 13px @font-base;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    color: @color-font-default;
+    // font-size: 0; /* Need to use this to get rid of stupid white space */
+    background-color: @color-bg-default;
+}
+
+form {
+    a {
+        cursor: pointer;
+        color: @color-font-default;
+    }
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}
+
+#logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.container {
+    height: ~"calc(100% - 240px)";
+    &.preConfig {
+        .noPreConfig {
+            display: none !important;
+        }
+    }
+    &:not(.preConfig) {
+        .preConfigOnly {
+            display: none !important;
+        }
+    }
+}
+
+.outerWrap {
+    width: 100%;
+
+    header {
+        .size(@width: @div-width, @height: 50px);
+        .position(relative, @top: 10px);
+        overflow: hidden;
+        margin: 100px auto 10px;
+        .font(@weight: 400, @size: 36px, @line-height: 36px, @family: @font-base);
+    }
+
+    .instruction {
+        .size(@width: @div-width, @height: 60px);
+        margin: 10px auto 18px auto;
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+
+        .icon, .text {
+            display: inline-block;
+            float: left;
+        }
+
+        .icon {
+            font-size: 20px;
+        }
+
+        .text {
+            width: 90%;
+            padding-left: 10px;
+            margin-left: 6px;
+            .font(@size: 14px, @line-height: 24px);
+        }
+    }
+
+    &#bottomSection {
+        padding-top: 15px;
+        height: 100%;
+        overflow: auto;
+    }
+
+}
+
+#loadingBar {
+    .size(@width: 100%, @height: 1px);
+    background-color: @color-font-default;
+    position: relative;
+    overflow: hidden;
+
+    .innerBar {
+        height: 1px;
+        width: 200px;
+        background-color: @color-font-white;
+        position:absolute;
+        left: -200px;
+        // XX need to add this to mixin
+        background: linear-gradient(to right, @color-border-softBlue, #d6e4ec, @color-border-softBlue);
+        .keyframe(slideRight, {
+            0%   {left: -200px;}
+            100% {left: 100%;}
+        });
+        .keyframeAnim(slideRight 0.7s linear forwards 0.3s);
+
+        &.immediateAnimation {
+           .keyframeAnim(slideRight 0.7s linear forwards 0s);
+        }
+    }
+}
+
+
+.radioButtonGroup {
+    .radioButton {
+        .size(@height: 28px);
+        .font(@size: 17px, @line-height: 24px);
+
+        .radio {
+            .size(@width: 16px, @height: 16px);
+
+            .icon {
+                font-size: 17px;
+                line-height: 16px;
+            }
+        }
+
+        .label {
+            .size(@width:~"calc(100% - 30px)");
+            text-align: left;
+            font-size: 14px;
+        }
+    }
+
+    &.choiceSection {
+        display: initial;
+        .radio {
+            top: 20%;
+        }
+        .label {
+            padding-left: 11px;
+            .size(@width:~"calc(100% - 30px)");
+        }
+    }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: @color-bg-bright-blue !important;
+    color: @color-font-white !important;
+    -webkit-box-shadow: 0 0 0 1000px   @color-bg-bright-blue inset !important;
+    -webkit-text-fill-color: @color-font-white !important;
+}
+
+#formArea {
+    width: @div-width;
+    margin: 0 auto;
+    padding-left: 50px;
+    position: relative;
+
+    .title {
+        font-weight: 500;
+        margin-top: 26px;
+        .position(relative, @left: -50px);
+        > div:not(.hint) {
+            span {
+                display: inline-block;
+                &:first-child {
+                    &:not(.choice) {
+                        width: 78px;
+                    }
+                }
+            }
+        }
+        .step {
+            .font(@size: 14px);
+        }
+
+
+    }
+
+    .hint {
+        .font(@size: 12px);
+        margin-top: 9px;
+        span {
+            display: inline-block;
+            font-weight: 600;
+            min-height: 20px;
+            &:first-child {
+                width: 78px;
+            }
+            &:not(:first-child) {
+                min-height: 20px;
+                width: ~"calc(100% - 90px)";
+            }
+        }
+    }
+
+    .header {
+        display: inline-block;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        color: @color-font-default;
+        font-size: 14px;
+    }
+
+    .hidden {
+        display: none !important;
+        .transition(all 0.5s);
+    }
+
+    #numServers {
+        outline: none;
+        margin-left: 10px;
+        background-color: #212121;
+        box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+        color: @color-font-default;
+        padding-left: 10px;
+        width: 100px;
+        font-size: 15px;
+    }
+
+    .section {
+        position: relative;
+        font-size: 13px;
+        font-weight: 500;
+        padding-left: 5%;
+        overflow: hidden;
+
+        .bar {
+            position: absolute;
+            line-height: 30px;
+            left: 0px;
+            top: 15px;
+            text-indent: 4px;
+            .transition(color 0.5s);
+            pointer-events: none;
+            z-index: 0;
+            width: 76%;
+            margin-left: 5%;
+            text-transform: uppercase;
+
+            &.error {
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: 0px;
+                    .size(@width: 100%, @height: 1px);
+                    background-color: @color-log-brown;
+                    .transition(all 0.5s);
+                }
+            }
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0px;
+                .size(@width: 100%, @height: 1px);
+                background-color: @color-font-darkGray;
+                .transition(all 0.5s);
+            }
+        }
+
+        textarea {
+            font-size: 14px;
+            margin-top: 20px;
+            display: inline-block;
+            font-family: @font-code;
+            background-color: #212121;
+            color: @color-font-default;
+            box-shadow: 0 3px 5px 0 rgba(0, 0, 0, 0.2);
+            resize: none;
+            overflow: auto;
+            &:focus {
+                outline: none !important;
+            }
+            &.licenseKey {
+                padding: 5px;
+            }
+        }
+
+        .link {
+            float: right;
+            margin-top: 10px;
+        }
+
+        label {
+            height: 100%;
+            width: 100%;
+            display: block;
+        }
+
+        .input {
+            width: ~"calc(100% - 90px)";
+            // height: 100%;
+            height: 30px;
+            background-color: transparent;
+            outline: none;
+            margin-left: 25px;
+            padding-left: 10px;
+            .font(@weight: 500, @size: 16px, @line-height: 30px, @color: @color-font-white);
+            position: relative;
+            z-index: 1;
+            padding-top: 2px;
+            margin-top: 14px;
+            .input-placeholder(@color-font-white);
+
+            &::-webkit-input-placeholder {
+                opacity: 0.5 !important;
+            }
+
+            &:-moz-placeholder { /* Firefox 18- */
+               opacity: 0.5 !important;
+            }
+
+            &::-moz-placeholder {  /* Firefox 19+ */
+               opacity: 0.5 !important;
+            }
+
+            &:-ms-input-placeholder {
+               opacity: 0.5 !important;
+            }
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0px;
+                margin-left: 5%;
+                .size(@width: 90%, @height: 1px);
+                background-color: @color-bg-bright-blue;
+                .transition(all 0.5s);
+            }
+
+            &:focus {
+                .font(@color: @color-font-white);
+                outline: none;
+
+                &::after {
+                    background-color: @color-font-white;
+                    height: 2px;
+                    bottom: 0px;
+                }
+
+                ~ .bar {
+                    color: @color-font-default;
+                    &::after {
+                        background-color: @color-font-white;
+                        height: 2px;
+                    }
+                }
+            }
+            &:active {
+                outline: none;
+            }
+        }
+
+        &.choiceSection {
+            left: -50px;
+            margin-top: 22px;
+            .choice {
+                width: 100%;
+                height: 40px;
+                margin-top: 26px;
+                &:first-child {
+                    margin-top: 0px;
+                }
+            }
+            .radio {
+                top: 10px;
+            }
+            .name, .content {
+                font-size: 12px;
+                line-height: 18px;
+            }
+            .content {
+                margin-top: 5px;
+            }
+        }
+        &.preConfigSection {
+            display: block;
+        }
+
+        &.nfsSection, &.upgradeLicenseSection, &.preConfigSection, &.upgradeXcalarRootSection, &.supportBundleSection, &.hotPatchSection {
+            height: auto;
+            .label {
+                padding-left: 10px;
+            }
+
+            .nfsSubOption {
+                width: 100%;
+                height: 50px;
+            }
+            .customerNfsOptions, .readyNfsOptions {
+                display: none;
+                width: 100%;
+                position: relative;
+                .input {
+                    margin-left: 0px;
+                    float: left;
+                    padding-left: 0px;
+                    padding-right: 0px;
+                    margin-top: 0;
+                    width: auto;
+                    font-size: 14px;
+                    .input-placeholder(@color-font-white);
+                    &::after {
+                        height: 0px;
+                    }
+                }
+                span {
+                    margin-left: 10px;
+                    margin-right: 10px;
+                    margin-top: 8px;
+                    float: left;
+                    color: @color-font-softGrayBlue;
+                }
+                .nfsSubOption {
+                    position: relative;
+                    :first-child {
+                        margin-left: 120px;
+                    }
+                    &.nfsUser .input {
+                        width: 300px;
+                    }
+                    .bar {
+                        position: absolute;
+                        top: 1px;
+                    }
+                }
+            }
+        }
+
+        &.hostnameSection {
+            width: 100%;
+            display: inline-block;
+            overflow: visible !important;
+            .row {
+                width: 100%;
+                position: relative;
+                display: inline-block;
+
+                &.header {
+                    font-size: 15px;
+                }
+
+                &:not(.header) {
+                    max-height: 70px;
+                }
+
+                .bar {
+                    top: 0px;
+                    position: absolute;
+                    width: ~"calc(100% - 10px)";
+                    margin-left: 0px;
+                }
+                input {
+                    .input-placeholder(@color-font-white);
+                    font-size: 14px;
+                    width: ~"calc(100% - 40px)";
+                    padding-left: 40px;
+                    padding-bottom: 3px;
+                    margin-top: 0px;
+                }
+
+                .publicName, .privateName {
+                    position: relative;
+                }
+
+                .privateName {
+                    padding-bottom: 10px;
+                }
+                .leftCol {
+                    position: relative;
+                    width: 50%;
+                    float: left;
+
+                }
+                .rightCol {
+                    overflow: visible;
+                    width: 50%;
+                    float: left;
+                }
+            }
+        }
+
+        &.credentialSection {
+            position: relative;
+            display: inline-block;
+            margin-top: 0px;
+            padding-bottom: 2px; // to show last input bottom border
+            width: 100%;
+            input {
+                .input-placeholder(@color-font-white);
+                margin-left: 70px;
+                margin-top: 10px;
+            }
+            .hostUsername {
+                position: relative;
+                width: 100%;
+                .bar:nth-child(2) {
+                    top: 52px;
+                }
+            }
+
+            .inputWrap {
+                height: 39px;
+            }
+
+            .hostPassword {
+                width: 100%;
+                position: relative;
+            }
+
+            .bar {
+                top: 12px;
+                position: absolute;
+                width: ~"calc(100% - 10px)";
+                margin-left: 0px;
+            }
+
+            .hostSshKey {
+                display: none;
+            }
+        }
+
+        &.installationDirectorySection {
+            position: relative;
+            display: inline-block;
+            margin-top: 0px;
+            padding-bottom: 2px; // to show last input bottom border
+            width: 100%;
+
+            .inputWrap {
+                height: 39px;
+            }
+
+            .installationDirectory {
+                position: relative;
+                width: 100%;
+            }
+
+            input {
+                .input-placeholder(@color-font-white);
+                margin-left: 170px;
+                margin-top: 10px;
+            }
+
+            .bar {
+                top: 12px;
+                position: absolute;
+                width: ~"calc(100% - 10px)";
+                margin-left: 0px;
+            }
+        }
+
+        &.serializationDirectorySection {
+            .SERDESDirectory {
+                position: relative;
+            }
+            .bar {
+                top: 0px;
+                position: absolute;
+                width: ~"calc(100% - 10px)";
+                margin-left: 0px;
+            }
+            input {
+                margin-left: 185px !important;
+                margin-top: 0px;
+            }
+        }
+        &.successSection {
+            margin-top: 20px;
+            display: none;
+            h2 {
+                display: block;
+            }
+            .linkWrapper {
+                margin-top: 20px;
+            }
+            .backToInstall {
+                text-decoration: underline;
+            }
+        }
+        &.ldapSection, &.defaultAdminSection {
+            overflow: visible;
+            .flex-direction(column);
+            #ldapDep {
+                display: inline;
+                .ldapDepOption {
+                    width: 100%;
+                    margin-top: 20px;
+                }
+            }
+            .customerLdapOptions, .xcalarLdapOptions {
+                margin-left: 20px;
+            }
+            .fieldWrap {
+                margin-bottom: 40px;
+            }
+            .customerLdapOptions .fieldWrap {
+                margin-bottom: 10px; // keep checkboxes below close
+            }
+            .inputWrap {
+                position: relative;
+            }
+            input {
+                margin-left: 160px;
+                font-size: 14px;
+                width: 435px;
+            }
+            .bar {
+                width: 85%;
+            }
+            .hint {
+                span {
+                    width: auto;
+                }
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            margin-top: 20px;
+            .label {
+                padding-left: 10px;
+            }
+            .ADOnly {
+                display: none;
+                &.checkboxLine {
+                    padding-left: 30px;
+                }
+            }
+            .defaultAdminParams {
+                position: relative;
+                .fieldWrap {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+                .defaultAdminParam {
+                    width: 50%;
+                    .input {
+                        width: auto;
+                        &.user {
+                            margin-left: 130px;
+                        }
+                        &.email {
+                            margin-left: 53px;
+                        }
+                        &.password {
+                            margin-left: 85px;
+                        }
+                        &.confirmPassword {
+                            margin-left: 145px;
+                        }
+                    }
+                }
+                .passwordStrength {
+                    margin-top: 15px;
+                    padding-left: 2.5%;
+                    width: 100%;
+                    .xi-info-circle {
+                        display: none;
+                    }
+                    span {
+                        padding-left: 5px;
+                    }
+                    &.invalid {
+                        color: @color-invalid;
+                    }
+                    &.veryWeak {
+                        color: @color-very-weak;
+                    }
+                    &.weak {
+                        color: @color-weak;
+                    }
+                    &.strong {
+                        color: @color-strong;
+                    }
+                    &.veryStrong {
+                        color: @color-very-strong;
+                    }
+                    &.invalid, &.veryWeak, &.weak, &.strong, &.veryStrong {
+                        .xi-info-circle {
+                            display: inline-block !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.nfsSection, &.upgradeLicenseSection, &.preConfigSection, &.copyDataSection, &.serializationDirectorySection {
+            display: block;
+            .radioButtonGroup {
+                display: inline;
+                .radioButton {
+                    margin-top: 20px;
+                    margin-bottom: 20px;
+                }
+            }
+        }
+        &.nfsSection, &.ldapSection, &.credentialSection, &.preConfigSection {
+            .radioButton {
+                .label {
+                    .flex-display(flex);
+                    .align-items(center);
+                    .size(@height: 28px);
+                }
+            }
+        }
+        &.discoverSection {
+            height: 70px;
+            .discoverWrapper {
+                height: 30px;
+                line-height: 30px;
+                width: 100%;
+                .flex-display(flex);
+                .justify-content(@justify: flex-start);
+            }
+            .label {
+                margin-left: 20px;
+            }
+            .text {
+                margin-left: 15px;
+            }
+        }
+    }
+
+    .error {
+        display: none;
+        color: @color-text-macaroniAndCheese;
+        height: 40px;
+        margin-top: 20px;
+        .leftBar {
+            position: absolute;
+            width: 5px;
+            height: 100%;
+            background-color: @color-text-macaroniAndCheese;
+        }
+        span {
+            padding-top: 1px;
+            padding-left: 20px;
+        }
+    }
+
+    .buttonSection {
+        margin-top: 0px;
+        overflow: hidden; // Clearfix da shit
+        height: auto;
+        width: 100%;
+    }
+
+    .part {
+        display: inline-block;
+    }
+
+    .btn {
+        width: 150px;
+        height: 36px;
+        border: 1px solid @color-font-white;
+        background-color: rgba(0,0,0,0);
+        .font(@weight: bold, @align: center, @color: @color-font-white);
+        float: right;
+        margin-left: 10px;
+        margin-top: 36px;
+        margin-bottom: 10px;
+        .transition(all 0.2s);
+        outline: none;
+
+        &:focus {
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        &:hover {
+            background-color: rgba(0,0,0,0.2);
+        }
+        &:active {
+            border-color: @color-border-activeBlue !important;
+        }
+
+        &.inactive {
+            color: @color-bg-unselect-gray;
+            border-color: @color-bg-unselect-gray;
+            pointer-events: none;
+        }
+    }
+
+    .unclickable {
+        pointer-events: none;
+    }
+
+    #sharedStorageForm {
+        &.lock {
+            pointer-events: none;
+        }
+    }
+
+    .checkboxLine {
+        height: 40px;
+        overflow: hidden;
+        .checkbox, .label {
+            display: inline-block !important;
+            float: left !important;
+            line-height: 40px !important;
+            height: 40px !important;
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+#uninstallDiscoveryForm, #upgradeDiscoveryForm {
+    .hostnameSection {
+        input {
+            padding-left: 65px !important;
+        }
+    }
+}
+// Error Modal
+// ========== Modal CSS ==========
+.modalContainer {
+    display: none;
+    .position(absolute, 0, 0, 0, 0);
+    .size(@max-width: 99%, @max-height: 99%);
+    z-index: @z-index-modal;
+    background-color: @color-bg-default;
+
+    .modalHeader {
+        background-color: @color-bg-dusk-blue;
+        .size(@width: 100%, @height: 36px);
+        .noSelection;
+        .cursor-move;
+        line-height: 36px;
+        text-align: center;
+        text-shadow: 1px 1px rgba(0,0,0,0.2);
+        text-transform: capitalize;
+
+        .text {
+            .font(@weight: bold, @size: 18px, @color: @color-font-white);
+            display: inline-block;
+            width: 100%;
+            padding-left: 30px;
+            padding-right: 30px;
+            .textOverflowOneLine;
+        }
+        .headerBtn, .close {
+            cursor: pointer;
+
+            .size(@width: 22px, @height: 22px);
+
+            .icon {
+                display: inline-block;
+                .position(absolute, @top: 0, @right: 0);
+                .size(@width: 22px, @height: 22px);
+                line-height: 22px
+            }
+
+            &:hover {
+            }
+
+            &:active {
+
+            }
+        }
+        .close, .headerBtn {
+            opacity: @opacity-unhover;
+            .icon {
+               font-size: 16px;
+            }
+            &:hover {
+                opacity: @opacity-hover;
+            }
+        }
+        .close {
+            .position(absolute, @top: 7px, @right: 7px);
+        }
+        .fullScreen {
+            .position(absolute, @top: 7px, @right: 34px);
+            .icon {
+               font-size: 18px;
+            }
+        }
+        .exitFullScreen {
+            .position(absolute, @top: 7px, @right: 61px);
+        }
+    }
+
+    .modalInstruction {
+        .size(@width: 100%, @height: @height-card-instr);
+        background-color: @color-bg-default;
+        overflow: hidden;
+        padding: 10px;
+        border-bottom: 1px  solid @color-border-pinkish-grey2;
+        .flex-display;
+        .flex-direction(row);
+        .text-selection;
+
+        .icon {
+            .flex(0 0 36px);
+            .font(@size: 24px, @color: @color-bg-select-blue);
+        }
+
+        .text {
+            .flex(1 1 auto);
+            .font(@weight: 600, @size: 12px);
+            overflow: hidden;
+        }
+
+        b, .semibold {
+            color: @color-font-select-blue;
+        }
+    }
+
+    .modalTopMain {
+        .size(@width: 100%);
+        background: @color-bg-white-three;
+        color: @color-font-darkGray;
+        .no-selection;
+    }
+
+    .modalMain {
+        background-color: @color-bg-default;
+        .no-selection;
+    }
+
+    .modalSubMain {
+        .size(@width: 100%);
+        background: @color-bg-white-three;
+        color: @color-font-darkGray;
+        .no-selection;
+    }
+
+    .modalBottom {
+        .size(@width: 100%, @height: 56px);
+        .no-selection;
+
+        .bottomItem, .btn {
+            float: right;
+            .vertical-align;
+            margin-right: 10px;
+        }
+
+        .btn {
+            .size(@height: 36px);
+            line-height: 36px;
+
+            &.cancel {
+                .btn-cancel;
+            }
+        }
+    }
+}
+
+.ui-draggable-dragging {
+    .cursor-grabbing;
+
+    .ui-draggable-handle {
+        .cursor-grabbing;
+    }
+}
+
+#errorMessageModal {
+    position: fixed;
+    left: ~"calc(50% - 400px)";
+    top: ~"calc(50% - 300px)";
+    .size(@width: 800px, @height: 650px);
+    .modalHeader {
+        .text {
+            margin-left: 21px;
+            margin-right: 21px;
+            padding: 0px;
+        }
+        background-color: @color-error-border;
+        text-align: left;
+    }
+    .modalInstruction {
+        height: 90px;
+        border: none;
+        display: flex;
+        align-items: center;
+        .cancel {
+            height: 67px;
+            width: 67px;
+            margin-left: 6px;
+            .icon {
+                color: @color-error-border;
+                font-size: 67px;
+            }
+        }
+        .text {
+            margin-left: 22px;
+            .up, .down {
+                color: @color-error-border;
+                width: 100%;
+            }
+            .up {
+                margin-top: 16px;
+                font-size: 18px;
+            }
+            .down {
+                margin-top: 10px;
+                display: block;
+                font-size: 14px;
+            }
+        }
+    }
+    .formWrap {
+        .size(@width: 100%);
+        padding: 10px 22px 10px 22px;
+        border-top: 1px solid @color-border-pinkish-grey2;
+        border-bottom: 1px solid @color-border-pinkish-grey2;
+        .section {
+            height: 30px;
+            padding: 10px 0px 10px 0px;
+            .name {
+                width: 110px;
+                float: left;
+                color: @color-font-greyish-brown;
+            }
+            .text {
+                width: ~"calc(100% - 110px)";
+                float: left;
+                font-size: 13px;
+                display: inline-block;
+                color: @color-font-greyish-brown;
+                font-weight: 500;
+            }
+            &.errorMessage {
+                height: 140px;
+                .text {
+                    white-space: pre-wrap;
+                    overflow-y: auto;
+                    height: 100%;
+                }
+            }
+        }
+        .showHide {
+            .name {
+                width: 126px;
+                float: left;
+            }
+            .showHideButton {
+                .size(@width: 24px, @height: 24px);
+                margin-left: 7px;
+                display: inline-block;
+                float: left;
+                .icon {
+                    font-size: 12px;
+                    margin-top: 6px;
+                    color: @color-bg-select-blue;
+                }
+            }
+            .name, .showHideButton {
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    .logWrap {
+        .size(@width: 100%, @height: ~"calc(100% - 404px);");
+        min-height: 150px;
+        overflow: hidden;
+        .logArea {
+            .size(@width: ~"calc(100% - 44px)", @height: ~"calc(100% - 10px)");
+            margin: 10px 22px 0px 22px;
+            padding: 10px 20px 16px 20px;
+            color: @color-font-greyish-brown;
+            font-size: 14px;
+            font-weight: 550;
+            background-color: @color-bg-white-three;
+            border: solid 1px @color-border-white-five;
+            overflow-y: auto;
+        }
+        .msgRow {
+            white-space: pre-wrap;
+            &:hover {
+                background-color: @color-bg-white-three;
+            }
+        }
+        .monitorLogColorSchema();
+    }
+    .modalBottom {
+        height: 56px;
+        padding-right: 20px;
+        .btn {
+            margin-right: 0px;
+        }
+    }
+
+    &:not(.hiddenLog) {
+        .size(@min-height: 580px);
+    }
+
+    &.hiddenLog {
+        .logWrap {
+            display: none;
+        }
+    }
+}
+
+#installerBackground {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    background-color: @color-font-black;
+    opacity: 0.3;
+    top: 0;
+    display: none;
+}
+
+#installerContainer {
+    &.tarball {
+        .noTarball {
+            display: none;
+        }
+    }
+
+    &.install {
+        .instruction .install {
+            display: block !important;
+        }
+        .instruction .default {
+            display: none;
+        }
+    }
+
+    &.upgrade {
+        .instruction .upgrade {
+            display: block !important;
+        }
+        .instruction .default {
+            display: none;
+        }
+    }
+
+    &.uninstall {
+        .instruction .uninstall {
+            display: block !important;
+        }
+        .instruction .default {
+            display: none;
+        }
+    }
+}

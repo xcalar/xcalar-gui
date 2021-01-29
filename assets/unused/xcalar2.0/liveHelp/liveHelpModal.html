@@ -1,0 +1,63 @@
+<div id="liveHelpModal" class="modalContainer noWinResize">
+  <header class="modalHeader">
+    <div class="headerBtn sendEmail email-disabled"  data-toggle="tooltip" data-placement="auto top"
+      data-container="body" data-original-title=<%= dicts.liveHelp.SendEmail %>>
+      <i class="icon xi-envelope"></i>
+    </div>
+    <div class="text"><%= dicts.liveHelp.Title %></div>
+    <div class="headerBtn minimize">
+      <i class="icon xi-exit-fullscreen"></i>
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="headerBtn close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <div class="modalContent text-selection">
+    <div class="modalInstruction reqConn">
+        <span class="text"><%= dicts.liveHelp.Instruction %></span>
+    </div>
+    <div class="reqConn">
+      <div class="row">
+        <span class="text"><%= dicts.liveHelp.Name %></span>
+        <input class="xc-input name" type="text">
+      </div>
+      <div class="row">
+        <span class="text"><%= dicts.liveHelp.Email %></span>
+        <input class="xc-input email" type="Email">
+      </div>
+      <div class="row">
+        <span class="text emailInfo"><%= dicts.liveHelp.EmailInfo %></span>
+        <span class="text emailError"><%= dicts.liveHelp.EmailError %></span>
+      </div>
+    </div>
+    <div class="chatBox">
+      <div class="confirmBox genTicket">
+        <div class="confirmBoxLeft">
+        </div>
+        <div class="confirmBoxRight">
+          <span><%= dicts.liveHelp.SubmitTicket %></span>
+          <i class="icon xi-close-no-circle confirmCancel"></i>
+          <i class="icon xi-tick confirmTicket"></i>
+        </div>
+      </div>
+      <div class="confirmBox endChat">
+        <div class="confirmBoxLeft">
+        </div>
+        <div class="confirmBoxRight">
+          <span><%= dicts.liveHelp.LeaveConMsg %></span>
+          <i class="icon xi-close-no-circle confirmCancel"></i>
+          <i class="icon xi-tick confirmClose"></i>
+        </div>
+      </div>
+      <section class="chatMsg">
+      </section>
+    </div>
+    <div class="sendArea">
+      <textarea class="sendMsg" placeholder=<%= dicts.liveHelp.TypeMsg %>></textarea>
+    </div>
+    <div class="bottom reqConn">
+      <button type="button" class="btn btn-submit reqConnBtn btn-disabled"><%= dicts.common.START %></button>
+    </div>
+  </div>
+</div>

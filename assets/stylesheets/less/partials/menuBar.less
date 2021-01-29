@@ -1,0 +1,419 @@
+ /* Menu Bar  */
+#homeBtn {
+    .size(@width: @width-homeBtn, @height: @height-homeBtn - 3px);
+    display: inline-block;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: @z-index-homeBtn;
+    cursor: pointer;
+
+    .logo {
+        .center-align;
+        position: absolute;
+    }
+}
+
+#container.loadModalOpen {
+    #homeBtn {
+        z-index: @z-index-homeBtn - 1; // to show behind the modalbackground
+    }
+    #menuBar {
+        padding-top: 0px;
+        margin-top: @height-homeBtn;
+    }
+}
+
+#menuBar {
+    .size(@width: @width-homeBtn, @height: 100%);
+    overflow: hidden;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background-color: @color-bg-menuBar;
+    line-height: 0px;
+    padding-top: @height-homeBtn;
+    color: @color-font-defaultInverse;
+    border-right: 1px solid @color-border-menuBar;
+    z-index: 1; // becomes @z-index-menuBar on workbook panel
+
+    &.animating > div {
+        pointer-events: none;
+    }
+}
+
+#projectTab {
+    margin-bottom: 8px;
+    border-bottom: 1px solid @color-border-medium2;
+}
+
+.topMenuBarTab {
+    .position(relative);
+    .size(@width: 100%);
+    float: left;
+    cursor: pointer;
+    .noSelection;
+    padding: 6px 4px;
+
+    &.active:not(.fromMainMenu):not(.toggleable) {
+        .transition(all 0s);
+
+        .mainTab {
+            opacity: 1;
+
+            .icon, .label {
+                color: @color-icon-menuBarActive;
+            }
+        }
+        .subTabs, .subTab {
+            display: block;
+        }
+    }
+
+    &.showing.active {
+        .mainTab {
+            opacity: 1;
+
+            .icon, .label {
+                color: @color-icon-menuBarActive;
+            }
+        }
+    }
+
+    &:hover, &.hover {
+        color: @color-icon-menuBarActive;
+        .mainTab {
+            color: @color-icon-menuBarActive;
+            opacity: 0.6;
+        }
+    }
+
+    .tabGroup {
+        border-radius: 8px;
+    }
+
+    .mainTab {
+        .size(@width: 100%, @height: 36px);
+        opacity: 1;
+        border-radius: 8px;
+        position: relative;
+
+        color: @color-icon-menuBar;
+
+        .icon {
+            .center-align;
+            position: absolute;
+            font-size: 20px;
+            &.xi-menu-udf, &.xi-menu-cli {
+                font-size: 20px;
+            }
+            &.xi-table-outline {
+                font-weight: bold;
+            }
+        }
+        .label {
+            font-size: 9px;
+            position: absolute;
+            line-height: 10px;
+            text-align: center;
+            top: 32px;
+            height: @height-mainTab - 32px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            display: none;
+        }
+    }
+    .subTabs {
+        background-color: #bfd0d9;
+        border-bottom-left-radius: 8px;
+        border-bottom-right-radius: 8px;
+        padding: 4px;
+        display: none;
+    }
+    .subTab {
+        .size(@width: 100%, @height: @height-subTab);
+        background-color: #e6ebef;
+        position: relative;
+        display: none;
+        opacity: 1;
+        border-radius: 8px;
+        margin-bottom: 4px;
+        color: #CFE9FD;
+
+        &.active {
+            background-color: @color-bg-default;
+            .icon, .label {
+                color: @color-font-softBlue;
+                color: #0774aa;
+            }
+
+            // XX temp styling if subTab is the only subtab and is active
+            &:nth-child(1):nth-last-child(1) {
+                background-color: @color-bg-light-navy;
+            }
+        }
+        .icon {
+            font-size: 14px;
+            .center-align;
+            position: absolute;
+            top: 12px;
+            color: #16506a;
+        }
+
+        .label {
+            font-size: 9px;
+            position: absolute;
+            line-height: 10px;
+            text-align: center;
+            top: 22px;
+            height: @height-subTab - 22px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            display: none;
+        }
+
+        &:hover {
+            background-color: @color-bg-default;
+        }
+    }
+
+    &#dataStoresTab.active, &#monitorTab.active {
+        .mainTab {
+            border-bottom-left-radius: 0px;
+            border-bottom-right-radius: 0px;
+        }
+    }
+}
+
+#targetButton {
+    .xi-data-connector {
+        font-size: 24px;
+    }
+}
+
+.mainMenuGhost {
+    opacity: 0.5;
+    background: @color-bg-defaultStrong;
+    &:after {
+        content: "";
+        width: 2px;
+        height: 100%;
+        background: @color-border-softGray2;
+        position: absolute;
+        right: 0px;
+    }
+
+    &.collapseSize {
+        opacity: 0.7;
+    }
+}
+
+.mainPanel > .mainContent > .leftSection,
+#monitorPanel .subPanel > .leftSection {
+    .position(absolute, @left: 0px);
+    .size(@width-topMenu,  @min-width: @width-topMenu, @height: ~"calc(100% - @{height-topBar})");
+    padding: 0px;
+    box-shadow: 0px 0px 0px 1px @color-border-light; // border-right
+    margin-left: @width-homeBtn;
+    z-index: @z-index-topMenu;
+    background-color: @color-bg-leftPanel;
+
+    &.active {
+        display: block;
+    }
+
+    &::after { // used for darkening menu when json modal is open
+        content: "";
+        opacity: 0;
+        z-index: -1;
+        .transition(opacity @time-menuAnim);
+    }
+    &.jsonModalOpen {
+        z-index: @z-index-modal;
+        > .ui-resizable-handle {
+            display: none !important;
+            z-index: -1;
+        }
+        > .ui-resizable-handle.ui-resizable-e {
+            display: none !important;
+            z-index: -1;
+        }
+        &::after {
+            content: "";
+            display: block;
+            .position(absolute, 0, -1);
+            .size(~"calc(100% + 1px)", 100%);
+            background-color: @color-font-default;
+            opacity: 0.25;
+            z-index: 4;
+        }
+    }
+
+    @topSectionHeight: @height-sectionBar;
+
+    .menuSection {
+        padding-bottom: 30px;
+        height: 100%;
+
+        > .topSection {
+            display: flex;
+            padding-left: 15px;
+            padding-right: 8px;
+            height: @topSectionHeight;
+            overflow: hidden;
+
+            .titleSection {
+                .flex(1 1 auto);
+                font-size: 16px;
+                line-height: @topSectionHeight;
+                overflow: hidden;
+                font-weight: 600;
+                color: @color-font-darkGray;
+
+                header {
+                    .textOverflowOneLine;
+                }
+            }
+
+            .iconSection {
+                .flex(1 0 auto);
+
+                .icon {
+                    font-size: 14px;
+                    margin-left: 12px;
+                    margin-top: 8px;
+                    float: right;
+                    .xc-icon-action;
+                }
+            }
+        }
+
+        > .mainSection {
+            height: ~"calc(100% - @{topSectionHeight})";
+            overflow: auto;
+            border-top: none;
+        }
+    }
+}
+
+#sqlWorkSpacePanel{
+    > .mainContent {
+        > .leftSection {
+            display: flex;
+            flex-direction: column;
+            .transition(margin-left @time-menuAnim);
+            min-width: 120px;
+            .size(@height: ~"calc(100% - @{height-topBar} - @{height-bottomBar} - 2px)");
+
+            > .menuSection {
+                padding-bottom: 0px;
+            }
+            > .ui-resizable-e {
+                width: 12px;
+            }
+        }
+    }
+}
+
+#datastorePanel, #monitorPanel {
+    > .mainContent {
+        > .leftSection {
+            height: 100% !important;
+            margin-left: 0px !important;
+        }
+        > .rightSection {
+            margin-left: @width-topMenu;
+            height: 100%;
+        }
+    }
+}
+
+#dataflowMenu {
+    .menuSection.tables {
+        > .iconSection {
+            .size(@height: 6px);
+        }
+
+        > .titleSection {
+            border-bottom: none;
+            .size(@width: 100px);
+            .position(relative, @top: -3px);
+        }
+
+        > .mainSection {
+            .size(@height: ~"calc(100% - 45px)");
+        }
+        .hint {
+            position: relative;
+            bottom: 2px;
+            left: 2px;
+        }
+    }
+    #dagNodeInfoPanel {
+        display: none;
+    }
+    #tableSearchPanel {
+        display: none;
+    }
+    &.showingNodeInfo {
+        #dagList {
+            height: 45%;
+            flex: 0 0 auto;
+        }
+        #dagNodeInfoPanel {
+            display: flex;
+            height: 55%;
+        }
+    }
+    &.showingSearch {
+        #dagList {
+            height: 55%;
+            flex: 0 0 auto;
+        }
+        #tableSearchPanel {
+            display: block;
+            height: 45%;
+        }
+    }
+    &.showingNodeInfo.showingSearch {
+        #dagList {
+            height: 40%;
+            flex: 0 0 auto;
+        }
+        #tableSearchPanel {
+            display: block;
+            height: 30%;
+        }
+        #dagNodeInfoPanel {
+            display: flex;
+            height: 30%;
+        }
+    }
+    .dagList {
+        .topSection {
+            .iconSection {
+                margin-left: 6px;
+            }
+            .icon {
+                margin-top: 6px;
+                margin-left: 6px;
+            }
+        }
+    }
+}
+
+#container {
+    #monitorPanel > .mainContent > .rightSection {
+        margin-left: 0px;
+    }
+}
+
+#inButton {
+    .icon {
+        .font(@size: 18px);
+    }
+}

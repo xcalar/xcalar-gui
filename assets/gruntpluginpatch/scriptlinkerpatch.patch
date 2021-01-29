@@ -1,0 +1,11 @@
+--- scriptlinker.js	2013-03-15 06:43:58.000000000 -0700
++++ scriptlinkerpatched.js	2018-03-29 18:25:26.031551222 -0700
+@@ -36,7 +36,7 @@
+ 			// Create string tags
+ 			scripts = f.src.filter(function (filepath) {
+ 					// Warn on and remove invalid source files (if nonull was set).
+-					if (!grunt.file.exists(filepath)) {
++					if (!grunt.file.exists(f.cwd + '/' + filepath)) {
+ 						grunt.log.warn('Source file "' + filepath + '" not found.');
+ 						return false;
+ 					} else { return true; }

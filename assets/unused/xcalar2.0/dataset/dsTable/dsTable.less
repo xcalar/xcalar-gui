@@ -1,0 +1,242 @@
+/* DS Table Section */
+#dsTableView {
+  .position(relative);
+
+  .title {
+      .size(@width: 100%);
+  }
+
+  > .section {
+      .size(100%, 100%);
+  }
+
+  .cardContainer {
+      .size(100%, 100%);
+      .flex-display;
+      .flex-direction(column);
+  }
+
+  .cardInstruction {
+      .flex(0 0 auto);
+      height: auto;
+      min-height: 58px;
+      max-height: 72px;
+      padding-right: 0px;
+      .text {
+          padding-right: 20px;
+      }
+  }
+
+  .cardTopMain {
+      padding: 15px;
+      padding-bottom: 0px;
+      .flex(0 0 auto);
+
+      .titleSection {
+          .size(@height: 25px);
+          line-height: 25px;
+          .text-selection;
+
+          .title {
+              .size(@width: 100%);
+              .font(@size: 18px, @weight: 600);
+              color: @color-font-select-blue;
+              float: left;
+              .textOverflowOneLine;
+          }
+      }
+
+      .flexContainer {
+          .flex-wrap(wrap);
+          overflow: hidden; // for IE
+
+          .flex-left {
+              .size(@max-width: 100%);
+              .flex(1 1 auto);
+              overflow: hidden; // for IE
+          }
+
+          .flex-right {
+              .flex(1 1 210px);
+              min-width: 210px; // for IE
+              .buttonGroup {
+                  min-width: 210px;
+              }
+          }
+      }
+
+      .contentSection {
+          &:first-child {
+              width: 100%;
+              align-items: center;
+              flex-wrap: nowrap;
+              > * {
+                  .flex-display;
+              }
+          }
+          .text-selection;
+          .size(@height: 20px);
+          font-size: 14px;
+          height: 36px;
+          line-height: 36px;
+          .textOverflowOneLine;
+
+          .flex-display;
+          > span {
+              margin-right: 4px;
+          }
+      }
+
+      #dsInfo-title {
+          color: @color-bg-cardHeader;
+      }
+
+      #dsInfo-pathContainer {
+          position: relative;
+          min-width: 0px;
+          #dsInfo-path {
+              .flex(0 1 auto);
+              .textOverflowOneLine;
+              cursor: pointer;
+          }
+          &:hover > .xi-copy-clipboard {
+              opacity: 0.8;
+          }
+          i {
+              float: right;
+              color: @color-icon-default;
+              background-color: @color-bg-default;
+              position: absolute;
+              top: 6px;
+              right: 0px;
+              opacity: 0;
+              pointer-events: none;
+          }
+      }
+
+      #showFileListBtn {
+          margin-left: 10px;
+          padding: 0 0 0 8px;
+          width: 130px;
+          min-width: 130px;
+      }
+
+      #createDF {
+          padding: 0 11px;
+          margin-right: 10px;
+          width: 150px;
+          min-width: 150px;
+          .icon {
+              .position(relative, @top: 12px);
+              font-size: 15px;
+          }
+      }
+
+      .dsValue {
+          font-weight: 400;
+      }
+      .dsDetail {
+          .size(@width: 20px, @height: 16px);
+          .rounded(100%);
+          background-color: @color-bg-dusk-blue;
+          .font(@color: @color-font-white, @line-height: 3px, @size: 20px);
+          padding-left: 1px;
+          margin-left: 2px;
+          .no-selection;
+      }
+      #dsInfo-error {
+          color: @color-macaroni-and-cheese;
+          cursor: pointer;
+          padding: 0 4px;
+          &.type-file {
+              color: @color-error-border;
+          }
+      }
+  }
+
+  .cardMain {
+      .size(@width: 100%, @height: ~"calc(100% - 183px)");
+      padding: 0;
+      .flex(0 1 auto);
+      overflow: hidden;
+  }
+}
+
+#dsTableContainer {
+  .size(@max-width: 100%, @max-height: 100%);
+  white-space: nowrap;
+  overflow: hidden;
+  float: left;
+  overflow-x: auto;
+
+  &.loading {
+      height: 100% !important;
+      width: 100%;
+      position: relative;
+      .errorSection, .datasetTableWrap {
+          display: none !important;
+      }
+
+      .loadSection {
+          display: block;
+      }
+  }
+
+  &.error {
+      height: 100% !important;
+
+      .datasetTableWrap, .loadSection {
+          display: none !important;
+      }
+
+      .errorSection {
+          display: block;
+      }
+  }
+
+  .loadSection, .errorSection {
+      display: none;
+      margin-left: 15px;
+      margin-top: 15px;
+      margin-right: 15px;
+  }
+
+  .errorSection {
+      .text-selection;
+
+      .error {
+          color: @color-table-red;
+          white-space: pre-wrap;
+          font-family: @font-code;
+      }
+
+      .suggest {
+          clear: both;
+
+          .title {
+              color: @color-table-red;
+          }
+
+          &.point {
+              .size(@height: 20px);
+              margin-top: 10px;
+
+              .title {
+                  float: left;
+                  white-space: normal;
+              }
+          }
+      }
+
+      .retry {
+          margin-top: 10px;
+          float: left;
+          color: @color-font-softBlue;
+          text-decoration: underline;
+      }
+
+      .or {
+          color: @color-table-red;
+      }
+  }
+}

@@ -1,0 +1,27 @@
+<!-- message modal -->
+<div id="messageModal" class="modalContainer" style="display:none;">
+  <!-- header -->
+  <header class="modalHeader title">
+    <i class="infoIcon icon xi-warning"></i>
+    <span class="text"></span>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- content -->
+  <section class="modalMain content">
+    <div class="message text"></div>
+    <div class="checkboxSection">
+      <div class="checkbox">
+        <i class="icon xi-ckbox-empty"></i>
+        <i class="icon xi-ckbox-selected"></i>
+      </div>
+      <div class="text"><%= dicts.common.DontShow %></div>
+    </div>
+  </section>
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Close %></button>
+  </section>
+</div>
+  <!-- End of Message Modal -->

@@ -1,0 +1,52 @@
+<!-- WORKBOOK PANEL -->
+<div id="workbookPanel" class="mainPanel">
+  <div id="dialogWrap">
+    <div class="dialog">
+      <span><%= dicts.workbook.noActive %></span>
+    </div>
+  </div>
+  <div id="workbookTopBar" class="topBar">
+    <div class="actionSection">
+      <button id="createWKBKbtn" class="btn btn-submit btn-secondary"><%= dicts.workbook.createWKBK %></button>
+      <input style="display: none;" type="file" id="WKBK_uploads" name="WKBK_uploads" accept=".gz">
+      <span class="searchbarArea">
+        <input type="text" placeholder="<%= dicts.workbook.searchHint %>" spellcheck="false" autocomplete="off">
+        <i class="icon xi-search"></i>
+      </span>
+      <button id="browseWKBKbtn" class="btn btn-secondary"><%= dicts.workbook.browseWKBK %></button>
+    </div>
+  </div>
+  <!-- mainSection -->
+  <div class="mainContent mainSection">
+    <div class="contentWrap">
+      <div class="bottomSection">
+        <div class="workbookList xc-gridList">
+          <div class="header"></div>
+          <div class="content"></div>
+        </div>
+        <ul id="wkbkMenu" class="menu">
+          <li class="newTab">
+            <span class="label"><%= dicts.MenuTStr.NewTab %></span>
+          </li>
+          <li class="modify">
+            <span class="label"><%= dicts.MenuTStr.EditName %></span>
+          </li>
+          <li class="download">
+            <span class="label"><%= dicts.MenuTStr.Download %></span>
+          </li>
+          <li class="duplicate">
+            <span class="label"><%= dicts.MenuTStr.Duplicate %></span>
+          </li>
+          <li class="delete">
+            <span class="label"><%= dicts.MenuTStr.Delete %></span>
+          </li>
+          <li class="deactivate">
+            <span class="label"><%= dicts.MenuTStr.Deactivate %></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- end of main section -->
+</div>
+<!-- END WORKBOOK PANEL -->

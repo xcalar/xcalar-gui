@@ -1,0 +1,49 @@
+<div id="logoutModal" class="modalContainer" style="display:none;">
+    <!-- Alert Modal Header -->
+    <header class="modalHeader">
+      <i class="infoIcon icon xi-warning"></i>
+      <span class="text userActivated">Shut down cluster</span>
+      <span class="text autoActivated">You are out of credits</span>
+      <span class="text clusterStopText">Cluster Shutdown</span>
+      <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+      </div>
+    </header>
+      <section class="modalMain">
+          <div class="shutdownWarn">
+            Are you sure you want to shut down the cluster? You can login to restart
+            the cluster after it's shut down.
+          </div>
+          <!-- <div class="logoutOptions">
+                <div class="text">When logging out, would you like to shut down your cluster immediately, or leave the cluster running?</div>
+                <div class="radioButtonGroup">
+                    <div class="radioButton xc-action shutDown active">
+                        <div class="radio">
+                            <i class="icon xi-radio-selected"></i>
+                            <i class="icon xi-radio-empty"></i>
+                        </div>
+                        <div class="label">Shut down cluster</div>
+                    </div>
+                    <div class="radioButton xc-action ignore">
+                        <div class="radio">
+                            <i class="icon xi-radio-selected"></i>
+                            <i class="icon xi-radio-empty"></i>
+                        </div>
+                        <div class="label">Leave cluster running</div>
+                    </div>
+                    <div class="subLabel">If cluster is left running, it will remain
+                        online until all pending tasks are complete,
+                        and will shut down after a period of inactivity.
+                    </div>
+                </div>
+          </div> -->
+          <div class="clusterStopProgress">
+                include "../util/progressBar.html"
+          </div>
+      </section>
+    <!-- Button Section -->
+    <section class="modalBottom">
+      <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+      <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+    </section>
+  </div>

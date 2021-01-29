@@ -1,0 +1,21 @@
+{
+    "QpLoadCmd" : 0,
+    "QpIndexCmd" : 1,
+    "QpProjectCmd" : 2,
+    "QpGetRowNumCmd" : 3,
+    "QpFilterCmd" : 4,
+    "QpGroupByCmd" : 5,
+    "QpJoinCmd" : 6,
+    "QpAggregateCmd" : 7,
+    "QpMapCmd" : 8,
+    "QpSynthesizeCmd" : 9,
+    "QpRenameCmd" : 10,
+    "QpExportCmd" : 11,
+    "QpDropCmd" : 12,
+    "QpQueryCmd" : 13,
+    "QpDelistCmd" : 14,
+    "QpExecuteRetinaCmd" : 15,
+    "QpUnionCmd" : 16,
+    "QpSelectCmd" : 17
+}
+

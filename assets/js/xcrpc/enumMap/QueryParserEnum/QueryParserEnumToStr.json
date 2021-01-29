@@ -1,0 +1,21 @@
+{
+    "0" : "load",
+    "1" : "index",
+    "2" : "project",
+    "3" : "getRowNum",
+    "4" : "filter",
+    "5" : "groupBy",
+    "6" : "join",
+    "7" : "aggregate",
+    "8" : "map",
+    "9" : "synthesize",
+    "10" : "rename",
+    "11" : "export",
+    "12" : "drop",
+    "13" : "query",
+    "14" : "delist",
+    "15" : "executeRetina",
+    "16" : "union",
+    "17" : "select"
+}
+

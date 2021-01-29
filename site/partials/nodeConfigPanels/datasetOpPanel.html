@@ -1,0 +1,63 @@
+<!-- Dataset Operation Panel -->
+<div id="datasetOpPanel" class="xc-hidden opPanel">
+  <!-- Project Header -->
+  <header class="headerSection">
+    <div class="row clearfix">
+        <div class="title">Select a Dataset</div>
+        <div class="headerIcons">
+            <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+            <i class="refreshDatasetList icon xi-refresh" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Refresh %>"></i>
+        </div>
+    </div>
+    <div class="row">
+        <div class="subTitle">something</div>
+    </div>
+  </header>
+  <!-- content -->
+  <div class="mainContent">
+    <div class="dataset opSection">
+      <p class="mainInstructions instrText"><%= dicts.datasetOp.datasetInstr %></p>
+      <!-- Dataset View Top Section-->
+      <section class="modalTopMain">
+        <!-- dataset source -->
+        <div class="datasetSource step1">
+          <div class="subHeading clearfix">
+            <div class="label"><%= dicts.datasetOp.source %>:</div>
+          </div>
+          <p class="instrText">
+            Select a Dataset to use in your module. If the desired Dataset is deleted or does not exist, go to <span class="link">Sources -> Datasets</span> to recreate/create it, and then click on the Application Builder icon in the sidebar to come back to this module.
+          </p>
+          <div id="datasetOpBrowser" class="mainSection xc-fileListView">
+            include "../util/fileListView.html"
+          </div>
+        </div>
+        <!-- dataset prefix -->
+        <div class="datasetPrefix step1">
+          <div class="subHeading clearfix">
+            <div class="label"><%= dicts.datasetOp.prefix %>:</div>
+          </div>
+          <p class="instrText"><%= dicts.datasetOp.prefixInstr %></p>
+          <div class="inputWrap">
+            <input class="arg" type="text" tabindex="10" spellcheck="false" autocomplete="off" data-typeid="-1" data-casted="false" data-casttype="null">
+          </div>
+        </div>
+        <!-- schema -->
+        <div class="schema step2">
+          <div class="subHeading clearfix">
+            <div class="label"><%= dicts.DFLink.Schema %>:</div>
+          </div>
+          include "colSchemaView.html"
+        </div>
+      </section>
+    </div>
+    include "opPanelAdvancedSection.html"
+    include "opPanelBottomSection.html"
+    <section id="datasetOpColumnAssignment" class="xc-hidden">
+      include "colAssignmentView.html"
+      <section class="bottomSection flexWrap">
+        <button type="button" class="btn btn-submit btn-rounded confirmRename step2"><%= dicts.datasetOp.save %></button>
+      </section>
+    </section>
+  </div>
+</div>
+<!-- End of Dataset View -->

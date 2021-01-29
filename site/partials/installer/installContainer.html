@@ -1,0 +1,1239 @@
+<div id="installerBackground"></div>
+<div id="logo" class="xc-new-logo">
+  <div class="innerShadow"></div>
+  <i class="icon xi-x-logo"></i>
+</div>
+<div id="installerContainer" class="container <%=dicts.isTarballInstaller !== null ? 'tarball':'rpm'%>">
+  <div class="outerWrap">
+    <header class="title">Xcalar Wizard</header>
+    <div class="instruction">
+      <i class="icon xi-info-circle"></i>
+      <span class="text default">Please select an option from the following list.</span>
+      <span class="text install" style="display:none">This install wizard will take you step by step through the Xcalar Data Platform (XDP) installation process.</span>
+      <span class="text upgrade" style="display:none">This upgrade wizard will take you step by step through the Xcalar Data Platform (XDP) upgrade process.</span>
+      <span class="text uninstall" style="display:none">This uninstall wizard will take you step by step through the Xcalar Data Platform (XDP) unInstallation process.</span>
+    </div>
+  </div>
+  <div id="loadingBar">
+    <div class="innerBar"></div>
+  </div>
+  <div class="outerWrap" id="bottomSection">
+    <div id="formArea" class="">
+      <!-- Step 0: Xcalar wizard choice -->
+      <form id="choiceForm" class="install uninstall upgrade">
+        <div class="title choice">
+          <div class="step">
+            <span class="choice"><%= dicts.installer.select %></span>
+          </div>
+        </div>
+        <div class="section choiceSection radioButtonGroup" id="installChoice">
+          <div class="choice radioButton" data-option='install'>
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">
+              <div class="name">
+                <%= dicts.installer.installWizard %>
+              </div>
+              <div class="content">
+                <%= dicts.installer.installWizardContent %>
+              </div>
+            </div>
+          </div>
+          <div class="choice radioButton" data-option='uninstall'>
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">
+              <div class="name">
+                <%= dicts.installer.uninstallWizard %>
+              </div>
+              <div class="content">
+                <%= dicts.installer.uninstallWizardContent %>
+              </div>
+            </div>
+          </div>
+          <div class="choice radioButton" data-option='upgrade'>
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">
+              <div class="name">
+                <%= dicts.installer.upgradeWizard %>
+              </div>
+              <div class="content">
+                <%= dicts.installer.upgradeWizardContent %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next btn-disabled" type="button" value="NEXT">
+        </div>
+      </form>
+
+      <!-- Step 1: Enter in license key -->
+      <form id="licenseForm" class="hidden install">
+        <div class="title">
+          <div class="step">
+            <span>STEP 1 </span>
+            <span>ENTER LICENSE KEY</span>
+          </div>
+        </div>
+        <div class="section">
+          <textarea autocomplete="off" rows="2" cols="68" placeholder="[Paste your license key here]" class="licenseKey"></textarea>
+          <div class="link">
+            <a href="https://myxcalar.zendesk.com/" target="zendesk">Don't have a license? Click here!</a>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <% if (dicts.isTarballInstaller !== null) { %>
+      <!-- Step 2: Pre-config verification -->
+      <form id="preConfigForm" class="hidden install">
+        <div class="title">
+          <div class="step">
+            <span>STEP 2 </span>
+            <span>INSTALLATION TYPE</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>What type of Xcalar installation is this?</span>
+          </div>
+        </div>
+        <div class="section preConfigSection">
+          <div class="radioButtonGroup" id="preConfigChoice">
+            <div class="radioButton" data-option='yes'>
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">
+                <div class="name">
+                  A system administrator completed all pre-installation tasks
+                  <!-- <div class="hint csHelp" data-topic="pointToDataSource" title="" data-toggle="tooltip" data-container="body" data-original-title="Steps completed by the system admin include: running the pre-config.sh script to install dependencies, running the verify.sh script to check configuration, allocating storage shared across the cluster for Xcalar to use, creating the account used to install Xcalar, and performing any necessary configuration of external LDAP directories.">
+                    <i class="white icon xi-help fa-12"></i>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="radioButton" data-option='no'>
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">
+                <div class="name">
+                  The installing Linux user has admin privileges and I want the installer to complete all pre-install tasks for me
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+      <% } %>
+
+      <!-- Step 3: Place Xcalar Root -->
+      <form id="sharedStorageForm" autocomplete="off" class="hidden install">
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 3</span>
+            <% } else { %>
+              <span>STEP 2</span>
+            <% } %>
+            <span>SET UP XCALAR ROOT DIRECTORY</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span class="noPreConfig">Choose the option that best describes your situation. If this is a brand new install, please select "Xcalar Deployed Shared Storage" or "Existing Shared Storage to be Mounted"</span>
+            <span class="preConfigOnly">Enter the full path and directory name of the shared storage area that you created during the pre-installation tasks</span>
+          </div>
+        </div>
+        <div class="section nfsSection">
+          <div class="radioButtonGroup nfsChoice" id="nfsChoice">
+            <div class="radioButton active noPreConfig" data-option="xcalarNfs">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Xcalar Deployed Shared Storage</div>
+            </div>
+
+            <div class="radioButton noPreConfig" data-option="customerNfs">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Existing Shared Storage to be Mounted</div>
+            </div>
+
+            <div class="customerNfsOptions">
+              <div class="nfsMountPoint nfsSubOption">
+                <input class="input nfsServer" placeholder="[Server]">
+                <span>:/</span>
+                <input class="input nfsMountPoint" type="text" autocorrect="off" autocapitalize="off" placeholder="[Mount Point]">
+                <div class="bar">Path</div>
+              </div>
+              <div class="nfsUser nfsSubOption">
+                <input class="input nfsUserName" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[user_id]  (optional)">
+                <div class="bar">Username</div>
+              </div>
+              <div class="nfsUser nfsSubOption">
+                <input class="input nfsUserGroup" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[user_group]  (optional)">
+                <div class="bar">Group</div>
+              </div>
+            </div>
+
+            <div class="radioButton" data-option="readyNfs">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Existing Shared Storage Already Mounted</div>
+            </div>
+
+            <div class="readyNfsOptions">
+              <div class="nfsMountPoint nfsSubOption">
+                <input class="input nfsMountPointReady" type="text" autocorrect="off" autocapitalize="off" placeholder="[Mount Point]">
+                <div class="bar">Path</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <!-- Step 4: LDAP -->
+      <form id="ldapForm" autocomplete="off" class="hidden install">
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 4A</span>
+            <% } else { %>
+              <span>STEP 3A</span>
+            <% } %>
+            <span>SET UP LDAP</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Configure Parameters for LDAP</span>
+          </div>
+        </div>
+        <div class="section ldapSection radioButtonGroup" id="ldapDeployChoice">
+          <div class="radioButton active noPreConfig ldapType" data-option="xcalarLdap">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">Xcalar Deployed</div>
+          </div>
+          <div class="ldapParams xcalarLdapOptions noPreConfig">
+            <div class="fieldWrap">
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[company.com]">
+                <div class="bar">DOMAIN NAME</div>
+              </div>
+              <div class="inputWrap">
+                <input class="input" name="useless" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[root password]">
+                <div class="bar">NEW PASSWORD</div>
+              </div>
+              <div class="inputWrap">
+                <input class="input" name="useless" type="password" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[repeat password]">
+                <div class="bar">CONFIRM PASSWORD</div>
+              </div>
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[Company, Inc]">
+                <div class="bar">COMPANY NAME</div>
+              </div>
+            </div>
+          </div>
+          <div class="radioButton ldapType" data-option="customerLdap">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">Existing LDAP</div>
+          </div>
+          <div class="ldapParams customerLdapOptions hidden">
+            <div class="radioButtonGroup" id="ADChoice">
+              <div class="radioButton" data-option="true">
+                <div class="radio">
+                  <i class="icon xi-radio-selected"></i>
+                  <i class="icon xi-radio-empty"></i>
+                </div>
+                <div class="label">Active Directory (AD)</div>
+              </div>
+              <div class="radioButton active" data-option="false">
+                <div class="radio">
+                  <i class="icon xi-radio-selected"></i>
+                  <i class="icon xi-radio-empty"></i>
+                </div>
+                <div class="label">OpenLDAP</div>
+              </div>
+            </div>
+            <div class="fieldWrap">
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[ldap://ldapserver.company.com:389]">
+                <div class="bar">LDAP URI</div>
+              </div>
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[mail=%username%,ou=People,dc=company,dc=com]">
+                <div class="bar">User DN</div>
+              </div>
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[(memberof=cn=users,ou=Groups,dc=company,dc=com)]">
+                <div class="bar">Search Filter</div>
+              </div>
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[/etc/pki/tls/cert.pem]">
+                <div class="bar">Server Key File</div>
+              </div>
+              <div class="inputWrap ADOnly">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[Active Directory User Group Name]">
+                <div class="bar">AD User Group</div>
+              </div>
+              <div class="inputWrap ADOnly">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[Active Directory Admin Group Name]">
+                <div class="bar">AD Admin Group</div>
+              </div>
+              <div class="inputWrap ADOnly">
+                <input class="input" name="useless" type="text" autocorrect="off" autocapitalize="off" autocomplete="off" placeholder="[Active Directory Domain Name]">
+                <div class="bar">AD Domain</div>
+              </div>
+            </div>
+            <div>
+              <div class="checkboxLine ADOnly">
+                <div class="checkbox adSubGroupTree">
+                  <i class="icon xi-ckbox-empty"></i>
+                  <i class="icon xi-ckbox-selected"></i>
+                </div>
+                <div class="label">
+                  <div class="name">
+                    Enable Group Subtree Search
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="checkboxLine ADOnly">
+                <div class="checkbox adSearchShortName">
+                  <i class="icon xi-ckbox-empty"></i>
+                  <i class="icon xi-ckbox-selected"></i>
+                </div>
+                <div class="label">
+                  <div class="name">
+                    Search Using User Id Only
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="hint">
+              <span>Transportation Layer Security (TLS)</span>
+            </div>
+            <div>
+              <div class="checkboxLine">
+                <div class="checkbox TLSChoice">
+                  <i class="icon xi-ckbox-empty"></i>
+                  <i class="icon xi-ckbox-selected"></i>
+                </div>
+                <div class="label">
+                  <div class="name">
+                    Enable LDAP TLS
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="radioButton ldapType" data-option="configLdapLater">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="label">Configure External LDAP Post Install</div>
+          </div>
+        </div>
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 4B</span>
+            <% } else { %>
+              <span>STEP 3B</span>
+            <% } %>
+            <span>SET UP DEFAULT ADMIN USER</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Set up Default Admin User Account (Optional if LDAP is Configured)</span>
+          </div>
+        </div>
+        <div class="section defaultAdminSection">
+          <div class="checkboxLine">
+            <div class="checkbox checked createDefaultAdmin">
+              <i class="icon xi-ckbox-empty"></i>
+              <i class="icon xi-ckbox-selected"></i>
+            </div>
+            <div class="label">
+              <div class="name">
+                CREATE DEFAULT ADMIN USER
+              </div>
+            </div>
+          </div>
+          <div class="defaultAdminParams">
+            <div class="fieldWrap">
+              <div class="inputWrap defaultAdminParam">
+                <input id="defaultAdminUsername" class="input user" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off">
+                <div class="bar">ADMIN USERNAME</div>
+              </div>
+              <div class="inputWrap defaultAdminParam">
+                <input id="defaultAdminEmail" class="input email" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off">
+                <div class="bar">EMAIL</div>
+              </div>
+              <div class="inputWrap defaultAdminParam">
+                <input id="defaultAdminPassword" class="input password" name="useless" type="password" autocomplete="off" autocorrect="off" autocapitalize="off">
+                <div class="bar">PASSWORD</div>
+              </div>
+              <div class="inputWrap defaultAdminParam">
+                <input id="defaultAdminPasswordConfirm" class="input confirmPassword" name="useless" type="password" autocomplete="off" autocorrect="off" autocapitalize="off">
+                <div class="bar">CONFIRM PASSWORD</div>
+              </div>
+              <div id="passwordStrength" class="passwordStrength">
+                <i class="icon xi-info-circle fa-14"></i>
+                <span class="text strength"></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+           <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <!-- Step 5: Host Information -->
+      <form id="hostForm" autocomplete="off" class="hidden install">
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 5A</span>
+            <% } else { %>
+              <span>STEP 4A</span>
+            <% } %>
+            <span>SET UP NODES</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Enter the number of nodes in your cluster and press Enter
+              <input type="text" id="numServers" class="input" name="useless" autofocus /></span>
+          </div>
+        </div>
+        <div class="section hostnameSection hidden">
+          <div class="row header">
+            <span class="leftCol">
+              Hostnames
+            </span>
+            <span class="rightCol">
+              Status
+            </span>
+          </div>
+        </div>
+        <div class="title hidden">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 5B</span>
+            <% } else { %>
+              <span>STEP 4B</span>
+            <% } %>
+            <span>Credentials</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Input the credentials for the above nodes</span>
+          </div>
+        </div>
+        <div class="section credentialSection hidden">
+          <div class="hostUsername">
+            <div class="inputWrap">
+              <input class="input useName" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[username]">
+              <input type="text" name='useless' style="display: none;" value=" ">
+              <div class="bar">Username</div>
+            </div>
+            <div class="inputWrap sshPort">
+              <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[ssh port]" value="22">
+              <div class="bar">SSH Port</div>
+            </div>
+          </div>
+          <span class="header">Password Options</span>
+          <div class="radioButtonGroup passwordChoice" id="passwordChoice">
+            <div class="radioButton active" data-option="password">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Password</div>
+            </div>
+            <div class="radioButton" data-option="sshKey">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">SSH Key</div>
+            </div>
+            <div class="radioButton" data-option="sshUserSettings">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">SSH User Settings
+                <!-- <div class="hint csHelp" data-topic="pointToDataSource" title="" data-toggle="tooltip" data-container="body" data-original-title="This setting causes the installer to employ ssh with the keys and configuration present in the shell where it runs.">
+                  <i class="white icon xi-help fa-12"></i>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="hostPassword">
+            <input class="input" name="useless" type="password" autocomplete="off" placeholder="[password]">
+            <div class="bar">Password</div>
+          </div>
+          <div class="hostSshKey">
+            <textarea rows="30" cols="68" autocomplete="off" placeholder="[Private SSH Key]"></textarea>
+          </div>
+        </div>
+        <% if (dicts.isTarballInstaller !== null) { %>
+          <div class="title hidden">
+            <div class="step">
+              <span>STEP 5C</span>
+              <span>Installation Directory</span>
+            </div>
+            <div class="hint">
+              <span></span>
+              <span>Input where Xcalar should be installed on all nodes</span>
+            </div>
+          </div>
+          <div class="section installationDirectorySection hidden">
+            <div class="installationDirectory">
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[/opt/xcalar/]" value="/opt/xcalar/">
+                <div class="bar">INSTALLATION DIRECTORY</div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+        <div class="title hidden">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 5D</span>
+            <% } else { %>
+              <span>STEP 4C</span>
+            <% } %>
+            <span>Demand Paging Directory</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Choose where Xcalar can temporarily save tables to disk on all nodes to free memory for other operations</span>
+          </div>
+        </div>
+        <div class="section serializationDirectorySection hidden">
+          <div class="installationDirectory">
+            <div class="radioButtonGroup SERDESChoice" id="SERDESChoice">
+              <div class="radioButton active" data-option="xcalarRootDirectory">
+                <div class="radio">
+                  <i class="icon xi-radio-selected"></i>
+                  <i class="icon xi-radio-empty"></i>
+                </div>
+                <div class="label">Xcalar Root Directory</div>
+              </div>
+              <div class="radioButton" data-option="otherDirectory">
+                <div class="radio">
+                  <i class="icon xi-radio-selected"></i>
+                  <i class="icon xi-radio-empty"></i>
+                </div>
+                <div class="label">Other</div>
+              </div>
+            </div>
+            <div class="SERDESDirectory hidden">
+              <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" value="" placeholder="[Serialization Directory]">
+              <div class="bar">DEMAND PAGING DIRECTORY</div>
+            </div>
+          </div>
+        </div>
+        <div class="title hidden">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 5E</span>
+            <% } else { %>
+              <span>STEP 4D</span>
+            <% } %>
+            <span>Enable Hot Patches</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Allow Xcalar to dynamically patch bug fix without upgrading to a new version</span>
+          </div>
+        </div>
+        <div class="section hotPatchSection hidden">
+          <div class="checkboxLine">
+            <div class="inputWrap">
+              <div class="checkbox selectHotPatch checked">
+                <i class="icon xi-ckbox-empty"></i>
+                <i class="icon xi-ckbox-selected"></i>
+              </div>
+              <div class="label">
+                <div class="name">
+                  Turn on Hot Patches for critical updates to Xcalar Design (highly recommended)
+                </div>
+                <!-- <div class="hint csHelp" data-topic="pointToDataSource" title="" data-toggle="tooltip" data-container="body" data-original-title="Turn on Hot Patches for critical updates to Xcalar Design.">
+                  <i class="white icon xi-help fa-12"></i>
+                </div> -->
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="title hidden">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 5F</span>
+            <% } else { %>
+              <span>STEP 4E</span>
+            <% } %>
+            <span>Support Bundle Generation</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Cause the cluster to automatically send support bundles to Xcalar every day</span>
+          </div>
+        </div>
+        <div class="section supportBundleSection hidden">
+          <div class="checkboxLine">
+            <div class="inputWrap">
+              <div class="checkbox supportBundles">
+                <i class="icon xi-ckbox-empty"></i>
+                <i class="icon xi-ckbox-selected"></i>
+              </div>
+              <div class="label">
+                <div class="name">
+                  Enable daily support bundles
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section successSection">
+          <h2> Installation Complete - Click on the button to launch Xcalar Design </h2>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn servers" type="button" id="serversButton" value = "NEXT">
+          <input class="btn next hidden" type="button" id="installButton" value="INSTALL">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+          <input class="btn cancel hidden" type="button" value="CANCEL">
+        </div>
+      </form>
+
+      <!-- Step 1: Update in license key -->
+      <form id="licenseUpdateForm" class="hidden upgrade">
+        <div class="title">
+          <div class="step">
+            <span>STEP 1 </span>
+            <span>UPDATE LICENSE KEY</span>
+          </div>
+        </div>
+
+        <div class="section upgradeLicenseSection">
+          <div class="checkboxLine">
+            <div class="checkbox checked updateLicense">
+              <i class="icon xi-ckbox-empty"></i>
+              <i class="icon xi-ckbox-selected"></i>
+            </div>
+            <div class="label">
+              <div class="name">
+                Upgrade License Key
+              </div>
+            </div>
+          </div>
+          <textarea autocomplete="off" rows="2" cols="68" placeholder="[Paste your license key here]" class="licenseKey"></textarea>
+        </div>
+
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <% if (dicts.isTarballInstaller !== null) { %>
+      <!-- Step 2: Pre-config verification -->
+      <form id="preConfigForTarballForm" class="hidden upgrade">
+        <div class="title">
+          <div class="step">
+            <span>STEP 2 </span>
+            <span>PRE-CONFIG STATUS</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>What type of Xcalar installation is this?</span>
+          </div>
+        </div>
+        <div class="section preConfigSection">
+          <div class="radioButtonGroup" id="preConfigUpgradeChoice">
+            <div class="radioButton" data-option='yes'>
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">
+                <div class="name">
+                  A system administrator completed all pre-installation tasks
+                  <!-- <div class="hint csHelp" data-topic="pointToDataSource" title="" data-toggle="tooltip" data-container="body" data-original-title="Steps completed by the system admin include: running the pre-config.sh script to install dependencies, running the verify.sh script to check configuration, allocating storage shared across the cluster for Xcalar to use, creating the account used to install Xcalar, and performing any necessary configuration of external LDAP directories.">
+                    <i class="white icon xi-help fa-12"></i>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+            <div class="radioButton" data-option='no'>
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">
+                <div class="name">
+                  The installing Linux user has admin privileges and I want the installer to complete all pre-install tasks for me
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+       <% } %>
+
+      <!-- Step 3: Discovery -->
+      <form id="upgradeDiscoveryForm" autocomplete="off" class="hidden upgrade">
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 3A</span>
+            <% } else { %>
+              <span>STEP 2A</span>
+            <% } %>
+            <span>Enter Node IP</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Enter the IP address of one of the node in the Xcalar cluster</span>
+          </div>
+        </div>
+        <div class="section hostnameSection">
+          <div class="row header">
+            <span class="leftCol">
+              Hostnames
+            </span>
+          </div>
+          <div class="row">
+            <div class="leftCol hostname">
+              <div class="publicName">
+                <input class="input ipOrFqdn" type="text" autocomplete="off" value=""
+                name="useless" placeholder="[IP or FQDN]">
+                <div class="bar">HOST NAME</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if (dicts.isTarballInstaller !== null) { %>
+          <div class="title">
+            <div class="step">
+              <span>STEP 3B</span>
+              <span>Installation Directory</span>
+            </div>
+            <div class="hint">
+              <span></span>
+              <span>Input where Xcalar was installed on all nodes</span>
+            </div>
+          </div>
+          <div class="section installationDirectorySection">
+            <div class="installationDirectory">
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[/opt/xcalar/]" value="/opt/xcalar/">
+                <div class="bar">INSTALLATION DIRECTORY</div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 3C</span>
+            <% } else { %>
+              <span>STEP 2B</span>
+            <% } %>
+            <span>Credentials</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Input the credentials for the above node</span>
+          </div>
+        </div>
+        <div class="section credentialSection">
+          <div class="hostUsername">
+            <div class="inputWrap">
+              <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[username]">
+              <input type="text" name='useless' style="display: none;" value=" ">
+              <div class="bar">Username</div>
+            </div>
+            <div class="inputWrap">
+              <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[ssh port]" value="22">
+              <div class="bar">SSH Port</div>
+            </div>
+          </div>
+          <span class="header">Password Options</span>
+          <div class="radioButtonGroup passwordChoice" id="upgradePasswordChoice">
+            <div class="radioButton passOption active" data-option="password">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Password</div>
+            </div>
+            <div class="radioButton passOption" data-option="sshKey">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">SSH Key</div>
+            </div>
+            <div class="radioButton passOption" data-option="sshUserSettings">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">SSH User Settings
+                <!-- <div class="hint csHelp" data-topic="pointToDataSource" title="" data-toggle="tooltip" data-container="body" data-original-title="This setting causes the installer to employ ssh with the keys and configuration present in the shell where it runs.">
+                  <i class="white icon xi-help fa-12"></i>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="hostPassword">
+            <input class="input" name="useless" type="password" autocomplete="off" placeholder="[password]">
+            <div class="bar">Password</div>
+          </div>
+          <div class="hostSshKey">
+            <textarea rows="30" cols="68" autocomplete="off" placeholder="[Private SSH Key]"></textarea>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="DISCOVER">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <!-- Step 4: Place Xcalar Root -->
+      <form id="sharedStorageUpdateForm" autocomplete="off" class="hidden upgrade shareStorage">
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 4</span>
+            <% } else { %>
+              <span>STEP 3</span>
+            <% } %>
+            <span>SET UP XCALAR ROOT DIRECTORY</span>
+          </div>
+        </div>
+
+        <div class="section discoverSection">
+          <div class="discoverWrapper discoverServer">
+            <div class="label">CURRENT SERVER:</div>
+            <div class="text" disabled></div>
+          </div>
+          <div class="discoverWrapper discoverMountPath">
+            <div class="label">CURRENT MOUNT PATH:</div>
+            <div class="text" disabled></div>
+          </div>
+        </div>
+        <div class="section upgradeXcalarRootSection">
+          <div class="checkboxLine">
+            <div class="checkbox changeXcalarRoot">
+              <i class="icon xi-ckbox-empty"></i>
+              <i class="icon xi-ckbox-selected"></i>
+            </div>
+            <div class="label">
+              <div class="name">
+                Change Xcalar Root
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="title hidden update">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 4A</span>
+            <% } else { %>
+              <span>STEP 3A</span>
+            <% } %>
+            <span>Select A New Location For Xcalar Root</span>
+          </div>
+        </div>
+        <div class="section nfsSection hidden update">
+          <div class="radioButtonGroup nfsChoice" id="upgradeNfsChoice">
+            <div class="radioButton active" data-option="readyNfs">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Existing Shared Storage Already Mounted</div>
+            </div>
+            <div class="readyNfsOptions" style="display:block;">
+              <div class="nfsMountPoint nfsSubOption">
+                <input class="input nfsMountPointReady" type="text" autocorrect="off" autocapitalize="off" placeholder="[Mount Point]">
+                <div class="bar">Path</div>
+              </div>
+            </div>
+            <div class="radioButton noPreConfig" data-option="xcalarNfs">
+                <div class="radio">
+                  <i class="icon xi-radio-selected"></i>
+                  <i class="icon xi-radio-empty"></i>
+                </div>
+                <div class="label">Xcalar Deployed Shared Storage</div>
+            </div>
+            <div class="radioButton noPreConfig" data-option="customerNfs">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Existing Shared Storage to be Mounted</div>
+            </div>
+            <div class="customerNfsOptions">
+              <div class="nfsMountPoint nfsSubOption">
+                <input class="input nfsServer" placeholder="[Server]">
+                <span>:/</span>
+                <input class="input nfsMountPoint" type="text" autocorrect="off" autocapitalize="off" placeholder="[Mount Point]">
+                <div class="bar">Path</div>
+              </div>
+              <div class="nfsUser nfsSubOption">
+                <input class="input nfsUserName" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[user_id]  (optional)">
+                <div class="bar">Username</div>
+              </div>
+              <div class="nfsUser nfsSubOption">
+                <input class="input nfsUserGroup" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[user_group]  (optional)">
+                <div class="bar">Group</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="title hidden update">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 4B</span>
+            <% } else { %>
+              <span>STEP 3B</span>
+            <% } %>
+            <span>Copy existing data</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Do you want Xcalar to copy data for you?</span>
+          </div>
+        </div>
+        <div class="section copyDataSection hidden update">
+          <div class="radioButtonGroup copyChoice" id="copyChoice">
+            <div class="radioButton active" data-option="xcalarCopy">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Yes, I want Xcalar to copy the data for me</div>
+            </div>
+            <div class="radioButton" data-option="userCopy">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">No, I want to copy the data myself</div>
+            </div>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="NEXT">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <!-- Step 5: Display Hosts Upgrade status-->
+      <form id="upgradeHostsForm" autocomplete="off" class="hidden upgrade hostList">
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 5</span>
+            <% } else { %>
+              <span>STEP 4</span>
+            <% } %>
+            <span>Host Status</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Display Upgrade Status for all Nodes</span>
+          </div>
+        </div>
+        <div class="section hostnameSection">
+          <div class="row header">
+            <span class="leftCol">
+              Hostnames
+            </span>
+            <span class="rightCol">
+              Status
+            </span>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section successSection">
+          <h2> Upgrade Complete - Click on the button to launch Xcalar Design </h2>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" id="upgradeButton" value="UPGRADE">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn cancel hidden" type="button" value="CANCEL">
+        </div>
+      </form>
+
+      <!-- Step 1: Discovery -->
+      <form id="uninstallDiscoveryForm" autocomplete="off" class="hidden uninstall">
+        <div class="title">
+          <div class="step">
+            <span>STEP 1A</span>
+            <span>Enter Node IP</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Enter the IP address of one of the node in the Xcalar cluster</span>
+          </div>
+        </div>
+        <div class="section hostnameSection">
+          <div class="row header">
+            <span class="leftCol">
+              Hostnames
+            </span>
+          </div>
+          <div class="row">
+            <div class="leftCol hostname">
+              <div class="publicName">
+                <input class="input ipOrFqdn" type="text" autocomplete="off" value=""
+                name="useless" placeholder="[IP or FQDN]">
+                <div class="bar">HOST NAME</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% if (dicts.isTarballInstaller !== null) { %>
+          <div class="title">
+            <div class="step">
+              <span>STEP 1B</span>
+              <span>Installation Directory</span>
+            </div>
+            <div class="hint">
+              <span></span>
+              <span>Input where Xcalar was installed on all nodes</span>
+            </div>
+          </div>
+          <div class="section installationDirectorySection">
+            <div class="installationDirectory">
+              <div class="inputWrap">
+                <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[/opt/xcalar/]" value="/opt/xcalar/">
+                <div class="bar">INSTALLATION DIRECTORY</div>
+              </div>
+            </div>
+          </div>
+        <% } %>
+        <div class="title">
+          <div class="step">
+            <% if (dicts.isTarballInstaller !== null) { %>
+              <span>STEP 1C</span>
+            <% } else { %>
+              <span>STEP 1B</span>
+            <% } %>
+            <span>Credentials</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Input the credentials for the above node</span>
+          </div>
+        </div>
+        <div class="section credentialSection">
+          <div class="hostUsername">
+            <div class="inputWrap">
+              <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[username]">
+              <input type="text" name='useless' style="display: none;" value=" ">
+              <div class="bar">Username</div>
+            </div>
+            <div class="inputWrap">
+              <input class="input" name="useless" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" placeholder="[ssh port]" value="22">
+              <div class="bar">SSH Port</div>
+            </div>
+          </div>
+          <span class="header">Password Options</span>
+          <div class="radioButtonGroup passwordChoice" id="uninstallPasswordChoice">
+            <div class="radioButton passOption active" data-option="password">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">Password</div>
+            </div>
+            <div class="radioButton passOption" data-option="sshKey">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">SSH Key</div>
+            </div>
+            <div class="radioButton passOption" data-option="sshUserSettings">
+              <div class="radio">
+                <i class="icon xi-radio-selected"></i>
+                <i class="icon xi-radio-empty"></i>
+              </div>
+              <div class="label">SSH User Settings
+                <!-- <div class="hint csHelp" data-topic="pointToDataSource" title="" data-toggle="tooltip" data-container="body" data-original-title="This setting causes the installer to employ ssh with the keys and configuration present in the shell where it runs.">
+                  <i class="white icon xi-help fa-12"></i>
+                </div> -->
+              </div>
+            </div>
+          </div>
+          <div class="hostPassword">
+            <input class="input" name="useless" type="password" autocomplete="off" placeholder="[password]">
+            <div class="bar">Password</div>
+          </div>
+          <div class="hostSshKey">
+            <textarea rows="30" cols="68" autocomplete="off" placeholder="[Private SSH Key]"></textarea>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" value="DISCOVER">
+          <input class="btn back" type="button" value="BACK">
+          <input class="btn clear" type="button" value="CLEAR">
+        </div>
+      </form>
+
+      <!-- Step 2: Display Hosts Uninstall Status -->
+      <form id="uninstallHostsForm" autocomplete="off" class="hidden uninstall hostList">
+        <div class="title">
+          <div class="step">
+            <span>STEP 2</span>
+            <span>Host Status</span>
+          </div>
+          <div class="hint">
+            <span></span>
+            <span>Display Uninstall Status for all Nodes</span>
+          </div>
+        </div>
+        <div class="section hostnameSection">
+          <div class="row header">
+            <span class="leftCol">
+              Hostnames
+            </span>
+            <span class="rightCol">
+              Status
+            </span>
+          </div>
+        </div>
+        <div class="section error">
+          <div class="leftBar">&nbsp;</div>
+          <span>Unknown Error<br></span>
+          <span>Unknown Error!</span>
+        </div>
+        <div class="section successSection">
+          <h2> Uninstallation Complete </h2>
+          <div class="linkWrapper">
+            <a class="backToInstall">Want to re-install Xcalar? Click here!</a>
+          </div>
+        </div>
+        <div class="section buttonSection">
+          <input class="btn next" type="button" id="uninstallButton" value="UNINSTALL">
+          <input class="btn back" type="button" value="BACK">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

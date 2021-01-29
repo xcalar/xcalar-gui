@@ -1,0 +1,13 @@
+{
+    "XlogEmerg" : 0,
+    "XlogAlert" : 1,
+    "XlogCrit" : 2,
+    "XlogErr" : 3,
+    "XlogWarn" : 4,
+    "XlogNote" : 5,
+    "XlogInfo" : 6,
+    "XlogDebug" : 7,
+    "XlogVerbose" : 8,
+    "XlogInval" : 9
+}
+

@@ -1,0 +1,2041 @@
+#loadWizard {
+    @min-width: 450px;
+    @input-height: 35px;
+    @button-w: 156px;
+
+    .App {
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+
+        .modelPanel {
+            height: 100%;
+            flex: 0 0 210px;
+        }
+
+        .mainArea {
+            height: 100%;
+            flex: 1 1 auto;
+            overflow: hidden;
+            display: flex;
+        }
+    }
+
+    input {
+        background-color: #181818;
+    }
+
+    .dropDownList {
+        .styleDropDownList(100%, @input-height);
+
+        .text {
+            outline: none;
+        }
+
+        &.open {
+            .list {
+                display: block;
+            }
+        }
+    }
+
+    .loadNavBar {
+        width: 180px;
+        flex: 0 0 auto;
+        border-right: 1px solid @color-border-medium3;
+
+        .step {
+            height: 74px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 40px;
+            cursor: pointer;
+            .noSelection;
+
+            .stepNum {
+                font-weight: bold;
+            }
+
+            &:hover {
+                background-color: @color-bg-2;
+            }
+
+            &.selected {
+                background-color: #1a1a1a;
+            }
+        }
+
+    }
+
+    .container {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 0px;
+        width: ~"calc(100% - 180px)";
+
+        &.step1 {
+            .cardMain .leftPart {
+                .topSection, .configurationSection {
+                    display: block
+                }
+            }
+        }
+
+        &.step2 {
+            .cardMain .leftPart {
+                .schemaSection, .editSchemaSection {
+                    display: block
+                }
+            }
+        }
+
+        &.step3 {
+            .cardMain .leftPart {
+                .tableLoad {
+                    display: block
+                }
+            }
+        }
+
+        .cardMain {
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            flex: 1 1 auto;
+            display: flex;
+            .auto-selection;
+
+            .leftPart {
+                overflow-y: auto;
+                position: relative;
+                flex: 1 1 auto;
+
+                > div {
+                    padding: 12px 16px;
+                    border-bottom: 1px solid @color-border-medium;
+                    margin: 0 auto;
+                    @padding: 16px;
+                    @max-width: @min-width * 2 + (@padding * 2);
+                    max-width: @max-width;
+
+                    &:not(.modal) {
+                        display: none;
+                    }
+                    &.refreshIcon {
+                        display: block;
+                        max-width: 100%;
+                    }
+
+                    &:last-child {
+                        border-bottom: none;
+                    }
+
+                    .header {
+                        font-size: 16px;
+                        font-weight: 600;
+                        margin-bottom: 8px;
+                    }
+                }
+            }
+
+            .rightPart {
+                display: none !important;
+                height: 100% !important;
+                flex-direction: row;
+                border-left: 1px solid @color-border-medium2;
+                background-color: @color-bg-leftPanel;
+                .innerRightPart {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    overflow: auto;
+                    user-select: text;
+
+                    > div {
+                        border-bottom: 1px solid @color-border-medium2;
+                        padding: 12px;
+                    }
+                }
+                &.active {
+                    display: flex !important;
+                }
+
+                .forensicsContent {
+                    margin: 0px;
+                    max-height: none;
+                    flex: 0 0 auto;
+                    overflow: visible;
+                    .xc-expand-list {
+                        padding-top: 0px;
+                    }
+                }
+
+                .xc-expand-list {
+                    padding-top: 8px;
+
+                    &.active {
+                        .xi-down {
+                            transform: rotate(0deg);
+                        }
+                        > ul {
+                            display: block;
+                        }
+                    }
+
+                    .listInfo {
+                        display: flex;
+                        cursor: pointer;
+                        align-items: center;
+                        padding: 0px;
+                    }
+
+                    .expand {
+                        margin-left: auto;
+                    }
+
+                    .xi-down {
+                        font-size: 14px;
+                        transform: rotate(270deg);
+                    }
+
+                    > ul {
+                        display: none;
+                    }
+
+                    li {
+                        height: auto;
+                        border: none;
+                        padding: 0px;
+                        padding-bottom: 8px;
+                        .label {
+                            color: #AAAAAA;
+                        }
+                        > div {
+                            float: none;
+                        }
+                    }
+                }
+                .chartInfo {
+                    padding-top: 8px;
+                }
+            }
+        }
+        .cardBottom {
+            display: flex;
+            flex: 0 0 auto;
+            padding: 10px 16px 0px 16px;
+            min-height: 60px;
+            border-top: 1px solid @color-border-medium2;
+
+            .navButtons {
+                margin-top: 0px;
+                width: 100%;
+
+                .btn.autoWidth {
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    .react-draggable:not(.modal-content) {
+        position: relative !important;
+        transform: translate(0, 0) !important;
+        display: flex !important;
+        flex: 0 0 auto;
+    }
+
+    .needHelp {
+        text-decoration: underline;
+        margin-left: 4px;
+        color: @color-font-default;
+        float: right;
+    }
+
+    .topSection {
+        @w-label: 70px;
+        @margin: 16px;
+        @padding: 16px;
+        @max-width: @min-width * 2 + (@padding * 2);
+
+        .formActions {
+            padding-top: 8px;
+            height: 32px;
+            max-width: @max-width;
+
+            .resetAll {
+                float: right;
+                text-decoration: underline;
+            }
+        }
+
+        .sourceForm {
+            min-width: 564px;
+
+            .row {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 8px;
+                width: 100%;
+
+                .connectorSelection, .bucketSelection, .pathSelection {
+                    width: 100%;
+                }
+
+
+                .label {
+                    display: block;
+                    width: 100%;
+                    line-height: 30px;
+                    font-size: 14px;
+                }
+
+                .inputRow {
+                    display: flex;
+                    > .dropDownList, > input  {
+                        max-width: ~"calc(100% - 168px)";
+                        height: 35px;
+                    }
+                    .btn, .navButtons {
+                        margin-left: 12px;
+                        flex: 0 0 @button-w;
+                    }
+                }
+
+                .fileTypeSelection {
+                    min-width: 200px;
+                    margin-right: @margin;
+                    flex: 0 1 auto;
+                }
+
+                .pathSelection {
+                    flex: 1 1 auto;
+                }
+
+                .selectedFileName {
+                    width: 100%;
+                    .inputRow {
+                        line-height: 35px;
+                        .fileName {
+                            .textOverflowOneLine;
+                            width: ~"calc(100% - 168px)";
+                            font-size: 14px;
+                        }
+
+                        svg {
+                            margin-right: 12px;
+                        }
+                    }
+                }
+
+                .navButtons {
+                    margin-left: 0;
+                    margin-top: 0px;
+                    width: @button-w;
+
+                    button {
+                        width: @button-w;
+                    }
+                }
+                .getForensics {
+                    min-width: @button-w;
+                    margin-left: 16px;
+                    margin-top: 3px;
+                }
+            }
+
+
+            .fileTypeSelection {
+                height: 30px;
+
+                .label {
+                    display: block;
+                    float: left;
+                    width: @w-label;
+                    line-height: 30px;
+                }
+            }
+
+            .connectorSelection, .bucketSelection, .fileTypeSelection {
+                .dropDownList {
+                    .styleDropDownList(~"calc(100% - @{w-label})", @input-height);
+
+                    .text {
+                        outline: none;
+                    }
+
+                    &.open {
+                        .list {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            .pathSelection {
+                .input {
+                    width: ~"calc(100% - @{w-label})";
+                    line-height: 40px;
+                }
+            }
+
+            .fileTypeSelection {
+                input, li {
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .fileListArea {
+            width: 100%;
+            overflow: hidden;
+            margin-top: 0px;
+
+            .innerScrollSection {
+                display: block;
+            }
+            .folderFile {
+                height: 30px;
+                display: flex;
+                align-items: center;
+                position: relative;
+
+                &:hover {
+                    background-color: @color-bg-2;
+                }
+
+                .fileType {
+                    width: 32px;
+                    box-sizing: border-box;
+                    flex: 0 0 32px;
+                    text-align: center;
+                    position: relative;
+                    height: 30px;
+                }
+                .fileName {
+                    .textOverflowOneLine;
+                }
+                .btn {
+                    display: none;
+                    height: 20px;
+                    width: 110px;
+                    line-height: 20px;
+                    font-size: 12px;
+                    margin-right: 8px;
+                    margin-left: auto;
+                }
+                &:hover {
+                    .fileName {
+                        width: ~"calc(100% - 170px)";
+                    }
+                    .btn {
+                        display: block;
+                    }
+                }
+            }
+        }
+    }
+
+    .navButtons {
+        margin-top: 0px;
+        height: 35px;
+
+        .nextButton {
+            float: right;
+        }
+
+        .backButton {
+            float: left;
+        }
+    }
+
+    .forensicsContent {
+        margin: 8px 0;
+        width: 100%;
+        overflow: auto;
+
+        div, pre {
+            // white-space: normal;
+            word-break: break-all;
+        }
+    }
+
+    .browseDataSourceScreen {
+        border-bottom: none;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+
+        .upFolderIcon {
+            position: relative;
+            top: 4px;
+            margin-right: 4px;
+        }
+
+        .fileListTableArea {
+            display: flex;
+            overflow: hidden;
+            flex: 1 1 auto;
+        }
+
+        .fileListTableWrap {
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .loadingText, .noFilesFound {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .fileBrowserPath {
+            input {
+                width: ~"calc(100% - 35px)";
+                outline: none;
+                padding: 0px 8px;
+                background: transparent;
+                .textOverflowOneLine;
+            }
+        }
+
+        .MuiPaper-root {
+            td:first-child, th:first-child {
+                .MuiCheckbox-root {
+                    padding: 2px;
+                    .MuiSvgIcon-root {
+                        font-size: 22px;
+                    }
+                }
+            }
+            .MuiTableCell-root {
+                padding: 0 4px;
+            }
+        }
+
+        .outerTableWrap {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .numItems {
+            font-size: 12px;
+            line-height: 30px;
+        }
+
+        .tableTopBar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 16px;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-weight: 500;
+            line-height: 1.6;
+            letter-spacing: 0.0075em;
+            padding: 0 20px 0px 10px;
+            // min-height: 36px;
+
+            .header {
+                margin-bottom: 0px !important;
+                font-weight: 500 !important;
+            }
+        }
+
+        .cloudUploadSection {
+            width: 100%;
+            overflow: hidden;
+            font-size: 14px;
+            font-weight: normal;
+            position: relative;
+            top: 4px;
+
+            > div {
+                line-height:32px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                padding: 0 4px;
+                overflow: hidden;
+
+                > i, > span {
+                    float: left;
+                }
+            }
+
+            .icon {
+                font-size: 32px;
+                color: @color-font-link-blue;
+                margin-right: 8px;
+                position: relative;
+                top: -1px;
+            }
+
+            .upload {
+                color: @color-font-link-blue;
+                text-decoration: underline;
+            }
+        }
+
+
+
+        .innerTableWrap {
+            flex: 1 1 auto;
+        }
+
+        .rightAreaResizable {
+            height: 100% !important;
+            flex-direction: column;
+            border-left: 1px solid @color-border-medium2;
+        }
+
+        .rightArea {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+            font-size: 12px;
+
+            .react-draggable {
+                width: 100% !important;
+                border-bottom: 1px solid @color-border-medium2;
+                max-height: 90% !important;
+                min-height: 50px !important;
+            }
+
+            .forensicsContent {
+                max-height: none;
+                user-select: text;
+            }
+
+            .forensicMessages {
+                padding: 10px;
+                font-size: 12px;
+            }
+
+            .pieHeader {
+                padding: 0 10px;
+                .textOverflowOneLine;
+            }
+            .chartArea {
+                padding-top: 0px;
+            }
+
+            .recharts-pie-label-text {
+                font-size: 11px;
+            }
+        }
+
+        .selectedFilesArea {
+            // flex: 1 1 60%;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+
+
+            .selectedFilesHeader {
+                font-size: 16px;
+                font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+                font-weight: 500;
+                line-height: 1.6;
+                letter-spacing: 0.0075em;
+                padding-left: 20px;
+                display: flex;
+                position: relative;
+                align-items: center;
+                min-height: 40px;
+            }
+            .selectedFile {
+                display: flex;
+
+                svg {
+                    top: 4px !important;
+                }
+                > span {
+                    margin-left: 12px;
+                    font-size: 12px;
+                    line-height: 30px;
+                    .textOverflowOneLine;
+                    display: inline-block;
+                    // width: ~"calc(100% - 30px)";
+                }
+
+                .error-input {
+                    border-color: @color-error-border-light;
+                }
+            }
+
+            .selectedFileDistribution {
+                padding: 4px 0px 20px;
+                min-height: 88px;
+                flex: 0 0 auto;
+
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    border-spacing: 0;
+                }
+
+                tr {
+                    border-bottom: none;
+                }
+
+                th {
+                    text-align: left;
+                    border-bottom: 1px solid @color-border-table;
+                    padding: 6px 4px 7px;
+                }
+                td {
+                    padding: 4px;
+                }
+                th, td {
+                    font-size: 12px;
+
+                    &:first-child {
+                        padding-left: 20px;
+                    }
+                }
+
+                .noFilesSelected {
+                    text-align: center;
+                    padding-left: 0px !important;
+                }
+            }
+
+            .icon.xi-close {
+                font-size: 16px;
+            }
+
+            .MuiPaper-root {
+                height: auto;
+
+                > .MuiTable-root:nth-child(3) {
+                    margin-top: auto;
+                }
+            }
+
+            // turn the checkbox into a close icon
+            th:first-child, td:first-child {
+                .MuiCheckbox-root {
+                    padding: 2px;
+                }
+                .Mui-checked .MuiIconButton-label {
+                    &:before {
+                        content: "\ea10"; //close icon
+                        font-family: 'icomoon' !important;
+                        color: @color-font-default;
+                        font-size: 16px;
+                    }
+                    svg {
+                        display: none;
+                    }
+                }
+            }
+            th:first-child {
+                .MuiCheckbox-root {
+                    padding: 4px 2px;
+                }
+            }
+
+            .ReactVirtualized__Table__row .MuiTableCell-root {
+                border-bottom: 1px solid transparent;
+            }
+
+        }
+    }
+
+    // overwrite material UI style
+    .MuiPaper-root {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        background-color: @color-bg-modal;
+        margin: 4px 0 0;
+        height: 100%;
+        overflow: auto;
+
+        .MuiToolbar-regular {
+            min-height: 40px;
+        }
+
+        .MuiTypography-h6 {
+            font-size: 16px;
+        }
+
+        .MuiSvgIcon-root {
+            fill: @color-font-default;
+        }
+
+        .Mui-disabled  .MuiSvgIcon-root {
+            opacity: @opacity-disabled;
+        }
+
+        .MuiTableCell-root {
+            background-color: @color-bg-modal;
+            color: @color-font-default;
+            font-size: 12px;
+            border-bottom: 1px solid @color-border-table;
+        }
+
+        .MuiTableCell-head {
+            color: @color-font-default;
+        }
+
+        .MuiTypography-root {
+            color: @color-font-default;
+        }
+
+        > .MuiTable-root:nth-child(4) {
+            margin-top: auto;
+        }
+
+        .MuiTableCell-footer {
+            border-bottom: none;
+        }
+        .MuiTablePagination-caption {
+            font-size: 12px;
+        }
+        .MuiTablePagination-toolbar {
+            min-height: 40px;
+        }
+        .MuiIconButton-root {
+            padding: 4px;
+        }
+    }
+
+    .ReactVirtualized__Grid, .ReactVirtualized__Table__Grid,
+    .ReactVirtualized__Table__headerColumn, .ReactVirtualized__Table__row {
+        outline: none;
+    }
+
+    .ReactVirtualized__Table {
+        .MuiToolbar-regular {
+            min-height: 40px;
+        }
+
+        .MuiTypography-h6 {
+            font-size: 16px;
+        }
+
+        .MuiSvgIcon-root {
+            fill: #ababab;
+        }
+
+        .Mui-disabled  .MuiSvgIcon-root {
+            opacity: @opacity-disabled;
+        }
+
+        .MuiTableCell-root {
+            background-color: @color-bg-modal;
+            color: @color-font-default;
+            font-size: 12px;
+            border-bottom: none;
+            padding: 0 4px;
+            width: 100%;
+        }
+
+        .ReactVirtualized__Table__headerColumn, .ReactVirtualized__Table__rowColumn {
+            &:first-child, &:nth-child(2) {
+                // checkbox column
+                min-width: 30px;
+            }
+        }
+
+        .ReactVirtualized__Table__row {
+            &.isLoading {
+                opacity: @opacity-disabled;
+                pointer-events: none;
+            }
+            &:hover {
+                .MuiTableCell-root {
+                    background-color: @color-bg-2;
+                }
+            }
+            &:hover, &.selectedRow {
+                .clickable {
+                    .MuiButtonBase-root {
+                        display: flex !important;
+                    }
+                    > .MuiSvgIcon-root {
+                        display: none !important;
+                    }
+                }
+            }
+            &.selectedRow .MuiTableCell-root {
+                background-color: #2f4f6b;
+            }
+        }
+
+        .innerCell {
+            .textOverflowOneLine;
+        }
+
+        .xi-info-circle-outline {
+            font-size: 16px;
+        }
+
+        .xi-trash {
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .MuiTableCell-head {
+            color:#ababab;
+            font-weight: bold;
+        }
+
+        .MuiTypography-root {
+            color: @color-font-default;
+        }
+
+        > .MuiTable-root:nth-child(4) {
+            margin-top: auto;
+        }
+
+        .MuiTableCell-footer {
+            border-bottom: none;
+        }
+        .MuiTablePagination-caption {
+            font-size: 12px;
+        }
+        .MuiTablePagination-toolbar {
+            min-height: 40px;
+        }
+        .MuiIconButton-root {
+            padding: 0px;
+        }
+
+        .MuiTableSortLabel-root:hover {
+            opacity: 0.8;
+            color: inherit;
+        }
+        .MuiTableSortLabel-root.MuiTableSortLabel-active {
+            color: inherit;
+        }
+
+        .clickable {
+            .MuiButtonBase-root {
+                display: none;
+                .MuiSvgIcon-root {
+                    fill: #329df8;
+                    position: relative;
+                    left: -2px;
+                }
+            }
+        }
+    }
+
+    .filesSelected {
+        .section {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+
+            > div {
+                flex: 1 1 auto;
+                height: 38px;
+                line-height: 38px;
+            }
+        }
+
+        .MuiPaper-root {
+            padding: 0 4px;
+        }
+
+        .dropDownList {
+            .qMark {
+                margin-left: 4px;
+            }
+        }
+
+        .option-discover-all {
+            flex-basis: 900px;
+        }
+    }
+
+    .chartArea {
+        padding-top: 16px;
+        .bucketChart{
+            width: 800px;
+            margin: 0 auto;
+            display: flex;
+            .recharts-pie-label-text {
+                font-size: 12px;
+            }
+        }
+    }
+
+    #SchemaChart {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        overflow: hidden;
+        justify-content: space-evenly;
+
+        .recharts-pie-label-text {
+            font-size: 11px;
+        }
+        .recharts-wrapper {
+            margin-bottom: -50px;
+        }
+    }
+
+    .tableLoad {
+        .browsersContainer {
+            button {
+
+                &.viewSchema {
+                    width: 100px;
+                }
+            }
+        }
+
+        .tableInput {
+            text-transform: uppercase;
+        }
+
+        .nextButton {
+            button {
+                width: auto;
+            }
+        }
+
+        .qMark {
+            margin-left: 4px;
+            position: relative;
+            top: -2px;
+        }
+
+        .loadingWrap {
+            display: flex;
+            flex-direction: row;
+            height: @input-height;
+            align-items: center;
+        }
+
+        .loadingProgress {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100px;
+
+            .loadingProgress-text {
+                display:flex;
+                align-items: center;
+                height: 100%;
+                user-select: none;
+            }
+
+            .loadingProgress-wrap {
+                height: 6px;
+                // border: 1px solid @color-font-default;
+                // border-radius: 2px;
+                position: relative;
+            }
+
+            .loadingProgress-bar, .loadingProgress-bg {
+                height: 100%;
+                position: absolute;
+                border-radius: 3px;
+                top: 0;
+                left: 0
+            }
+
+            .loadingProgress-bg {
+                width: 100%;
+                border: 1px solid #fff;
+                background-color: #fff;
+                opacity: 0.2;
+            }
+
+            .loadingProgress-bar {
+                background-color: #1ba22b;
+                border: 1px solid #1ba22b;
+            }
+        }
+
+        .loading-cancel {
+            height: 18px;
+            width: 18px;
+            margin-left: 27px;
+
+            &:hover,
+            &:focus {
+              opacity: 0.6;
+              text-decoration: none;
+              cursor: pointer;
+            }
+        }
+
+        .loadingCell {
+            display: flex;
+        }
+
+        .loadingCell-link {
+            text-decoration: underline;
+        }
+
+        .loadingCell-btn {
+            width: 100px;
+            margin-left: 8px;
+        }
+
+        .loadingBarWrap {
+            width: @button-w;
+            border: 1px solid @color-font-default;
+            border-radius: 2px;
+            height: @input-height;
+            position: relative;
+
+            .loadingBar {
+                height: 100%;
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                background-color: #1ba22b;
+            }
+
+            .loadingText {
+                width: 100%;
+                text-align: center;
+                position: relative;
+                font-size: 13px;
+                line-height: @input-height;
+                user-select: none;
+            }
+
+            // .cancelText {
+            //     display: none;
+            // }
+
+            // &:hover {
+            //     cursor: pointer;
+
+            //     .loadingText {
+            //         display: none;
+            //     }
+
+            //     .cancelText {
+            //         display: block;
+            //     }
+            // }
+        }
+
+        .xi-tick {
+            color: #1ba22b;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+    }
+
+    .tableLoad, .discoverTable {
+        .error {
+            .label {
+                margin-right: 4px;
+            }
+
+            .action {
+                margin-left: 4px;
+                color: @color-font-link-blue;
+            }
+
+            pre {
+                user-select: text;
+            }
+        }
+    }
+
+    .modelPanel {
+        @h-header: 36px;
+        @h-button: 40px;
+        border-right: 1px solid @color-border-medium2;
+
+        .header {
+            font-size: 16px;
+            line-height: @h-header;
+            padding-left: 15px;
+            color: @color-font-darkGray;
+        }
+
+        .addModel {
+            margin: 8px 15px;
+
+            .icon {
+                margin-right: 4px;
+            }
+        }
+
+        .modelList {
+            @h-rest: @h-header + @h-button;
+            width: 100%;
+            height: ~"calc(100% - @{h-rest})";
+            overflow-y: auto;
+        }
+
+        .modelElement {
+            padding-left: 15px;
+            padding-right: 4px;
+            line-height: 35px;
+
+            &:hover {
+                background-color: @color-bg-2;
+            }
+
+            &.active {
+                background-color: @color-bg-list-hover;
+            }
+
+            > span {
+                display: block;
+                float: left;
+                height: 35px;
+                line-height: 35px;
+            }
+
+            .icon {
+                font-size: 20px;
+            }
+
+            .modelName {
+                margin-left: 8px;
+            }
+        }
+    }
+
+    .SourceCSVArgSection {
+        width: 100%;
+
+        > div {
+            &:first-child {
+                margin-bottom: 8px;
+            }
+        }
+
+        .row {
+            margin-top: 4px;
+            width: 100%;
+            @label-w: 130px;
+
+            label {
+                width: @label-w;
+                display: inline-block;
+            }
+
+            input {
+                width: ~"calc(100% - @{label-w})";
+
+                &.error {
+                    border-color: @color-error-border-light;
+                }
+            }
+        }
+    }
+
+    .discoverTable {
+        position: relative;
+        z-index: 0;
+        margin-bottom: 16px;
+
+        .MuiTableCell-paddingNone {
+            padding: 2px;
+        }
+
+        .MuiPaper-root {
+            box-shadow: none;
+            border: 1px solid @color-border-medium;
+        }
+
+        .MuiToolbar-gutters {
+            padding-left: 0;
+        }
+
+        .error {
+            max-width: 150px;
+            white-space: pre-wrap;
+            user-select: text;
+        }
+    }
+
+    .pageInputArea {
+        display: flex;
+        align-items: center;
+        margin-top: -34px;
+        margin-left: 10px;
+        position: relative;
+        width: 200px;
+
+        .label {
+            margin-right: 8px;
+        }
+        input {
+            height: 24px;
+        }
+    }
+
+    .configurationSection {
+        padding-right: 164px !important;
+        padding-left: 12px !important;
+    }
+    .advOption {
+        > .header {
+            margin-left: 4px;
+        }
+
+        .advOption-group {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+
+        .advOption-group-sub {
+            padding-top: 8px;
+        }
+
+        .advOption-option {
+            margin: 4px;
+            padding: 0;
+            min-width: @min-width;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex: 1 1 auto;
+
+            &.fullRow {
+                width: 100%;;
+            }
+            &.halfRow {
+                width: 40%;
+                min-width: 200px;
+            }
+            &.checkboxRow {
+                flex-direction: row-reverse;
+                .advOption-option-label {
+                    margin-right: auto;
+                    margin-left: 12px;
+                }
+                .advOption-option-value {
+                    flex-grow: 0;
+                }
+            }
+        }
+
+        .advOption-option-label {
+            display: flex;
+            align-items: center;
+            margin-right: 8px;
+            font-size: 14px;
+            line-height: 30px;
+        }
+
+        .advOption-option-value {
+            flex-grow: 1;
+            .clearfix();
+            .dropDownList {
+                width: 100%;
+                > input {
+                    width: ~"calc(100% - 35px)";
+                }
+            }
+        }
+
+        button {
+            float: right;
+        }
+    }
+
+    .csvArgs-chkbox {
+        height: 30px;
+        display: flex;
+        align-items: center;
+        .icon {
+            cursor: pointer;
+        }
+    }
+
+    .option-sampleSize-value {
+        display: flex;
+        align-items: center;
+    }
+
+    .schemaBtn {
+        width: auto;
+        font-size: 10px;
+        height: 16px;
+        line-height: 14px;
+        padding-top: 0;
+        padding-bottom: 0;
+        position: relative;
+        top: -1px;
+    }
+
+    .dropDownList {
+        input:read-only {
+            outline: none;
+        }
+        .list {
+            display: block;
+        }
+    }
+
+    .sep {
+        width: 100%;
+        padding: 0;
+        margin: 16px 0;
+        border-top: solid 1px @color-border-medium;
+    }
+
+    .modal {
+        position: fixed; /* Stay in place */
+        z-index: @z-index-modal; /* Sit on top */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        background-color: rgba(0,0,0,0.5);
+        max-width: none !important;
+
+        .react-draggable {
+            &.modal-content {
+                display: flex !important;
+                overflow: visible;
+                margin: 0;
+            }
+            .modal-header {
+                cursor: pointer;
+                .cursor-move;
+            }
+
+        }
+
+        .modal-content {
+            background-color: @color-bg-modal;
+            margin: 32px 16px;
+            height: ~"calc(100% - 64px)";
+            border: 1px solid @color-border-medium;
+            border-radius: 12px;
+            font-size: 14px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .modal-header {
+            padding: 8px 16px 0 24px;
+            height: 60px;
+            position: relative;
+            flex: 0 0 auto;
+
+            .text {
+                display: inline-block;
+                line-height: 46px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                text-align: center;
+                font-size: 16px;
+                width: 100%;
+            }
+
+            .close {
+                cursor: pointer;
+                opacity: 1;
+                width: 18px;
+                height: 18px;
+                position: absolute;
+                top: 20px;
+                right: 24px;
+
+                &:hover,
+                &:focus {
+                  opacity: 0.6;
+                  text-decoration: none;
+                  cursor: pointer;
+                }
+            }
+        }
+
+        .modal-body {
+            border-top: 1px solid @color-border-medium3;
+            padding: 0px 18px;
+            flex: 1 1 auto;
+            overflow: auto; // allow scrolling
+
+            .heading {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+
+            .ReactVirtualized__Table__headerRow {
+                border-bottom: 1px solid @color-border-medium3;
+            }
+        }
+
+        .modal-footer {
+            border-top: 1px solid @color-border-medium3;
+            padding: 16px;
+            flex: 0 0 auto;
+        }
+        .fileBrowserPath, .selectedFilesArea {
+            border-bottom: 1px solid @color-border-medium3;
+            margin: 0px;
+            padding: 12px 2px 8px;
+        }
+    }
+
+    .fileListArea {
+        margin: 8px 0 0 0;
+
+        .fileListHeader {
+            color: #d6d6d6;
+            display: flex;
+
+            .numFiles {
+                margin-left: auto;
+            }
+        }
+
+        .fileListSection {
+            margin: 8px 0px 4px;
+        }
+    }
+
+    .paginationRow {
+        display: flex;
+        line-height: 24px;
+        width: 100%;
+
+        .skipToPage {
+            margin-left: auto;
+        }
+        .pageInfo {
+            margin-left: auto;
+        }
+        .xc-input {
+            width: 48px;
+            height: 24px;
+            margin: 0px 4px;
+        }
+    }
+
+    .schemaSection {
+        .selectedDirRow {
+            margin: 0px;
+            .advOption-option-label {
+                color: #d6d6d6;
+                font-size: 12px;
+            }
+            .advOption-option-value {
+                .textOverflowOneLine;
+                font-weight: 600;
+                display: flex;
+                margin-bottom: 8px;
+            }
+            .iconWrapper {
+                position: relative;
+                width: 24px;
+            }
+        }
+
+        .csvArgs-chkbox {
+            .lineNum, .fileType, .icon {
+                width: 32px;
+                box-sizing: border-box;
+                flex: 0 0 32px;
+                text-align: center;
+            }
+            .icon {
+                display: none;
+                padding-top: 2px;
+                color: #329df8;
+            }
+            .fileType {
+                position: relative;
+                height: 30px;
+            }
+            &:hover, &.selected {
+                background-color: @color-bg-2;
+                .icon {
+                    display: block;
+                }
+                .lineNum {
+                    display: none;
+                }
+                .fileType {
+                    display: none;
+                }
+            }
+            &.selected {
+                background-color: #2f4f6b;
+
+            }
+        }
+    }
+
+    .editSchema {
+        display: flex;
+        flex-direction: column;
+
+        .schemaOptions {
+            display: flex;
+            justify-content: flex-end;
+            position: relative;
+            top: 0px;
+            margin-bottom: 12px;
+            line-height: 26px;
+
+            > div {
+                font-size: 14px;
+                &:not(:first-child) {
+                    margin-left: 20px;
+
+                }
+            }
+
+            .switchWrap {
+                display: inline-flex;
+                cursor: pointer;
+                .switch {
+                    margin-right: 8px;
+                }
+            }
+        }
+
+
+        .numColsArea {
+            margin-right: auto;
+            .icon {
+                font-size: 15px;
+                position: relative;
+                top: 1px;
+                margin-right: 6px;
+            }
+        }
+    }
+
+    .editSchema-textarea {
+        width: 100%;
+        min-height: 300px;
+        margin-top: 8px;
+        resize: vertical;
+    }
+
+    .editSchema-error {
+        color: @color-text-error;
+    }
+
+    .schemaDesc {
+        margin-bottom: 4px;
+    }
+
+    .headerHelpText {
+        margin-top: 4px;
+        margin-bottom: 8px;
+        .icon {
+            font-size: 14px;
+            margin-right: 8px;
+            position: relative;
+            top: 1px;
+        }
+    }
+
+    .scrollSection {
+        overflow: auto;
+        border: 1px solid @color-border-medium3;
+        background-color: #252525;
+    }
+    .innerScrollSection {
+        display: table; // allows width to expand to children size
+        width: 100%;
+    }
+    .csvErrorSection {
+        .scrollSection {
+            background-color: transparent;
+            border: none;
+
+            .csvArgs-chkbox {
+                &:hover {
+                    background-color: transparent;
+                    .lineNum {
+                        display: block;
+                    }
+                }
+            }
+        }
+        ul {
+            color: @color-font-default;
+        }
+    }
+    .preview-line {
+        padding-left: 4px;
+        user-select: text;
+    }
+
+    .preview-error, .fileLine-error {
+        color: @color-text-error;
+        &pre {
+            white-space: pre-wrap;
+        }
+    }
+
+    .fileLine-warn {
+        opacity: 0.5;
+    }
+
+    .fileDropdown {
+        @max-width: @min-width * 2 - 4px;
+
+        width: 100%;
+        max-width: @max-width;
+        .text {
+            width: ~"calc(100% - 30px)";
+        }
+    }
+
+    .previewTable {
+        padding-bottom: 4px;
+        overflow: hidden;
+
+        .table-wrapper {
+            overflow: auto;
+            height: 100%
+        }
+
+        .type-icon {
+            font-size: 14px;
+        }
+
+        .column-name {
+            width: 100%;
+            margin-left: 8px;
+            text-align: center;
+        }
+
+        .table {
+            border-spacing: 0;
+            border: 2px solid  @color-border-medium3;
+
+            .thead {
+                // overflow-y: auto;
+                // overflow-x: hidden;
+            }
+
+            .tbody {
+                // overflow-y: overlay;
+                // overflow-x: hidden;
+            }
+
+            .tr {
+                background-color: @color-bg-default;
+                display: flex;
+                &:last-child {
+                    .td {
+                        border-bottom: 0;
+                    }
+                }
+            }
+
+            .tr-grey {
+                background-color: @color-table-evenRow-gray;
+            }
+
+            .th,.td {
+                margin: 0;
+                padding: 4px;
+                border-bottom: 2px solid  @color-border-medium3;
+                border-right: 2px solid  @color-border-medium3;
+
+                position: relative;
+
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                overflow: hidden;
+                // text-overflow: ellipsis;
+
+                &:last-child {
+                    border-right: 0;
+                }
+
+                .resizer {
+                    cursor: col-resize;
+                    display: inline-block;
+                    background: @color-black-invisible;
+                    width: 4px;
+                    height: 100%;
+                    position: absolute;
+                    right: 0px;
+                    top: 0;
+                    transform: translateX(50%);
+                    z-index: 1;
+                    touch-action:none;
+
+                    &.isResizing {
+                        background: @color-hover-blue;
+                    }
+                }
+            }
+
+            .td {
+                user-select: text;
+            }
+        }
+    }
+
+    .xc-switch {
+        border: 2px solid #cacaca;
+        width: 30px;
+        height: 16px;
+        border-radius: 8px;
+
+        .slider {
+            border: none;
+            background-color: #cacaca;
+            height: 10px;
+            width: 10px;
+            top: 1px;
+            left: 2px;
+        }
+
+        &.on .slider {
+            left: 14px;
+        }
+    }
+}
+
+.colSchemaSection {
+    @input-height: 35px;
+
+    .row {
+        display: flex;
+        margin-bottom: 12px;
+
+
+        > div, > i {
+            margin-left: 16px;
+        }
+
+        > div {
+            flex: 1 1 33%;
+            &:first-child {
+                margin-left: 0px;
+            }
+        }
+
+        > i {
+            width: 20px;
+            line-height: 35px;
+        }
+
+        input {
+            height: @input-height;
+            line-height: @input-height;
+        }
+
+        &.schemaHeader {
+            font-size: 14px;
+
+            i {
+                visibility: hidden;;
+            }
+        }
+
+        &.mapping {
+            position: relative;
+            &.inputIcon {
+                font-size: 15px;
+                position: absolute;
+                left: -6px;
+                top: -6px;
+            }
+        }
+    }
+    .addCol {
+        width: 100%;
+        border: 1px solid @color-border-medium3;
+        height: @input-height;
+        line-height: @input-height;
+        text-align: center;
+        font-size: 14px;
+        margin-bottom: 12px;
+
+        i {
+            margin-right: 12px;
+            font-size: 14px;
+        }
+    }
+}
+
+#connectorManager {
+    @row-height: 34px;
+
+    .modal-content {
+        .size(@height: 500px, @width: 600px, @min-height: 400px, @min-width:500px);
+    }
+
+    .xi-close {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        border-bottom-left-radius: 12px;
+        border-bottom-right-radius: 12px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .connectorsListArea, .connectorsDetailArea {
+        height: 100%;
+        overflow: auto;
+        padding: 12px;
+    }
+
+    .backBtn {
+        position: absolute;
+        top: 12px;
+    }
+    .row {
+        display: flex;
+    }
+    .connectorsListArea {
+        font-size: 12px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+
+        .row {
+            height: @row-height;
+
+            &.rowHeader {
+                color: #ababab;
+                border-bottom: 1px solid #ababab;
+                font-weight: bold;
+            }
+        }
+        .row > div {
+            width: 50%;
+            line-height: @row-height;
+            position: relative;
+            .textOverflowOneLine;
+
+            .text {
+                .textOverflowOneLine;
+                display: block;
+                width: 100%;
+            }
+
+            .buttons {
+                display: none;
+            }
+        }
+        .connectorsList {
+            overflow: auto;
+            margin-bottom: 8px;
+
+            .row {
+                &:hover {
+                    .connectorName {
+                        .text {
+                            width: ~"calc(100% - 240px)";
+                        }
+                        .buttons {
+                            display: flex;
+                            position: absolute;
+                            right: 0px;
+                            top: 5px;
+                            .btn {
+                                height: 24px;
+                                line-height: 24px;
+                                width: 110px;
+                                font-size: 12px;
+
+                                &:first-child {
+                                    margin-right: 8px;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .addBtn {
+            position: relative;
+            left: ~"calc(100% - 40px)";
+            margin-top: auto;
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            background-color: #EAEAEA;
+            text-align: center;
+            line-height: 40px;
+            .icon {
+                color: @color-bg-modal;
+                line-height: 40px;
+            }
+        }
+    }
+
+    .connectorsDetailArea {
+        .row {
+            flex-direction: column;
+            margin-bottom: 20px;
+            > div {
+                height: @row-height;
+                padding: 4px 0;
+                line-height: @row-height - 8px;
+                white-space: normal;
+                height: auto;
+            }
+            .label {
+                font-size: 16px;
+            }
+            .value {
+                font-weight: bold;
+            }
+
+            &.descriptionRow {
+                .value {
+                    font-weight: normal;
+                }
+            }
+        }
+
+        .configArea {
+            .subHeading {
+                font-size: 16px;
+                line-height: @row-height;
+                margin-bottom: 12px;
+            }
+            .label {
+                font-size: 14px;
+            }
+        }
+    }
+}
+
+#loadScreen {
+    padding-left: 0px;
+    > .topBar {
+        padding-left: 40px;
+    }
+}
+
+body.isCloud {
+    // #loadScreen {
+    //     .contentSection {
+    //         > .tabSection {
+    //             display: none;
+    //         }
+    //         > .panelSection {
+    //             width: 100%;
+    //         }
+    //     }
+    // }
+
+}

@@ -1,0 +1,52 @@
+{
+  "name": "xshell",
+  "version": "1.0.0",
+  "description": "Web terminal server",
+  "author": "First Last <first.last@example.com>",
+  "main": "index.js",
+  "scripts": {
+    "start": "node terminalServer.js",
+    "build": "npm install",
+    "rebuild": "npm run clean && npm install",
+    "dev": "NODE_ENV=development concurrently --kill-others --success first \"babel-node node_modules/.bin/webpack --watch\" \"nodemon .\"",
+    "lint": "eslint --ext .ts,.js ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git:/gitrepos/xcalar-gui.git"
+  },
+  "license": "UNLICENSED",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "bin": {
+    "terminal_server": "./index.js"
+  },
+  "engines": {
+    "node": ">=6.9"
+  },
+  "nodemonConfig": {
+    "ignore": [
+      "src/*",
+      "*.json"
+    ]
+  },
+  "preferGlobal": true,
+  "dependencies": {
+    "wetty": "file:wetty-1.3.2.tgz",
+    "yargs": "^14.0.0"
+  },
+  "devDependencies": {}
+}

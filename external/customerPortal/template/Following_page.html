@@ -1,0 +1,62 @@
+<header class="my-activities-header">
+  {{breadcrumbs}}
+</header>
+
+<nav class="my-activities-nav nav-bordered">
+  <ul>
+    {{#if help_center.request_management_enabled}}
+      <li>{{link 'requests'}}</li>
+    {{/if}}
+    <li>{{link 'contributions'}}</li>
+    <li>{{t 'following'}}</li>
+  </ul>
+</nav>
+
+<div class="my-activities-following-header">
+  <span class="dropdown">
+    <span class="dropdown-toggle">
+      {{current_filter.label}}
+    </span>
+    <span class="dropdown-menu" role="menu">
+      {{#each filters}}
+        <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+          {{name}}
+        </a>
+      {{/each}}
+    </span>
+  </span>
+</div>
+
+<div class="my-activities-table">
+  {{#if subscriptions}}
+    <table>
+      <thead>
+        <tr>
+          <th>{{t 'title'}}</th>
+          <th>{{t 'type'}}</th>
+          <th>{{t 'subscription'}}</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each subscriptions}}
+          <tr>
+            <td>
+              {{#is type 'user'}}
+                <img class="user-avatar" src="{{avatar_url}}" alt="Avatar">
+              {{/is}}
+              <a href="{{url}}" title="{{title}}">{{excerpt title characters=60}}</a>
+            </td>
+            <td>{{name}}</td>
+            <td>{{subscribe}}</td>
+            <td>{{unsubscribe}}</td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+
+    {{pagination}}
+  {{else}}
+    <p>{{t 'not_following'}}</p>
+  {{/if}}
+</div>

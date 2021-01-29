@@ -1,0 +1,7 @@
+{
+    "CsvSchemaModeNoneProvided" : 0,
+    "CsvSchemaModeUseHeader" : 1,
+    "CsvSchemaModeUseSchemaFile" : 2,
+    "CsvSchemaModeUseLoadInput" : 3
+}
+

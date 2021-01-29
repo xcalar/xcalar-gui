@@ -1,0 +1,64 @@
+<!-- XXX TODO: generalize with the on in dagView.html -->
+<div id="sqlTableArea" class="tableArea xc-viewMode xc-tableArea">
+    <div class="topSection tableBar sectionBar">
+      <div class="tableBarWrap">
+        <div class="innerTableBarWrap">
+            <div class="label sectionHeader"><%= dicts.SQL.ViewingResult %></div>
+            <div class="tableNameArea">
+              <div class="label">Table Name:&nbsp;</div>
+              <div class="name"></div>
+            </div>
+            <div class="skewInfoArea"></div>
+            <div class="rowInputArea"></div>
+            <!-- search area -->
+            <div class="slidingSearchWrap">
+                <div class="searchbarArea closed">
+                    <i class="icon xi-search searchIcon"></i>
+                    <input type="text" spellcheck="false" autocomplete="off" placeholder="<%= dicts.common.SeachColumn %>">
+                    <div class="closeBox iconWrap">
+                        <i class="icon xi-cancel"></i>
+                    </div>
+                    <div class="counter">
+                        <span class="position">1</span>
+                        <span class="total">of 2</span>
+                    </div>
+                    <div class="arrows">
+                        <div class="upArrow iconWrap">
+                        <i class="icon xi-up"></i>
+                        </div>
+                        <div class="downArrow iconWrap">
+                        <i class="icon xi-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end of search area -->
+            <div class="menuArea">
+                <div class="tableMenu option xc-action">
+                    <span class="text"><%= dicts.common.TableMenu %></span>
+                    <i class="icon xi-arrow-down"></i>
+                </div>
+            </div>
+        </div>
+      </div>
+      <div class="scrollArea top">
+          <i class="arrow icon xi-arrow-left"></i>
+        </div>
+        <div class="scrollArea bottom">
+          <i class="arrow icon xi-arrow-right"></i>
+        </div>
+    </div>
+    <div class="errorSection xc-errorView"></div>
+    <div class="loadingSection xc-loadView"></div>
+    <div class="mainSection tableSection xc-contentView"></div>
+    <div class="bottomSection">
+        <div class="buttonWrap">
+            <button class="btn btn-clear btn-create">
+              Save Result as Table
+            </button>
+            <button class="btn btn-clear btn-export">
+              <%= dicts.Table.Export %>
+            </button>
+        </div>
+    </div>
+</div>

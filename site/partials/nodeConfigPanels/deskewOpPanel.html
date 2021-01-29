@@ -1,0 +1,52 @@
+<!-- Dataflow Deskew Panel -->
+<section id="deskewOpPanel" class="xc-hidden opPanel">
+    <!-- Header -->
+    <header class="headerSection">
+      <div class="row">
+            <div class="title">De-skew</div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <!-- content -->
+    <div class="mainContent">
+      <div class="opSection">
+        <p class="mainInstructions instrText">
+          Addresses skewness by redistributing the data across all cluster nodes.
+          <i class="qMark icon xi-unknown"
+            data-toggle="tooltip"
+            data-container="body"
+            data-placement="auto top"
+            data-title="The more evenly the data is distributed, the faster the operations run on a cluster. This operator’s function is to reduce data skewness by redistributing data evenly across all cluster nodes. It can be connected to an operator whose output contains a highly skewed value. Where a value of 0 denotes a balanced distribution of data across all nodes in the cluster and 100 denotes an imbalanced distribution of data, usually this indicates that the data is residing on one node of the cluster.",
+            >
+          </i>
+        </p>
+        <div class="argsSection">
+          <!-- node name -->
+          <div class="row clearfix columnName">
+            <div class="description">Column:
+                <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.opsView.deskewCol %>">
+              </i>
+            </div>
+            <div class="inputWrap">
+                <div class="dropDownList">
+                  <input class="arg" type="text" spellcheck="false" autocomplete="off">
+                  <i class="icon xi-arrow-down colNameMenuIcon"></i>
+                  <div class="list hint autoHighlight">
+                    <ul></ul>
+                    include "../../util/menuScrollArea.html"
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </section>
+  <!-- End Of Dataflow Link Out Panel -->

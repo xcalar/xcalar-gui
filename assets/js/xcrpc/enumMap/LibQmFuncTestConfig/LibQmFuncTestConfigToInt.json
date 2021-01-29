@@ -1,0 +1,13 @@
+{
+    "LibQmNumQueryCreationThread" : 0,
+    "LibQmNumLoop" : 1,
+    "LibQmNumStateRequestThread" : 2,
+    "LibQmNumCancellationThread" : 3,
+    "LibQmNumLoopCheckingState" : 4,
+    "LibQmNumLoopCancelQuery" : 5,
+    "LibQmQaYelpUserPath" : 6,
+    "LibQmQaNonstopRetinaDir" : 7,
+    "LibQmQaErrorRetinaDir" : 8,
+    "LibQmQueryLatencyOptimized" : 9
+}
+

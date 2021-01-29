@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title><%= dicts.common.XD %> Image Manager</title>
+    include "xpeCommonHeadTags.html"
+  </head>
+  <body>
+    <div class="imtParent">
+      <div class="header"><%= dicts.common.XD %> Image Management Tool</div>
+      include "imageTable.html"
+    </div>
+    <div class="imtBackgroundImg"></div>
+    include "xpeCommonScriptImports.html"
+    <script src="../assets/js/shared/util/xcHelper.js"></script>
+    <script src="../assets/js/shared/util/xcStringHelper.js"></script>
+    <script src="../assets/js/xpe/xpeImageManagementToolImageTableBuilder.js"></script>
+    <script src="../assets/js/xpe/xpeImageManagementToolClient.js"></script>
+  </body>
+</html>

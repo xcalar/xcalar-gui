@@ -1,0 +1,123 @@
+
+<div id="jupyterPanel" class="mainPanel">
+  <div class="topBar">
+    <div class="rightHeaderArea">
+      <div class="title"><%= dicts.jupyter.JupyterNotebook %></div>
+    </div>
+    <div class="rightArea">
+    	<div class="xc-action dropdownBox">
+    		<span class="jupyterMenuText"><%= dicts.jupyter.CodeSnippets %></span>
+      	<i class="icon  xi-down jupyterMenuIcon"></i>
+    	</div>
+    </div>
+  </div>
+  <div class="mainContent">
+    <iframe id="jupyterNotebook" src=""></iframe>
+  </div>
+  <div id="jupyterMenu" class="menu jupyterMenu">
+    <ul>
+      <li data-action="connWorkbook">
+        <%= dicts.jupyter.ConnectWB %>
+      </li>
+      <li data-action="basicUDF">
+        <%= dicts.jupyter.CreateUDF %>
+      </li>
+      <li data-action="importUDF">
+        <%= dicts.jupyter.CreateImportUDF %>
+      </li>
+    </ul>
+  </div>
+  <div id="jupyterUDFTemplateModal" class="modalContainer">
+    <!-- Header -->
+    <header class="modalHeader has-subHeader">
+      <span class="text text-map"><%= dicts.jupyter.UDFTemplate %></span>
+      <span class="text text-import"><%= dicts.jupyter.CreateImportUDF %></span>
+      <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+      </div>
+    </header>
+    <!-- Instruction -->
+    <section class="modalInstruction">
+      <div class="text text-map"><%= dicts.jupyter.TemplateInstrMapUDF %></div>
+      <div class="text text-import"><%= dicts.jupyter.TemplateInstrImportUDF %></div>
+    </section>
+    <!-- Main Section -->
+    <section class="modalMain">
+      <div class="mapForm form">
+        <div class="row">
+          <span class="label"><%= dicts.UDF.ModuleName %>:</span>
+          <input type="text" class="xc-input arg moduleName" spellcheck="false" placeholder="module_name">
+        </div>
+        <div class="row">
+          <span class="label"><%= dicts.common.FunctionName %>:</span>
+          <input class="xc-input arg fnName" type="text" spellcheck="false" placeholder="function_name">
+        </div>
+        <div class="row">
+          <span class="label"><%= dicts.common.Table %>:<i class="qMark icon xi-unknown" data-toggle="tooltip"
+            data-container="body" data-placement="auto top" data-original-title="<%= dicts.jupyter.UDFModuleTableHelp %>"></i></span>
+
+          <div class="dropDownList tableList">
+            <input type="text" class="text arg tableName inputable" spellcheck="false" placeholder="<%= dicts.common.Table %>">
+            <div class="iconWrapper">
+              <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="list">
+              <ul>
+              </ul>
+              include "../util/menuScrollArea.html"
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <span class="label"><%= dicts.common.Columns %>:</span>
+          <div class="dropDownList columnsList">
+            <input type="text" class="xc-input text arg columns readonly" readonly spellcheck="false" placeholder="Columns to test">
+            <div class="iconWrapper">
+              <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="list">
+              <ul>
+              </ul>
+              include "../util/menuScrollArea.html"
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="newImportForm form">
+        <div class="row">
+           <span class="label"><%= dicts.ds.Target %>:</span>
+           <div class="dropDownList targetList">
+            <input type="text" class="text arg target readonly" readonly spellcheck="false">
+            <div class="iconWrapper">
+              <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="list">
+              <ul></ul>
+              include "../util/menuScrollArea.html"
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <span class="label"><%= dicts.dsForm.filePath %>:</span>
+          <input class="xc-input arg url" type="text" spellcheck="false" placeholder="/mystoragecontainer1234/myfolder/">
+        </div>
+        <div class="row">
+          <span class="label"><%= dicts.UDF.ModuleName %>:</span>
+          <input type="text" class="xc-input arg moduleName" spellcheck="false" placeholder="module_name">
+        </div>
+        <div class="row">
+          <span class="label"><%= dicts.common.FunctionName %>:</span>
+          <input type="text" class="xc-input arg fnName" spellcheck="false" placeholder="function_name">
+        </div>
+      </div>
+    </section>
+    <!-- Button Section -->
+    <section class="modalBottom">
+      <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+      <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+    </section>
+  </div>
+  <!-- End of UDF Template Modal -->
+
+</div>
+<!-- END DATAFLOW PANEL-->

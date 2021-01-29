@@ -1,0 +1,408 @@
+@import "partials/mixins/common.less";
+@import "partials/icon.less";
+@import "partials/statusBox.less";
+@import "partials/modal.less";
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 600px;
+    min-width: 780px;
+    font: 13px @font-base;
+    font-weight: 600;
+    .box-sizing;
+}
+
+body {
+    .flex-display;
+    .flex-direction(column);
+    .justify-content(center);
+}
+
+table, tr, td, th, input, textarea, header, p, div, section {
+    margin: 0;
+    padding: 0;
+    .box-sizing;
+    border: none;
+}
+input {
+    font: 13px @font-base;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    color: @color-font-default;
+    // font-size: 0; /* Need to use this to get rid of stupid white space */
+    background-color: @color-bg-default;
+}
+
+form {
+    a {
+        color: @color-font-default;
+        cursor: pointer;
+    }
+}
+#splashContainer {
+    .flex-display;
+    .flex-direction(column);
+    .justify-content(center);
+    .position(absolute, 0px);
+    .size(100%, 100%);
+
+    #animation_container {
+        transform: translateX(70px);
+    }
+
+    img {
+        width: 200px;
+    }
+}
+
+#animation_container {
+    margin: 0 auto;
+    .position(relative, @top: -5%);
+}
+
+#canvas {
+    pointer-events: none;
+}
+video {
+    pointer-events: none;
+}
+
+#logo {
+    display: none;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+#loginContainer {
+    height: 500px;
+    display: none;
+}
+
+.outerWrap {
+    width: 100%;
+}
+
+header {
+    width: 600px;
+    overflow: hidden;
+    position: relative;
+    margin: 0px auto;
+    height: 50px;
+}
+
+.loginHeader, .signupHeader {
+    .font(@weight: 400, @size: 28px, @family: @font-base);
+    margin: 0;
+    position: absolute;
+    left: 0px;
+    .transition(left 1s);
+    &.hidden {
+        left: -606px;
+    }
+}
+
+#loadingBar {
+    .size(@width: 100%, @height: 1px);
+    background-color: @color-font-default;
+    margin-bottom: 8px;
+    position: relative;
+    overflow: hidden;
+
+    .innerBar {
+        height: 1px;
+        width: 200px;
+        background-color: @color-bg-default;
+        position:absolute;
+        left: -200px;
+        // XX need to add this to mixin
+        background: linear-gradient(to right, @color-bg-brighter-blue, #d6e4ec, @color-border-softBlue);
+
+        &.animated {
+            .keyframe(slideRight, {
+                0%   {left: -200px;}
+                100% {left: 100%;}
+            });
+            .keyframeAnim(slideRight 0.7s linear forwards 0.3s);
+
+            &.immediateAnimation {
+               .keyframeAnim(slideRight 0.7s linear forwards 0s);
+            }
+        }
+
+    }
+}
+
+.msalEnabled {
+    #formArea {
+        width: 650px;
+        padding-left: 0px;
+    }
+
+    #msalLoginForm {
+        display: block;
+    }
+}
+
+#formArea {
+   width: 600px;
+   margin: 0 auto;
+   .flex-display;
+}
+
+
+#signupForm {
+    display: none;
+    .input {
+        padding-left: 150px;
+    }
+}
+
+#loginForm {
+    display: none;
+    .flex(1 0 auto);
+}
+
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: @color-bg-default !important;
+    color: @color-font-white !important;
+    -webkit-box-shadow: 0 0 0 1000px  @color-bg-default inset !important;
+    -webkit-text-fill-color: @color-font-white !important;
+}
+
+.section {
+    position: relative;
+    font-size: 13px;
+    height: 45px;
+    font-weight: 500;
+
+    .label {
+        position: absolute;
+        line-height: 30px;
+        left: 0px;
+        top: 15px;
+        text-indent: 4px;
+        .transition(color 0.5s);
+        pointer-events: none;
+        z-index: 0;
+        color: @color-font-darkGray;
+        width: 100%;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0px;
+            .size(@width: 100%, @height: 1px);
+            background-color: @color-font-darkGray;
+            .transition(all 0.5s);
+        }
+    }
+    label {
+        height: 100%;
+        width: 100%;
+        display: block;
+    }
+    .input {
+        width: 100%;
+        width: ~"calc(100% - 90px)";
+        // height: 100%;
+        height: 30px;
+        background-color: transparent;
+        outline: none;
+        margin-left: 90px;
+        padding-left: 10px;
+        .font(@weight: 500, @size: 13px, @line-height: 30px, @color: @color-font-white);
+        position: relative;
+        z-index: 1;
+        padding-top: 2px;
+        margin-top: 14px;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0px;
+            .size(@width: 100%, @height: 1px);
+            background-color: @color-border-select-blue;
+            .transition(all 0.5s);
+        }
+
+        &:focus {
+            .font(@color: @color-font-white);
+            outline: none;
+            padding-top: 4px;
+            margin-top: 13px;
+
+            &::after {
+                background-color: @color-bg-default;
+                height: 2px;
+                bottom: 0px;
+            }
+
+            ~ .label {
+                color: @color-font-white;
+                &:after {
+                    background-color: @color-font-white;
+                    height: 2px;
+                }
+            }
+        }
+        &:active {
+            outline: none;
+        }
+    }
+}
+
+.part {
+    display: inline-block;
+}
+
+.btn {
+    width: 150px;
+    height: 36px;
+    border: 1px solid @color-border-softBlue;
+    background-color: rgba(0,0,0,0);
+    .font(@weight: bold, @align: center, @color: @color-border-softBlue);
+    float: right;
+    margin-left: 10px;
+    margin-top: 36px;
+    .transition(all 0.2s);
+    outline: none;
+
+    &:hover {
+        background-color: rgba(0,0,0,0.1);
+    }
+    &:active {
+        border-color: @color-border-activeBlue !important;
+    }
+}
+
+.modalContainer .btn {
+    margin-top: 0px;
+}
+
+.termPartInsight {
+    font-weight: 500;
+    display: inline-block;
+    float: left;
+    margin-top: 46px;
+    margin-left: 4px;
+    opacity: 0.8;
+    font-size: 12px;
+    a {
+        text-decoration: none;
+    }
+}
+
+#msalLoginForm {
+    display: none;
+    margin-top: 30px;
+    padding-top: 30px;
+    border-left: 1px solid #378CB3;
+    margin-left: 40px;
+    padding-left: 40px;
+    .btnLabel {
+        width: 30px;
+        float: left;
+        line-height: 40px;
+        text-indent: 4px;
+        pointer-events: none;
+        color: @color-font-softGrayBlue;
+        text-transform: uppercase;
+    }
+}
+
+#loginMSALButton {
+    border: none !important;
+    background-color: transparent;
+    padding: 0px;
+    position: relative;
+    top: -1px;
+    float: left;
+    margin: 0px;
+    width: auto;
+    height: 40px;
+    &:hover, &:focus, &:active, &:visited {
+        background-color: transparent;
+        border: none !important;
+        outline: none !important;
+    }
+    img {
+        height: 100%;
+    }
+}
+
+.submitSection {
+    height: auto;
+    .part {
+        float: right;
+    }
+    .termPart {
+        margin-top: 46px;
+        float: left;
+        .text {
+            text-transform: none;
+            float: right;
+            display: inline-block;
+            position: static;
+        }
+        .checkbox {
+            height: 16px;
+            float: right;
+            margin-right: 4px;
+            margin-top: 2px;
+        }
+    }
+
+    .text {
+        color: @color-font-white;
+        display: inline-block;
+        width: auto;
+        &::after {
+            display: none;
+        }
+    }
+}
+
+.loginSection {
+    text-align: right;
+    margin-top: 26px;
+    font-weight: 500;
+}
+
+#loginButton, #signup-submit {
+    border: 1px solid @color-font-white;
+    .font(@color: @color-font-white);
+}
+
+#loginButton {
+    .animatedEllipsisWrapper {
+        .size(@width: 120px, @height: 100%);
+        margin-left: 20px;
+    }
+
+    .animatedEllipsisWrapper > div {
+        height: 100%;
+        float: left;
+        display: inline-block;
+        white-space: nowrap;
+        line-height: 34px;
+    }
+
+    .animatedEllipsis {
+        width: 0px;
+        margin-left: 3px !important;
+        overflow: hidden;
+        font-weight: 400;
+    }
+}

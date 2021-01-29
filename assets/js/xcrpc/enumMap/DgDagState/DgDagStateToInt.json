@@ -1,0 +1,14 @@
+{
+    "DgDagStateUnknown" : 0,
+    "DgDagStateCreated" : 1,
+    "DgDagStateQueued" : 2,
+    "DgDagStateProcessing" : 3,
+    "DgDagStateCleaned" : 4,
+    "DgDagStateReady" : 5,
+    "DgDagStateDropped" : 6,
+    "DgDagStateError" : 7,
+    "DgDagStateArchived" : 8,
+    "DgDagStateArchiving" : 9,
+    "DgDagStateArchiveError" : 10
+}
+

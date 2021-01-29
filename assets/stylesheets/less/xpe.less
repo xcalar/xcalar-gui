@@ -1,0 +1,440 @@
+@import "partials/mixins/common.less";
+@import "partials/icon.less";
+@import "partials/basic.less";
+@import "partials/table.less";
+@import "partials/card.less";
+@import "partials/datastore.less";
+
+body {
+    .font(@family: @font-base, @size: 12px, @style: normal, @weight: normal, @line-height: normal);
+    font-stretch: normal;
+    letter-spacing: normal;
+    color: @color-xpe-installer-dark-text;
+    background-color: @color-xpe-installer-right-background;
+}
+
+.backgroundImg {
+    background-image: url(../../images/installer-wave.png);
+    .size(@width: 100%, @height: 213px);
+    z-index: 1; // it needs to appear above bgs of left/right pane but behind right pane content
+    bottom: 0px;
+    background-size: cover;
+    position: absolute;
+}
+
+.leftPanel {
+    display: block;
+    float: left;
+    .size(@width: 250px, @height: 100%);
+    .font(@weight: 600, @color: @color-xpe-installer-light-text);
+    background-image: linear-gradient(to bottom, @color-xpe-installer-light-blue, @color-xpe-installer-dark-blue);
+    background-size: cover;
+    padding: 0px;
+    z-index: 0;
+    overflow: hidden;
+}
+.steps {
+    margin-top: 45px;
+}
+.step {
+    height: 59px;
+}
+.currentStep {
+    background: @color-xpe-installer-dark-blue;
+}
+.fail {
+    color: @color-xpe-installer-fail-red;
+}
+.stepIcon {
+    float: left;
+    margin-left: 20px;
+    margin-top: 20px;
+    vertical-align: middle;
+}
+.stepTitle {
+    float: left;
+    line-height: 59px;
+    margin-left: 17px;
+    .font(@color: @color-xpe-installer-light-text, @weight: 600, @size: 14px, @align: left);
+}
+.leftPanelBranding {
+    padding: 0px 29px 15px 21px;
+    position: absolute;
+    bottom: 0px;
+}
+.rightPanel {
+    display: block;
+    float: right;
+    .size(@width: 554px, @height: 456px);
+    margin: 45px 0px 25px 0px;
+    position: relative;
+    z-index: 2;
+    overflow: hidden;
+}
+.content {
+    display: block;
+    float: top;
+    .size(@width: 100%);
+    // padding: 0px 24px 0px 50px;
+    padding: 0px 35px 0px 37px;
+    overflow: hidden;
+}
+.header {
+    .font(@size: 24px, @weight: 600);
+    height: 31px;
+}
+.data {
+    height: 420px;
+    margin: 16px 0px 0px 0px;
+}
+.navButtonPanel {
+    padding: 0px 24px 0px 50px;
+    .size(@width: 100%, @height: 36px);
+    text-align: right;
+    display: block;
+    position: absolute;
+    bottom: 0px;
+    .btn {
+        .size(@width: 150px, @height: 36px);
+    }
+}
+
+#prev {
+    margin-right: 5.5px;
+}
+
+.licenseBox {
+    margin-top: 30px;
+}
+.licenseFileBox {
+    .font(@family: @font-code, @line-height: 30px);
+    .size(@width: 100%, @height: 30%);
+    border: solid 1px @color-table-hoverBg-gray;
+    padding: 0 10px;
+    text-align: left;
+    background-color: @color-bg-white-three;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    resize: none;
+    overflow-y: auto;
+    word-break: break-all;
+}
+.licenseFileBox:focus{
+    outline: none;
+    border-color: @color-hover-blue;
+    background-color: @color-bg-default;
+}
+#licenseFailure {
+    margin-top: 15px;
+}
+#licenseSummaryBox {
+    .font(@family: @font-code, @size: 14px);
+    margin-top: 15px;
+    white-space: pre-wrap;
+    word-break: break-all;
+    outline: none;
+    height: 80%;
+    overflow-y: auto;
+}
+#acceptEula {
+    height: 27px;
+    .size(@width: 100%);
+    letter-spacing: 0.3px;
+    display: inline-block;
+}
+#eulaTick {
+    margin-top: 6px;
+    margin-right: 12px;
+    float: left;
+}
+#eulaTerms {
+    margin-top: 10px;
+    .font(@size: 13px, @weight: 600);
+    letter-spacing: 0.3px;
+}
+#requirementsResult {
+    margin-top: 15px;
+}
+#eulaBox {
+    background: rgba(255,255,255,0.2);
+    .size(@width: 480px, @height: 327px);
+    border: solid @color-xpe-installer-eula-border 1px;
+    overflow-y: scroll;
+    padding: 11px 0px 17px 16px;
+    >p {
+        .font(@weight: normal, @size: 12px, @line-height: 1.5, @align: left);
+        letter-spacing: 0.3px;
+    }
+}
+
+// Progress Bar (install/uninstall)
+.xpeProcessProgressDisplays {
+    margin-top: 30px;
+    width: 100%;
+    height: 20px;
+}
+
+.progressBarDisplay {
+    float: left;
+    vertical-align: middle;
+    width: 88%;
+    line-height: 20px;
+}
+
+.progressBarContainer {
+    height: 100%;
+    background-color: @color-xpe-progress-bar-bg-gray;
+}
+
+#progressBar {
+    height: 100%;
+    width: 0%;
+}
+
+.totalPercentDisplay {
+    float: right;
+    vertical-align: middle;
+    width: 5%;
+    line-height: 20px;
+}
+
+.totalPercentInner {
+    float:right;
+}
+
+.xpeProcessStepDisplays {
+    margin-top: 5px;
+    .font(@color: @color-xpe-installer-install-step-text, @size: 14px, @line-height: 2.14);
+}
+
+.failBox {
+    .font(@color: @color-xpe-installer-fail-red, @size: 10pt);
+    border: solid @color-xpe-installer-eula-border 1px;
+    background: rgba(255,255,255,0.2);
+    padding: 5px 15px 5px 15px;
+    overflow-y: auto;
+    margin-top: 15px;
+    height: 215px;
+}
+.sliders {
+    margin-top: 60px;
+}
+.sliderHeader {
+    .font(@size: 18px, @weight: 600, @line-height: 1.67, @align: left, @color: @color-xpe-installer-light-blue);
+}
+.sliderValue {
+    margin-top: 10px;
+}
+.rangeSlider {
+    .size(@width: 480px, @height: 10px);
+    .rightArea {
+        &:before {
+            background-color: @color-xpe-installer-range-slider-right;
+            border-radius: 3px;
+        }
+    }
+    .leftArea {
+        &:before {
+            border-radius: 3px;
+            opacity: 0.3;
+            background-color: @color-xpe-range-slider-left;
+        }
+    }
+    .slider {
+        position: absolute;
+        top: 7px;
+        border-radius: 50%;
+        right: 0px;
+        .size(@width: 15px, @height: 15px);
+        background-color: @color-xpe-range-slider-left;
+    }
+    .ui-resizable-e {
+        position: absolute;
+        top: 7px;
+        cursor: pointer;
+        border-radius: 50%;
+        right: 0px;
+        .size(@width: 15px, @height: 15px);
+        background-color: @color-xpe-range-slider-left;
+    }
+}
+.circle {
+    border-radius: 50%;
+    .size(@width: 15px, @height: 15px);
+    background-color: @color-xpe-installer-light-blue;
+}
+
+// xd radio buttons use flex; disable it in installer else
+// the buttons will appear side by side
+.radioButtonGroup {
+   display: block;
+}
+.radioValHeader {
+   font-weight: bold;
+}
+.radioValSubtext {
+   padding: 0px 0px 0px 17px;
+}
+
+// needs it own margin beneath the ram slider
+#coresSlider {
+    margin-top: 25px;
+}
+
+// Docker starter GUI
+.dockerStarterMain {
+    height: 100%;
+    background-color: @color-xpe-docker-starter-bg;
+}
+.dockerStarterInner {
+    padding: 20px 10px 20px 10px;
+
+    // Docker start GUI customizes a thinner/rounder progress bar
+    .xpeProcessProgressDisplays {
+        margin-top: 0px;
+    }
+    .progressBarDisplay {
+        width: 85%;
+    }
+    .progressBarContainer {
+        border-radius: 20px;
+        background-color: lightgray;
+        height: 70%;
+        overflow: hidden;
+    }
+    #progressBar {
+        border-radius: 20px;
+    }
+    .totalPercent {
+        font-size: 11px;
+    }
+    .totalPercentDisplay {
+        line-height: inherit;
+    }
+    .xpeProcessStepDisplays {
+        margin-top: 0px;
+    }
+    .processStepDescription {
+        float: left;
+        font-size: 12px;
+    }
+    .stepPercent {
+        float: right;
+    }
+}
+
+// image management tool
+.imtParent {
+    .size(@width: 100vw, @height: 100vh);
+    padding: 25px 35px 25px 35px;
+    bottom: 0px;
+}
+
+.imtParent .mainPanel {
+    width: 100%;
+}
+
+.imtParent .mainContainer {
+    display: block;
+    height: 80vh;
+}
+
+.imtParent .mainContent {
+    margin-left: 1px !important;
+}
+
+.imtParent .checkbox {
+    width: 30px !important;
+}
+
+// need to set z-index of bgimg in image management tool, else it
+// will cover up the checkboxes
+.imtBackgroundImg {
+    background-image: url(../../images/installer-wave.png);
+    .size(@width: 100%, @height: 213px);
+    z-index: 0; // needs to be beneath checkboxes and wrapper scrollbar
+    bottom: 0px;
+    background-size: cover;
+    position: absolute;
+}
+
+.imtParent .header {
+    margin: 10px 10px 10px 10px;
+}
+
+.fileBrowser {
+    height: 100% !important;
+}
+
+.fileBrowser .fileBrowserMain .mainSection {
+    width: 100% !important;
+}
+
+.imtParent .navButtonPanel {
+    text-align: left;
+    position: relative;
+    margin: 20px 0px 20px 0px;
+    padding: 0px 0px 0px 0px;
+}
+
+.imtParent .cardInstruction {
+    background-color: transparent;
+    height: 75px;
+    border-bottom: none;
+}
+.imtParent .cardContainer {
+    background-color: transparent;
+}
+.imtParent .cardMain {
+    background-color: white;
+    margin-top: 35px;
+}
+.imtParent .wrapper {
+    border: solid @color-xpe-border-gray 1px;
+    z-index: 1;
+    // z - index else bgimage will cover over scrollbar
+}
+.wrapperPending {
+    background-color: @color-xpe-border-gray;
+}
+.imtParent #innerFileBrowserContainer {
+    height: auto;
+}
+.imtParent .titleSection {
+    border: solid @color-xpe-border-gray 1px;
+}
+.imtParent .mainPanel {
+    height: ~"calc(100% - 28px)" !important;
+}
+
+.currImageRow {
+    font-weight: bold;
+    color: @color-xpe-installer-dark-blue;
+    background-color: @color-table-header-gray;
+}
+
+.currImageRow .checkbox {
+    visibility: hidden;
+}
+
+#revert {
+    margin-left: 5px;
+}
+#imtProgress {
+    padding: 15px 0px 0px 8px;
+}
+.imtParent #selectAllBox {
+    margin-top: 4px;
+}
+
+.imageTableFailureMsg {
+    .font(@color: @color-xpe-image-table-failure-msg, @weight: 600);
+}
+
+// add this to a div, to 'disable' it and its children
+.divDisabler {
+    pointer-events: none;
+    opacity: 0.4;
+}
+
+// end image management tool

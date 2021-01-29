@@ -1,0 +1,45 @@
+<!-- Raw File Modal -->
+<div id="rawFileModal" class="modalContainer xc-viewMode">
+  <!-- Header -->
+  <header class="modalHeader has-subHeader">
+    <span class="text">View Raw Data</span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.supportTicket.CloseForm %>" >
+      <i class="icon xi-close"></i>
+    </div>
+    <div class="subHeader">
+      You are previewing raw data of file <span class="fileName"></span>
+    </div>
+  </header>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="loadingSection xc-loadView">
+      include "../../util/animatedEllipsis.html"
+    </div>
+    <div class="errorSection xc-errorView"></div>
+    <div class="topSection xc-contentView">
+      <button class="toggleHex xc-action btn btn-small" data-toggle="tooltip" data-container="body" data-title="<%= dicts.fileBrowser.toggleHex %>">0x</button>
+    </div>
+    <div class="contentSection xc-contentView">
+      <div class="preview hexDump"></div>
+      <div class="preview normal"></div>
+    </div>
+    <div class="bottomSection xc-contentView">
+      <div>
+        <span class="text"><%= dicts.fileBrowser.Offset %>:</span>
+        <span class="offsetNum"></span>
+      </div>
+      <div>
+        <span class="text"><%= dicts.fileBrowser.SkipToOffset %>:</span>
+        <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="Character offset to skip to" data-placement="auto top"></i>
+        <input class="skipToOffset" type="number">
+      </div>
+    </div>
+  </section>
+</div>
+<!-- End of Raw File Modal -->

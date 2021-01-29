@@ -1,0 +1,17 @@
+<section class="bottomSection">
+    <div class="btnWrap">
+        <button class="btn btn-secondary btn-submit btn-rounded submit">
+            <%= dicts.common.Save %>
+        </button>
+    </div>
+    <div class="btnWrap previewBtnWrap">
+        <button class="btn btn-secondary btn-submit btn-rounded preview"
+        data-toggle="tooltip"
+        data-container="body"
+        data-placement="auto top"
+        data-title="<%= dicts.common.PreviewLimitTip %>">
+            <%= dicts.common.Preview %>
+        </button>
+    </div>
+    include "../util/switcher.html"
+</section>

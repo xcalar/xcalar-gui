@@ -1,0 +1,35 @@
+{
+  "name": "xcrpctest",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "test": "nyc ../../../../../node_modules/mocha/bin/_mocha './xcrpcTestManager.js' "
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "request": "^2.85.0",
+    "require.async": "^0.1.1",
+    "xcalar": "file:xcalar-0.0.1.tgz",
+    "xcalarsdk": "file:xcalarsdk-0.0.1.tgz",
+    "python-shell": "^1.0.7"
+  },
+  "devDependencies": {
+    "nyc": "^14.1.1"
+  },
+  "nyc": {
+    "include": [
+      "node_modules/xcalarsdk/**"
+    ],
+    "excludeNodeModules": false,
+    "reporter": ["html","text"],
+    "watermarks": {
+      "lines": [85, 95],
+      "functions": [85, 95],
+      "branches": [85, 95],
+      "statements": [85, 95]
+    }
+  }
+}

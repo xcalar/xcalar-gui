@@ -1,0 +1,25 @@
+{
+    "SubsysHello" : 0,
+    "SubsysFs" : 1,
+    "SubsysStr" : 2,
+    "SubsysMem" : 3,
+    "SubsysSys" : 4,
+    "SubsysTupleGen" : 5,
+    "SubsysMath" : 6,
+    "SubsysIogen" : 7,
+    "SubsysLdm" : 8,
+    "SubsysUtil" : 9,
+    "SubsysMsg" : 10,
+    "SubsysUsrnodeMain" : 11,
+    "SubsysUsrnode" : 12,
+    "SubsysPm" : 13,
+    "SubsysConfig" : 14,
+    "SubsysNs" : 15,
+    "SubsysBc" : 16,
+    "SubsysStat" : 17,
+    "SubsysTlc" : 18,
+    "SubsysSchedIos" : 19,
+    "SubsysMemhog" : 20,
+    "SubsysLibapis" : 21
+}
+

@@ -1,0 +1,50 @@
+// source: xcalar/compute/localtypes/LibXdbFuncTestConfig.proto
+/**
+ * @fileoverview
+ * @enhanceable
+ * @suppress {messageConventions} JS Compiler reports an error if a variable or
+ *     field starts with 'MSG_' and isn't a translatable message.
+ * @public
+ */
+// GENERATED CODE -- DO NOT EDIT!
+
+var jspb = require('google-protobuf');
+var goog = jspb;
+var global = Function('return this')();
+
+goog.exportSymbol('proto.xcalar.compute.localtypes.XcalarEnumType.LibXdbFuncTestConfig', null, global);
+/**
+ * @enum {number}
+ */
+proto.xcalar.compute.localtypes.XcalarEnumType.LibXdbFuncTestConfig = {
+  LIB_XDB_FUNC_STRESS_THREADS: 0,
+  LIB_XDB_CURSOR_TESTS_ENABLE: 1,
+  LIB_XDB_STRING_TESTS_ENABLE: 2,
+  LIB_XDB_PG_CURSOR_THREAD_STRESS_ENABLE: 3,
+  LIB_XDB_ORDERED_VS_UNORDERED_STRESS_ENABLE: 4,
+  LIB_XDB_PG_CURSOR_PERF_TEST_ENABLE: 5,
+  LIB_XDB_CREATE_LOAD_DROP_TEST_ENABLE: 6,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_ASCENDING: 7,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_DESCENDING: 8,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_INSERT_AND_SEEK_BY_KEY: 9,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_INSERT_AND_GET_SINGLE: 10,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_INSERT_AND_SEEK_THEN_VERIFY_ONE: 11,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_INSERT_AND_SEEK_THEN_GET_NEXT: 12,
+  LIB_XDB_NUM_ROWS_CURSOR_TEST_PARTIALLY_ORDERED_VS_UNORDERED: 13,
+  LIB_XDB_PG_CURSOR_STRESS_THREADS: 14,
+  LIB_XDB_NUM_ROWS_XDB_PG_CURSOR_STRESS: 15,
+  LIB_XDB_ORDERED_VS_UNORDERED_STRESS_THREADS: 16,
+  LIB_XDB_NUM_ROWS_XDB_ORDERED_VS_UNORDERED_STRESS: 17,
+  LIB_XDB_NUM_ITERS_XDB_ORDERED_VS_UNORDERED_STRESS: 18,
+  LIB_XDB_NUM_ROWS_XDB_PG_CURSOR_PERF_TEST: 19,
+  LIB_XDB_NUM_ROWS_PER_XDB_FOR_CREATE_LOAD_DROP_TEST: 20,
+  LIB_XDB_NUM_XDBS_FOR_CREATE_LOAD_DROP_TEST: 21,
+  LIB_XDB_CREATE_LOAD_DROP_TEST_THREADS: 22,
+  LIB_XDB_PARALLEL_KV_INSERTS_THREADS: 23,
+  LIB_XDB_PARALLEL_PAGE_INSERTS_THREADS: 24,
+  LIB_XDB_PARALLEL_CURSOR_THREADS: 25,
+  LIB_XDB_SORT_TESTS_ENABLE: 26,
+  LIB_NUM_ROWS_XDB_SORT_TESTS: 27
+};
+
+goog.object.extend(exports, proto.xcalar.compute.localtypes.XcalarEnumType);

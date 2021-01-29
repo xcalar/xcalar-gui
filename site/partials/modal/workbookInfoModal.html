@@ -1,0 +1,28 @@
+<!-- Workbook Info Modal -->
+<div id="workbookInfoModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.workbook.Edit %></span>
+    <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Info Section -->
+  <section class="modalMain">
+    <div class="section name">
+      <div><%= dicts.workbook.Wkbkname %></div>
+      <input type="text" class="xc-input textOverflow" spellcheck="false" autocomplete="off">
+      <div class="error"></div>
+    </div>
+    <div class="section description">
+      <div><%= dicts.workbook.Description %></div>
+      <input type="text" class="xc-input textOverflow" spellcheck="false" autocomplete="off">
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End Of Workbook Info Modal -->

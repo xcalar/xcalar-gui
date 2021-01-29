@@ -1,0 +1,98 @@
+/* z-indexes
+- table header input needs to go on top of table header grab so that you can
+  click on the input
+- firstHeader needs to be higher than the header input when it's sticky positioned
+  and also needs to be higher than the cell of the first column when you scroll down
+- rowGrab needs to be equal or higher than first column cells or else it wont
+  be grabbable on the first column
+- rowGrab needs to be less than the header grab used to drag and drop columns
+- header grab needs to be less than table header input ... infinite cycle??
+
+- dfPanel needs to be higher than all table headers
+- status bar needs to be higher than df panel to cover the bottom of it
+- top and bottom menu needs to be higher than the status bar so it covers it
+- menubar needs to be higher than top and bottom menu so they can hide behind it
+- home btn needs to be higher than menubar so it casts a shadow on it
+- modalbackground needs to be higher than all elements except for modals
+*/
+@z-index-topBar: 1;
+@z-index-tableHeaderGrab: 2;
+@z-index-tableHeaderInput: 2;
+@z-index-firstColumn: 3;
+@z-index-firstHeader: 4;
+@z-index-dfPanel: 5;
+@z-index-dfAdvancedOpts: 5;
+@z-index-dagSearch: 2;
+@z-index-ret: 10;
+@z-index-statusBar: 2;
+@z-index-topMenu: 20;
+@z-index-workbook: 40;
+@z-index-menuBar: @z-index-workbook + 1;
+@z-index-homeBtn:  @z-index-workbook + 2;
+@z-index-opView: 34;
+@z-index-modalBackground: @z-index-homeBtn + 1;
+@z-index-modal: 50;
+@z-index-useMenu: 99;
+@z-index-locked: 1000;
+@z-index-gridViewMenu: 40;
+@z-index-dsCart: @z-index-topMenu - 5;
+@z-index-table-title: 1;
+@z-index-sqlEditorUndocked: 20;
+@z-index-popupUndocked: 32;
+@z-index-initialLoadScreen: 9999;
+@z-index-slidingSearchBar: 2;
+@z-index-adminBar: 10;
+
+@z-index-operatorBar: 2;
+@z-index-categoryBar: @z-index-operatorBar + 1;
+@z-index-sqlBottomResizeHandler: @z-index-categoryBar + 1;
+
+/* Fonts */
+@font-base: "Open Sans", "Trebuchet MS", Arial, sans-serif;
+@font-code: "Source Code Pro", "Courier New", sans-serif;
+@font-code-secondary: "Courier New", sans-serif; // for firefox
+
+/* Sizes */
+@width-userBox: 160px;
+@width-topBar: 100%;
+@width-homeBtn: 36px;
+@width-mainPanel: ~"calc(100% - @{width-homeBtn})";
+@width-topMenu: 200px;
+@width-bottomMenu: 290px;
+@width-grid: 65px;
+@width-minScreen: 824px;
+@width-menuPadding: 15px;
+
+@height-homeBtn: 36px;
+@height-topBar: 32px;
+@height-mainTab: 50px;
+@height-subTab: 24px;
+@height-bottomBar: 20px;
+@height-mainPanel: ~"calc(100% - @{height-bottomBar})";
+@height-grid-list: 35px;
+@height-card-header: 36px;
+@height-card-instr: 56px;
+@height-modeling-col-menu: 24px;
+@height-btn: 24px;
+
+@height-tableTitle: 35px;
+@height-colHeader: 26px;
+@height-colInput: @height-colHeader - 8;
+@height-tableCell: 21px;
+@height-innerTableCell: 11px;
+@width-tableCellPadding: 3px;
+@height-colHeaderOuter: @height-colHeader + (@width-tableCellPadding * 2);
+@height-xcColPrefix: 16px;
+@height-xcColHeader: @height-xcColPrefix + @height-colHeader;
+@height-xcColHeaderOuter: @height-colHeaderOuter + @height-xcColPrefix;
+@height-tabBar: 24px;
+@height-sectionBar: 28px;
+
+@padding-mainContent: 5px;
+
+@opacity-unhover: 1;
+@opacity-disabled: 0.3;
+@opacity-hint: 0.5;
+@opacity-hover: 0.8;
+
+@time-menuAnim: 0.2s;

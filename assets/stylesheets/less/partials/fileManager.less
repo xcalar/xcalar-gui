@@ -1,0 +1,405 @@
+// TODO: this is larger than the current container UI.
+#monitorFileManager {
+    height: 500px;
+    min-height: 300px;
+    @rest-h: @modal-header-h + @modal-bottom-h;
+
+    .modalMain {
+        height: ~"calc(100% - @{rest-h})";
+        overflow: auto;
+    }
+}
+
+.fileManager {
+    color: @color-font-default;
+    font-size: 12px;
+    height: 100%;
+
+    // TODO: move to constants.less when colors are finalized
+    @color-border-operator: @color-bg-cardHeader;
+    @color-border-bar: @color-bg-cardHeader;
+    @color-icon-background: @color-bg-list-hover;
+
+    .fileManagerBar {
+        @operation-height: 40px;
+        @file-type-width: 131px;
+        @navigation-width: 105px;
+        @address-width: 131px;
+        @action-width: 131px;
+        @create-width: 123px;
+        @upload-width: 123px;
+
+        .size(@min-height: @operation-height, @max-height: @operation-height);
+        background-color: @color-bg-2;
+        box-shadow: 0px 0.25px 0px @color-border-operator;
+        .flex-display;
+
+        .fileTypeArea {
+            // Currently only 1 type, so hidden.
+            display: none;
+            padding: 8px 0px 0px 16px;
+
+            .fileTypeBox {
+                min-width: @file-type-width;
+            }
+
+            .fileTypeContent {
+                float: left;
+                .size(@height: 25px, @width: @file-type-width - 25px);
+                font-size: 12px;
+                font-style: normal;
+                line-height: 23px;
+                box-sizing: border-box;
+                border: 1px solid @color-border-medium2;
+                background-color: @color-bg-default;
+                padding: 0px 7px;
+            }
+
+            .fileTypeIcon {
+                cursor: pointer;
+                float: left;
+                .size(25px, 25px);
+                font-size: 9px;
+                color: @color-border-operator;
+                line-height: 23px;
+                box-sizing: border-box;
+                border: 1px solid @color-border-medium2;
+                border-left: none;
+                text-align: center;
+                background-color: @color-icon-background;
+                opacity: @opacity-unhover;
+
+                &:hover {
+                    opacity: @opacity-hover;
+                }
+            }
+
+            .fileTypeMenu {
+                .size(@width: @file-type-width);
+                // TODO: this should be changed when panel borders are changed.
+                .position(relative);
+
+                .fileTypeMenuSection {
+                    .size(@height: 25px);
+                    .position(relative);
+                    padding: 0 0 0 0;
+                    background-color: @color-bg-default;
+                    box-sizing: border-box;
+                    border: 1px solid @color-border-medium2;
+                    border-top: none;
+                    box-shadow: 0px 0px 0.25px @color-border-softGray;
+
+                    .label {
+                        color: @color-font-default;
+                        .position(relative);
+                        line-height: 23px;
+                        padding: 0px 7px;
+                    }
+
+                    &.selected {
+                        background-color: @color-border-softGray;
+                    }
+                }
+            }
+        }
+
+        .navigationArea {
+            .flex-display;
+            .size(@min-width: @navigation-width);
+            padding: 0px 10px 0px 10px;
+
+            .navigationButton {
+                box-sizing: border-box;
+                padding: 0px 7px;
+
+                .icon {
+                    .vertical-align;
+                    font-size: 14px;
+                    padding: 8px 0px;
+                }
+            }
+        }
+
+        .addressArea {
+            padding: 8px 0px 0px 0px;
+            min-width: @address-width;
+            flex-grow: 1;
+
+            .addressContent {
+                .size(@height: 25px, @width: 100%);
+                font-size: 12px;
+                font-style: normal;
+                color: @color-font-default;
+                .input-placeholder(@color-font-default);
+                line-height: 23px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                box-sizing: border-box;
+                border: 1px solid @color-border-medium2;
+                background-color: @color-bg-default;
+                padding: 0px 7px;
+            }
+        }
+
+        .actionArea {
+            padding: 8px 7px 0px 3%;
+
+            .actionBox {
+                min-width: @action-width;
+                height: 25px;
+            }
+
+            .actionContent {
+                float: right;
+                .size(@height: 25px, @width: @action-width - 25px);
+                font-size: 12px;
+                font-style: normal;
+                line-height: 23px;
+                box-sizing: border-box;
+                border: 1px solid @color-border-medium2;
+                background-color: @color-bg-default;
+                padding: 0px 7px;
+            }
+
+            .actionIcon {
+                cursor: pointer;
+                float: right;
+                .size(25px, 25px);
+                font-size: 9px;
+                color: @color-border-operator;
+                line-height: 23px;
+                box-sizing: border-box;
+                border: 1px solid @color-border-medium2;
+                border-left: none;
+                text-align: center;
+                background-color: @color-bg-default;
+
+                &:hover {
+                    background-color: @color-bg-dropdown-hover-gray;
+                    .icon {
+                        opacity: @opacity-hover;
+                    }
+                }
+
+                .icon {
+                    opacity: @opacity-unhover;
+                    color: @color-font-link-blue;
+                }
+            }
+
+            .actionMenu {
+                .size(@width: @action-width);
+                // TODO: this should be changed when panel borders are changed.
+                .position(relative);
+
+                .actionMenuSection {
+                    .size(@height: 25px);
+                    .position(relative);
+                    padding: 0 0 0 0;
+
+                    .label {
+                        color: @color-font-default;
+                        .position(relative);
+                        line-height: 23px;
+                        padding: 0px 7px;
+                    }
+
+                    &.selected {
+                        background-color: @color-bg-list-hover;
+                    }
+
+                    &.disabled, &.unavailable {
+                        cursor: not-allowed !important;
+                        opacity: 1;
+
+                        .label {
+                            opacity: 0.5;
+                        }
+                        // TODO: color change.
+                    }
+                }
+            }
+        }
+
+        .operationArea {
+            padding: 6px 7px 0px 0px;
+
+            &.operationAreaCreateFolder {
+                // No api support.
+                display: none;
+            }
+
+            &.operationAreaUpload {
+                padding: 8px 12px 0px 0px;
+
+                .operationContent {
+                    width: auto;
+                }
+            }
+        }
+    }
+
+    .fileManagerSearchBar {
+        .size(@height: 38px);
+        padding-top: 12px;
+        @search-width: 220px;
+
+        .searchBox {
+            .size(@width: @search-width);
+        }
+
+        .searchIcon {
+            float: left;
+            .size(25px, 25px);
+            font-size: 12px;
+            line-height: 23px;
+            box-sizing: border-box;
+            border: 1px solid @color-border-medium2;
+            border-right: none;
+            text-align: center;
+            background-color: @color-bg-default;
+        }
+
+        .searchInput {
+            float: left;
+            .size(@height: 25px, @width: @search-width - 25px);
+            font-size: 12px;
+            line-height: 23px;
+            box-sizing: border-box;
+            border: 1px solid @color-border-medium2;
+            border-left: none;
+            background-color: @color-bg-default;
+            padding: 0 7px;
+        }
+    }
+
+    .fileManagerMainArea {
+        width: 100%;
+        padding: 12px 0;
+        @title-section-height: 34px;
+        box-shadow: none;
+
+        .section {
+            .row {
+                .flex-display;
+
+                .nameField {
+                    .size(@width: 100%);
+                }
+
+                .dateField {
+                    // No api support.
+                    display: none;
+                }
+
+                .typeField {
+                    // No api support.
+                    display: none;
+                }
+
+                .field {
+                    .size(@min-width: 180px, @height: @title-section-height);
+
+                    .label {
+                        .textOverflowOneLine;
+                        .font(@size: 12px, @line-height: @title-section-height);
+                        padding-right: 8px;
+                    }
+
+                    .icon {
+                        .font(@size: 14px, @line-height: @title-section-height);
+                        float: left;
+                    }
+                }
+
+                .checkBox {
+                    width: 37px;
+                    padding: 0px 11px 0px 10px;
+                    cursor: pointer;
+
+                    .icon {
+                        .font(@size: 14px, @line-height: @title-section-height);
+                        color: @color-font-link-blue;
+                    }
+                }
+            }
+        }
+
+        .titleSection {
+            .size(@width: 100%, @height: @title-section-height);
+            background-color: @color-icon-background;
+            box-shadow: none;
+            border: 1px solid @color-border-medium2;
+
+            .row {
+                .field {
+                    cursor: pointer;
+
+                    .label {
+                        float: left;
+                    }
+
+                    .icon {
+                        color: @color-icon-default;
+                        opacity: @opacity-unhover;
+
+                        // TODO: xi-sort by itself has padding.
+                        // It is causing shift.
+                        &.xi-arrow-up,
+                        &.xi-arrow-down {
+                            .font(@size: 6px);
+                        }
+                    }
+
+                    &:hover {
+                        .icon {
+                            opacity: @opacity-hover;
+                        }
+                    }
+                }
+
+                .checkBox {
+                    &:hover {
+                        .icon {
+                            color: @color-font-checkbox-hover;
+                        }
+                    }
+                }
+            }
+        }
+
+        .mainSection {
+            width: 100%;
+            height: 100%;
+            border: 1px solid @color-border-medium2;
+            border-top: none;
+            max-height: ~"calc(100vh - 290px)";
+            overflow-y: auto;
+
+            .row {
+                .field {
+                    .label {
+                        display: block;
+                    }
+
+                    .icon {
+                        color: @color-border-operator;
+                        padding-right: 6px;
+                    }
+                }
+
+                &.pressed {
+                    background-color: @color-icon-background;
+                }
+
+                &:hover {
+                    .checkBox {
+                        .icon {
+                            color: @color-font-checkbox-hover;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

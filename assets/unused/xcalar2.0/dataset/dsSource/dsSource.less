@@ -1,0 +1,187 @@
+/* Source Card */
+#dsForm-source {
+    height: 100%;
+
+    .cardMain {
+        padding: 40px 30px;
+        border-bottom: 1px solid @color-border-medium2;
+        max-height: ~"calc(100% - 56px)";
+        overflow-y: auto;
+
+        .clickable {
+            .rounded(18px);
+            border: 1px solid @color-bg-dropdown-gray;
+            background-color: @color-bg-list-hover;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 600;
+            cursor: pointer;
+
+            &:hover {
+                box-shadow: 0 2px 4px 0 @color-border-menubar-grey;
+            }
+
+            &:active {
+                border-color: @color-font-link-blue;
+            }
+        }
+
+        .contentSection {
+            .flex-display;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .bottomSection {
+            @h: 47px;
+
+            margin-top: 50px;
+            height: @h;
+
+            .more {
+                width: 450px;
+                height: @h;
+                line-height: @h;
+                margin: 0 auto;
+            }
+        }
+    }
+
+    .location {
+        .flex(0 0 245px);
+        width: 245px;
+        height: 175px;
+        margin: 20px;
+        padding: 30px;
+
+        .img {
+            height: 75px;
+            margin: 0 auto;
+
+            i {
+                font-size: 66px;
+                color: @color-font-link-blue;
+
+                &.xi-cloud-upload {
+                    font-size: 75px;
+                }
+            }
+
+            img {
+                width: 100px;
+            }
+        }
+
+        .description {
+            margin-top: 10px;
+        }
+
+        .next {
+            display: none;
+            font-size: 45px;
+            color: @color-font-link-blue;
+            position: relative;
+            top: 15px;
+        }
+    }
+}
+/* End of Source Card */
+
+@media screen and (max-width: 1270px) {
+    #dsForm-source {
+        .location {
+            height: 155px;
+            .flex(0 0 100%);
+            padding: 40px;
+            min-width: 450px;
+
+            .img {
+                float: left;
+                width: 100px;
+                margin: 0;
+            }
+
+            .description {
+                margin-top: 0;
+                line-height: 75px;
+                text-align: left;
+                float: left;
+                margin-left: 32px;
+            }
+
+            .next {
+                display: block;
+                float: right;
+            }
+        }
+    }
+}
+
+
+#dsForm-s3Config, #dsForm-dbConfig {
+    #dsForm-path;
+}
+
+/* S3 Config Card */
+#dsForm-s3Config {
+    #dsForm-path;
+
+    .cardMain {
+        height: ~"calc(100% - 132px)";
+        overflow-y: auto;
+
+        > .pathSection {
+            height: auto;
+            line-height: normal;
+        }
+    }
+
+    .cardBottom {
+        height: 76px;
+    }
+
+    .pathSection {
+        .path {
+            height: 30px;
+            line-height: 30px;
+            position: relative;
+
+            &:not(:first-child) {
+                margin-top: 20px;
+                label {
+                    visibility: hidden;
+                }
+            }
+        }
+    }
+
+    .addPathSection {
+
+        .addPath {
+            color: @color-font-link-blue;
+            margin-right: 12px;
+            margin-left: 150px;
+
+            .icon {
+                font-size: 20px;
+                position: relative;
+                top: 4px;
+            }
+
+            .text {
+                text-decoration: underline;
+            }
+        }
+
+        .orBrowser {
+            button {
+                margin-left: 12px;
+            }
+        }
+    }
+
+    .switchWrap {
+        .fileBrowser .fileBrowserMain .fileInfoContainer .fileInfoBottom .switchWrap;
+    }
+}
+/* End of S3 config card */

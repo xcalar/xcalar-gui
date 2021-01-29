@@ -1,0 +1,34 @@
+<!-- UDF Section -->
+<section id="udfSection" class="contentSection">
+  <!-- Heading -->
+  <header class="heading sectionBar">
+    <h2 class="sectionHeader"><%= dicts.UDF.Header %></h2>
+    <span class="subHeader">python</span>
+    <i class="icon xi-notobook-scalar-function-test-icon test xc-action hintDisable" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="Test a function" ></i>
+    <i class="icon xi-save saveFile xc-icon-action hintDisable" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.UDF.SaveFile %>"></i>
+    <i class="icon xi-udf-manager toManager xc-icon-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.UDF.ToManager %>"></i>
+    <i class="icon xi_popout undock xc-icon-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.bottomMenu.popOutBtn %>"></i>
+    <i class="icon xi-close close xc-icon-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+  </header>
+  <!-- Content -->
+  <div class="menuContent hintHidden">
+    <!-- Main Content -->
+    <section class="mainSectionContainer">
+      <!-- Section to write function -->
+      <section id="udf-fnSection" class="mainSection xc-disabled">
+        <!-- editSection -->
+        <div class="editSection">
+          <div class="editArea">
+            <textarea id="udf-codeArea"></textarea>
+          </div>
+        </div>
+      </section>
+    </section>
+    <!-- End of Main Section -->
+  </div>
+  include "customFunctionTestForm.html"
+  <div class="hintSection">
+    To get started, open an existing custom scalar function or <span class="newUDF action xc-action">create a new one</span>
+  </div>
+</section>
+<!-- end of UDF Section -->

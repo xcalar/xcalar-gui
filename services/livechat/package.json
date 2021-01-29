@@ -1,0 +1,22 @@
+{
+  "name": "livechat",
+  "version": "1.0.0",
+  "description": "LiveChat on Docker",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@slack/client": "^3.14.1",
+    "jquery": "^1.5.1",
+    "jsdom": "^1.2.1",
+    "aws-sdk": "^2.102.0",
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "nodemailer": "^4.0.1",
+    "socket.io": "^2.0.3"
+  }
+}
+

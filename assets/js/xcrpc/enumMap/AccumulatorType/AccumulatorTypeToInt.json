@@ -1,0 +1,11 @@
+{
+    "AccumulatorMax" : 0,
+    "AccumulatorMin" : 1,
+    "AccumulatorCount" : 2,
+    "AccumulatorAvg" : 3,
+    "AccumulatorAvgNumeric" : 4,
+    "AccumulatorSumFloat" : 5,
+    "AccumulatorSumInteger" : 6,
+    "AccumulatorSumNumeric" : 7
+}
+

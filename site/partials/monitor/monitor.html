@@ -1,0 +1,23 @@
+<!-- MONITOR PANEL -->
+<div id="monitorPanel" class="mainPanel no-selection">
+  <div id="monitorTopBar" class="topBar">
+    <div class="backToWB">
+      <i class="icon xi-arrowtail-left"></i>
+    </div>
+    <div class="title"><%= dicts.menuBar.monitor %>: <%= dicts.monitor.Queries %></div>
+    <div class="title wkbkTitle"><%= dicts.workbook.header %></div>
+  </div>
+  <div class="mainContent">
+    <!-- System Section -->
+    <section id="monitor-system" class="subPanel monitorSection">
+        <section class="menuSection leftSection monitor">
+            include "monitorMenu.html"
+        </section>
+        <section class="rightSection">
+            include "monitorSys.html"
+        </section>
+    </section>
+    <!-- End Of System Section -->
+  </div>
+</div>
+<!-- END OF MONITOR PANEL -->

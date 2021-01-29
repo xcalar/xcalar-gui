@@ -1,0 +1,234 @@
+<div id="dagNodeMenu" class="menu" data-submenu="dagNodeSubMenu">
+    <ul>
+        <!-- <li class="editSQLGraph unavailable" data-action="editSQLGraph" data-toggle="tooltip" data-placement="auto left" data-container="body" data-original-title="<%= dicts.dag.ViewOnlyHint %>">
+            <i class="icon xi-setup"></i>
+            <span class="label"><%= dicts.dag.convert %></span>
+        </li> -->
+        <li class="configureNode" data-action="configureNode">
+            <i class="icon xi-setup"></i>
+            <span class="label"><%= dicts.dag.configure %></span>
+        </li>
+        <li class="editCustom nodeCustom" data-action="editCustom">
+            <i class="icon xi-setup"></i>
+            <span class="label"><%= dicts.dag.editCustomNode %></span>
+        </li>
+        <li class="restoreSource xc-hidden" data-action="restoreSource">
+            <i class="icon xi-restore"></i>
+            <span class="label"><%= dicts.dag.restoreSource %></span>
+        </li>
+        <li class="executeNode" data-action="executeNode">
+            <i class="icon xi-play-outline"></i>
+            <span class="label"><%= dicts.dag.execute %></span>
+        </li>
+        <li class="resetNode" data-action="resetNode">
+            <i class="icon xi-reset"></i>
+            <span class="label"><%= dicts.dag.reset %></span>
+        </li>
+        <li class="reexecuteNode" data-action="reexecuteNode">
+          <i class="icon xi-play-outline"></i>
+          <span class="label">Re-execute</span>
+        </li>
+        <!-- <li class="executeAllNodes" data-action="executeAllNodes">
+            <i class="icon xi-play-outline"></i>
+            <span class="label"><%= dicts.dag.executeAll %></span>
+        </li> -->
+        <li class="createNodeOptimized" data-action="createNodeOptimized">
+            <i class="icon xi-dfg2"></i>
+            <span class="label"><%= dicts.dag.CreateOptimized %></span>
+        </li>
+        <!-- XXX @deprecated -->
+        <li class="executeNodeOptimized" data-action="executeNodeOptimized">
+            <i class="icon xi-play-outline"></i>
+            <span class="label"><%= dicts.dag.executeOptimized %></span>
+        </li>
+        <li class="viewOptimizedDataflow" data-action="viewOptimizedDataflow">
+            <i class="icon xi-search"></i>
+            <span class="label"><%= dicts.dag.viewOptimizedDataflow %></span>
+        </li>
+        <li class="viewUDFErrors" data-action="viewUDFErrors">
+            <i class="icon xi-error"></i>
+            <span class="label"><%= dicts.dag.viewUDFErrors %></span>
+        </li>
+        <li class="deleteAllTables" data-action="deleteAllTables">
+            <i class="icon xi-reset"></i>
+            <span class="label">Clear All Table Results</span>
+        </li>
+        <li class="copyNodes" data-action="copyNodes">
+            <i class="icon xi-copy"></i>
+            <span class="label"><%= dicts.dag.copy %></span>
+        </li>
+        <li class="cutNodes" data-action="cutNodes">
+            <i class="icon xi-cut"></i>
+            <span class="label"><%= dicts.dag.cut %></span>
+        </li>
+        <li class="pasteNodes" data-action="pasteNodes">
+            <i class="icon xi-copy-clipboard"></i>
+            <span class="label"><%= dicts.dag.paste %></span>
+        </li>
+        <li class="inspectSQL nodeSQL" data-action="inspectSQL">
+            <i class="icon xi-search"></i>
+            <span class="label"><%= dicts.dag.inspectSQL %></span>
+        </li>
+        <li class="selectAll" data-action="selectAll">
+            <i class="icon xi-select-mode"></i>
+            <span class="label"><%= dicts.dag.selectAll %></span>
+        </li>
+        <li class="newComment" data-action="newComment">
+            <i class="icon xi-edit"></i>
+            <span class="label"><%= dicts.dag.comment %></span>
+        </li>
+        <li class="findLinkOut" data-action="findLinkOut">
+            <i class="icon xi-search"></i>
+            <span class="label"><%= dicts.dag.findLinkOut %></span>
+        </li>
+        <li class="viewSchemaChanges" data-action="viewSchemaChanges">
+            <i class="icon xi-viewschema"></i>
+            <span class="label"><%= dicts.dag.viewSchemaChanges %></span>
+        </li>
+        <li class="createCustom" data-action="createCustom">
+            <i class="icon xi-custom"></i>
+            <span class="label"><%= dicts.dag.createCustomNode %></span>
+        </li>
+        <li class="restoreAllSource" data-action="restoreAllSource">
+            <i class="icon xi-restore"></i>
+            <span class="label"><%= dicts.dag.restoreAllSource %></span>
+        </li>
+        <li class="autoAlign" data-action="autoAlign">
+            <i class="icon xi-rearrange"></i>
+            <span class="label"><%= dicts.dag.autoAlign %></span>
+        </li>
+        <li class="description" data-action="description">
+            <i class="icon xi-edit"></i>
+            <span class="label"><%= dicts.dag.description %></span>
+        </li>
+        <li class="expandSQL nodeSQL" data-action="expandSQL">
+            <i class="icon xi-expandnode"></i>
+            <span class="label"><%= dicts.dag.expandSQL %></span>
+        </li>
+        <li class="shareCustom nodeCustom" data-action="shareCustom">
+            <i class="icon xi-activated-share-icon"></i>
+            <span class="label"><%= dicts.dag.shareCustomNode %></span>
+        </li>
+        <li class="expandCustom nodeCustom" data-action="expandCustom">
+            <i class="icon xi-expandnode"></i>
+            <span class="label"><%= dicts.dag.expandCustomNode %></span>
+        </li>
+        <li class="removeNode" data-action="removeNode">
+            <i class="icon xi-trash"></i>
+            <span class="label"><%= dicts.dag.removeNode %></span>
+        </li>
+        <li class="findOptimizedSource" data-action="findOptimizedSource">
+            <i class="icon xi-search"></i>
+            <span class="label"><%= dicts.dag.findOptimizedSource %></span>
+        </li>
+        <li class="download" data-action="download">
+            <i class="icon xi-download"></i>
+            <span class="label"><%= dicts.dag.downloadDataflow %></span>
+        </li>
+        <li class="duplicateDf" data-action="duplicateDf">
+            <i class="icon xi-duplicate"></i>
+            <span class="label"><%= dicts.dag.duplicateDataflow %></span>
+        </li>
+        <li class="removeAllNodes" data-action="removeAllNodes">
+            <i class="icon xi-trash"></i>
+            <span class="label"><%= dicts.dag.removeAllNodes %></span>
+        </li>
+        <li class="removeInConnection" data-action="removeInConnection">
+            <i class="icon xi-trash"></i>
+            <span class="label"><%= dicts.dag.removeConnection %></span>
+        </li>
+        <li class="findSourceNode" data-action="findSourceNode">
+            <i class="icon xi-search"></i>
+            <span class="label"><%= dicts.dag.findOriginalNode %></span>
+        </li>
+        <li class="exitOp" data-action="exitOpPanel">
+            <i class="icon xi-close-no-circle"></i>
+            <span class="label"></span>
+        </li>
+    </ul>
+    include "../../util/menuScrollArea.html"
+</div>
+
+<div id="dagTableNodeMenu" class="menu" data-submenu="dagTableNodeSubMenu">
+    <ul>
+        <!-- <li class="editSQLGraph unavailable" data-action="editSQLGraph" data-placement="auto left" data-toggle="tooltip" data-container="body" data-original-title="<%= dicts.dag.ViewOnlyHint %>">
+            <i class="icon xi-setup"></i>
+            <span class="label"><%= dicts.dag.convert %></span>
+        </li> -->
+        <li class="viewResult unavailable" data-action="viewResult">
+            <i class="icon xi-show"></i>
+            <span class="label"><%= dicts.dag.viewResult %></span>
+        </li>
+        <li class="generateResult unavailable xc-hidden" data-action="generateResult">
+            <i class="icon xi-show"></i>
+            <span class="label"><%= dicts.dag.generateResult %></span>
+        </li>
+        <li class="deleteTable" data-action="deleteTable">
+          <i class="icon xi-trash"></i>
+          <span class="label"><%= dicts.MenuTStr.DelTbl %></span>
+        </li>
+        <li class="deleteParentTable" data-action="deleteParentTable" data-placement="auto left" data-toggle="tooltip" data-container="body" data-original-title="<%= dicts.dag.DeleteParentTablesHint %>">
+            <i class="icon xi-trash"></i>
+            <span class="label"><%= dicts.dag.DeleteParentTables %></span>
+        </li>
+        <li class="viewSchema" data-action="viewSchemaTable">
+            <i class="icon xi-viewschema"></i>
+            <span class="label"><%= dicts.dag.viewSchema %></span>
+        </li>
+        <li class="viewSkew" data-action="viewSkew">
+            <i class="icon xi-original"></i>
+            <span class="label"><%= dicts.dag.viewSkew %></span>
+        </li>
+        <li class="unpinTable unavailable xc-hidden" data-action="unpinTable">
+            <i class="icon xi-unlock"></i>
+            <span class="label"><%= dicts.dag.unlockTable %></span>
+        </li>
+        <li class="pinTable unavailable" data-action="pinTable">
+            <i class="icon xi-table-locked"></i>
+            <span class="label"><%= dicts.dag.lockTable %></span>
+        </li>
+        <li class="copyTableName unavailable" data-action="copyTableName">
+          <i class="icon xi-copy"></i>
+          <span class="label"><%= dicts.dag.copyTableName %></span>
+      </li>
+        <li class="addOperation parentMenu" data-submenu="addOperation">
+          <i class="icon xi-plus"></i>
+          <span class="label">Add Operation</span>
+        </li>
+    </ul>
+    include "../../util/menuScrollArea.html"
+</div>
+
+<div id="dagTableNodeSubMenu" class="menu subMenu" data-submenu="dagTableNodeSubSubMenu">
+  <ul class="addOperation"></ul>
+  include "../../util/menuScrollArea.html"
+</div>
+<div id="dagTableNodeSubSubMenu" class="menu subSubMenu">
+    <ul>
+    </ul>
+  include "../../util/menuScrollArea.html"
+</div>
+
+<div id="dagNodeInstructionMenu" class="menu" data-submenu="dagNodeInstructionSubMenu">
+    <ul>
+    </ul>
+    include "../../util/menuScrollArea.html"
+</div>
+<div id="dagNodeInstructionSubMenu" class="menu subMenu">
+    <ul class="sortByName">
+        <li class="sizeToHeader">
+            <%= dicts.MenuTStr.ResizeHeaders %>
+        </li>
+        <li class="sizeToContents">
+            <%= dicts.MenuTStr.ResizeToContents %>
+        </li>
+        <li class="sizeToFitAll">
+            <%= dicts.MenuTStr.ResizeToAll %>
+        </li>
+    </ul>
+    include "../../util/menuScrollArea.html"
+</div>
+
+<div id="dagNodeSubMenu" class="menu subMenu">
+    include "../../util/menuScrollArea.html"
+</div>

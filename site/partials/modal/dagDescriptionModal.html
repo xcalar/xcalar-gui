@@ -1,0 +1,34 @@
+<div id="dagDescriptionModal" class="modalContainer">
+    <!-- Header -->
+    <header class="modalHeader has-subHeader">
+      <span class="text">Description</span>
+      <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Minimize %>">
+        <i class="icon xi-exit-fullscreen"></i>
+      </div>
+      <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Maximize %>">
+        <i class="icon xi-fullscreen"></i>
+      </div>
+      <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+      </div>
+      <div class="subHeader">Add or edit a description for this operation.</div>
+    </header>
+    <!-- Main Section -->
+    <section class="modalMain">
+      <div class="formRow">
+        <div class="subHeading">
+          <div class="text"></div>
+          <div class="optionButtons">
+            <!-- <i class="icon xi-edit xc-action edit"></i> -->
+            <div class="clear xc-action">Clear</div>
+          </div>
+        </div>
+        <textarea class="xc-textArea" spellcheck="false"></textarea>
+      </div>
+    </section>
+    <!-- Button Section -->
+    <section class="modalBottom">
+      <button type="button" class="btn confirm"><%= dicts.common.Save %></button>
+      <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+    </section>
+  </div>

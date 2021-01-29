@@ -1,0 +1,29 @@
+<div id="adminSetupModal" class="modalContainer">
+  <header class="modalHeader">
+    <span class="text"><%= dicts.monitor.Setup %></span>
+    <div class="close" data-container="body" data-toggle="tooltip"
+    data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <div class="modalMain">
+    <section class="leftSection">
+      include "../monitor/monitorSetupMenu.html"
+    </section>
+    <section class="rightSection">
+      include "../monitor/monitorAdminAlert.html"
+      include "../monitor/monitorSetup.html"
+    </section>
+  </div>
+   <!-- End of Settings Section -->
+   <div id="userMemPopup" class="schemaPopup">
+    <div id="userMemPopupTitle" class="title">
+        <div class="titleContentWrap"></div>
+        <div class="close" data-container="body"
+            data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+            <i class="icon xi-close"></i>
+        </div>
+    </div>
+    <div class="content prettyJson"></div>
+  </div>
+</div>

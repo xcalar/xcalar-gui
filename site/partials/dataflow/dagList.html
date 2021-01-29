@@ -1,0 +1,257 @@
+
+<section id="dagList" class="dagList menuSection">
+  <div class="topSection">
+    <div class="titleSection no-selection">
+      <header class="sectionHeader"><%= dicts.resouceMenu.Resources %></header>
+    </div>
+    <div class="iconSection">
+      <i class="closeBtn icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+      <i class="refreshBtn icon xi-refresh" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Refresh %>"></i>
+    </div>
+  </div>
+  <div id="dagListSection" class="mainSection xc-resourceMenu">
+    <!-- table list -->
+    <div class="tableList listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+          data-toggle="tooltip"
+          data-title="<%= dicts.resouceMenu.Tables %>"
+          data-container="body"
+        >
+          <%= dicts.resouceMenu.Tables %>
+        </span>
+        <!-- <span class="action searchTable xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.SearchTable %>"
+        >
+          <i class="icon xi-search"></i>
+        </span> -->
+        <span id="activatePbTableButton" class="bulkAction action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.ActivateTables %>"
+        >
+          <i class="icon xi-notobook-recreate-tables-icon" style="font-size: 16px; position: relative; top: 2px;"></i>
+        </span>
+        <span id="deletePbTableButton" class="bulkAction action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.DeleteTables %>"
+        >
+          <i class="icon xi-trash"></i>
+        </span>
+        <span class="action addTable xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.AddTable %>"
+        >
+          <i class="icon xi-plus"></i>
+        </span>
+      </div>
+      <ul></ul>
+    </div>
+    <!-- sql list -->
+    <div class="sqlList main listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+          data-toggle="tooltip"
+         data-title="<%= dicts.resouceMenu.SQL %>"
+        >
+          <%= dicts.resouceMenu.SQL %>
+        </span>
+        <span id="deleteSQLButton" class="bulkAction action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.DelSQL %>"
+        >
+          <i class="icon xi-trash"></i>
+        </span>
+        <span class="action addSQL xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.AddSQL %>"
+        >
+          <i class="icon xi-plus"></i>
+        </span>
+      </div>
+      <ul></ul>
+    </div>
+    <!-- module list -->
+    <div class="dfModuleList main listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+         data-toggle="tooltip"
+         data-title="<%= dicts.resouceMenu.Modules %>"
+        >
+          <%= dicts.resouceMenu.Modules %>
+        </span>
+        <span class="action uploadBtn xc-action"
+        data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.dataflow.uploadHeader %>"
+        >
+          <i class="icon xi-upload-outline"></i>
+        </span>
+        <span id="deleteModuleButton" class="bulkAction action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.DelModule %>"
+        >
+          <i class="icon xi-trash"></i>
+        </span>
+        <span class="action addDFModule xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.AddModule %>"
+        >
+          <i class="icon xi-plus"></i>
+        </span>
+      </div>
+      <ul></ul>
+    </div>
+    <!-- table function list -->
+    <div class="tableFunc main listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+          data-toggle="tooltip"
+          data-title="<%= dicts.resouceMenu.TableFuncs %>"
+        >
+          <%= dicts.resouceMenu.TableFuncs %>
+        </span>
+        <span id="deleteTableFuncButton" class="bulkAction action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.DelTableFunc %>"
+        >
+          <i class="icon xi-trash"></i>
+        </span>
+        <span class="action addTableFunc xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.AddTableFunc %>"
+        >
+          <i class="icon xi-plus"></i>
+        </span>
+      </div>
+      <ul></ul>
+    </div>
+    <!-- udf list -->
+    <div class="udf listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+          data-toggle="tooltip"
+          data-title="<%= dicts.resouceMenu.UDFsHint %>"
+        >
+          <%= dicts.resouceMenu.UDFs %>
+        </span>
+        <span class="action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.UDF.ToManager %>"
+        >
+          <i class="icon xi-udf-manager toManager"></i>
+        </span>
+        <span class="action addUDF xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.AddUDF %>"
+        >
+          <i class="icon xi-plus"></i>
+        </span>
+      </div>
+      <ul></ul>
+    </div>
+    <div class="physicalPlanList listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+         data-toggle="tooltip"
+         data-title="<%= dicts.resouceMenu.PhysicalPlans %>"
+        >
+          <%= dicts.resouceMenu.PhysicalPlans %>
+        </span>
+      </div>
+      <ul></ul>
+    </div>
+    <!-- app list -->
+    <!-- <div class="apps listWrap xc-expand-list">
+      <div class="listInfo">
+        <span class="expand">
+          <i class="icon xi-down fa-12"></i>
+        </span>
+        <span class="text tooltipOverflow"
+          data-toggle="tooltip"
+          data-title="<%= dicts.App.Header %>"
+        >
+          <%= dicts.App.Header %>
+        </span>
+        <span id="deleteAppButton" class="bulkAction action xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.resouceMenu.DelApp %>"
+        >
+          <i class="icon xi-trash"></i>
+        </span>
+        <span class="action addApp xc-action"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.App.Add %>"
+        >
+          <i class="icon xi-plus"></i>
+        </span>
+      </div>
+      <ul></ul>
+    </div> -->
+    <ul id="dagListMenu" class="menu">
+      <li class="table tableQuery"><%= dicts.resouceMenu.UseInSQL %></li>
+      <li class="table tableSource"><%= dicts.resouceMenu.viewSourceInfo %></li>
+      <li class="table tableSchema"><%= dicts.dag.viewSchema %></li>
+      <li class="table tableModule"><%= dicts.resouceMenu.UseInModule %></li>
+      <li class="table tableActivate"><%= dicts.Table.Activate %></li>
+      <li class="table tableDeactivate"><%= dicts.Table.Deactivate %></li>
+      <li class="table tableDelete"><%= dicts.MenuTStr.PermanentDel %></li>
+      <li class="tableFunc tableFuncQuery"
+        data-toggle="tooltip"
+        data-placement="auto right"
+        data-container="body"
+        data-original-title="<%= dicts.TooltipTStr.UseInSQL %>"
+      ><%= dicts.resouceMenu.UseInSQL %></li>
+      <li class="udf udfDelete"><%= dicts.fileManager.Delete %></li>
+      <li class="sql sqlDownload"><%= dicts.fileManager.Download %></li>
+      <li class="sql sqlDelete"><%= dicts.fileManager.Delete %></li>
+      <li class="dag duplicateDataflow"><%= dicts.fileManager.Duplicate %></li>
+      <li class="dag downloadDataflow"><%= dicts.fileManager.Download %></li>
+      <li class="dag deleteDataflow"><%= dicts.fileManager.Delete %></li>
+    </ul>
+  </div>
+</section>

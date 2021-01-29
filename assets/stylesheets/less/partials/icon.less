@@ -1,0 +1,1450 @@
+/* Mixin to generate random number;
+   int should be 0 or 1, 1 being to make it an integer
+*/
+.makeRandom(@min: 0, @max: @min+1, @int: 0) {
+  .checkInt() {
+    @getNum: `Math.random() * (@{max} - @{min} + @{int})`;
+    @base: unit(`@{int} == 1 ? Math.floor(@{getNum}) : @{getNum}`);
+  }
+  .checkInt();
+  @rand: @base + @min;
+}
+@font-face {
+  .makeRandom(1000, 9999, 1);
+  font-family: 'icomoon';
+  src:  url('/assets/fonts/icomoon.eot?tzicq10@{rand}');
+  src:  url('/assets/fonts/icomoon.eot?tzicq10@{rand}#iefix') format('embedded-opentype'),
+    url('/assets/fonts/icomoon.ttf?tzicq10@{rand}') format('truetype'),
+    url('/assets/fonts/icomoon.woff?tzicq10@{rand}') format('woff'),
+    url('/assets/fonts/icomoon.svg?tzicq10@{rand}#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+i.icon {
+    font-family: 'icomoon' !important;
+    speak: none;
+    font-style: normal;
+    font-weight: normal;
+    text-transform: none;
+    font-variant: normal;
+    line-height: 1;
+    font-size: 20px;
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    // color will be inherited
+
+    &.center {
+        display: inline-block;
+        .center-align;
+        text-align: center;
+    }
+
+    &.fa-25 {
+        font-size: 25px;
+    }
+    &.fa-24 {
+        font-size: 24px;
+    }
+
+    &.fa-7 {
+        font-size: 7px;
+    }
+
+    &.fa-8 {
+        font-size: 8px;
+    }
+
+    &.fa-9 {
+        font-size: 9px;
+    }
+
+    &.fa-10 {
+        font-size: 10px;
+    }
+
+    &.fa-11 {
+        font-size: 11px;
+    }
+
+    &.fa-12 {
+        font-size: 12px;
+    }
+
+    &.fa-13 {
+        font-size: 13px;
+    }
+
+    &.fa-14 {
+      font-size: 14px;
+    }
+
+    &.fa-15 {
+        font-size: 15px;
+    }
+
+    &.fa-16 {
+        font-size: 16px;
+    }
+
+    &.fa-17 {
+        font-size: 17px;
+    }
+
+    &.fa-18 {
+        font-size: 18px;
+    }
+
+    &.fa-22 {
+        font-size: 22px;
+    }
+
+    &.blue {
+        color: @color-font-softBlue;
+    }
+
+    &.xi-data-warning-1:before {
+      content: "\e9ff";
+    }
+    &.xi-data-warning-2:before {
+      content: "\ea02";
+    }
+    &.xi-add-app:before {
+      content: "\e9fd";
+    }
+    &.xi-add-udf2:before {
+      content: "\e9fe";
+    }
+    &.xi-edit-dataflow-2:before {
+      content: "\e9f8";
+    }
+    &.xi-run-with-new:before {
+      content: "\e9f9";
+    }
+    &.xi-run-and-replace:before {
+      content: "\e9fa";
+    }
+    &.xd-logo-letteronly:before {
+      content: "\e9fb";
+    }
+    &.xd-logo-outline:before {
+      content: "\e9fc";
+    }
+
+    &.xd-logo-bw:before {
+      content: "\e9f6";
+    }
+    &.xi-design-logo:before {
+      content: "\e9f7";
+    }
+
+    &.xi-menu-add-scheduler:before {
+      content: "\e9f4";
+    }
+    &.xi-human-admin:before {
+      content: "\e9f5";
+    }
+
+    &.xi-restart-nodes:before {
+      content: "\e9f1";
+    }
+    &.xi-view-as:before {
+      content: "\e9f2";
+    }
+    &.xi-xcalar-full-logo:before {
+      content: "\e9f3";
+    }
+    &.ico-wait:before {
+      content: "\e9f0";
+    }
+    &.xi-add-parameters:before {
+      content: "\e9ee";
+    }
+    &.xi-parameters:before {
+      content: "\e9ef";
+    }
+    &.xi-filter-greaterthan-equalto:before {
+      content: "\e9e8";
+    }
+    &.xi-filter-lessthan-equalto:before {
+      content: "\e9e9";
+    }
+    &.xi-filter-greaterthan:before {
+      content: "\e9ea";
+    }
+    &.xi-filter-lessthan:before {
+      content: "\e9eb";
+    }
+    &.xi-filter-not-equal:before {
+      content: "\e9ec";
+    }
+    &.xi-filter-equal:before {
+      content: "\e9ed";
+    }
+    &.xi-forbid:before {
+      content: "\e9e0";
+    }
+    &.xi-map:before {
+      content: "\e9e1";
+    }
+    &.xi-horizontal-align-center:before {
+      content: "\e9e2";
+    }
+    &.xi-vertical-align-center:before {
+      content: "\e9e3";
+    }
+    &.xi-arrowtail-right:before {
+      content: "\e9e4";
+    }
+    &.xi-arrowtail-left:before {
+      content: "\e9e5";
+    }
+    &.xi-arrowtail-down:before {
+      content: "\e9e6";
+    }
+    &.xi-arrowtail-up:before {
+      content: "\e9e7";
+    }
+    &.xi-videocam:before {
+      content: "\e9db";
+    }
+    &.xi-skip-previous:before {
+      content: "\e9dc";
+    }
+    &.xi-skip-next:before {
+      content: "\e9dd";
+    }
+    &.xi-fast-rewind:before {
+      content: "\e9de";
+    }
+    &.xi-fast-forward:before {
+      content: "\e9df";
+    }
+    &.xi-sand-clock:before {
+      content: "\e9d3";
+    }
+    &.xi-heartbeat:before {
+      content: "\e9d4";
+    }
+    &.xi-graph:before {
+      content: "\e9d5";
+    }
+    &.xi-nametag:before {
+      content: "\e9d6";
+    }
+    &.xi-delete-column:before {
+      content: "\e9d7";
+    }
+    &.xi-compare:before {
+      content: "\e9d8";
+    }
+    &.xi-compare-arrows:before {
+      content: "\e9d9";
+    }
+    &.xi-data-update:before {
+      content: "\e9da";
+    }
+    &.xi-workbook:before {
+      content: "\e9d0";
+    }
+    &.xi-tutorials:before {
+      content: "\e9d1";
+    }
+    &.xi-news:before {
+      content: "\e9d2";
+    }
+    &.xi-projection-mode2:before {
+      content: "\e9cb";
+    }
+    &.xi-select-mode:before {
+      content: "\e9cc";
+    }
+    &.xi-use:before {
+      content: "\e9cd";
+    }
+    &.xi-corr-coeff:before {
+      content: "\e9ce";
+    }
+    &.xi-exclude:before {
+      content: "\e9cf";
+    }
+    &.xi-link .path1:before {
+      content: "\e9ab";
+      color: rgb(0, 0, 0);
+      opacity: 0.0100;
+    }
+    &.xi-link .path2:before {
+      content: "\e9ac";
+      margin-left: -0.869140625em;
+      color: rgb(0, 0, 0);
+    }
+    &.xi-unlink:before {
+      content: "\e9ca";
+    }
+    &.xi-loading:before {
+      content: "\e9aa";
+    }
+    &.xi-equal-circle-outline:before {
+      content: "\e9ad";
+    }
+    &.xi-minus-circle-outline:before {
+      content: "\e9ae";
+    }
+    &.xi-plus-circle-outline:before {
+      content: "\e9af";
+    }
+    &.xi-equal-circle:before {
+      content: "\e9b0";
+    }
+    &.xi-minus-circle:before {
+      content: "\e9b1";
+    }
+    &.xi-plus-circle:before {
+      content: "\e9b2";
+    }
+    &.xi-upgrade:before {
+      content: "\e9b3";
+    }
+    &.xi-stop-nodes:before {
+      content: "\e9b4";
+    }
+    &.xi-start-nodes:before {
+      content: "\e9b5";
+    }
+    &.xi_select-column:before {
+      content: "\e9b6";
+    }
+    &.xi-generate-sub:before {
+      content: "\e9b7";
+    }
+    &.xi-magic-wand:before {
+      content: "\e9b8";
+    }
+    &.xi-chat-bubble-sad:before {
+      content: "\e9b9";
+    }
+    &.xi-chat-bubble-happy:before {
+      content: "\e9ba";
+    }
+    &.xi-empty-string:before {
+      content: "\e9bb";
+    }
+    &.xi-cancel:before {
+      content: "\e9bc";
+    }
+    &.xi-show-all:before {
+      content: "\e9bd";
+    }
+    &.xi-module:before {
+      content: "\e9be";
+    }
+    &.xi-browse:before {
+      content: "\e9bf";
+    }
+    &.xi-upload-dot:before {
+      content: "\e9c0";
+    }
+    &.xi-udf-manager-dot:before {
+      content: "\e9c1";
+    }
+    &.xi-udf-manager:before {
+      content: "\e9c2";
+    }
+    &.xi-add-udf:before {
+      content: "\e9c3";
+    }
+    &.xi-progress:before {
+      content: "\e9c4";
+    }
+    &.xi-critical:before {
+      content: "\e9c5";
+    }
+    &.xi-success:before {
+      content: "\e9c6";
+    }
+    &.xi-error-outline:before {
+      content: "\e9c7";
+    }
+    &.xi-error:before {
+      content: "\e9c8";
+    }
+    &.xi-alert:before {
+      content: "\e9c9";
+    }
+    &.xi-radio-empty:before {
+      content: "\e965";
+    }
+    &.xi-radio-selected:before {
+      content: "\e963";
+    }
+    &.xi-ckbox-empty:before {
+      content: "\e962";
+    }
+    &.xi-ckbox-selected:before {
+      content: "\e994";
+    }
+    &.xi-add-data:before {
+      content: "\e90e";
+    }
+    &.xi-add-dataflow:before {
+      content: "\e934";
+    }
+    &.xi-add-folder:before {
+      content: "\e90b";
+    }
+    &.xi-delete-folder:before {
+      content: "\e90a";
+    }
+    &.xi-add-schedule:before {
+      content: "\e94b";
+    }
+    &.xi-add-target:before {
+      content: "\e951";
+    }
+    &.xi-add-workbook:before {
+      content: "\e958";
+    }
+    &.xi-add-worksheet:before {
+      content: "\e954";
+    }
+    &.xi-addextension:before {
+      content: "\e96e";
+    }
+    &.xi-aggregate:before {
+      content: "\e939";
+    }
+    &.xi-android:before {
+      content: "\e916";
+    }
+    &.xi-android-dot:before {
+      content: "\e914";
+    }
+    &.xi-archive:before {
+      content: "\e969";
+    }
+    &.xi-array:before {
+      content: "\e942";
+    }
+    &.xi-arrow-down:before {
+      content: "\e93c";
+    }
+    &.xi-arrow-left:before {
+      content: "\e96a";
+    }
+    &.xi-arrow-right:before {
+      content: "\e96f";
+    }
+    &.xi-arrow-up:before {
+      content: "\e93a";
+    }
+    &.xi-ascending:before {
+      content: "\e985";
+    }
+    &.xi-descending:before {
+      content: "\e983";
+    }
+    &.xi-back-to-worksheet:before {
+      content: "\e906";
+    }
+    &.xi-bookmark:before {
+      content: "\e98b";
+    }
+    &.xi-boolean:before {
+      content: "\e945";
+    }
+    &.xi-clock:before {
+      content: "\e905";
+    }
+    &.xi-auto-support:before {
+      content: "\e99d";
+    }
+    &.xi-cloud-done:before {
+      content: "\e972";
+    }
+    &.xi-cloud-download:before {
+      content: "\e971";
+    }
+    &.xi-cloud-upload:before {
+      content: "\e970";
+    }
+    &.xi-copy-clipboard:before {
+      content: "\e918";
+    }
+    &.xi-cpu:before {
+      content: "\e9a4";
+    }
+    &.xi-data-in:before {
+      content: "\e952";
+    }
+    &.xi-data-out:before {
+      content: "\e955";
+    }
+    &.xi-data-locked:before {
+      content: "\e93b";
+    }
+    &.xi-data-target:before {
+      content: "\e950";
+    }
+    &.xi-datacart:before {
+      content: "\e95b";
+    }
+    &.xi-dataflow:before {
+      content: "\e9a2";
+    }
+    &.xi-dataflowgroup:before {
+      content: "\e94d";
+    }
+    &.xi-dataflowgroup-rectangle:before {
+      content: "\e904";
+    }
+    &.xi-dfg2 {
+      .transform(rotate(180deg));
+    }
+    &.xi-dfg2:before {
+      content: "\e9a1";
+    }
+    &.xi-disk:before {
+      content: "\e9a0";
+    }
+    &.xi-down:before {
+      content: "\e900";
+    }
+    &.xi-up:before {
+      content: "\e901";
+    }
+    &.xi-previous:before {
+      content: "\e927";
+    }
+    &.xi-next:before {
+      content: "\e928";
+    }
+    &.xi-download:before {
+      content: "\e98c";
+    }
+    &.xi-drag-handle:before {
+      content: "\e979";
+    }
+    &.xi-duplicate:before {
+      content: "\e99a";
+    }
+    &.xi-edit:before {
+      content: "\e91d";
+    }
+    &.xi-ellipsis-h:before {
+      content: "\e92f";
+    }
+    &.xi-ellipsis-h-circle:before {
+      content: "\e931";
+    }
+    &.xi-ellipsis-v:before {
+      content: "\e92e";
+    }
+    &.xi-ellipsis-v-circle:before {
+      content: "\e930";
+    }
+    &.xi-equal:before {
+      content: "\e98f";
+    }
+    &.xi-exit-fullscreen:before {
+      content: "\e926";
+    }
+    &.xi-extension-custom:before {
+      content: "\e961";
+    }
+    &.xi-extension-global:before {
+      content: "\e96c";
+    }
+    &.xi-filter:before {
+      content: "\e938";
+    }
+    &.xi-flash:before {
+      content: "\e99f";
+    }
+    &.xi-folder:before {
+      content: "\e90d";
+    }
+    &.xi-folder-opened:before {
+      content: "\e90c";
+    }
+    &.xi-fullscreen:before {
+      content: "\e924";
+    }
+    &.xi-fullscreen2:before {
+      content: "\e925";
+    }
+    &.xi-grid-view:before {
+      content: "\e92b";
+    }
+    &.xi-groupby:before {
+      content: "\e937";
+    }
+    &.xi-help:before {
+      content: "\e992";
+    }
+    &.xi-help-outline:before {
+      content: "\e991";
+    }
+    &.xi-hide:before {
+      content: "\e91f";
+    }
+    &.xi-highlight:before {
+      content: "\e999";
+    }
+    &.xi-highlight2:before {
+      content: "\e949";
+    }
+    &.xi-undo-highlight:before {
+      content: "\e998";
+    }
+    &.xi-undo-highlight2:before {
+      content: "\e997";
+    }
+    &.xi-human:before {
+      content: "\e917";
+    }
+    &.xi-human-dot:before {
+      content: "\e915";
+    }
+    &.xi-index:before {
+      content: "\e936";
+    }
+    &.xi-info-circle:before {
+      content: "\e92d";
+    }
+    &.xi-info-circle-outline:before {
+      content: "\e92c";
+    }
+    &.xi-info-no-bg:before {
+      content: "\e966";
+    }
+    &.xi-info-rectangle:before {
+      content: "\e91c";
+    }
+    &.xi-info-rectangle-outline:before {
+      content: "\e967";
+    }
+    &.xi-info-rectangle-outline2:before {
+      content: "\e96b";
+    }
+    &.xi-initial-runtime-rectangle:before {
+      content: "\e902";
+    }
+    &.xi-integer:before {
+      content: "\e943";
+    }
+    &.xi-join-inner:before {
+      content: "\e93e";
+    }
+    &.xi-join-outer:before {
+      content: "\e944";
+    }
+    &.xi-join-rightouter:before {
+      content: "\e93f";
+    }
+    &.xi-list-view:before {
+      content: "\e929";
+    }
+    &.xi-lock:before {
+      content: "\e940";
+    }
+    &.xi-menu-cli:before {
+      content: "\e959";
+    }
+    &.xi-menu-datastore:before {
+      content: "\e953";
+    }
+    &.xi-menu-extension:before {
+      content: "\e96d";
+    }
+    &.xi-menu-info:before {
+      content: "\e94a";
+    }
+    &.xi-menu-monitoring:before {
+      content: "\e94e";
+    }
+    &.xi-menu-scheduler:before {
+      content: "\e94f";
+    }
+    &.xi-menu-sql:before {
+      content: "\e957";
+    }
+    &.xi-menu-table-list:before {
+      content: "\e95a";
+    }
+    &.xi-menu-udf:before {
+      content: "\e956";
+    }
+    &.xi-menu-worksheet:before {
+      content: "\e95c";
+    }
+    &.xi-minus:before {
+      content: "\e996";
+    }
+    &.xi-mixed:before {
+      content: "\e946";
+    }
+    &.xi-monitor:before {
+      content: "\e91e";
+    }
+    &.xi-multi-join:before {
+      content: "\e987";
+    }
+    &.xi-network:before {
+      content: "\e975";
+    }
+    &.xi-object:before {
+      content: "\e941";
+    }
+    &.xi-oin-leftouter:before {
+      content: "\e93d";
+    }
+    &.xi-open-img-newtab:before {
+      content: "\e933";
+    }
+    &.xi-original:before {
+      content: "\e982";
+    }
+    &.xi-pause:before {
+      content: "\e97f";
+    }
+    &.xi-pause-circle:before {
+      content: "\e97d";
+    }
+    &.xi-run:before {
+      content: "\e91b";
+    }
+    &.xi-play-circle:before {
+      content: "\e984";
+    }
+    &.xi-stop:before {
+      content: "\e97c";
+    }
+    &.xi-stop-circle:before {
+      content: "\e97b";
+    }
+    &.xi-plus:before {
+      content: "\e990";
+    }
+    &.xi-power:before {
+      content: "\e980";
+    }
+    &.xi-preview:before {
+      content: "\e98e";
+    }
+    &.xi-pull-all-field:before {
+      content: "\e99b";
+    }
+    &.xi-quary:before {
+      content: "\e9a8";
+    }
+    &.xi-ram:before {
+      content: "\e9a3";
+    }
+    &.xi-redo:before {
+      content: "\e964";
+    }
+    &.xi-refresh:before {
+      content: "\e922";
+    }
+    &.xi-reset:before {
+      content: "\e981";
+    }
+    &.xi-save:before {
+      content: "\e960";
+    }
+    &.xi-save_img:before {
+      content: "\e932";
+    }
+    &.xi-schedules:before {
+      content: "\e94c";
+    }
+    &.xi-sd-card:before {
+      content: "\e977";
+    }
+    &.xi-search:before {
+      content: "\e908";
+    }
+    &.xi-search-schedule:before {
+      content: "\e99c";
+    }
+    &.xi-select-all:before {
+      content: "\e913";
+    }
+    &.xi-select-later:before {
+      content: "\e911";
+    }
+    &.xi-select-none:before {
+      content: "\e912";
+    }
+    &.xi-server:before {
+      content: "\e974";
+    }
+    &.xi-server2:before {
+      content: "\e973";
+    }
+    &.xi-setting:before {
+      content: "\e9a6";
+    }
+    &.xi-setup:before {
+      content: "\e9a7";
+    }
+    &.xi-show:before {
+      content: "\e920";
+    }
+    &.xi-single-join:before {
+      content: "\e988";
+    }
+    &.xi-sort:before {
+      content: "\e921";
+    }
+    &.xi-status-rectangle:before {
+      content: "\e903";
+    }
+    &.xi-string:before {
+      content: "\e947";
+    }
+    &.xi-support-bundle:before {
+      content: "\e99e";
+    }
+    &.xi-system:before {
+      content: "\e9a9";
+    }
+    &.xi-table-locked:before {
+      content: "\e935";
+    }
+    &.xi-tick:before {
+      content: "\e95d";
+    }
+    &.xi-trash:before {
+      content: "\e909";
+    }
+    &.xi-undo:before {
+      content: "\e95f";
+    }
+    &.xi-undo-promote-header:before {
+      content: "\e97e";
+    }
+    &.x-promote-header:before {
+      content: "\e97a";
+    }
+    &.xi-unknown:before {
+      content: "\e948";
+    }
+    &.xi-undefined:before {
+      content: "\e948";
+    }
+    &.xi-unlock:before {
+      content: "\e978";
+    }
+    &.xi-upload:before {
+      content: "\e98d";
+    }
+    &.xi-usb:before {
+      content: "\e976";
+    }
+    &.xi-user:before {
+      content: "\e95e";
+    }
+    &.xi-user-setting:before {
+      content: "\e9a5";
+    }
+    &.xi-warning:before {
+      content: "\e92a";
+    }
+    &.xi-worksheet:before {
+      content: "\e907";
+    }
+    &.xi-zip:before {
+      content: "\e995";
+    }
+    &.xi_data:before {
+      content: "\e90f";
+    }
+    &.xi_logo:before {
+      content: "\e968";
+    }
+    &.xi_popin:before {
+      content: "\e91a";
+    }
+    &.xi_popout:before {
+      content: "\e919";
+    }
+    &.xi_smart:before {
+      content: "\e989";
+    }
+    &.xi_split:before {
+      content: "\e993";
+    }
+    &.xi_swap_horiz:before {
+      content: "\e98a";
+    }
+    &.xi_swap_vert:before {
+      content: "\e986";
+    }
+    &.xi_table:before {
+      content: "\e910";
+    }
+    &.xi-data-in-2:before {
+      content: "\ea00";
+    }
+    &.xi-expand:before {
+      content: "\ea03";
+    }
+    &.xi-minimize:before {
+      content: "\ea04";
+    }
+    &.xi-parse:before {
+      content: "\ea05";
+    }
+    &.xi-recommend:before {
+      content: "\ea06";
+    }
+    &.xi-table-2:before {
+      content: "\ea07";
+    }
+    &.xi-table-blank:before {
+      content: "\ea01";
+    }
+    &.xi-chat-bubble-waiting:before {
+      content: "\ea09";
+    }
+    &.xi-move:before {
+      content: "\ea0a";
+    }
+    &.xi-upload-folder:before {
+      content: "\ea01";
+    }
+    &.xi-alpha-az:before {
+      content: "\ea0b";
+    }
+    &.xi-alpha-za:before {
+      content: "\ea0c";
+    }
+    &.xi-previous2:before {
+      content: "\ea0d";
+    }
+    &.xi-next2:before {
+      content: "\ea0e";
+    }
+    &.xi-close:before {
+      // content: "\e923";
+      // use the xi-close22 style
+      content: "\ea10";
+    }
+    &.xi-close22:before {
+      content: "\ea10";
+    }
+    &.xi-close-no-circle:before {
+      content: "\e923";
+    }
+    &.xi-chat-bubble-waiting2:before {
+      content: "\ea0f";
+    }
+    &.xi-menu-add-scheduler2:before {
+      content: "\ea11";
+    }
+    &.xi-table-error1:before {
+      content: "\ea12";
+    }
+    &.xi-table-error2:before {
+      content: "\ea13";
+    }
+    &.xi-minimize2:before {
+      content: "\ea14";
+    }
+    &.xi-expand2:before {
+      content: "\ea15";
+    }
+    &.xi-gennum:before {
+      content: "\ea16";
+    }
+    &.xi-system2:before {
+      content: "\ea17";
+    }
+    &.xi-operations:before {
+      content: "\ea18";
+    }
+    &.xi-menu-sql2:before {
+      content: "\ea19";
+    }
+    &.xi-menu-log:before {
+      content: "\ea1a";
+    }
+    &.xi-log-flush:before {
+      content: "\ea1b";
+    }
+    &.xi-solid-circle:before {
+      content: '\ea1c';
+    }
+    &.xi-documentation-paper:before {
+      content: '\ea1d';
+    }
+    &.xi-envelope:before {
+      content: '\ea1e';
+    }
+    &.xi-union:before {
+      content: "\ea2d";
+    }
+    &.xi-lockwithkeyhole:before {
+      content: "\ea27";
+    }
+    &.xi-bullseye:before {
+      content: "\ea2a";
+    }
+    &.xi-tables-columnsicon:before {
+      content: "\ea28";
+    }
+    &.xi-exiteditingmode:before {
+      content: "\ea2c";
+    }
+    &.xi-xml-file:before {
+      content: "\ea34";
+    }
+    &.xi-html-file:before {
+      content: "\ea35";
+    }
+    &.xi-json-file:before {
+      content: "\ea36";
+    }
+    &.xi-text-file:before {
+      content: "\ea3a";
+    }
+    &.xi-csv-file:before {
+      content: "\ea3b";
+    }
+    &.xi-xls-file:before {
+      content: "\ea3c";
+    }
+    &.xi-tar-file:before {
+      content: "\ea3d";
+    }
+    &.xi-zip-file:before {
+      content: "\ea44";
+    }
+    &.xi-pdf-file:before {
+      content: "\ea45";
+    }
+    &.xi-jpg-file:before {
+      content: "\ea46";
+    }
+    &.xi-png-file:before {
+      content: "\ea47";
+    }
+    &.xi-gif-file:before {
+      content: "\ea48";
+    }
+    &.xi-bmp-file-1:before {
+      content: "\ea49";
+    }
+    &.xi-bmp-file-2:before {
+      content: "\ea4a";
+    }
+    &.xi-xml-big-file:before {
+      content: "\ea30";
+    }
+    &.xi-html-big-file:before {
+      content: "\ea32";
+    }
+    &.xi-json-big-file:before {
+      content: "\ea33";
+    }
+    &.xi-text-big-file:before {
+      content: "\ea37";
+    }
+    &.xi-csv-big-file:before {
+      content: "\ea38";
+    }
+    &.xi-xls-big-file:before {
+      content: "\ea39";
+    }
+    &.xi-tar-big-file:before {
+      content: "\ea3e";
+    }
+    &.xi-zip-big-file:before {
+      content: "\ea3f";
+    }
+    &.xi-pdf-big-file:before {
+      content: "\ea40";
+    }
+    &.xi-jpg-big-file:before {
+      content: "\ea41";
+    }
+    &.xi-png-big-file:before {
+      content: "\ea42";
+    }
+    &.xi-gif-big-file:before {
+      content: "\ea43";
+    }
+    &.xi-bmp-big-file:before {
+      content: "\ea4b";
+    }
+    &.xi-recursive-r-folder:before {
+      content: "\ea4c";
+    }
+    &.xi-open-folder-fill:before {
+      content: "\ea4d";
+    }
+    &.xi-open-folder-outline:before {
+      content: "\ea4e";
+    }
+    &.xi-share-icon:before {
+      content: "\ea4f";
+    }
+    &.xi-disabled-share-icon:before {
+      content: "\ea50";
+    }
+    &.xi-activated-share-icon:before {
+      content: "\ea51";
+    }
+    &.xi-dataset-checkmark:before {
+      content: "\ea52";
+    }
+    &.xi-activetotemporary:before {
+      content: "\ea53";
+    }
+    &.xi-import-dataset-double:before {
+      content: "\ea54";
+    }
+    &.xi-changingclock:before {
+      content: "\ea55";
+    }
+    &.xi-installerscreen-failedicon:before {
+      content: "\ea56";
+    }
+    &.xi-installerscreen-opencircle:before {
+      content: "\ea57";
+    }
+    &.xi-updatedallselected:before {
+      content: "\ea58";
+    }
+    &.xi-copy:before {
+      content: "\ea59";
+    }
+    &.xi-rearrange:before {
+      content: "\ea5a";
+    }
+    &.xi-cut:before {
+      content: "\ea5b";
+    }
+    &.xi-timestamp:before {
+      content: "\ea5c";
+    }
+    &.xi-checkbox-select:before {
+      content: "\ea5d";
+    }
+    &.xi-fast-foward-circle:before {
+      content: "\ea5e";
+    }
+    &.xi-custom:before {
+      content: "\ea5f";
+    }
+    &.xi-source:before {
+      content: "\ea60";
+    }
+    &.xi-newSQL:before {
+      content: "\ea61";
+    }
+    &.xi-SQLworkspace:before {
+      content: "\ea6b";
+    }
+    &.xi-SQLfunction:before {
+      content: "\ea6c";
+    }
+    &.xi-create-new-table:before {
+      content: "\ea62";
+    }
+    &.xi-viewprogress:before {
+      content: "\ea63";
+    }
+    &.xi-money:before {
+      content: "\ea64";
+    }
+    &.xi-tutorialmarketplace-play:before {
+      content: "\ea65";
+    }
+    &.xi-tutorialmarketplace-:before {
+      content: "\ea66";
+    }
+    &.xi-viewschema:before {
+        content: "\ea67";
+    }
+    &.xi-expandnode:before {
+      content: "\ea68";
+    }
+    &.xi-parameter:before {
+      content: "\ea69";
+    }
+    &.xi-restore:before {
+      content: "\ea6a";
+    }
+    &.xi-float:before {
+      content: "\ea6d";
+    }
+    &.xi-deskew:before {
+      content: "\ea6e";
+    }
+    &.xi-deskew2:before {
+      content: "\ea6f";
+    }
+    &.xi-exclamation-point-without-circle:before {
+      content: "\ea70";
+    }
+    &.xi-view-as-list-1:before {
+      content: "\ea71";
+    }
+    &.xi-view-as-list-2:before {
+      content: "\ea72";
+    }
+    &.xi-data-connector:before {
+      content: "\ea73";
+    }
+    &.xi-unpinned:before {
+      content: "\ea74";
+    }
+    &.xi-pinned:before {
+      content: "\ea75";
+    }
+    &.xi-datamart:before {
+      content: "\ea76";
+    }
+    &.xi-dock:before {
+      content: "\ea77";
+    }
+    &.xi-workspace:before {
+      content: "\ea78";
+    }
+    &.xi-gear-outline:before {
+        content: "\ea79";
+    }
+    &.xi-undo-outline:before {
+        content: "\ea7a";
+    }
+    &.xi-redo-outline:before {
+        content: "\ea7b";
+    }
+    &.xi-play-outline:before {
+        content: "\ea7c";
+    }
+    &.xi-upload-outline:before {
+        content: "\ea7d";
+    }
+    &.xi-stop-outline:before {
+        content: "\ea7e";
+    }
+    &.xi-arrowtail-left-outline:before {
+        content: "\ea7f";
+    }
+    &.xi-arrowtail-right-outline:before {
+        content: "\ea7f";
+    }
+    &.xi-arrowtail-right-outline {
+        transform: rotate(180deg);
+    }
+    &.xi-arrowtail-down-outline:before {
+        content: "\ea7f";
+    }
+    &.xi-arrowtail-down-outline {
+        transform: rotate(270deg);
+    }
+    &.xi-arrowtail-up-outline:before {
+        content: "\ea7f";
+    }
+    &.xi-arrowtail-up-outline {
+        transform: rotate(90deg);
+    }
+    &.xi-arrow-left-outline:before {
+        content: "\ea80";
+    }
+    &.xi-arrow-right-outline:before {
+        content: "\ea80";
+    }
+    &.xi-arrow-right-outline {
+        transform: rotate(180deg);
+    }
+    &.xi-table-outline:before {
+        content: "\ea81";
+    }
+    &.xi-SQL-module:before {
+        content: "\ea83";
+    }
+    &.xi-stack:before {
+        content: "\ea84";
+    }
+    &.xi-stack-workspace:before {
+        content: "\ea85";
+    }
+    &.xi-stack-workspace-vert:before {
+        content: "\ea85";
+    }
+    &.xi-stack-workspace-vert {
+        transform: rotate(90deg);
+    }
+    &.xi-debug:before {
+        content: "\ea86";
+    }
+    &.xi-x-logo:before {
+        content: "\ea87";
+    }
+    &.xi-dataflow-thin:before {
+        content: "\ea82";
+    }
+    &.xi-app:before {
+        content: "\ea88";
+    }
+    &.xi-memory-outline:before {
+        content: "\ea89";
+    }
+    &.xi-projects-folder-outline:before {
+      content: "\ea8a";
+    }
+    &.xi-connector-outline:before {
+      content: "\ea8b";
+    }
+    &.xi-notebook-workspace:before {
+      content: "\ea8c";
+    }
+    &.xi-home-card-connect:before {
+      content: "\ea8d";
+    }
+    &.xi-home-card-knowledge-base:before {
+      content: "\ea8e";
+    }
+    &.xi-home-card-load:before {
+      content: "\ea8f";
+    }
+    &.xi-home-card-notebook:before {
+      content: "\ea90";
+    }
+    &.xi-home-card-schedule:before {
+      content: "\ea91";
+    }
+    &.xi-load-add-connector-plus-btn .path1:before {
+      content: "\ea92";
+      color: rgb(223, 223, 223);
+    }
+    &.xi-load-add-connector-plus-btn .path2:before {
+      content: "\ea93";
+      margin-left: -1em;
+      color: rgb(0, 0, 0);
+    }
+    &.xi-load-toggle-off:before {
+      content: "\ea94";
+      color: #cacaca;
+    }
+    &.xi-load-toggle-on .path1:before {
+      content: "\ea95";
+      color: rgb(255, 255, 255);
+      opacity: 0.2499;
+    }
+    &.xi-load-toggle-on .path2:before {
+      content: "\ea96";
+      margin-left: -1em;
+      color: rgb(202, 202, 202);
+    }
+    &.xi-load-alert-popup:before {
+      content: "\ea97";
+      color: #ff8099;
+    }
+    &.xi-load-file:before {
+      content: "\ea98";
+      color: #fff;
+    }
+    &.xi-load-folder:before {
+      content: "\ea99";
+      color: #fff;
+    }
+    &.xi-load-checkbox-deselected:before {
+      content: "\ea9a";
+      color: #329df8;
+    }
+    &.xi-load-checkbox-selected .path1:before {
+      content: "\ea9b";
+      color: rgb(50, 157, 248);
+    }
+    &.xi-load-checkbox-selected .path2:before {
+      content: "\ea9c";
+      margin-left: -1em;
+      color: rgb(255, 255, 255);
+    }
+    &.xi-load-search:before {
+      content: "\ea9d";
+      color: #ababab;
+    }
+    &.xi-load-questionmark:before {
+      content: "\ea9e";
+      color: #969696;
+    }
+    &.xi-load-dropdown-arrow:before {
+      content: "\ea9f";
+      color: #cacaca;
+    }
+    &.xi-load-close-popup:before {
+      content: "\eaa0";
+      color: #cacaca;
+    }
+    &.xi-load-back-popup:before {
+      content: "\eaa1";
+      color: #cacaca;
+    }
+    &.xi-load-delete:before {
+      content: "\eaa2";
+      color: #cacaca;
+    }
+    &.xi-load-checkmark-table-success-created:before {
+      content: "\eaa3";
+      color: #00d119;
+    }
+    &.xi-load-back_directory-when-enabled:before {
+      content: "\eaa4";
+      color: #cacaca;
+    }
+    &.xi-load-alert-notification-outlined .path1:before {
+      content: "\eaa5";
+      color: rgb(46, 46, 46);
+    }
+    &.xi-load-alert-notification-outlined .path2:before {
+      content: "\eaa6";
+      margin-left: -1em;
+      color: rgb(234, 234, 234);
+    }
+    &.xi-load-alert-notification-filled:before {
+      content: "\eaa7";
+      color: #eaeaea;
+    }
+    &.xi-left-bar-menu-app-builder:before {
+      content: "\eaa8";
+    }
+    &.xi-left-bar-menu-SQL:before {
+      content: "\eaa9";
+    }
+    &.xi-left-bar-menu-logs:before {
+      content: "\eaaa";
+    }
+    &.xi-left-bar-menu-udf:before {
+      content: "\eaab";
+    }
+    &.xi-left-bar-menu-table:before {
+      content: "\eaac";
+    }
+    &.xi-left-bar-menu-resources:before {
+      content: "\eaad";
+    }
+    &.xi-notobook-scalar-function-test-icon:before {
+        content: "\eaae";
+    }
+    &.xi-notebook-temporary-table-icon:before {
+        content: "\eaaf";
+    }
+    &.xi-notebook-configure-icon:before {
+        content: "\eab0";
+    }
+    &.xi-topbar-disk-icon:before {
+      content: "\eab1";
+    }
+    &.xi-notobook-recreate-tables-icon:before {
+        content: "\eab3";
+    }
+}
+

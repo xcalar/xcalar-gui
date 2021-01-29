@@ -1,0 +1,25 @@
+{
+    "0" : "LibRuntimeInnerIters",
+    "1" : "LibRuntimeDedicatedThreadCount",
+    "2" : "LibRuntimeWorkPerDedicatedThread",
+    "3" : "LibRuntimeProducerCount",
+    "4" : "LibRuntimeWorkCountLazy",
+    "5" : "LibRuntimeWorkCountSwitchy",
+    "6" : "LibRuntimeWorkCountStacky",
+    "7" : "LibRuntimeWorkCountSleepy",
+    "8" : "LibRuntimeSwitchyIters",
+    "9" : "LibRuntimeSwitchySemInit",
+    "10" : "LibRuntimeFibDepth",
+    "11" : "LibRuntimeJumpyIters",
+    "12" : "LibRuntimeJumpyStride",
+    "13" : "LibRuntimeJumpySchedObjs",
+    "14" : "LibRuntimeJumpyTimeout",
+    "15" : "LibRuntimeCrowdSize",
+    "16" : "LibRuntimeCrowdSems",
+    "17" : "LibRuntimeCrowdSemInit",
+    "18" : "LibRuntimeCrowdTimeout",
+    "19" : "LibRuntimeCrowdIters",
+    "20" : "LibRuntimeCondvarSchedObjs",
+    "21" : "LibRuntimeCondvarIters"
+}
+

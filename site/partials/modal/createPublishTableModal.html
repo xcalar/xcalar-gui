@@ -1,0 +1,104 @@
+<div id="createPublishTableModal" class="modalContainer large xc-viewMode opPanel">
+    <!-- Header -->
+    <header class="modalHeader">
+      <span class="text"><%= dicts.publishIMDOp.createPublish %></span>
+      <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+      </div>
+    </header>
+    <!-- card main -->
+    <section class="modalMain">
+        <div class="IMDName formRow">
+            <div class="subHeading clearfix">
+                <div class="label"><%= dicts.publishIMDOp.tableName %>:</div>
+            </div>
+            <div class="inputWrap">
+                <input class="arg IMDNameInput" type="text" autocomplete="off" tabindex="10"
+                    spellcheck="false" data-typeid="-1"
+                    data-casted="false" data-casttype="null">
+            </div>
+        </div>
+        <div class="IMDOverwrite formRow">
+            <div class="checkboxWrap overwrite">
+              <span class="text"><%= dicts.publishIMDOp.overwrite %></span>
+              <span class="checkbox">
+                <i class="icon xi-ckbox-empty fa-13"></i>
+                <i class="icon xi-ckbox-selected fa-13"></i>
+              </span>
+            </div>
+        </div>
+        <div class="IMDKey formRow">
+            <div class="subHeading clearfix">
+            <div class="label"><%= dicts.publishIMDOp.key %>s:</div>
+            </div>
+            <div class="primaryKeys">
+                <div class="primaryKeyList dropDownList">
+                    <input class="text primaryKeyInput first" type="text" value="" spellcheck="false" autocomplete="off">
+                    <div class="iconWrapper">
+                        <i class="icon xi-arrow-down"></i>
+                    </div>
+                    <div class="list">
+                        <ul class="primaryKeyColumns"></ul>
+                        include "../../util/menuScrollArea.html"
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="keyOptions formRow">
+            <div class="checkboxWrap disableKey">
+                <div class="checkbox">
+                    <i class="icon xi-ckbox-empty fa-13"></i>
+                    <i class="icon xi-ckbox-selected fa-13"></i>
+                </div>
+                <div class="text"><%= dicts.publishIMDOp.noKey %></div>
+            </div>
+            <div class="btnWrap">
+                <div class="addArgWrap addArgWrapLarge">
+                    <button class="btn btn-rounded btn-secondary addArg addKeyArg">
+                        <i class="icon xi-plus"></i>
+                    </button>
+                    <span class="text">
+                        <%= dicts.publishIMDOp.addKey %>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div id="publishTableModalColumns" class="publishColumnsSection">
+            <div class="formRow">
+                <div class="subHeading">
+                    <div class="label"><%= dicts.publishIMDOp.colsInTable %>:</div>
+                </div>
+                <div class="checkboxWrap selectAllWrap">
+                    <div class="checkbox">
+                        <i class="icon xi-ckbox-empty fa-13"></i>
+                        <i class="icon xi-ckbox-selected fa-13"></i>
+                    </div>
+                    <div class="text"><%= dicts.common.SelectAll %></div>
+                </div>
+            </div>
+            <div class="columnsToPublish columnsWrap flexWrap clearfix">
+                <ul class="cols"></ul>
+                <div class="hint noColsHint empty"><%= dicts.dataflow.noColsHint %></div>
+            </div>
+        </div>
+        <div class="creatingHint">
+            <div class="wrap">
+                <div class="animatedEllipsisWrapper">
+                    <div class="text"><%= dicts.publishIMDOp.creatingTable %></div>
+                    <div class="wrap">
+                      <div class="animatedEllipsis hiddenEllipsis">....</div>
+                      <div class="animatedEllipsis staticEllipsis">....</div>
+                    </div>
+                </div>
+                <div>
+                    <%= dicts.publishIMDOp.creatingHint %>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Button Section -->
+    <section class="modalBottom">
+      <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+      <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+    </section>
+</div>

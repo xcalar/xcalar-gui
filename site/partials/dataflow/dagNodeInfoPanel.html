@@ -1,0 +1,99 @@
+<section id="dagNodeInfoPanel" class="menuSection">
+    <div class="topSection">
+        <div class="titleSection">
+            <header class="nodeType"><!-- dynamically filled --></header>
+            <div class="nodeTitle"></div>
+        </div>
+        <div class="iconSection">
+            <i class="closeBtn icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+        </div>
+    </div>
+    <div class="mainSection nodeInfoSection">
+        <div class="row mainRow configRow collapsible">
+            <div class="rowHeading">
+                <!-- <i class="icon xi-info-circle-outline"></i> -->
+                <span class="label">Configuration <span class="editConfig actionLink">edit</span></span>
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="rowSection configSection"></div>
+        </div>
+        <div class="row mainRow subGraphRow">
+            <div class="rowHeading">
+                <span class="label">Nodes</span>
+            </div>
+            <div class="rowSection subGraphSection"></div>
+        </div>
+        <div class="row mainRow descriptionRow collapsible">
+            <div class="rowHeading">
+                <!-- <i class="icon xi-info-circle-outline"></i> -->
+                <span class="label">Description:</span>
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="rowSection descriptionSection"></div>
+        </div>
+        <div class="row mainRow aggsRow">
+            <div class="rowHeading">
+                <!-- <i class="icon xi-aggregate"></i> -->
+                <span class="label">Aggregates</span>
+            </div>
+            <div class="rowSection aggsSection"></div>
+        </div>
+        <div class="row mainRow udfsRow collapsible">
+            <div class="rowHeading">
+                <span class="label viewUDFs">UDFs</span>
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="rowSection udfsSection"></div>
+        </div>
+        <div class="row mainRow statusRow">
+            <div class="rowHeading">
+                <!-- <i class="icon"></i> -->
+                <span class="label">Status: </span>
+                <span class="statusSection"></span>
+            </div>
+        </div>
+        <div class="row mainRow errorRow">
+            <div class="rowHeading">
+                <!-- <i class="icon xi-error-outline"></i> -->
+                <span class="label">Error</span>
+            </div>
+            <div class="rowSection errorSection"></div>
+        </div>
+        <div class="row mainRow progressRow">
+            <div class="rowHeading">
+                <!-- <i class="icon"></i> -->
+                <span class="label">Progress: </span>
+                <div class="rowSection progressSection"></div>
+            </div>
+        </div>
+        <div class="row mainRow timeRow">
+            <div class="rowHeading">
+                <!-- <i class="icon"></i> -->
+                <span class="label">Total Time: </span>
+                <div class="rowSection timeSection"></div>
+            </div>
+        </div>
+        <div class="row mainRow statsRow collapsible">
+            <div class="rowHeading">
+                <!-- <i class="icon"></i> -->
+                <span class="label">Statistics: </span>
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="rowSection statsSection"></div>
+        </div>
+        <div class="row mainRow columnChangeRow collapsible collapsed">
+            <div class="rowHeading">
+                <span class="label">Column changes <span class="resetColumnChanges actionLink">reset</span></span>
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="rowSection columnChangeSection"></div>
+        </div>
+        <div class="row mainRow columnOrderingRow collapsible collapsed">
+            <div class="rowHeading">
+                <span class="label">Column reordering <span class="resetColumnOrdering actionLink">reset</span></span>
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="rowSection columnOrderingSection collapsed"></div>
+        </div>
+    </div>
+</section>

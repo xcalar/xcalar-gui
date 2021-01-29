@@ -1,0 +1,164 @@
+#loadHistory {
+    flex-direction: column;
+    .row {
+        > div {
+            margin: 0 10px;
+        }
+    }
+    .loadingContainer {
+        display: flex;
+        flex-direction: column;
+        @input-height: 20px;
+
+        .cancel {
+            .xc-action;
+            text-decoration: underline;
+            color: @color-font-link-blue;
+        }
+
+        .loadingWrap {
+            display: flex;
+            flex-direction: row;
+            height: @input-height;
+            align-items: center;
+        }
+
+        .loadingProgress {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            width: 100px;
+
+            .loadingProgress-text {
+                display:flex;
+                align-items: center;
+                height: 100%;
+                user-select: none;
+            }
+
+            .loadingProgress-wrap {
+                height: 6px;
+                // border: 1px solid @color-font-default;
+                // border-radius: 2px;
+                position: relative;
+            }
+
+            .loadingProgress-bar, .loadingProgress-bg {
+                height: 100%;
+                position: absolute;
+                border-radius: 3px;
+                top: 0;
+                left: 0
+            }
+
+            .loadingProgress-bg {
+                width: 100%;
+                border: 1px solid #fff;
+                background-color: #fff;
+                opacity: 0.2;
+            }
+
+            .loadingProgress-bar {
+                background-color: #1ba22b;
+                border: 1px solid #1ba22b;
+            }
+        }
+    }
+
+    .currentLoadArea {
+        padding: 20px;
+        min-height: 100px;
+    }
+
+    .viewContainer {
+        display: flex;
+        flex-direction: column;
+        &.history {
+            > .schemaView {
+                display: none;
+            }
+        }
+        &.schema {
+            > .historyView {
+                display: none;
+            }
+        }
+    }
+
+    .viewDetails {
+        text-decoration: underline;
+    }
+
+    .loadHistoryView {
+        border-top: 1px solid gray;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        flex: 1 1 auto;
+        overflow: auto;
+
+        .moreRows {
+            position: absolute;
+            bottom: 34px;
+            margin-left: 24px;
+            text-decoration: underline;
+            font-size: 14px;
+        }
+    }
+
+    .sourcesTable {
+        .MuiTableFooter-root {
+            visibility: hidden;
+        }
+    }
+
+    .schemaView {
+        .backBtn {
+            float: right;
+            margin-right: 20px;
+            margin-top: 10px;
+        }
+    }
+
+    .MuiPaper-root {
+        background-color: transparent;
+    }
+
+    .MuiTableCell-root {
+        line-height: 20px;
+        padding: 6px 6px;
+    }
+
+    tbody {
+        .MuiTableCell-root {
+            &:nth-child(2) {
+                padding-left: 24px;
+            }
+        }
+    }
+
+    .MuiTableCell-head {
+        font-weight: 700;
+        &:first-child {
+            padding-left: 24px;
+        }
+    }
+
+    .MuiTableCell-footer {
+        .MuiTablePagination-input, .MuiSelect-select {
+            display: none;
+        }
+        p.MuiTablePagination-caption:first-of-type {
+            display: none;
+        }
+    }
+
+    .MuiToolbar-root {
+        h6 {
+            font-size: 18px;
+        }
+    }
+    // .MuiCheckbox-root {
+    //     padding: 2px;
+    // }
+}

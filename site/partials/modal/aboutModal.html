@@ -1,0 +1,58 @@
+<!-- Aboout Modal -->
+<div id="aboutModal" class="modalContainer">
+  <header class="modalHeader">
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- modalMain -->
+  <section class="modalMain">
+    <div class="contents">
+      <div class="logoSection">
+        <div class="logo">
+          <i class="icon xi-xcalar-full-logo"></i>
+        </div>
+      </div>
+      <div class="infoSection text-selection">
+        <div class="header">
+          <%= dicts.aboutModal.build %>
+        </div>
+        <div class="textRow">
+          <div class="label"><%= dicts.aboutModal.product %></div>
+          <div class="value product"></div>
+        </div>
+        <div class="textRow">
+          <div class="label"><%= dicts.aboutModal.productVersion %></div>
+          <div class="value frontVersion"></div>
+        </div>
+        <div class="textRow">
+          <div class="label"><%= dicts.aboutModal.buildNumer %></div>
+          <div class="value buildNumber"></div>
+        </div>
+        <div class="licenseSection">
+          <div class="header">
+            <%= dicts.aboutModal.license %>
+          </div>
+          <div class="textRow">
+            <div class="label"><%= dicts.aboutModal.licensee %></div>
+            <div class="value licensee"></div>
+          </div>
+          <div class="textRow">
+            <div class="label"><%= dicts.aboutModal.expiration %></div>
+            <div class="value expiration"></div>
+          </div>
+          <div class="textRow">
+            <div class="label"><%= dicts.aboutModal.numServers %></div>
+            <div class="value numServers"></div>
+          </div>
+          <div class="textRow">
+            <div class="label"><%= dicts.aboutModal.numUsers %></div>
+            <div class="value numUsers"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyRightSection"><%= dicts.aboutModal.copyright %></div>
+  </section>
+</div>
+<!-- End of Aboout Modal -->

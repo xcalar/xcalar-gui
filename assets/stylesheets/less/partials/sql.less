@@ -1,0 +1,1227 @@
+.flexTable {
+    @border-style: solid @color-border-medium2 1px;
+    @cell-padding: 10px;
+    @scrollbar-width: 11px;
+    @tableHeaderHeight: 24px;
+
+    .size(@height: 100%);
+
+    .row {
+        .size(@height: 24px);
+        .flex-container();
+        .flex-flow(nowrap);
+        .align-items(center);
+        .font(@weight: normal);
+        border-bottom: @border-style;
+
+        // First column
+        & > .col {
+            border-left: @border-style;
+        }
+
+        // The rest columns
+        & > .col ~ .col {
+            border-left: none;
+        }
+    }
+
+    .row-header {
+        .size(@height: @tableHeaderHeight);
+        .font(@weight: 600);
+        border-top: @border-style;
+
+        // Scroll bar hack
+        .col-skew {
+            padding-right: @cell-padding + @scrollbar-width;
+            .flex-basis(@width: 75px + @scrollbar-width);
+        }
+        .col > span {
+            .textOverflowOneLine;
+            width: 100%;
+        }
+    }
+
+    .body {
+        .size(@height: ~"calc(100% - @{tableHeaderHeight})");
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .scrollbar-wrap {
+        .size(@height: auto);
+        overflow: hidden;
+    }
+
+    .col {
+        .flex(1);
+        .size(@height: 100%);
+        .flex-container();
+        .align-items(center);
+        padding-left: @cell-padding;
+        padding-right: @cell-padding;
+        border-right: @border-style;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+
+        .ui-resizable-handle {
+            z-index: 3 !important; // don't block other elements
+            height: 100%;
+            top: 0;
+        }
+    }
+
+    .gen-columns(@n; @i:1) when (@i <= @n) {
+        .col-@{i} {
+            .flex(@i);
+        }
+        .gen-columns(@n; (@i + 1));
+    }
+    .gen-columns(12);
+
+    .link {
+        cursor: pointer;
+        // color: @color-font-link-blue;
+        // &:hover {
+        //     color: @color-font-button-hover;
+        // }
+    }
+
+    .sort {
+        .flex-container();
+        .justify-content(flex-end);
+        padding-left: @cell-padding;
+        color: @color-icon-default;
+    }
+
+    .sort-none {
+        flex-direction: column;
+    }
+
+    .sortIconWrap {
+        .flex-container();
+        .justify-content(flex-end);
+        color: @color-icon-default;
+    }
+
+    .col-sort {
+        cursor: pointer;
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    .col-select {
+        .flex-basis(@width: 35px);
+        .flex-grow(@grow: 0);
+        .flex-shrink(@shrink: 0);
+    }
+
+    .col-status {
+        .flex-basis(@width: 115px);
+    }
+
+    .col-query {
+        .col-5();
+        .flex-basis(@width: 70px);
+        .flex-shrink(@shrink: 0);
+    }
+
+    .col-time {
+        .flex-basis(@width: 150px);
+    }
+
+    .col-duration {
+        .col-1();
+        .flex-basis(@width: 100px);
+        .flex-shrink(@shrink: 0);
+    }
+
+    .col-table {
+        .flex-basis(@width: 75px);
+        &.link {
+            text-decoration: underline;
+            // color: @color-font-link-blue;
+            // &:hover {
+            //     color: @color-font-link-blue;
+            // }
+            &.error {
+                color: @color-error-red;
+                &:hover {
+                    color: @color-error-red;
+                }
+            }
+        }
+    }
+
+    .col-action {
+        .flex-basis(@width: 50px);
+        .flex-grow(@grow: 0);
+        .flex-shrink(@shrink: 0);
+    }
+
+    .col-rows {
+        .col-1();
+        .flex-basis(@width: 75px);
+        .flex-shrink(@shrink: 0);
+    }
+
+    .col-skew {
+        .flex-basis(@width: 75px);
+    }
+
+    .elps-text {
+        overflow: hidden;
+        display: inline-block;
+        text-overflow: ellipsis;
+    }
+
+    .iconLinkWrap {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+
+
+.flexResizeContainer {
+    display: flex;
+}
+
+.flexColumn {
+    flex-direction: column;
+
+    > .flexResizeItem {
+        &:not(:first-child) {
+            width: 100% !important;
+            height: 50%;
+            border-top: 1px solid @color-bg-pinkish-grey2;
+        }
+    }
+}
+
+.flexResizeItem {
+    position: relative;
+    overflow: hidden;
+
+    &:first-child {
+        flex: 1 1 0;
+    }
+
+    &:not(:first-child) {
+        width: 50%;
+        border-left: 1px solid @color-bg-pinkish-grey2;
+
+        &.contentUndocked {
+            width: 0 !important;
+        }
+    }
+
+    &.contentUndocked, &.xc-hidden {
+        flex: 0 0 0 !important;
+
+        ~ .flexResizeItem:not(.undocked) {
+            flex: 1 1 auto;
+            width: auto !important;
+        }
+    }
+
+    &.allContentUndocked { // row
+        flex: 0 0 0;
+        height: 0px !important;
+        width: 0px !important;
+        > .ui-resizable-handle {
+            display: none !important;
+        }
+
+        ~ .flexResizeItem:not(.allContentUndocked) { // .botomPart
+            flex: 1 1 auto;
+            > .ui-resizable-handle {
+                display: none !important;
+            }
+        }
+    }
+
+}
+
+
+#sqlWorkSpacePanel {
+    @tabBar-h: @height-tabBar;
+
+    &.resizing {
+        pointer-events: none;
+    }
+
+    &.hidingLeftPanel {
+        .mainContent {
+            > .leftSection {
+                display: none;
+            }
+            > .rightSection {
+                margin-left: 0px !important; // important to override margin-left set by resizing
+            }
+        }
+    }
+
+    .mainContent {
+        .flexResizeItem {
+            background-color: @color-bg-default;
+        }
+        .rightSection {
+            margin-left: @width-topMenu;
+            height: 100%;
+
+            .topPart {
+                .udf, .configNode {
+                    > .ui-resizable-handle {
+                        z-index: @z-index-sqlBottomResizeHandler !important;
+                        left: -5px;
+                    }
+                }
+            }
+
+            .bottomPart {
+                > .ui-resizable-handle {
+                    height: 12px;
+                    top: -7px;
+                }
+
+                .ui-resizable-handle {
+                    z-index: @z-index-sqlBottomResizeHandler !important; // don't block other elements
+                }
+
+                > .section {
+                    > .ui-resizable-handle {
+                        z-index: @z-index-sqlBottomResizeHandler !important;
+                    }
+                    > .ui-resizable-n {
+                        display: none !important;
+                    }
+                    > .ui-resizable-w {
+                        display: block !important;
+                        left: -5px;
+                    }
+                }
+
+                .collapseResult {
+                    display: none;
+                }
+                .stackResult {
+                    display: inline-block;
+                }
+
+                &.noResult {
+                    .stackResult {
+                        display: none;
+                    }
+                }
+
+                .undocked {
+                    .stackResult, .collapseResult {
+                        display: none !important;
+                    }
+                }
+
+                &:not(.flexColumn) {
+                    > .section {
+                        &:not(.contentUndocked) {
+                            // when docked and not stacked,
+                            // we should overwrite any resized height
+                            // by using 100% important
+                            height: 100% !important;
+                        }
+                    }
+                }
+
+                &.flexColumn {
+                    height: 60%;
+
+                    .stackResult {
+                        display: none;
+                    }
+
+                    .collapseResult {
+                        display: inline-block;
+                    }
+
+                    > .flexResizeItem {
+                        > .ui-resizable-n {
+                            display: block !important;
+                        }
+                        > .ui-resizable-w {
+                            display: none !important;
+                        }
+                    }
+                }
+            }
+
+            .debugPart {
+                height: 20%;
+                > .ui-resizable-handle {
+                    z-index: @z-index-sqlBottomResizeHandler !important;
+                    top: -5px;
+                }
+            }
+        }
+
+        .resultSection {
+            .contentSection {
+                height: ~"calc(100% - @{height-tabBar})";
+                position: relative;
+            }
+
+            .contentSection .section {
+                height: 100%;
+
+                &.error {
+                    color: @color-background-error;
+                    padding: 16px;
+                }
+
+                > div {
+                    height: 100%;
+                    @top-h: 32px;
+                    @bottom-h: 50px;
+                    @total-h: @top-h + @bottom-h;
+
+                    &.noBottom {
+                        .mainSection {
+                            height: ~"calc(100% - @{top-h})";
+                        }
+                    }
+
+                    &.noBottom.noTop {
+                        .mainSection {
+                            height: 100%;
+                        }
+                    }
+
+                    .topSection {
+                        background-color: @color-bg-default;
+                        font-size: 12px;
+                        padding: 4px 28px 4px 16px;
+                        position: relative;
+                        @div-h: 20px;
+                        display: flex;
+                        flex-direction: row;
+                        align-items: center;
+
+                        > div, .innerTableBarWrap > div {
+                            .flex(0 0 auto);
+
+                            &.tableNameArea {
+                                .flex(1 1 0px);
+                                .label {
+                                    display: none;
+                                }
+                            }
+                        }
+
+                        > .label , .innerTableBarWrap > .label {
+                            margin-right: 4px;
+                            line-height: 20px;
+                            white-space: nowrap;
+
+                            .name {
+                                font-weight: normal;
+                                margin-left: 8px;
+                            }
+                        }
+
+                        .scrollArea {
+                            z-index: @z-index-slidingSearchBar + 1;
+                            &.bottom {
+                                right: 50px;
+                            }
+                        }
+
+                        .tableBarWrap {
+                            display: flex;
+                            flex: 1 0 auto;
+                            position: relative;
+                            width: 100%;
+                        }
+
+                        .innerTableBarWrap {
+                            display: flex;
+                            flex: 1 0 auto;
+                            position: relative;
+                            padding: 5px 8px;
+                        }
+
+                        .slidingSearchWrap {
+                            top: 0px;
+                            width: 230px;
+
+                            .searchbarArea {
+                                min-width: auto;
+                                max-width: none;
+                                margin-top: 4px;
+                                width: 230px;
+                                left: 0px;
+
+                                &.closed {
+                                    transform: translate3d(202px, 0, 0);
+
+                                    .searchIcon {
+                                        border-left: none;
+                                    }
+                                }
+
+                                .searchIcon {
+                                    position: relative;
+                                    top: -2px;
+                                    width: 24px;
+                                    margin-right: 4px;
+                                    border-left: 1px solid @color-border-medium2;
+                                }
+                                input {
+                                    padding-left: 8px;
+                                    width: 198px;
+                                    height: 24px;
+                                    margin-top: 0px;
+                                    float: left;
+                                    outline: none;
+                                    line-height: 24px;
+                                }
+                                .closeBox {
+                                    right: 2px;
+                                    margin-top: 0px;
+                                    font-size: 14px;
+                                    line-height: 16px;
+                                    .icon {
+                                        top: -1px;
+                                    }
+                                }
+
+                                .counter {
+                                    right: 64px;
+                                    top: 4px;
+                                }
+                                .arrows {
+                                    right: 20px;
+                                    top: 2px;
+                                }
+                                // .arrows .downArrow {
+                                //     right: 4px;
+                                // }
+                            }
+                        }
+                        .searchbarArea {
+                            .size(@height: 24px);
+
+                            input {
+                                font-size: 12px;
+                                .rounded(3px);
+                                .size(@height: 24px);
+                                padding-left: 22px;
+                                line-height: 24px;
+                                // background-color: @color-bg-default;
+                            }
+
+                            > .icon {
+                                .font(@size: 14px);
+                                .position(absolute, @top: 6px, @left: 5px);
+                                color: @color-border-bar;
+                            }
+                        }
+                        .menuArea {
+                            padding-left: 36px;
+                            margin-left: auto;
+                            margin-right: 0px;
+                        }
+                    }
+
+                    .mainSection, .loadingSection, .errorSection {
+                        height: ~"calc(100% - @{total-h})";
+                    }
+
+                    .bottomSection {
+                        height: @bottom-h;
+                        padding: 11px 25px;
+                        border-top: 1px solid @color-border-medium2;
+                        background-color: @color-bg-list-hover;
+
+                        .buttonWrap {
+                            float: left;
+                        }
+
+                        button {
+                            margin-right: 10px;
+                            padding: 0 17px;
+
+                            &.btn-create {
+                                .icon {
+                                    position: relative;
+                                    top: -2px;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .hintArea {
+                    width: auto;
+                    height: auto;
+                    .center-align;
+                    text-align: center;
+                    max-width: 600px;
+
+                    b, .semibold {
+                        font-size: 16px;
+                    }
+
+                    .hint {
+                        margin-top: 8px
+                    }
+                }
+                .expandResult {
+                    position: absolute;
+                    top: 6px;
+                    left: 40px;
+                }
+
+                .topSection {
+                    padding-right: 50px !important;
+                }
+            }
+
+            .hintBar {
+                padding: 6px 50px 6px 8px;
+                display: none;
+
+                .sectionHeader {
+                    font-size: 16px;
+                }
+            }
+
+            .hint {
+                .hintBar {
+                    display: flex;
+                }
+            }
+
+            .closeResult {
+                position: absolute;
+                top: 7px;
+                right: 0px;
+                padding-left: 4px;
+                padding-right: 8px;
+                z-index: 3;
+                font-size: 14px;
+
+                &:after {
+                    content: "";
+                    display: block;
+                    width: 100%;
+                    height: 24px;
+                    background-color: @color-bg-default;
+                    position: absolute;
+                    top: -4px;
+                    left: 0px;
+                    z-index: -1;
+                    pointer-events: none;
+                }
+            }
+
+            .undock {
+                position: absolute;
+                top: 3px;
+                right: 26px;
+                padding: 4px;
+                z-index: 3;
+                font-size: 14px;
+            }
+        }
+
+        .tabBar {
+            .actions {
+                flex: 0 0 70px;
+                height: 24px;
+
+                button {
+                    height: 24px;
+                    line-height: 24px;
+
+                    .icon {
+                        font-size: 16px;
+                        line-height: 24px;
+                    }
+
+                    &.active {
+                        background-color: @color-hover-blue;
+                    }
+                }
+            }
+        }
+
+        #dagView {
+            height: ~"calc(100% - @{tabBar-h})";
+        }
+    }
+}
+
+#sqlViewContainer {
+    border-right: 1px solid @color-border-medium;
+}
+
+#sqlEditorSpace {
+    background-color: @color-bg-sqlEditor;
+    @topSectionHeight: 45px;
+    @total-height: @topSectionHeight;
+    .flex-display;
+    .flex-flow(column);
+    position: relative;
+    overflow: hidden;
+
+    .undock {
+        position: absolute;
+        top: 8px;
+        right: 40px;
+        font-size: 14px;
+    }
+
+    .close {
+        position: absolute;
+        font-size: 14px;
+        top: 4px;
+        padding: 4px;
+        right: 10px;
+    }
+
+    header {
+        border-bottom: 1px solid @color-border-medium2;
+        display: flex;
+        flex-wrap: wrap;
+        padding: 0px 54px 0px 8px;
+
+        .title {
+            line-height: 32px;
+            margin-right: auto;
+        }
+
+        .engine {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            margin-left: auto;
+            margin-right: 4px;
+            cursor: pointer;
+
+            .text {
+                font-size: 12px;
+            }
+
+            .text, .iconWrapper {
+                border: none;
+            }
+            .iconWrapper {
+                width: @height-sectionBar;
+                height: @height-sectionBar - 10;
+                text-align: center;
+                line-height: @height-sectionBar - 4;
+
+                .icon {
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .menu {
+            min-width: fit-content;
+
+            li {
+                padding-right: 10px;
+
+                &.active {
+                    color: @color-font-active-blue;
+                }
+            }
+        }
+
+        button, > i {
+            flex: 0 0 auto;
+            margin-top: 4px;
+            margin-right: 8px;
+            margin-bottom: 4px;
+
+            &.execute {
+                color: @color-icon-darkGreen;
+            }
+
+            &.saveFile, &.execute {
+                font-size: 13px;
+                line-height: 24px;
+            }
+
+            &.dropDownList {
+                overflow: visible;
+                float: none;
+                padding: 0;
+                width: 24px;
+                height: 20px;
+                margin-left: 4px;
+                margin-top: 6px;
+                outline: none;
+                border-radius: 4px;
+                border: none;
+
+                .icon {
+                    margin-top: 0px;
+                    font-size: 14px;
+                    line-height: 20px;
+                }
+
+                &.noOption {
+                    span {
+                        padding-right: 16px;
+                        width: 100%;
+                    }
+
+                    .iconWrapper {
+                        display: none;
+                    }
+                }
+
+                .list {
+                    top: 27px;
+                    width: 175px;
+                    font-size: 11px;
+                    font-weight: 400;
+
+                    li {
+                        text-align: left;
+                        height: 24px;
+                        line-height: 24px;
+                    }
+                }
+            }
+        }
+
+    }
+
+    .editSection {
+        width: 100%;
+        height: ~"calc(100% - @{total-height})";
+        flex: 1 1 100%;
+        position: relative;
+        overflow: hidden;
+        font-size: 13px;
+
+        .editArea {
+            .size(@width: 100%, @height: 100%);
+            .position(relative);
+        }
+
+        .CodeMirror-wrap {
+            height: 100%;
+        }
+        .CodeMirror-gutters {
+            background-color: @color-editor-gutter;
+        }
+
+        .CodeMirror-dialog {
+            padding: 0px .8em;
+            input {
+                height: 20px;
+                line-height: 20px;
+            }
+        }
+    }
+
+    .savingText, .tempTabText {
+        display: none;
+    }
+    &.saving:not(.hasTempTab) {
+        .sectionHeader {
+            margin-right: 0px;
+        }
+        .savingText {
+            display: block;
+            color: @color-bg-cancel-gray-hover;
+            margin: 0px auto 0px 8px;
+            padding-right: 4px;
+            line-height: @height-sectionBar + 2px;
+            .textOverflowOneLine;
+        }
+    }
+
+    &.hasTempTab {
+
+        .sectionHeader {
+            margin-right: 0px;
+        }
+        .tempTabText {
+            display: block;
+            color: @color-bg-cancel-gray-hover;
+            margin: 0px auto 0px 8px;
+            padding-right: 4px;
+            line-height: @height-sectionBar + 2px;
+            .textOverflowOneLine;
+        }
+
+        .saveFile, .execute {
+            display: none;
+        }
+    }
+}
+
+#sqlHintMenu, #sqlHintSubMenu {
+    z-index: @z-index-modalBackground - 1;
+}
+
+#sqlHintMenu {
+    &.table {
+        .columns, .udf {
+            display: none;
+        }
+    }
+
+    &.column {
+        .tables, .sqlFunc {
+            display: none;
+        }
+    }
+}
+
+#sqlHintSubMenu {
+    max-height: 200px !important;
+    width: 220px;
+
+    > ul {
+        max-height: 200px !important;
+    }
+
+    // .new {
+    //     color: @color-font-link-blue;
+    // }
+}
+
+#sqlTabView {
+    &.hasTempTab {
+        .tab:not(.active) {
+            // .xc-disabled;
+        }
+    }
+}
+
+#sqlTableArea {
+    @top-h: 32px;
+    &.loading, &.error {
+        .bottomSection button {
+            pointer-events: none;
+            opacity: @opacity-disabled;
+        }
+    }
+
+    .bottomSection {
+        display: none;
+    }
+    .mainSection {
+        height: ~"calc(100% - @{top-h})" !important;
+    }
+    &.dagTableMode {
+        .topSection {
+            .menuArea {
+                display: block;
+            }
+            .close {
+                display: block;
+            }
+            .slidingSearchWrap {
+                right: 82px;
+            }
+        }
+    }
+
+    .tableSection {
+        position: relative;
+        .viewWrap {
+            height: 100%;
+        }
+        .jsonCover {
+            display: none;
+        }
+    }
+
+    .topSection {
+        display: flex;
+        padding: 0px !important;
+        padding-right: 28px !important;
+        overflow: hidden;
+
+        .slidingSearchWrap {
+            right: 82px;
+        }
+
+        .searchbarArea {
+            .size(@max-width: 244px, @min-width: 20%);
+            float: left;
+
+            input {
+                padding-right: 85px;
+            }
+
+            .arrows {
+                top: 2px;
+            }
+        }
+
+        .close {
+            display: none;
+        }
+    }
+
+    .bottomSection {
+        .btn-create, .btn-export {
+            width: 170px;
+        }
+    }
+}
+
+#sqlTableListerArea {
+    .topSection {
+        .actionArea {
+            .action {
+                float: left;
+                margin-left: 8px;
+            }
+        }
+    }
+}
+
+#sqlTableListerArea {
+    &.loading {
+        .topSection {
+            .searchbarArea, .xc-action {
+                opacity: @opacity-disabled;
+                pointer-events: none;
+            }
+        }
+    }
+
+    .actionArea {
+        float: right;
+        flex: 0 0 auto;
+    }
+
+    .searchbarArea {
+        margin-left: auto;
+    }
+
+    .topSection {
+        display: flex;
+
+        .viewSchema {
+            width: auto;
+            padding: 0 3px;
+
+            .icon {
+                display: inline-block;
+                float: left;
+                margin-right: 3px;
+                left: 0;
+                transform: translate(0, -50%);
+            }
+
+            span {
+                float: right;
+                line-height: 24px;
+            }
+        }
+    }
+
+    .mainSection {
+        .row {
+            @w-creteTime: 180px;
+            @w-status: 120px;
+            @w-other: (@w-creteTime + @w-status) / 3;
+
+            > div {
+                width: ~"calc(100% / 3 - @{w-other})";
+            }
+
+            .createTime {
+                width: @w-creteTime;
+            }
+
+            .status {
+                width: @w-status;
+                // .activate {
+                //     color: @color-font-link-blue;
+                //     text-decoration: underline;
+                // }
+            }
+        }
+    }
+
+    .content {
+        padding-bottom: 8px;
+
+        .name {
+            span {
+                cursor: pointer;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+
+        .hintWrap {
+            width: 100%;
+            height: 100%;
+            display: flex;
+        }
+
+        .hint {
+            .size(@width: 120px, @height: 20px);
+            margin: auto;
+        }
+
+        .status {
+            span {
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+#sqlTableSchemaArea {
+    .actionArea {
+        button {
+            margin-right: 8px;
+            width: 68px;
+            padding-right: 8px;
+            padding-left: 0;
+            height: 20px;
+            line-height: 18px;
+
+            .icon {
+                font-size: 10px;
+            }
+        }
+    }
+
+    .mainSection {
+        .header {
+            .row {
+                > div {
+                    font-weight: 600;
+                }
+            }
+        }
+
+        .row {
+            @w-other: 150px;
+            @w-primaryKey: @w-other * 2;
+
+            > div {
+                width: ~"calc(50% - @{w-other})";
+            }
+
+            .primaryKey {
+                width: @w-primaryKey;
+            }
+            .columnIndex {
+                width: @w-primaryKey;
+            }
+        }
+
+        .content {
+            .msgRow {
+                &.error {
+                    padding: 15px;
+                    color: @color-text-error;
+                }
+            }
+        }
+    }
+}
+
+#sqlTableListerArea, #sqlTableSchemaArea {
+    .topSection {
+        .searchbarArea {
+            float: right;
+            max-width: 131px;
+
+            input {
+                padding-right: 10px;
+            }
+        }
+    }
+
+    .mainSection {
+        .header {
+            background-color: @color-bg-default;
+
+            .row:hover {
+                > div {
+                    outline: 1px solid #333333;
+                }
+            }
+        }
+
+        .row {
+            position: relative;
+            overflow: hidden;
+            display: flex;
+
+            > div {
+                position: relative;
+
+                .label {
+                    float: left;
+                    width: ~"calc(100% - 8px)";
+                    .textOverflowOneLine;
+                }
+
+                .sort {
+                    width: 8px;
+                    height: 100%;
+                    float: right;
+                }
+            }
+        }
+
+
+        .header {
+            .title {
+                position: relative;
+
+                .sort {
+                    .position(absolute, @top: 0px, @right: 10px);
+                    color: @color-icon-default;
+
+                    .sortIconWrap {
+                        .position(relative, @top: 5px);
+
+                        .icon {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .row {
+        > div {
+            font-size: 12px;
+        }
+    }
+}
+
+#sqlTableListerArea, #sqlTableSchemaArea, .sqlQueryHist {
+    .label {
+        font-weight: 600;
+    }
+
+    .row {
+        > div {
+            font-weight: normal;
+        }
+    }
+}

@@ -1,0 +1,153 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>io.confluent</groupId>
+    <artifactId>common</artifactId>
+    <version>5.1.0</version>
+  </parent>
+
+  <groupId>com.xcalar.connector</groupId>
+  <artifactId>kafka-connect-xcalar</artifactId>
+  <version>1.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>kafka-connect-xcalar</name>
+
+  <properties>
+    <gson.version>2.8.5</gson.version>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.apache.kafka</groupId>
+      <artifactId>connect-api</artifactId>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson.version}</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifest>
+              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+            </manifest>
+          </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <inherited>true</inherited>
+        <configuration>
+          <source>1.7</source>
+          <target>1.7</target>
+        </configuration>
+      </plugin>
+      <plugin>
+        <artifactId>maven-assembly-plugin</artifactId>
+        <configuration>
+          <descriptors>
+            <descriptor>src/main/assembly/package.xml</descriptor>
+          </descriptors>
+        </configuration>
+        <executions>
+          <execution>
+            <id>make-assembly</id>
+            <phase>package</phase>
+            <goals>
+              <goal>single</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>io.confluent</groupId>
+        <version>0.10.0</version>
+        <artifactId>kafka-connect-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <goals>
+              <goal>kafka-connect</goal>
+            </goals>
+            <configuration>
+              <title>Kafka Connect Xcalar</title>
+              <documentationUrl>https://www.xcalar.com</documentationUrl>
+              <description>
+                Xcalar.com
+              </description>
+              <!-- <logo>logos/xcalar.jpg</logo> -->
+
+              <supportProviderName>Confluent, Inc.</supportProviderName>
+              <supportSummary></supportSummary>
+              <supportUrl>https://docs.confluent.io/current/</supportUrl>
+              <!-- <supportLogo>logos/confluent.png</supportLogo> -->
+
+              <ownerUsername>xcalar</ownerUsername>
+              <ownerType>organization</ownerType>
+              <ownerName>Xcalar, Inc.</ownerName>
+              <ownerUrl>http://www.xcalar.com</ownerUrl>
+              <!-- <ownerLogo>logos/xcalar.png</ownerLogo> -->
+
+              <componentTypes>
+                <componentType>sink</componentType>
+              </componentTypes>
+
+              <tags>
+                <tag>Xcalar</tag>
+              </tags>
+
+              <confluentControlCenterIntegration>true</confluentControlCenterIntegration>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-checkstyle-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>validate</id>
+            <phase>validate</phase>
+            <configuration>
+              <suppressionsLocation>checkstyle/suppressions.xml</suppressionsLocation>
+            </configuration>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+    <resources>
+      <resource>
+        <directory>src/main/resources</directory>
+        <filtering>true</filtering>
+      </resource>
+    </resources>
+  </build>
+  <repositories>
+    <repository>
+      <id>confluent</id>
+      <name>Confluent</name>
+      <url>http://packages.confluent.io/maven/</url>
+    </repository>
+  </repositories>
+</project>

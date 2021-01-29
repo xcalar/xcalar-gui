@@ -1,0 +1,17 @@
+{
+  "name": "zdserver",
+  "version": "1.0.0",
+  "main": "zdServer.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "http": "^0.0.0"
+  },
+  "devDependencies": {},
+  "description": ""
+}

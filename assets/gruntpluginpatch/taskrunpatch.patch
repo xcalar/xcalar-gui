@@ -1,0 +1,22 @@
+--- taskrun.js	2014-03-19 12:28:23.000000000 -0700
++++ taskrun-patched.js	2018-02-14 13:33:37.646127027 -0800
+@@ -102,7 +102,18 @@
+ 
+     // Trigger livereload if necessary
+     if (this.livereload && (this.livereloadOnError || !taskFailed)) {
+-      this.livereload.trigger(Object.keys(this.changedFiles));
++      /**
++        dont send any less files to livereload server,
++        this way browser will reload without doing refresh.
++       */
++      var lesslessList = [];
++      for ( var key of Object.keys(this.changedFiles) ) {
++        if ( !key.endsWith('.less') ) {
++          lesslessList.push(key);
++        }
++      }
++      this.livereload.trigger(lesslessList);
++      //this.livereload.trigger(Object.keys(this.changedFiles)); // what original plugin does
+       this.changedFiles = Object.create(null);
+     }
+     return time;

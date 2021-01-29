@@ -1,0 +1,91 @@
+#loadScreen {
+    z-index: @z-index-workbook + 1;
+    @w-tabSection: 157px;
+
+    > .topBar {
+        padding-left: 8px;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 32px;
+    }
+
+    .contentSection {
+        height: ~"calc(100% - 32px)";
+        display: flex;
+        flex-direction: row;
+        padding: 0;
+
+        > .tabSection {
+            flex: 0 0 @w-tabSection;
+            border-right: 1px solid @color-border-medium2;
+
+            li {
+                height: 30px;
+                line-height: 30px;
+                padding: 0 8px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: @color-bg-dagTabActive;
+                }
+
+                &.active {
+                    background-color: @color-bg-dagTabActive;
+                }
+            }
+        }
+
+        > .panelSection {
+            width: ~"calc(100% - @{w-tabSection})";
+        }
+    }
+
+    #datastorePanel {
+        display: block;
+        padding-left: 0;
+        &.table, &.load, &.loadHistory {
+            .rightSection {
+                margin-left: 0;
+            }
+
+            #datastoreMenu {
+                display: none;
+            }
+        }
+
+        .topBar {
+            display: none;
+        }
+
+        #datastoreMenu {
+            background-color: @color-bg-modal;
+            width: 210px;
+            box-shadow:  0px 0px 1px @color-border-medium2;
+        }
+
+        .menuSection {
+            &.in, &.table {
+                display: none;
+            }
+        }
+
+        .mainContent {
+            height: 100%;
+            border-top: none;
+
+            .cardInstruction, .cardContainer {
+                background-color: @color-bg-modal;
+            }
+        }
+
+        #datastore-in-view {
+            #datastore-in-view-topBar {
+                display: none;
+            }
+
+            .viewSection {
+                height: 100%;
+            }
+        }
+    }
+}

@@ -1,0 +1,65 @@
+@font-face{
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('./WOFF2/TTF/SourceCodePro-Regular.ttf.woff2') format('woff2'),
+         url('./WOFF/OTF/SourceCodePro-Regular.otf.woff') format('woff'),
+         url('./OTF/SourceCodePro-Regular.otf') format('opentype'),
+         url('./TTF/SourceCodePro-Regular.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Code Pro';
+    font-weight: 400;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('./WOFF2/TTF/SourceCodePro-It.ttf.woff2') format('woff2'),
+         url('./WOFF/OTF/SourceCodePro-It.otf.woff') format('woff'),
+         url('./OTF/SourceCodePro-It.otf') format('opentype'),
+         url('./TTF/SourceCodePro-It.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Code Pro';
+    font-weight: 500;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('./WOFF2/TTF/SourceCodePro-Medium.ttf.woff2') format('woff2'),
+         url('./WOFF/OTF/SourceCodePro-Medium.otf.woff') format('woff'),
+         url('./OTF/SourceCodePro-Medium.otf') format('opentype'),
+         url('./TTF/SourceCodePro-Medium.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Code Pro';
+    font-weight: 500;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('./WOFF2/TTF/SourceCodePro-MediumIt.ttf.woff2') format('woff2'),
+         url('./WOFF/OTF/SourceCodePro-MediumIt.otf.woff') format('woff'),
+         url('./OTF/SourceCodePro-MediumIt.otf') format('opentype'),
+         url('./TTF/SourceCodePro-MediumIt.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Code Pro';
+    font-weight: 600;
+    font-style: normal;
+    font-stretch: normal;
+    src: url('./WOFF2/TTF/SourceCodePro-Semibold.ttf.woff2') format('woff2'),
+         url('./WOFF/OTF/SourceCodePro-Semibold.otf.woff') format('woff'),
+         url('./OTF/SourceCodePro-Semibold.otf') format('opentype'),
+         url('./TTF/SourceCodePro-Semibold.ttf') format('truetype');
+}
+
+@font-face{
+    font-family: 'Source Code Pro';
+    font-weight: 600;
+    font-style: italic;
+    font-stretch: normal;
+    src: url('./WOFF2/TTF/SourceCodePro-SemiboldIt.ttf.woff2') format('woff2'),
+         url('./WOFF/OTF/SourceCodePro-SemiboldIt.otf.woff') format('woff'),
+         url('./OTF/SourceCodePro-SemiboldIt.otf') format('opentype'),
+         url('./TTF/SourceCodePro-SemiboldIt.ttf') format('truetype');
+}

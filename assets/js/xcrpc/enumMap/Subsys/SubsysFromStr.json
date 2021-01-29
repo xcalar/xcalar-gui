@@ -1,0 +1,25 @@
+{
+    "hlo" : 0,
+    "fs" : 1,
+    "str" : 2,
+    "mem" : 3,
+    "sys" : 4,
+    "tupleGen" : 5,
+    "math" : 6,
+    "ioGen" : 7,
+    "ldm" : 8,
+    "util" : 9,
+    "Msg" : 10,
+    "UsrNodeMain" : 11,
+    "UsrNode" : 12,
+    "PM" : 13,
+    "Config" : 14,
+    "NS" : 15,
+    "BC" : 16,
+    "Stat" : 17,
+    "TLC" : 18,
+    "SchedIos" : 19,
+    "memhog" : 20,
+    "libapis" : 21
+}
+

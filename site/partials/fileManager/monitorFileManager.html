@@ -1,0 +1,18 @@
+<div id="monitorFileManager" class="modalContainer large">
+  <header class="modalHeader">
+    <span class="text">
+      <%= dicts.fileManager.monitorMenuTitle %>
+    </span>
+    <div class="close" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <section class="modalMain">
+    include "../fileManager/fileManager.html"
+  </section>
+  <section class="modalBottom">
+    <button type="button" class="btn btn-cancel cancel">
+      <%= dicts.common.Close %>
+    </button>
+  </section>
+</div>

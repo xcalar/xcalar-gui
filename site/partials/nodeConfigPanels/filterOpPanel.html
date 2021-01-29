@@ -1,0 +1,82 @@
+<section id="filterOpPanel" class="xc-hidden opPanel generalOpPanel">
+<header>
+    <div class="row">
+        <div class="title"><%= dicts.opsView.filter %></div>
+        <div class="subTitle"></div>
+    </div>
+    <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+</header>
+<div class="mainContent">
+    <div class="opSection">
+        <p class="mainInstructions instrText"><%= dicts.opsView.filterInstr %>
+          <i class="qMark icon xi-unknown"
+            data-toggle="tooltip"
+            data-container="body"
+            data-placement="auto top"
+            data-title="<%= dicts.opsView.filterInstrTip %>">
+          </i>
+        </p>
+        <div class="divider"></div>
+        <div class="group filterGroup firstGroup">
+            <div class="catFuncHeadings clearfix subHeading">
+                <div class="filterFnTitle"><%= dicts.opsView.filterFunc %>:
+                  <i class="qMark icon xi-unknown"
+                    data-toggle="tooltip"
+                    data-container="body"
+                    data-placement="auto top"
+                    data-title="<%= dicts.opsView.filterFuncTip %>">
+                  </i>
+                </div>
+                <div class="altFnTitle">No Filter Function Chosen</div>
+                <i class="icon xi-minus minGroup"></i>
+            </div>
+            <div class="dropDownList firstList functionsList" data-fnlistnum="0">
+                <input class="text inputable autocomplete functionsInput" autocomplete="off" data-fninputnum="0" tabindex="10" spellcheck="false">
+                <div class="iconWrapper dropdown">
+                    <i class="icon xi-arrow-down"></i>
+                </div>
+                <div class="list genFunctionsMenu">
+                    <ul data-fnmenunum="0"></ul>
+                    include "../../util/menuScrollArea.html"
+                </div>
+            </div>
+            <div class="descriptionText"></div>
+            <div class="argsSection inactive"></div>
+        </div>
+        <!-- end filter group -->
+        <div class="andOrToggle">
+            <div class="instr">
+            <%= dicts.opsView.andOrFilter %>
+            <!-- <div class="hint csHelp" data-topic="filterMultiple" title="<%= dicts.TooltipTStr.CSHelp %>" data-toggle="tooltip" data-container="body">
+                <i class="icon xi-help fa-12"></i>
+            </div> -->
+            </div>
+            <div class="switchWrap">
+            <div class="switchLabel">
+                <%= dicts.opsView.or %>
+            </div>
+            <div class="xc-switch switch andOrSwitch alwaysBail on">
+                <div class="slider"></div>
+            </div>
+            <div class="switchLabel">
+                <%= dicts.opsView.and %>
+            </div>
+            </div>
+        </div>
+        <div class="addArgWrap addArgWrapSmall addExtraGroup">
+            <button class="btn btn-secondary btn-100-rounded addArg">
+            <i class="icon xi-plus"
+              data-toggle="tooltip"
+              data-container="body"
+              data-placement="auto top"
+              data-title="If required, apply more functions by expanding this option."
+            ></i>
+            </button>
+            <span class="text"><%= dicts.opsView.additional %></span>
+        </div>
+        <div class="strPreview"></div> <!-- this gets filled by JS -->
+    </div>
+    include "opPanelAdvancedSection.html"
+    include "opPanelBottomSection.html"
+</div>
+</section>

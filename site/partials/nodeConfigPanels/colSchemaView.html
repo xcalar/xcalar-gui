@@ -1,0 +1,46 @@
+<div class="xc-colSchema colSchemaSection">
+  <!-- buttons -->
+  <div class="buttonSection">
+    <div class="detect xc-action"
+    data-toggle="tooltip"
+    data-placement="auto top"
+    data-container="body"
+    data-original-title="<%= dicts.smartCast.detectHint %>"
+    >
+      <i class="icon xi-magic-wand"></i>
+      <span><%= dicts.smartCast.detect %></span>
+    </div>
+    <div class="clear xc-action"
+    data-toggle="tooltip"
+    data-placement="auto top"
+    data-container="body"
+    data-original-title="<%= dicts.smartCast.clearAllHint %>"
+    >
+      <i class="icon xi-select-none"></i>
+      <span><%= dicts.smartCast.clearAll %></span>
+    </div>
+  </div>
+  <!-- list section -->
+  <div class="listSection">
+    <div class="title">
+      <div class="part">
+        <div class="name"><%= dicts.smartCast.colName %></div>
+        <div class="type"><%= dicts.common.DataType %></div>
+    </div>
+    </div>
+    <div class="content"></div>
+    <div class="addColumn addArgWrap addArgWrapSmall">
+      <button class="addArg btn btn-secondary btn-100-rounded">
+        <i class="icon xi-plus"></i>
+      </button>
+      <span class="text"><%= dicts.common.AddCol %></span>
+      <i class="qMark icon xi-unknown addColHint"
+      data-toggle="tooltip"
+      data-container="body"
+      data-placement="auto top"
+      data-title="<%= dicts.smartCast.addColHint %>">
+      </i>
+    </div>
+  </div>
+  <!-- end of list section -->
+</div>

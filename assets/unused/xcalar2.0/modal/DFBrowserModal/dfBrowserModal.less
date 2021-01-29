@@ -1,0 +1,42 @@
+#dfBrowserModal {
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 480px);
+    z-index: @z-index-modal + 1;
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{h-without-main})");
+
+        .saveAs {
+            height: 30px;
+            margin-bottom: 10px;
+
+            input {
+                width: ~"calc(100% - 62px)";
+                margin-left: 3px;
+            }
+        }
+
+        .fileList {
+            height: ~"calc(100% - 40px)";
+
+            .gridIcon {
+                color: @color-font-edge;
+                font-size: 14px;
+            }
+
+            .fileName {
+                opacity: 0.8;
+                cursor: default;
+            }
+
+            .listView {
+                border: 1px solid @color-border-medium2;
+                height: ~"calc(100% - 31px)";
+            }
+        }
+    }
+
+    .sortSection {
+        display: none;
+    }
+}

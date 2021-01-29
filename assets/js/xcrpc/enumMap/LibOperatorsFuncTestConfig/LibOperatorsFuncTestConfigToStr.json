@@ -1,0 +1,27 @@
+{
+    "0" : "LibOperatorsGarbageCollectionCycle",
+    "1" : "LibOperatorsNumCycles",
+    "2" : "LibOperatorsNumUsers",
+    "3" : "LibOperatorsNumWorkersPerUser",
+    "4" : "LibOperatorsNumLoaders",
+    "5" : "LibOperatorsDatasetPath",
+    "6" : "LibOperatorsYelpDatasetPath",
+    "7" : "LibOperatorsMemoryDatasetPath",
+    "8" : "LibOperatorsDatasetSize",
+    "9" : "LibOperatorsPctChanceOfTableDrop",
+    "10" : "LibOperatorsPctChanceOfDatasetDrop",
+    "11" : "LibOperatorsPctChanceOfPubTabletDrop",
+    "12" : "LibOperatorsPctChanceOfPubTabletDel",
+    "13" : "LibOperatorsPctChanceOfVariableDrop",
+    "14" : "LibOperatorsPctChanceOfColDrop",
+    "15" : "LibOperatorsPctChanceOfColExport",
+    "16" : "LibOperatorsPctChanceOfAscendingSort",
+    "17" : "LibOperatorsPctChanceOfCancel",
+    "18" : "LibOperatorsKeepRetinas",
+    "19" : "LibOperatorsChildrenKillerTimeoutSecs",
+    "20" : "LibOperatorsFNFPercent",
+    "21" : "LibOperatorsNumCyclesPubTable",
+    "22" : "LibOperatorsMaxColsLoadMemWithSchema",
+    "23" : "LibOperatorsMaxRowstoCheckForCols"
+}
+

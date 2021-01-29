@@ -1,0 +1,118 @@
+<!-- Dataflow Link In Panel -->
+<section id="dfLinkInPanel" class="xc-hidden opPanel">
+    <!-- Header -->
+    <header class="headerSection">
+      <div class="row">
+            <div class="title"><%= dicts.DFLink.InHeader %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <!-- content -->
+    <div class="mainContent">
+      <div class="opSection">
+        <p class="mainInstructions instrText"><%= dicts.DFLink.InInstr %></p>
+        <div class="argsSection">
+            <div class="sourceSection">
+                <!-- source toggle -->
+                <div class="row clearfix">
+                    <div class="description">Source Type:</div>
+                    <div class="radioButtonGroup">
+                        <div class="radioButton xc-action active" data-option="node">
+                            <div class="radio">
+                                <i class="icon xi-radio-selected"></i>
+                                <i class="icon xi-radio-empty"></i>
+                            </div>
+                            <div class="label"><%= dicts.DFOut.Header %></div>
+                        </div>
+                        <div class="radioButton xc-action" data-option="table">
+                            <div class="radio">
+                                <i class="icon xi-radio-selected"></i>
+                                <i class="icon xi-radio-empty"></i>
+                            </div>
+                            <div class="label"><%= dicts.common.Table %></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- dataflow name -->
+                <div class="row clearfix dataflowName">
+                    <div class="subHeading clearfix">
+                        <div class="label"><%= dicts.DFLink.DFName %>:</div>
+                        <i class="qMark icon xi-unknown"
+                        data-toggle="tooltip"
+                        data-container="body"
+                        data-placement="auto top"
+                        data-title="<%= dicts.DFLink.DFNameHint %>">
+                        </i>
+                    </div>
+                    <div class="inputWrap">
+                    <div class="dropDownList">
+                        <input type="text" spellcheck="false" autocomplete="off">
+                        <div class="list hint autoHighlight">
+                        <ul></ul>
+                        include "../../util/menuScrollArea.html"
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- node name -->
+                <div class="row clearfix linkOutNodeName">
+                    <div class="subHeading clearfix">
+                        <div class="label"><%= dicts.DFLink.OutName %>:</div>
+                        <i class="qMark icon xi-unknown"
+                        data-toggle="tooltip"
+                        data-container="body"
+                        data-placement="auto right"
+                        data-title="<%= dicts.DFLink.OutNameHint %>"
+                        >
+                        </i>
+                    </div>
+                    <div class="inputWrap">
+                    <div class="dropDownList">
+                        <input type="text" spellcheck="false" autocomplete="off">
+                        <div class="list hint autoHighlight">
+                        <ul></ul>
+                        include "../../util/menuScrollArea.html"
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                <!-- source name (hidden by default)-->
+                <div class="row clearfix sourceTableName">
+                    <div class="subHeading clearfix">
+                        <div class="label"><%= dicts.common.TableName %>:</div>
+                        <i class="qMark icon xi-unknown"
+                        data-toggle="tooltip"
+                        data-container="body"
+                        data-placement="auto top"
+                        data-title="<%= dicts.DFLink.ResultSetTip %>">
+                        </i>
+                    </div>
+                    <div class="inputWrap">
+                        <input type="text" spellcheck="false" autocomplete="off">
+                    </div>
+                </div>
+            </div>
+          <!-- schema -->
+          <div class="row clearfix schema">
+            <div class="subHeading clearfix">
+                <div class="label"><%= dicts.DFLink.Schema %>:</div>
+                <!-- <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.DFLink.SchemaHint %>">
+                </i> -->
+            </div>
+            include "colSchemaView.html"
+          </div>
+          <!-- end of schema row -->
+        </div>
+        <!-- end of arg section -->
+      </div>
+      <!-- end of opsection -->
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </section>
+  <!-- End Of Dataflow Link In Panel -->

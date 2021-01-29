@@ -1,0 +1,251 @@
+/* Status Box */
+#statusBox {
+    .position(fixed);
+    padding: 5px;
+    display: none;
+    z-index: 100;
+
+    &.highZindex {
+        z-index: @z-index-locked + 3;
+    }
+
+    &.hasDetail {
+        .detail {
+            display: block;
+        }
+    }
+
+    .boxInnerWrap {
+        .position(relative);
+        .size(@width: 240px, @min-height: 100px, @max-height: 300px);
+        box-shadow: 0 0 4px 1px @color-bg-opaque3;
+        background-color: @color-bg-default;
+        z-index: 3;
+        .flex-display;
+        .align-items(stretch);
+
+        &:before, &:after {
+            content: "";
+            border-top: 7px solid transparent;
+            border-bottom: 7px solid transparent;
+            margin-left: -9px;
+        }
+        &:before {
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            margin-left: -10px;
+        }
+        &:after {
+            z-index: 1;
+        }
+    }
+
+    .vertBar {
+        .size(@width:50px, @min-height: 100px);
+        background-color: @color-error-border-light;
+        text-align: center;
+        color: @color-font-white;
+
+        .icon {
+            font-size: 24px;
+            margin-top: 14px;
+            display: none;
+            &.xi-error-outline {
+                color: @color-font-white;
+            }
+        }
+    }
+    .content {
+        width: ~"calc(100% - 50px)";
+        padding: 12px 24px 12px 12px;
+        overflow-y: auto;
+        .text-selection;
+    }
+
+    .close {
+        .position(absolute, @top: 14px, @right: 10px);
+        .size(14px, 14px);
+        display: inline-block;
+        font-weight: 600;
+    }
+
+    .title {
+        margin-bottom: 3px;
+        font-weight: 600;
+
+        .titleText {
+            display: inline-block;
+            .font(@size: 14px, @line-height: 15px);
+        }
+    }
+
+    .message, .detailContent {
+        .font(@size: 12px, @line-height: 16px);
+        white-space: normal;
+        word-wrap: break-word;
+    }
+
+    .detail {
+        display: none;
+
+        &.expand {
+            .detailContent {
+                display: block;
+            }
+        }
+
+        .detailTitle {
+            .font(@size: 12px, @color: @color-font-softBlue);
+            text-align: right;
+            text-decoration: underline;
+            margin: 5px 0;
+        }
+
+        .detailContent {
+            display: none;
+        }
+    }
+
+    &.active {
+        display: inline-block;
+    }
+
+    &.info {
+        .vertBar {
+            background-color: @color-bg-info-blue;
+            .xi-info-circle {
+                display: block;
+            }
+        }
+        .title {
+            .icon {
+                color: @color-font-select-blue;
+            }
+        }
+    }
+
+    &.error {
+        .vertBar {
+            .xi-error-outline {
+                display: block;
+            }
+        }
+        .title {
+            .icon {
+                color: @color-text-error;
+            }
+        }
+    }
+
+    .arrow {
+        .size(10px, 10px);
+        display: inline-block;
+        background-color: transparent;
+        .transform(rotate(45deg));
+        border: none;
+        z-index: 1;
+        box-shadow: 0 0 4px 2px rgba(0,0,0,.25);
+    }
+
+    &.right {
+        .arrow {
+            .position(absolute, @top: 38px, @left: 0);
+        }
+        .boxInnerWrap {
+            &:before, &:after {
+                .position(absolute, @top: 30px, @left: 0);
+            }
+            &:before {
+                border-right: 10px solid @color-error-border-light;
+            }
+            &:after {
+                border-right: 9px solid @color-error-border-light;
+                margin-right: -2px;
+            }
+        }
+        &.info {
+            .boxInnerWrap:before {
+                border-right: 10px solid @color-bg-info-blue;
+            }
+            .boxInnerWrap:after {
+                border-right: 9px solid @color-bg-info-blue;
+            }
+        }
+    }
+    &.left {
+        .arrow {
+            .position(absolute, @top: 38px, @right: 0);
+        }
+        .boxInnerWrap {
+            &:before, &:after {
+                .position(absolute, @top: 30px, @right: -10px);
+            }
+            &:before {
+                border-left: 10px solid @color-bg-opaque2;
+            }
+            &:after {
+                border-left: 9px solid @color-bg-default;
+                margin-right: 2px;
+            }
+        }
+        &.info {
+            .boxInnerWrap:before {
+                border-left: 10px solid @color-bg-default;
+            }
+        }
+    }
+    &.top {
+        .arrow {
+            .position(absolute, @left: 127px, @bottom: 0);
+        }
+        .boxInnerWrap {
+            &:before, &:after {
+                .position(absolute, @left: 129px, @bottom: -19px);
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+            }
+            &:before {
+                border-top: 10px solid @color-bg-opaque2;
+            }
+            &:after {
+                border-top: 9px solid @color-bg-default;
+                margin-right: 2px;
+                bottom: -28px;
+                left: 128.5px;
+                height: 12px;
+            }
+        }
+        &.info {
+            .boxInnerWrap:before {
+                border-top: 10px solid @color-bg-default;
+            }
+        }
+    }
+    &.bottom {
+        .arrow {
+            .position(absolute, @left: 127px, @top: 0px);
+        }
+        .boxInnerWrap {
+            &:before, &:after {
+                .position(absolute, @left: 130px, @top: -18px);
+                border-left: 7px solid transparent;
+                border-right: 7px solid transparent;
+            }
+            &:before {
+                border-bottom: 10px solid @color-bg-default;
+            }
+            &:after {
+                border-bottom: 9px solid @color-bg-default;
+                margin-right: 2px;
+                bottom: 0px;
+                left: 128px;
+            }
+        }
+        &.info {
+            .boxInnerWrap:before {
+                border-bottom: 10px solid @color-bg-default;
+            }
+        }
+    }
+}
+/* End Of Status Box */

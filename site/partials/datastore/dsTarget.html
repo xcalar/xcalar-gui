@@ -1,0 +1,49 @@
+<!-- dsTarget info card -->
+<div id="dsTarget-info-card" class="cardContainer xc-hidden">
+  <!-- header -->
+  <div class="cardHeader">
+    <header class="title"><%= dicts.dsTarget.TargetInfo %></header>
+  </div>
+  <!-- instuction -->
+  <div class="cardInstruction oneLine">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span><%= dicts.dsTarget.TargetInfoInstr %></span>
+    </div>
+  </div>
+  <!-- cardMain -->
+  <div class="cardMain">
+    <form target="_blank" autocomplete="off">
+      <!-- Top Form -->
+      <div class="formSection name">
+        <!-- target name -->
+        <div class="formRow">
+          <header class="formTitle"><%= dicts.common.Name %>:</header>
+          <span class="text"></span>
+        </div>
+      </div>
+      <div class="formSection type">
+        <!-- target type -->
+        <div class="formRow type">
+          <header class="formTitle"><%= dicts.dsTarget.Type %>:</header>
+          <span class="text"></span>
+        </div>
+      </div>
+      <!-- end of Top Form -->
+      <!-- Bottom Form -->
+      <div class="formSection params">
+        <div class="formRow">
+          <header class="formTitle"><%= dicts.dsTarget.TargetParams %>:</header>
+        </div>
+        <div class="formContent"></div>
+      </div>
+      <!-- end of Bottom form -->
+      <div class="formButton">
+        <button id="dsTarget-import" class="btn btn-submit btn-secondary" type="button"><%= dicts.dsTarget.ImportData %></button>
+        <button id="dsTarget-delete" class="btn btn-cancel" type="button"><%= dicts.dsTarget.DELETETARGET %></button>
+      </div>
+    </form>
+  </div>
+  <!-- end card main -->
+</div>
+<!-- end of dsTarget info card -->

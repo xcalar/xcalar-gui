@@ -1,0 +1,94 @@
+<!-- Export Operation Panel -->
+<section id="exportOpPanel" class="xc-hidden opPanel">
+    <!-- Project Header -->
+    <header class="headerSection">
+        <div class="row">
+            <div class="title"><%= dicts.exportView.header %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <!-- content -->
+    <div class="mainContent">
+        <div class="export opSection">
+            <p class="instructions instrText"><%= dicts.exportView.instr %></p>
+            <!-- export View Top Section-->
+            <section class="modalTopMain">
+                <div id="exportOpColumns" class="exportColumnsSection formRow">
+                    <div class="subHeading clearfix">
+                        <div class="label"><%= dicts.exportView.colsToExport %>:</div>
+                        <i class="qMark icon xi-unknown"
+                            data-toggle="tooltip"
+                            data-container="body"
+                            data-placement="auto top"
+                            data-title="<%= dicts.exportView.colInstr %>">
+                        </i>
+                    </div>
+                    <div class="columnOptions">
+                        <div class="toggleColumnCollapse">
+                            <i class="icon xi-minus" data-toggle="tooltip" data-container="body" data-original-title="Minimize column list"></i>
+                            <i class="icon xi-plus" data-toggle="tooltip" data-container="body" data-original-title="Maximize column list"></i>
+                        </div>
+                        <div class="checkboxWrap selectAllWrap">
+                            <div class="text"><%= dicts.common.SelectAll %></div>
+                            <div class="checkbox">
+                                <i class="icon xi-ckbox-empty fa-13"></i>
+                                <i class="icon xi-ckbox-selected fa-13"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="columnsToExport columnsWrap flexWrap clearfix">
+                        <div class="searchArea">
+                            <div class="searchBox">
+                                <input type="text" class="searchInput xc-input" placeholder="Search Columns" spellcheck="false" autocomplete="off">
+                                <i class="icon xi-search colSearchIcon"></i>
+                            </div>
+                            <div class="filterHint"><%= dicts.dataflow.filterHint %></div>
+                            <div class="list">
+                                <ul></ul>
+                                include "../../util/menuScrollArea.html"
+                            </div>
+                        </div>
+                        <ul class="cols"></ul>
+                        <div class="hint noColsHint empty"><%= dicts.dataflow.noColsHint %></div>
+                    </div>
+                    <!-- rename section -->
+                    <div class="renameSection clearfix xc-hidden">
+                        <div class="subHeading clearfix">
+                        <div><%= dicts.common.ColRenames %></div>
+                        </div>
+                        <p><%= dicts.common.ColRenameInstr %></p>
+                        <div class="tableRenames">
+                        <div class="subSubHeading clearfix">
+                            <div><%= dicts.exportView.CurrentColName %></div>
+                            <div><%= dicts.exportView.NewColName %></div>
+                        </div>
+                        <div class="renamePart"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="exportDriver formRow">
+                    <div class="subHeading clearfix">
+                        <div class="label">Export Method:</div>
+                    </div>
+                    <div id="exportDriverList" class="dropDownList">
+                        <input readonly id="exportDriver" class="text" type="text" value="" spellcheck="false" autocomplete="off">
+                        <div class="iconWrapper">
+                            <i class="icon xi-arrow-down"></i>
+                        </div>
+                        <div class="list">
+                            <ul class="exportDrivers"></ul>
+                            include "../../util/menuScrollArea.html"
+                        </div>
+                    </div>
+                    <div class="descriptionText"></div>
+                </div>
+                <div class="argsSection"></div>
+            </section>
+        </div>
+        include "opPanelAdvancedSection.html"
+        include "opPanelBottomSection.html"
+    </div>
+</section>
+<!-- End of Export View -->

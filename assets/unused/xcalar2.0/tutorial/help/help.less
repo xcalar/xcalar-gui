@@ -1,0 +1,328 @@
+#helpPanel {
+    .mainContent {
+        overflow-y: auto;
+        margin-top: @height-topBar;
+    }
+}
+
+#helpTopBar {
+    width: 50%;
+    min-width: 500px;
+    padding-right: 306px;
+    position: absolute;
+    right: 0px;
+
+    .title {
+        display: none;
+    }
+}
+
+#tutorial-search {
+    .size(@width: 100%, @height: 100%);
+    float: right;
+
+    .input-box(@w: ~"calc(100% - 60px)", @h: 35px);
+    input {
+        float: left;
+        .vertical-align;
+        background-color: @color-bg-default;
+    }
+
+    .rightArea {
+        padding-right: 15px;
+    }
+
+    .icon {
+        color: @color-bg-pinkish-grey;
+    }
+}
+
+#tutorialDownloadPanel {
+    &.admin {
+        .install {
+            display: block !important;
+        }
+    }
+
+    &.wait, &.error, &.hint {
+        .infoCard {
+            display: block;
+        }
+
+        .category {
+            display: none;
+        }
+    }
+
+    &.refreshing {
+        .items {
+            opacity: @opacity-disabled;
+            pointer-events: none;
+        }
+    }
+
+    &.wait {
+        .infoCard {
+            .waitSection {
+                display: block;
+            }
+        }
+    }
+
+    &.error {
+        .infoCard {
+            .errorSection {
+                display: block;
+            }
+        }
+    }
+
+    &.hint {
+        .infoCard {
+            .hintSection {
+                display: block;
+            }
+        }
+    }
+
+    .infoCard {
+        display: none;
+        .size(@height: 150px);
+
+        .cardMain {
+            padding: 20px;
+            .size(@height: ~"calc(100% - @{height-card-header})");
+        }
+
+        .hintSection, .errorSection, .waitSection {
+            display: none;
+            overflow: hidden;
+            .vertical-align;
+            text-align: center;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hintSection {
+            .size(@width: 250px);
+
+            .icon, .text {
+                display: inline-block;
+                float: left;
+                .size(@height: 20px);
+                line-height: 20px;
+            }
+
+            .icon {
+                .size(@width: 20px);
+                margin-right: 16px;
+                .font(@size: 24px, @color: @color-bg-select-blue);
+            }
+
+            .text {
+                .font(@weight: 600, @size: 14px);
+            }
+        }
+
+        .errorSection {
+            display: none;
+            color: @color-table-red;
+        }
+
+        .waitSection {
+            display: none;
+            .size(@width: 200px, @height: 20px);
+        }
+    }
+
+    .category {
+        overflow-x: hidden;
+        overflow-y: auto;
+        padding: 10px 20px;
+        margin-bottom: 0;
+        border-top: 1px solid @color-border-medium2;
+
+        .cardHeader {
+            .flex(0 0 @height-card-header); // for IE;
+            background-color: @color-bg-default;
+
+            .title {
+                font-weight: 600;
+                .text-selection;
+                padding-left: 0;
+            }
+        }
+
+        .items {
+            padding: 0;
+        }
+
+        .item {
+            border-bottom: 1px solid @color-border-medium2;
+            .text-selection;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            .mainSection {
+                padding: 25px 0px;
+                padding-bottom: 20px; // logoArea margin takes up 10 more pixels
+                height: 110px;
+                .flex-display;
+
+                .logoArea {
+                    .size(60px, 60px);
+                    float: left;
+                    margin-right: 30px;
+                    line-height: 0px; // to remove white space
+                    padding: 12px;
+
+                    .icon {
+                        .size(@width: 36px, @height: 36px);
+                        font-size: 36px;
+                        color: @color-font-defaultInverse;
+                    }
+
+                    &.xi-system {
+                        background-image: linear-gradient(225deg, #849cb0, #44515c);
+                    }
+
+                    &.xi-data-in, &.xi-data-out {
+                        background-image: linear-gradient(192deg, #bacbd8, #849cb0);
+                    }
+
+                    &.xi-dfg2 {
+                        background-image: linear-gradient(209deg, #ff836f, #d94135);
+                    }
+
+                    &.xi-power, &.xi-SQLworkspace {
+                        background-image: linear-gradient(225deg, #0C76DA, #013B74);
+                    }
+
+                    &.xi-monitor {
+                        background-image: linear-gradient(225deg, #6CCAE0, #087891);
+                    }
+
+                    &.xi_smart {
+                        background-image: linear-gradient(192deg, #CD96E9, #510D73);
+                    }
+                }
+
+                .leftPart {
+                    .flex(1 1 auto);
+                    .flex-display;
+                    .flex-wrap(wrap);
+                    min-width: 280px;
+                }
+
+                .instruction {
+                    .flex(1 1 140px);
+                    overflow: hidden; // keeps from expanding too much
+                    padding-right: 30px;
+                    margin-bottom: -10px; // for when it moves to 2nd row
+
+                    .extensionName {
+                        .size(@height: 19px);
+                        .font(@size: 14px, @weight: 600);
+                    }
+
+                    .author {
+                        margin-top: 5px;
+                        .size(@height: 17px);
+                        .font(@size: 12px, @color: @color-font-greyish-brown);
+                    }
+
+                    .detail {
+                        margin-top: 5px;
+                        .size(@height: 34px);
+                        .font(@size: 12px, @color: @color-font-greyish-brown);
+                        display: block;
+
+                        // for chrome multi-line ellipsis
+                        display: -webkit-box;
+                        -webkit-line-clamp: 2;
+                        -webkit-box-orient: vertical;
+                    }
+                }
+
+                .rightPart {
+                    .flex(0 0 150px);
+                    .size(@width: 150px);
+                    float: right;
+                    .vertical-align;
+                    .buttonArea {
+                        .btn {
+                            &.installed {
+                                pointer-events: none;
+                                .btn-disabled;
+                            }
+                        }
+                    }
+                    .linkArea {
+                        text-align: center;
+                        margin-top: 8px;
+                        a {
+                            font-size: 12px;
+                            text-decoration: none;
+                            color: @color-font-link-blue;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.tooltip.tutorial {
+    @deep-yellow: @color-turbo;
+    pointer-events: initial;
+
+    opacity: 1 !important;
+    display: block !important;
+
+    &.z-10 {
+        z-index: 10 !important;
+    }
+
+    &.z-0 {
+        z-index: 0;
+    }
+
+    .tooltip-inner, .tooltip-arrow {
+        color: @color-font-form;
+        opacity: 1 !important;
+    }
+
+    .tooltip-arrow {
+        background-color: transparent !important;
+        border-top-color: @deep-yellow;
+    }
+
+    .tooltip-inner {
+        background-color: @color-chileanHeath;
+        border: 1px solid @deep-yellow;
+        box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    &.right {
+        .tooltip-arrow {
+            border-color: transparent;
+            border-right-color: @deep-yellow;
+        }
+    }
+
+    &.left {
+        .tooltip-arrow {
+            border-color: transparent;
+            border-left-color: @deep-yellow;
+        }
+    }
+
+    &.bottom {
+        .tooltip-arrow {
+            border-color: transparent;
+            border-bottom-color: @deep-yellow;
+        }
+    }
+}

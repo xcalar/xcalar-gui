@@ -1,0 +1,304 @@
+#workbookTopBar {
+    box-shadow: 0 1px 1px 0 rgba(101, 101, 101, 0.2);
+
+    .actionSection {
+        height: 100%;
+        padding: 6px 50px 6px 0;
+
+        button {
+            margin-right: 8px;
+            height: 20px;
+            line-height: 18px;
+        }
+
+        #browseWKBKbtn {
+            float: right;
+        }
+
+        .searchbarArea {
+            width: 185px;
+            height: 20px;
+            margin-left: 8px;
+            float: right;
+
+            input {
+                padding-left: 22px;
+                height: 20px;
+                line-height: 20px;
+                font-size: 12px;
+                color: @color-font-default;
+            }
+
+            .icon {
+                position: absolute;
+                top: 4px;
+                left: 5px;
+                color: @color-bg-cancel-gray-hover;
+                font-size: 14px;
+            }
+        }
+    }
+
+}
+
+#workbookPanel {
+    z-index: @z-index-workbook;
+    .position(absolute, @top: @height-topBar);
+    height: 100%;
+    background-color: @color-bg-body-gray;
+    box-shadow: 0px 0px 8px 2px rgba(0,0,0,0.3);
+    .transition(0.4s top ease-out);
+
+    #dialogWrap {
+        position: absolute;
+        width: 100%;
+        bottom: 100px;
+        opacity: 0;
+        pointer-events: none;
+        z-index: 1;
+
+        &.closeAttempt {
+            opacity: 1;
+            .transition(opacity 0.6s);
+        }
+        &.doneCloseAttempt {
+            opacity: 0;
+            .transition(opacity 0.6s);
+        }
+    }
+
+    > .topBar {
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        padding-left: @width-homeBtn + 15;
+    }
+
+    > .mainContent {
+        overflow: auto;
+        min-width: 1024px;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        border-color: transparent;
+        margin-left: 0px !important; // override menuopen styling
+        width: 100% !important;
+        background-color: @color-bg-2;
+    }
+
+    &.hidden{
+        top: -100%;
+    }
+
+    &.closeAttempt {
+        top: -5%;
+    }
+
+    .contentWrap {
+        height: 100%;
+    }
+
+    .bottomSection {
+        background-color: @color-bg-2;
+        height: 100%;
+    }
+
+    .inActive {
+        opacity: 0.5 !important;
+        pointer-events: none;
+    }
+
+    .workbookList {
+        height: ~"calc(100% - 1px)";
+        box-shadow: 0 2px 2px 0 rgba(101, 101, 101, 0.2);
+        @h: 40px;
+
+        .row {
+            height: @h + 1; // 1px border bottom
+            background-color: @color-bg-default;
+            position: relative;
+            display: flex;
+
+            > div {
+                height: @h;
+                line-height: @h;
+                width: 30%;
+            }
+
+            .name {
+                width: 250px;
+            }
+
+            .memUsage {
+                width: 200px;
+            }
+            .createdTime, .modifiedTime {
+                width: 160px;
+            }
+
+            .sessionId {
+                width: 181px;
+            }
+
+            .state {
+                width: 120px;
+            }
+        }
+
+        .header {
+            height: @h + 1;
+
+            .row {
+                cursor: default;
+            }
+
+            .title {
+                display: flex;
+                cursor: pointer;
+
+                > .icon {
+                    font-size: 12px;
+                    padding-left: 8px;
+                    padding-right: 8px;
+                    line-height:40px;
+                }
+
+                .label {
+                    flex: 0 1 auto;
+                    .textOverflowOneLine;
+                }
+            }
+
+            .sort {
+                position:relative;
+                margin-left: auto;
+                right: 0px;
+
+                .icon {
+                    font-size: 9px;
+                }
+                .sortIconWrap {
+                    top: 12px;
+                }
+            }
+        }
+
+        .content {
+            height: ~"calc(100% - @{h})";
+
+            .row {
+                &:hover {
+                    background-color: @color-bg-list-hover;
+                }
+                + .hintSection {
+                    display: none;
+                }
+            }
+
+            .hintSection {
+                font-size: 14px;
+                height: 20px;
+                max-width: 450px;
+                padding: 0 20px;
+                color: @color-font-default;
+                .center-align;
+                text-align: center;
+
+                .action {
+                    text-decoration: underline;
+                    color: @color-font-link-blue;
+                }
+            }
+        }
+
+        .workbookBox {
+            @tabHeight: 45px;
+
+            &.loading {
+                .loadSection {
+                    display: block;
+                }
+
+                i, > div:not(.loadSection) {
+                    display: none !important;
+                }
+            }
+
+            .loadSection {
+                position: relative;
+                opacity: 0.8;
+                display: none;
+                .size(100%, 100%);
+
+                .animatedEllipsisWrapper {
+                    .size(@width: 150px, @height: @h);
+                    .center-align;
+
+                    .animatedEllipsis {
+                        .font(@weight: 600);
+                    }
+                }
+            }
+
+            &.noMeta {
+                color: @color-font-greyish-brown;
+            }
+
+            &.open {
+                background-color: @color-bg-pinkish-grey;
+            }
+
+            .name {
+                &:hover {
+                    cursor: pointer;
+                    text-decoration: underline;
+                }
+
+                input {
+                    width: 100%;
+                    background-color: transparent;
+                    outline: none;
+
+                    &.focused, &:focus {
+                        border: 1px solid @color-border-softBlue;
+                        cursor: auto;
+                    }
+
+                    &.error {
+                        border: 1px solid @color-error-border;
+                    }
+                }
+
+                > div {
+                    width: 100%;
+                }
+            }
+
+            .sessionId {
+                &:hover {
+                    i {
+                        display: inline-block;
+                    }
+                }
+
+                div {
+                    float: left;
+                }
+
+                i {
+                    display: none;
+                    margin-left: 8px;
+                    font-size: 15px;
+                    height: @h;
+                    line-height: @h;
+                }
+            }
+
+            .dropDown {
+                position: absolute;
+                right: 20px;
+                top: 10px;
+            }
+        }
+    }
+}

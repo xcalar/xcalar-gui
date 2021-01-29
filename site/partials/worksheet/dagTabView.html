@@ -1,0 +1,54 @@
+<div class="tabBar xc-tabs">
+  <div id="dagTabView" class="tabView">
+    <!-- <div class="sqlPlanTab tabsSection">
+      <ul>
+        <li class="tab dagTab tooltipOverflow executeOnly sqlGraphTab" data-id="DF_SQLExecute" data-container="body" data-placement="auto top" data-title="Untitled1.sql Plan">
+          <div class="dragArea">
+            <i class="icon xi-ellipsis-v" data-toggle="tooltip" data-container="body" data-placement="auto top" data-original-title="Click and hold to drag"></i>
+          </div>
+          <i class="icon xi-menu-sql tabIcon"></i>
+          <div class="name nonedit">Untitled1.sql Plan</div>
+        </li>
+      </ul>
+    </div> -->
+    <div id="dagTabSectionTabs" class="tabsSection">
+      <ul></ul>
+      <div class="scrollArea top">
+        <i class="arrow icon xi-arrow-left"></i>
+      </div>
+      <div class="scrollArea bottom">
+        <i class="arrow icon xi-arrow-right"></i>
+      </div>
+    </div>
+    <div id="tabButton" class="addTab" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.resouceMenu.AddModule %>">
+      <i class="icon xi-plus"></i>
+    </div>
+  </div>
+</div>
+<!-- generalTabMenu is a template that is copied by AbstractTabManager.ts -->
+<div id="generalTabMenu" class="menu tabMenu">
+  <ul>
+    <li class="dag close" data-action="close">
+        <span class="label"><%= dicts.common.Close %></span>
+    </li>
+    <li class="dag closeOthers" data-action="closeOthers" >
+      <span class="label"><%= dicts.MenuTStr.CloseOthers %></span>
+    </li>
+    <li class="dag closeOthersRight" data-action="closeOthersRight" >
+      <span class="label"><%= dicts.MenuTStr.CloseOthersRight %></span>
+    </li>
+    <li class="dag duplicate" data-action="duplicate">
+      <span class="label"><%= dicts.common.Duplicate %></span>
+    </li>
+    <li class="dag rename" data-action="rename">
+      <span class="label"><%= dicts.common.Rename %></span>
+    </li>
+    <!-- TODO:
+      close all
+      duplicate (for sql and udf)
+      new tab to the right
+      copy name
+      permanently delete
+    -->
+  </ul>
+</div>

@@ -1,0 +1,49 @@
+<!-- HTML template for clause, should always be hidden -->
+<div data-xcid="templateClause" style="display:none">
+    <div class="joinClause">
+        <div data-xcid="castRow"></div>
+        <div><APP-ERRMSG></APP-ERRMSG></div>
+        <div class="row">
+            <div class="col col-left">
+                <APP-LEFTCOLUMNS></APP-LEFTCOLUMNS>
+            </div>
+            <div class="removeIcon {{delCss}}" (click)="onDelClick">
+                <div class="iconWrapper">
+                    <i class="icon xi-equal-circle fa-14"></i>
+                </div>
+            </div>
+            <div class="col col-right">
+                <APP-RIGHTCOLUMNS></APP-RIGHTCOLUMNS>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-xcid="templateCast" style="display: none">
+    <div class="castErr">
+        <div class="tooltip-inner"><APP-ERRORMSG></APP-ERRORMSG></div>
+        <i class="icon xi-arrow-down fa-8"></i>
+    </div>
+    <div class="row">
+        <div class="col col-left">
+            <div data-xcid="leftCastDropdown" class="dropDownList dropdownList-cast">
+                <div data-xcid="menuInput" class="text"></div>
+                <div class="iconWrapper dropdown"><i class="icon xi-arrow-down"></i></div>
+                <div class="list">
+                    <ul data-xcid="menuItems"></ul>
+                    include "../../util/menuScrollArea.html"
+                </div>
+            </div>            
+        </div>
+        <div class="col col-right">
+            <div data-xcid="rightCastDropdown" class="dropDownList dropdownList-cast">
+                <div data-xcid="menuInput" class="text"></div>
+                <div class="iconWrapper dropdown"><i class="icon xi-arrow-down"></i></div>
+                <div class="list">
+                    <ul data-xcid="menuItems"></ul>
+                    include "../../util/menuScrollArea.html"
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

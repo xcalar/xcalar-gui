@@ -1,0 +1,838 @@
+#wkbkMenu {
+    li {
+        height: 28px;
+        line-height: 28px;
+    }
+}
+
+#colMenu {
+    overflow: hidden;
+
+    .roundToFixed,
+    .divider {
+        display: none;
+    }
+}
+
+#colSubMenu {
+    max-height: none;
+
+    > ul {
+        display: none;
+        visibility: visible;
+        left: 0px;
+        margin-top: 0px;
+        position: static;
+    }
+
+
+
+    .textAlign, .sort, .changeFormat, .typeList, .resize {
+        .xi-tick {
+            float: right;
+            margin-right: 2px;
+            line-height: 16px;
+            display: none;
+        }
+    }
+    .typeList .xi-tick {
+        position: absolute;
+        right: 6px;
+        top: 5px;
+    }
+    .changeFormat.formatDefault {
+        .xi-tick {
+            display: block;
+        }
+    }
+
+    .textAlign, .sort, .changeFormat, .typeList, .resize {
+        .xi-tick {
+            line-height: @height-modeling-col-menu;
+        }
+    }
+
+    &.textAlignLeft .leftAlign .xi-tick {
+        display: block;
+    }
+    &.textAlignCenter .centerAlign .xi-tick {
+        display: block;
+    }
+    &.textAlignRight .rightAlign .xi-tick {
+        display: block;
+    }
+    &.textAlignWrap .wrapAlign .xi-tick {
+        display: block;
+    }
+
+    &.type-integer .isKnownType .type-integer .xi-tick {
+        display: block;
+    }
+    &.type-float .isKnownType .type-float .xi-tick {
+        display: block;
+    }
+    &.type-string .isKnownType .type-string .xi-tick {
+        display: block;
+    }
+    &.type-boolean .isKnownType .type-boolean .xi-tick {
+        display: block;
+    }
+    &.type-timestamp .isKnownType .type-timestamp .xi-tick {
+        display: block;
+    }
+    &.type-money .isKnownType .type-money .xi-tick {
+        display: block;
+    }
+    // XXX boolean cannot cast to timestamp as there is a crash
+    &.type-boolean .isKnownType .type-timestamp {
+        display: none;
+    }
+
+    &.sizedToheader .sizeToHeader .xi-tick {
+        display: block;
+    }
+    &.sizedTocontents .sizeToContents .xi-tick {
+        display: block;
+    }
+    &.sizedToall .sizeToFitAll .xi-tick {
+        display: block;
+    }
+
+    &.sortedAsc li.sort .xi-tick {
+        display: block;
+    }
+    &.sortedDesc .revSort .xi-tick {
+        display: block;
+    }
+
+    &.format-percent {
+        .changeFormat {
+            &.formatDefault {
+                .xi-tick {
+                    display: none;
+                }
+            }
+            &.formatPercent {
+                .xi-tick {
+                    display: block;
+                }
+            }
+        }
+    }
+}
+
+#tableMenu {
+    overflow: hidden;
+
+    .deleteTable,
+    .divider, .exitOp {
+        display: none;
+    }
+}
+
+#tableSubMenu {
+    & > ul {
+        display: none;
+        visibility: visible;
+        left: 0px;
+        margin-top: 0px;
+        position: static;
+    }
+}
+
+.menu {
+    .position(fixed);
+    .size(@width: 170px);
+    list-style: none;
+    padding: 0px;
+    display:none;
+    z-index: 22; // higher than bottom area's z-index of 21
+    cursor: pointer;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    .dropDown;
+    background-color: @color-bg-default;
+
+    &.noBorder {
+        li {
+            border-bottom: none;
+        }
+    }
+
+    &.locked {
+        cursor: auto;
+
+        li {
+            opacity: 0.4;
+            cursor: default;
+            pointer-events: none;
+        }
+    }
+
+    &.showingHotKeys {
+        .label {
+            display: inline;
+        }
+
+        .underline {
+            display: inline;
+            height: auto;
+            width: auto;
+            position: relative;
+
+            &::after {
+                content: "";
+                display: block;
+                width: 100%;
+                min-width: 6px;
+                height: 2px;
+                background-color: @color-font-edge;
+                position: absolute;
+                bottom: 0px;
+                left: 0px;
+            }
+        }
+
+        .join {
+            .underline::after {
+                bottom: -2px;
+            }
+        }
+    }
+
+    > ul {
+        overflow: auto;
+    }
+
+    .parentMenu {
+        &::after {
+            content: "";
+            .size(0, 0);
+            .position(absolute, @right: 3px, @bottom: 3px);
+            vertical-align: middle;
+            cursor: pointer;
+            opacity: @opacity-unhover;
+            border-top: 6px solid transparent;
+            border-right: 6px solid @color-font-edge;
+            pointer-events: none;
+        }
+        &.selected {
+            &::after {
+                opacity: @opacity-hover;
+            }
+        }
+    }
+
+    // XXX temporary fix
+    &.subMenu.tableMenu {
+        overflow: visible !important;
+    }
+
+    @liHeight: @height-modeling-col-menu;
+    li {
+        .position(relative);
+        padding: 0px 6px 0 8px;
+        border-bottom: 1px solid @color-border-menuItem;;
+        height: @liHeight;
+        line-height: @liHeight;
+        font-size: 11px;
+        font-weight: 400;
+        .noSelection;
+        text-align: left;
+
+        &.selected {
+            background-color: @color-selectedCell-light;
+        }
+
+        &.unavailable {
+            opacity: 0.7;
+            .icon, .label {
+                .xc-unavailable;
+            }
+        }
+
+        &.clickable {
+            .size(@height: 60px);
+
+            &.extensions {
+                .size(@height: auto);
+            }
+
+            span {
+                display: block;
+                float: none;
+            }
+
+            > div {
+                .size(@height: 20px);
+                line-height: 20px;
+                margin-top: 2px;
+                text-align: center;
+            }
+
+            > input {
+                margin-top: 2px;
+            }
+        }
+
+        input[type='number'] {
+            &::-webkit-outer-spin-button, &::-webkit-inner-spin-button {
+                -webkit-appearance: none;
+            }
+        }
+
+        .inputWrap {
+            .position(relative);
+
+            input {
+                padding: 0 22px;
+            }
+
+            .inputAction {
+                .size(@width: 18px, @height: 18px);
+                .position(absolute, @top: 1px, @right: 0);
+                background-color: @color-hover-blue;
+            }
+        }
+
+        .icon, .label {
+            float: left;
+        }
+
+        .icon {
+            .font(@size: 10px, @line-height: @liHeight, @color: @color-icon-default);
+            margin-right: 6px;
+            display: inline-block;
+            width: 10px;
+        }
+    }
+
+    input, .menuInput {
+        .size(@width: 160px, @height: 20px);
+        .font(@size: 12px, @line-height: 20px);
+        margin-left: -3px;
+        padding: 0 2px;
+        text-align: center;
+        border: 1px solid @color-border-medium2;
+        opacity: @opacity-unhover;
+
+        &:focus {
+            outline: none;
+            background-color: @color-bg-limedSpruce;
+            opacity: @opacity-hover;
+        }
+    }
+
+    .splitCol li {
+        .size(@height: 150px);
+    }
+
+    .divider {
+        border-top: 1px solid @color-bg-select-blue;
+    }
+
+    .visible {
+        visibility: visible !important;
+    }
+
+    .hidden {
+        display: none !important;
+    }
+
+    .inputSelected {
+        visibility: visible !important;
+    }
+
+    .filter ul {
+        .size(@width: 170px);
+        cursor: text;
+    }
+
+    .ellipsis {
+        letter-spacing: 1px;
+        float: none !important;
+        display: inline !important;
+        margin-left: 1px !important;
+    }
+
+    // START FASJ ICONS
+    .fasjIcon {
+        width: 23px;
+        height: 100%;
+        display: inline-block;
+        float: left;
+        margin-left: -2px;
+        line-height: 18px;
+        font-size: 14px;
+    }
+
+    .sort .fasjIcon {
+        font-size: 16px;
+        margin-left: -3px;
+        margin-top: -1px;
+        width: 24px;
+        margin-right: 0px !important;
+    }
+    // END FASJ ICONS
+
+    .newColumn {
+        display: none;
+    }
+
+    .changeDataType {
+        li.flexContainer {
+            height: 28px;
+            padding: 0;
+            // see common.less
+            .typeIcon;
+
+            .type.icon {
+                color: @color-icon-default;
+            }
+
+            .flexWrap.flex-left {
+                .flex(0 0 24px);
+                padding: 6px 5px;
+                position: relative;
+                height: 28px;
+                overflow: hidden;
+            }
+            .flexWrap.flex-right {
+                .flex(1 1 auto);
+                padding: 2px 8px;
+            }
+        }
+    }
+
+    .sort {
+        // indexed column cannot sort
+        .indexedColumn & {
+            display: none;
+        }
+
+        .icon {
+            .position(relative, @top: 1px);
+            margin-right: 5px;
+        }
+
+        .revSort .icon {
+            .position(relative, @top: 3px);
+        }
+        .sortUp, .sortDown {
+            left: -5px;
+            margin-right: 3px;
+        }
+
+        .tooltip {
+            display: none !important;
+        }
+    }
+
+    .multiColumn {
+        display: none;
+    }
+
+    .roundToFixed {
+        display: none;
+    }
+
+    .unavailable {
+        cursor: default !important;
+        .dropdownBox {
+            opacity: 0 !important;
+        }
+    }
+
+    .splitCol {
+        display: none;
+    }
+
+    &.type-string {
+        .splitCol {
+            display: block;
+        }
+    }
+
+    &.type-newColumn {
+        .hideColumn {
+            display: none;
+        }
+        .newColumn {
+            display: list-item;
+        }
+    }
+
+    &.type-singleColumn {
+        .label {
+            &.single {
+                display: inline;
+            }
+            &.multiple {
+                display: none;
+            }
+        }
+    }
+    &.type-multiColumn {
+        .label {
+            &.single {
+                display: none;
+            }
+            &.multiple {
+                display: inline;
+            }
+        }
+
+        .splitCol {
+            display: none;
+        }
+        li.sort:not(.parentMenu), .revSort {
+            display: none;
+        }
+    }
+
+    .format {
+        display: none;
+    }
+
+    &.type-number, &.type-mixed, &.type-integer, &.type-float {
+        .format {
+            display: list-item;
+        }
+    }
+
+    &.type-float {
+        .roundToFixed {
+            display: list-item;
+        }
+    }
+
+    &.type-data {
+        li {
+            display: none;
+        }
+        .minimize, .textAlign, .resize {
+            display: list-item;
+        }
+    }
+
+    .maximize {
+        display: none;
+    }
+
+    &.type-hidden {
+        .minimize {
+            display: none;
+        }
+        .maximize {
+            display: list-item;
+        }
+        .resize {
+            .xi-tick {
+                display: none !important;
+            }
+        }
+    }
+
+    // lis dealing with exiting FASJ
+    .exitOp {
+        display: none;
+    }
+
+    .tdDropdown {
+        display: none;
+    }
+
+    &.tdMenu {
+        &.long {
+            width: 195px;
+        }
+
+        .thDropdown {
+            display: none !important;
+        }
+
+        .tdDropdown {
+            display: list-item;
+        }
+
+        .tdFilter, .tdExclude {
+            .plural, .preFormatted {
+                display: none;
+            }
+            &.multiCell {
+                .default {
+                    display: none;
+                }
+                .plural {
+                    display: inline;
+                }
+                .preFormatted {
+                    display: none;
+                }
+            }
+            &.preFormatted {
+                .default {
+                    display: none;
+                }
+                .preFormatted:not(.plural) {
+                    display: inline;
+                }
+                &.multiCell {
+                    .preFormatted {
+                        display: none;
+                        &.plural {
+                            display: inline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+#cellMenu {
+    &.noOperation {
+        li:not(.tdCopy) {
+            display: none;
+        }
+    }
+}
+
+#tableMenu, #tableSubMenu, #colMenu, #colSubMenu, #cellMenu {
+    z-index: @z-index-popupUndocked + 5;
+}
+
+// colmenu dropdown option when in FASJ mode
+#container.columnPicker {
+    .topHeader .xi-sort {
+        visibility: hidden;
+        pointer-events: none;
+    }
+    .sortIcon {
+        pointer-events: none;
+    }
+
+    #colMenu, #tableMenu {
+        li, .divider {
+            display: none !important;
+        }
+    }
+
+    &.formOpen {
+        #colMenu, #tableMenu {
+            .exitMainMenuOp {
+                display: list-item !important;
+            }
+        }
+    }
+}
+
+.menu, .list {
+    background-color: @color-bg-menu;
+}
+
+//scrollable list styling
+.menu, .list, .xcListScroller {
+    overflow: hidden;
+    ul, .xcListScrollerWrap {
+        overflow: auto;
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+    .scrollArea {
+        position: absolute;
+        width: 100%;
+        height: 14px;
+        background-color: @color-icon-hoverBgMed;
+        opacity: 0;
+        z-index: 1;
+        left: 0;
+        .transition(opacity 0.4s ease-in-out 0s);
+
+        &.active {
+            opacity: 0.5;
+            .transition(opacity 0.4s ease-in-out 0s);
+        }
+
+        &.mouseover, &:hover {
+            opacity: @opacity-unhover;
+            .arrow {
+                opacity: @opacity-unhover;
+            }
+        }
+
+        &.stopped {
+            display: none !important;
+        }
+
+        &.top {
+            top: 0;
+        }
+        &.bottom {
+            bottom: 0;
+        }
+
+        .arrow {
+            width: 100%;
+            height: 14px;
+            line-height: 14px;
+            font-size: 10px;
+            text-align: center;
+            pointer-events: initial;
+            opacity: 1;
+            color: @color-font-defaultInverse;
+            float: left;
+        }
+    }
+    &.xcListScrollerHorizontal {
+       .scrollArea {
+           top: 0px;
+           width: 20px;
+           height: 100%;
+        //    background-color: @color-bg-2;
+
+            &.active {
+                opacity: 0.6;
+            }
+            &.top {
+                z-index: 2;
+                .arrow {
+                    width: 18px;
+                }
+            }
+
+            &.bottom {
+                left: auto;
+                right: 0;
+            }
+
+            .arrow {
+                height: 19px;
+                line-height: 19px;
+                font-size: 12px;
+                // color: @color-font-edge;
+                .vertical-align;
+            }
+       }
+    }
+}
+
+.xcListScrollerWrap {
+    scrollbar-width: none; // for firefox
+    -ms-overflow-style: none; // for Edge
+}
+
+// styling common to menus and lists
+.menu, .list {
+    .sectionLabel {
+        font-weight: 600;
+        padding-left: 5px;
+        padding-right: 8px;
+        .textOverflowOneLine;
+    }
+
+    li {
+        .textOverflowOneLine;
+        list-style: none;
+
+        &.createNew {
+            color: @color-font-link-blue;
+            cursor: pointer;
+        }
+    }
+
+    .hasDropdown {
+        li {
+            overflow: visible;
+        }
+        .dropDownList {
+            .size(@width: 100%, @height: 28px);
+            .position(relative);
+            box-shadow: none;
+            background-color: transparent;
+
+            .list {
+                .size(@width: 160px, @height: auto);
+                .position(absolute, @top: 20px, @left: -3px);
+                margin: 0;
+                visibility: visible !important;
+                display: none;
+                box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+                li {
+                    line-height: normal;
+                }
+            }
+        }
+    }
+}
+
+.subMenu, .subSubMenu {
+    &.left {
+        margin-left: -325px;
+    }
+}
+
+ul.menu.leftColMenu::before {
+    border-color: @color-selectedCell-dark;
+}
+
+ul.leftColMenu {
+    .position(@right: 0);
+    box-shadow: -1px 1px @color-menu-shadow;
+
+    .dropdownBox {
+        display: none !important;
+    }
+}
+
+ul.subMenu.leftColMenu {
+    .position(@left: -170px);
+    margin-top: 0px;
+    box-shadow: -1px 1px @color-menu-shadow;
+}
+
+
+ul.inputMenu {
+    > li {
+        .size(@height: auto, @min-height: 28px);
+        overflow: hidden;
+        padding: 0px;
+        margin: 0px;
+
+        span {
+            .position(relative);
+            .size(@height: 28px);
+            .box-sizing;
+            display: block;
+            padding: 8px 6px 6px 6px;
+            background-color: @color-bg-default;
+            z-index: 1;
+            .transition (margin-bottom .3s);
+
+            &.openMenuInput {
+                margin-bottom: 30px;
+            }
+        }
+
+        .dropdownBox {
+            .position(@top: 15px);
+            z-index: 1;
+        }
+    }
+
+    &:hover ul {
+        visibility: visible;
+    }
+
+    input[type=text] {
+        .position(absolute, @top: 31px, @left: 0);
+        .size(@width: 160px, @height: 24px);
+        margin: 0px 5px;
+        z-index: 0;
+
+        &:focus {
+            outline: none;
+        }
+    }
+}

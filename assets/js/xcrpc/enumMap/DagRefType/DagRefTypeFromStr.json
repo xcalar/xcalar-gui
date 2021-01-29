@@ -1,0 +1,8 @@
+{
+    "None" : 0,
+    "api" : 1,
+    "operator" : 2,
+    "dag node" : 3,
+    "result set" : 4
+}
+

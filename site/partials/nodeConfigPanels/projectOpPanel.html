@@ -1,0 +1,66 @@
+<!-- Project Operation Panel -->
+<div id="projectOpPanel" class="xc-hidden opPanel projectOpPanel">
+  include "projectOpPanelTemplate.html"
+    <!-- Project Header -->
+    <header>
+      <div class="row">
+            <div class="title"><%= dicts.project.project %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <div class="mainContent">
+      <!-- Basic form -->
+      <div class="project opSection">
+        <p class="mainInstructions instrText"><%= dicts.project.instr %>
+          <i class="qMark icon xi-unknown"
+            data-toggle="tooltip"
+            data-container="body"
+            data-placement="auto top"
+            data-title="<%= dicts.project.instrTip %>">
+          </i>
+        </p>
+        <!-- Project View Top Section-->
+        <section class="modalTopMain">
+          <div class="exportColumnsSection formRow">
+            <div class="subHeading clearfix">
+              <div class="label"><%= dicts.project.colsToProject %>:</div>
+            </div>
+            <div class="derivedSection columnGroup">
+              <div class="subHeading"><%= dicts.project.derived %></div>
+              <div class="checkboxWrap selectAllWrap" data-xcid="selAllDerive">
+                <div class="checkbox" data-xcid="selAllCheck">
+                  <i class="icon xi-ckbox-empty fa-13"></i>
+                  <i class="icon xi-ckbox-selected fa-13"></i>
+                </div>
+                <div class="text"><%= dicts.common.SelectAll %></div>
+              </div>
+              <div class="columnsWrap flexWrap clearfix">
+                  <div class="searchArea">
+                      <div class="searchBox">
+                          <input type="text" class="searchInput xc-input" placeholder="Search Columns" spellcheck="false" autocomplete="off">
+                          <i class="icon xi-search colSearchIcon"></i>
+                      </div>
+                      <div class="filterHint"><%= dicts.dataflow.filterHint %></div>
+                      <div class="list">
+                          <ul></ul>
+                      </div>
+                  </div>
+                <ul data-xcid="derivedContainer" class="cols"></ul>
+                <!-- <div class="hint noColsHint empty"><%= dicts.dataflow.noColsHint %></div> -->
+              </div>
+            </div>
+            <div class="prefixedSection">
+              <div class="subHeading" data-toggle="tooltip" data-container="body" data-original-title="<%= dicts.project.prefixTip %>"><%= dicts.project.prefixed %>
+                <i class="icon xi-help fa-12"></i>
+              </div>
+              <div class="prefixContainer" data-xcid="prefixContainer">
+              </div>
+          </div>
+        </section>
+      </div>
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </div>
+  <!-- End of Project View -->

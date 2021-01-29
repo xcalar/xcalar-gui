@@ -1,0 +1,7 @@
+{
+    "LibDsFuncStressThreads" : 0,
+    "LibDsFuncStressIterations" : 1,
+    "LibDsCSVFormatTestTemplate1Threads" : 2,
+    "LibDsCSVFormatTestTemplate2Threads" : 3
+}
+

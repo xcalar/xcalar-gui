@@ -1,0 +1,42 @@
+#messageModal {
+  @modal-h: 223px;
+  @checkbox-h: 30px;
+  @h-without-main: @modal-header-h + @modal-bottom-h;
+
+  height: @modal-h;
+  min-height:  @modal-h;
+
+  &.noCheckbox {
+      height: @modal-h - @checkbox-h;
+      min-height: @modal-h - @checkbox-h;
+
+      .content {
+          .checkboxSection {
+              display: none;
+          }
+      }
+  }
+
+  .content {
+      height: ~"calc(100% - @{h-without-main})";
+
+      .message {
+          font-weight: normal;
+          padding-bottom: 15px;
+          min-height: 53px;
+
+          b, .semibold {
+              color: @color-font-link-blue;
+          }
+      }
+
+      .checkboxSection {
+          font-weight: 600;
+          width: 140px;
+
+          .icon {
+              color: @color-font-link-blue;
+          }
+      }
+  }
+}

@@ -1,0 +1,49 @@
+<div id="fileListModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text">Files / Folders</span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- search box -->
+  <div class="slidingSearchWrap">
+    <div class="searchbarArea closed">
+      <i class="icon searchIcon xi-search"></i>
+      <input type="text" spellcheck="false" autocomplete="off">
+      <div class="closeBox iconWrap">
+        <i class="icon xi-cancel"></i>
+      </div>
+      <div class="counter">
+        <span class="position"></span>
+        <span class="total"></span>
+      </div>
+      <div class="arrows">
+        <div class="upArrow iconWrap">
+          <i class="icon xi-up"></i>
+        </div>
+        <div class="downArrow iconWrap">
+          <i class="icon xi-down"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end search box -->
+
+  <!-- Main Section -->
+  <section class="modalMain">
+    <section class="loadingSection">
+      <div class="loadWrap">
+        include "../../util/animatedEllipsis.html"
+      </div>
+    </section>
+    <section class="errorSection"></section>
+    <div class="treeWrap"></div>
+  </section>
+</div>

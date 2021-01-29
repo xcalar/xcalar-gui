@@ -1,0 +1,131 @@
+<!-- CONTAINER -->
+<div id="container" class="mainContainer" style="display:block;">
+  <!-- initial background -->
+  <div id="initialLoadScreen" class="full">
+    <div class="waitBox">
+      <div class="top">
+        <div class="cancel xc-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Cancel %>" data-tipclasses="zIndex10000">
+          <i class="icon xi-close"></i>
+        </div>
+        <div class="iconWrap">
+          <i class="waitIcon icon xi-progress"></i>
+        </div>
+        <div class="progressWrap">
+          <div class="progressBar"></div>
+        </div>
+        <span class="largeText">
+          <%= dicts.status.INPROGRESS %>
+        </span>
+      </div>
+      <div class="bottom">
+        include "../util/animatedEllipsis.html"
+        <div class="progressNode"></div>
+        <div class="steps">
+          <span class="numSteps">2/5</span>
+          <span class="text"> <%= dicts.common.CompleteExc %></span>
+        </div>
+      </div>
+      <div class="publishSection"></div>
+    </div>
+  </div>
+
+  <!-- homeBtn is in menuBar.html" -->
+  include "menuBar/menuBar.html"
+  include "userBox.html"
+
+  <div id="adminStatusBar" class="adminOnly active">
+    <div class="pulloutTab">
+      <div class="border"></div>
+      <div class="border"></div>
+    </div>
+    <span class="text"><%= dicts.statusBar.adminText %>:</span>
+    <span class="username">unknown</span>
+    <i class="icon xi-close fa-12" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.statusBar.adminClose %>"></i>
+  </div>
+  include "mainTopBar.html"
+  include "statusBar.html"
+  include "util/statusBox.html"
+
+  <!-- START MAIN PANELS -->
+  include "monitor/monitor.html"
+  include "sql/sqlWorkSpacePanel.html"
+  include "workbook.html"
+  include "loadScreen.html"
+  include "homeScreen.html"
+  include "tableMenus.html"
+  <!-- END MAIN PANELS -->
+
+  <div class="underConstruction mainPanel">
+    <div class="topBar"></div>
+    <div class="alert">
+      <i class="icon xi-info-circle fa-25"></i>
+    </div>
+    <br>
+    This page is still under construction!
+  </div>
+
+<!-- used for dataflow node styling -->
+<svg class="dataflowSVGHelper" height="0" width="0" style="position:absolute">
+    <defs>
+        <clipPath id="cut-off-right">
+            <rect width="77" height="25" ry="77" rx="10" stroke="black" stroke-width="1" fill="red" x="6.5" y="0.5" />
+        </clipPath>
+    </defs>
+</svg>
+
+  <div id="successMessageWrap">
+    <span class="largeText success">
+        <i class="icon xi-success"></i><%= dicts.status.success %>
+        <span class="msg">
+            <%= dicts.status.actionSuccess %>
+        </span>
+    </span>
+    <span class="largeText failed">
+        <i class="icon xi-error"></i>
+        <%= dicts.status.failed %>
+        <span class="msg">
+            <%= dicts.status.actionFailed %>
+        </span>
+    </span>
+  </div>
+
+  <!-- Modal Background -->
+  <div id="modalBackground" class="modalBackground"></div>
+  include "modal/userSettingsModal.html"
+  include "modal/adminSetupModal.html"
+  include "modal/licenseModal.html"
+  include "modal/clusterStatusModal.html"
+  include "modal/schemaSelectionModal.html"
+  include "modal/aggModal.html"
+  include "modal/jsonModal.html"
+  include "modal/alertModal.html"
+  include "modal/profileModal.html"
+  include "modal/supTicketModal.html"
+  include "modal/rawFileModal.html"
+  include "modal/fileInfoModal.html"
+  include "modal/aboutModal.html"
+  include "modal/skewInfoModal.html"
+  include "modal/loginConfigModal.html"
+  include "modal/workbookInfoModal.html"
+  include "modal/sqlQueryHistModal.html"
+  include "modal/dagDescriptionModal.html"
+  include "modal/dagCustomRenameModal.html"
+  include "modal/dfUploadModal.html"
+  include "modal/dfDownloadModal.html"
+  include "modal/dfNodeLineagePopup.html"
+  include "modal/createPublishTableModal.html"
+  include "modal/sqlFuncSettingModal.html"
+  include "modal/exportSQLTableModal.html"
+  include "modal/logoutModal.html"
+  include "modal/dagStatsModal.html"
+  include "modal/dataflowStatsModal.html"
+  include "worksheet/dagSearch.html"
+  include "modal/dagUDFErrorModal.html"
+  include "modal/createAppModal.html"
+  include "modal/connectorModal.html"
+
+  include "fileManager/monitorFileManager.html"
+  include "modal/fileManagerSaveAsModal.html"
+  <div id="root"></div>
+</div>
+<!-- END CONTAINER -->

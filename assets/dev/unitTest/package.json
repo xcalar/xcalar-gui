@@ -1,0 +1,23 @@
+{
+  "name": "unittest",
+  "version": "1.0.0",
+  "description": "This unit test engine uses puppteer to run the unit test. Reference: https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md#browseruseragent",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "istanbul": "^0.4.5",
+    "jsonwebtoken": "^8.2.1",
+    "ldapjs": "^1.0.0",
+    "less": "^2.6.1",
+    "mocha": "^3.2.0",
+    "node": "10.15.3",
+    "node-bin-setup": "^1.0.6",
+    "puppeteer": "^1.15.0",
+    "rsa-pem-to-jwk": "^1.1.3"
+  }
+}

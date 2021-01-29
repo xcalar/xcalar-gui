@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>App Marketplace</title>
+    <style type="text/css">
+    .container {
+        width: 500px;
+        clear: both;
+    }
+    .container input {
+        width: 100%;
+        clear: both;
+    }
+    </style>
+</head>
+<body>
+<br/>
+<h1>Uploader</h1>
+<form id="uploadContent" action= "/app/uploadContent" method="post">
+    <div class="container">
+        Project Name: <input type="text" name="name" id="projectName" required/><br/>
+        Version: <input type="text" name="version" required/><br/>
+    </div>
+    Javascript File: <input type="text" name="jsFilePath" id="jsFilePath" required/> or <input type="file" name="jsButton" id="jsButton" /><br/>
+    Python File: <input type="text" name="pyFilePath" id="pyFilePath" required /> or <input type="file" name="pyButton" id="pyButton" /><br/>
+    <div class="container">
+        Description: <input type="text" name="description" required/><br/>
+        Main: <input type="text" name="main" required/><br/>
+        Author: <input type="text" name="author" required/><br/>
+        Category: <input type="text" name="category" required/><br/>
+        Website: <input type="text" name="website"/><br/>
+    </div>
+    Image File: <input type="text" name="imgPath" id="imgPath" required/> or
+    <input type="file" name="imgButton" id="imgButton" /><br/>
+    <input id="upload" type="submit" value="Upload Extension" name="upload" />
+</form>
+
+<script type="text/javascript"
+ src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="../../assets/js/config.js"></script>
+<script type="text/javascript" src="./extensionUploader.js"></script>
+
+</body>
+</html>

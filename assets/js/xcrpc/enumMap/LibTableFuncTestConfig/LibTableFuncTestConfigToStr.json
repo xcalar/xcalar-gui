@@ -1,0 +1,12 @@
+{
+    "0" : "LibTableFuncTestNumberOfThreads",
+    "1" : "LibTableFuncTestNumberOfPublishingTables",
+    "2" : "LibTableFuncTestNumberOfPublishingSessions",
+    "3" : "LibTableFuncTesttbNumberOfStressPublish",
+    "4" : "LibTableFuncTestNumberOfOnRequestMsgTables",
+    "5" : "LibTableFuncTestNumberOfStressTables",
+    "6" : "LibTableFuncTestNumberOfStressSessions",
+    "7" : "LibTableFuncTestNumberOfSanityIterations",
+    "8" : "LibTableFuncTestStressTimeSec"
+}
+

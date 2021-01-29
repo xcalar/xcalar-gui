@@ -1,0 +1,81 @@
+<div id="systemLogCard" class="cardContainer">
+  <!-- Header -->
+  <header class="cardHeader"></header>
+  <!-- Main Section -->
+  <div class="cardMain">
+      <section class="inputSection">
+        <div class="logName column">
+          <label class="text"><%= dicts.admin.logName %></label>
+          <div class="inputWrap">
+            <div class="dropDownList grey">
+              <div class="text"></div>
+              <div class="iconWrapper">
+                <i class="icon xi-arrow-down"></i>
+              </div>
+              <div class="list">
+                <ul>
+                  <li data-option="node"><%= dicts.Debug.NodeLog %></li>
+                  <li data-option="xpu"><%= dicts.Debug.XPULog %></li>
+                  <li data-option="xcmonitor"><%= dicts.Debug.MonitorLog %></li>
+                  <li data-option="expserver"><%= dicts.Debug.ExpServerLog %></li>
+                  <li data-option="caddy"><%= dicts.Debug.CaddyLog %></li>
+                </ul>
+                include "../../util/menuScrollArea.html"
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="numLogs column">
+          <label class="text"><%= dicts.admin.lastNRow %></label>
+          <div class="inputWrap">
+            <input class="xc-input" type="number" min="1" max="500" autocomplete="off" spellcheck="false" placeholder="1 to 500" data-toggle="tooltip" data-container="body" data-original-title="Number of rows to fetch">
+            <div class="btn btn-small inputAction xc-action getRecentLogs">
+              <i class="icon xi-tick fa-11"></i>
+            </div>
+          </div>
+        </div>
+        <div class="hostnamePattern column">
+          <label class="text"><%= dicts.admin.hostnamePattern %></label>
+          <div class="inputWrap">
+            <input class="xc-input" autocomplete="off" spellcheck="false" placeholder="(Optional) Host Name Regex" data-toggle="tooltip" data-container="body" data-original-title="Enter a regex to find the correct hostname">
+          </div>
+        </div>
+        <div class="buttons column">
+          <div class="streamBtns">
+            <button type="button" class="btn btn-submit startStream">Start Stream</button>
+            <button type="button" class="btn stopStream">Stop Stream</button>
+          </div>
+          <button type="button" class="btn clear btn-clear"><%= dicts.common.Clear %> Logs</button>
+        </div>
+      </section>
+      <section class="tabSection">
+        <div class="tabWrapper">
+          <div class="leftEnd end xc-disabled">
+            <i class="icon xi-previous fa-12">
+          </div>
+          <div class="tabAreaWrapper">
+            <div class="tabArea">
+            </div>
+          </div>
+          <div class="rightEnd end xc-disabled">
+            <i class="icon xi-previous fa-12">
+          </div>
+        </div>
+      </section>
+
+      <section class="logSection">
+        <section class="barSection xc-hidden">
+          <div class="downloadLog">
+            <i class="icon xi-download xc-icon-action fa-16" title="" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.admin.downloadLog %>">
+            </i>
+          </div>
+          <div class="copyLog">
+            <i class="icon xi-copy-clipboard xc-icon-action fa-16" title="" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.admin.copyLog %>">
+            </i>
+          </div>
+        </section>
+        <div class="content">
+        </div>
+      </section>
+  </div>
+</div>

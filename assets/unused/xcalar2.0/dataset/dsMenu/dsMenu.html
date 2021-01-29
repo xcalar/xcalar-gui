@@ -1,0 +1,56 @@
+<!-- dataset menu -->
+<div class="topSection">
+  <div class="titleSection">
+    <header>
+      <span><%= dicts.ds.Datasets %> (<span class="numDataStores">0</span>)</span>
+    </header>
+  </div>
+  <div class="iconSection">
+    <!-- switch datasets view -->
+    <i id="dataViewBtn" class="switchView right icon xi-view-as-list-2 gridView" data-toggle="tooltip" data-placement="auto top" data-original-title="<%= dicts.TooltipTStr.SwitchToListView %>" data-container="body"></i>
+    <!-- refresh icon -->
+    <i id="refreshDS" class="refresh right icon xi-refresh" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Refresh %>"></i>
+  </div>
+</div>
+<div class="buttonSection">
+  <!-- import data button -->
+  <button id="importDataButton" class="btn btn-submit iconBtn import">
+    <i class="icon xi-plus fa-11"></i>
+    <span><%= dicts.ds.AddDS %></span>
+  </button>
+  <!-- add folder button -->
+  <button id="addFolderBtn" class="btn btn-secondary">
+    New Folder
+  </button>
+</div>
+<div id="dsListSection" class="mainSection">
+  <div class="topWrapper">
+    <!-- forward and back icon -->
+    <div class="iconSection">
+      <div id="forwardFolderBtn" class="xc-action xc-disabled" title="<%= dicts.dsView.Forward %>" data-container="body" data-toggle="tooltip" data-placement="auto top">
+        <i class="icon xi-next fa-12"></i>
+      </div>
+      <div id="backFolderBtn" class="xc-action xc-disabled" title="<%= dicts.dsView.Back %>" data-container="body" data-toggle="tooltip" data-placement="auto top">
+        <i class="icon xi-previous fa-12"></i>
+      </div>
+    </div>
+    <!-- path -->
+    <div class="pathSection"></div>
+    <div class="sortSection xc-sortSection">
+      <span class="label"><%= dicts.common.SortBy %>:&nbsp;</span>
+      <span class="sortOption" data-key="name"><%= dicts.common.Name %></span>
+      <span class="divider"></span>
+      <span class="sortOption" data-key="size"><%= dicts.common.Size %></span>
+      <span class="divider"></span>
+      <span class="sortOption" data-key="type"><%= dicts.common.Type %></span>
+      <span class="divider"></span>
+      <span class="sortOption" data-key="none"><%= dicts.common.None %></span>
+    </div>
+  </div>
+  <!-- Grid View -->
+  <div class="gridViewWrapper">
+    <div class="gridView gridItems xc-grid clearfix"></div>
+  </div>
+  <input id="dsListFocusTrakcer">
+</div>
+include "gridViewMenu.html"

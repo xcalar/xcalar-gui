@@ -1,0 +1,23 @@
+<div id="adminAlertCard" class="cardContainer xc-hidden">
+  <div class="cardLocked"></div>
+  <header class="cardHeader">
+    <div class="title"><%= dicts.monitor.AdminAlert %></div>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <div class="cardInstruction oneLine">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span><%= dicts.monitor.AdminAlertInstruc %></span>
+    </div>
+  </div>
+  <div class="cardMain">
+    <span class="text"><%= dicts.monitor.AlertMessageTitle %></span>
+    <textarea class="xc-input alert-msg" type="text"></textarea>
+  </div>
+  <div class="cardBottom">
+    <button type="button" class="btn btn-submit confirm btn-disabled"><%= dicts.common.Send %></button>
+    <button type="button" class="btn btn-clear clear"><%= dicts.common.Clear %></button>
+  </div>
+</div>

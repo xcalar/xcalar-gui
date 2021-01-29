@@ -1,0 +1,61 @@
+<!-- Quick Aggregates Modal -->
+<div id="aggModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.aggModal.CorrAggTitle %></span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Quick Aggregates Instruction Section -->
+  <section class="modalInstruction">
+    <div class="text"></div>
+  </section>
+  <!-- Quick Aggregates Input Section -->
+  <section class="modalTopMain">
+    <div id="aggModal-backToProfile" class="xc-action">
+      <i class="icon xi-arrow-left fa-15"></i>
+      <span><%= dicts.aggModal.BackToProfile %></span>
+    </div>
+    <div class="progressSection textOverflowOneLine">
+      <span><%= dicts.aggModal.Progress %>: </span>
+      <span class="progressValue">0/0</span>
+    </div>
+  </section>
+  <!-- Quick Aggregates Main Section -->
+  <div class="mainAgg clearfix modalMain">
+    <div class="tabs">
+      <div id="corrTab" class="tab active">
+        <span class="text">Correlation Coefficient</span>
+      </div>
+      <div id="aggTab" class="tab">
+        <span class="text">Quick Aggregate</span>
+      </div>
+    </div>
+    <section id="aggModal-quickAgg">
+      <div class="aggTable">
+        <div class="headerContainer"></div>
+        <div class="tableContainer">
+          <div class="labelContainer"></div>
+          <div class="aggContainer"></div>
+        </div>
+      </div>
+    </section>
+    <section id="aggModal-corr">
+      <div class="aggTable">
+        <div class="headerContainer"></div>
+        <div class="tableContainer">
+          <div class="labelContainer"></div>
+          <div class="aggContainer"></div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- End Of Quick Aggregates Modal -->

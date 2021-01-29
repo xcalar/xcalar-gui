@@ -1,0 +1,6034 @@
+// ========== Modal CSS ==========
+@modal-padding-horizontal: 24px;
+@modal-padding-vertical: 24px;
+@modal-padding-section: 24px;
+@modal-header-text-h: 26px;
+@modal-header-h: @modal-header-text-h + @modal-padding-vertical;
+@modal-subHeader-h: 20px;
+@modal-header-with-subHeader-h: @modal-header-h + @modal-subHeader-h;
+@modal-instr-h: 38px + @modal-padding-section;
+@modal-instr-oneLine-h: 19px + @modal-padding-section;
+@modal-bottom-h: @modal-padding-section + @height-btn + @modal-padding-vertical;
+@modal-normal-w: 500px;
+@modal-large-w: 650px;
+@modal-normal-h: 500px;
+
+.modalHorizontalPadding() {
+    padding-left: @modal-padding-horizontal;
+    padding-right: @modal-padding-horizontal;
+}
+
+.modalContainer {
+    @close-icon-size: 18px;
+
+    display: none;
+    .position(absolute, 0, 0, 0, 0);
+    .size(@max-width: 99%, @max-height: 99%);
+    z-index: @z-index-modal;
+    background-color: @color-bg-modal;
+    // need to adjust box-shadow for light mode
+    box-shadow: 0px 0px 0px 1px rgba(255, 255, 255, 0.3),
+                -2px 4px 8px 0px rgba(0, 0, 0, 0.9);
+    .rounded(16px);
+    width: @modal-normal-w;
+    min-width: @modal-normal-w;
+    height: @modal-normal-h;
+
+    font-size: 14px;
+
+    &.dragging {
+        will-change: transform; // react use react-rnd which use transform
+    }
+
+    &.large {
+        width: @modal-large-w;
+        min-width: @modal-large-w;
+    }
+
+    &.anim {
+        .fadeIn(0.18s);
+    }
+
+    .ui-icon-gripsmall-diagonal-se {
+        visibility: hidden;
+    }
+
+    &:hover {
+        .ui-icon-gripsmall-diagonal-se {
+            visibility: visible;
+            opacity: 0;
+        }
+    }
+
+    .modalHeader {
+        .size(@width: 100%, @height:  @modal-header-h);
+        .noSelection;
+        .cursor-move;
+        text-align: left;
+        .modalHorizontalPadding;
+        padding-top: @modal-padding-vertical;
+
+        &.has-subHeader {
+            height: @modal-header-with-subHeader-h;
+        }
+
+        .subHeader {
+            height: @modal-subHeader-h;
+        }
+
+        .text {
+            .font(@size: 20px, @weight: 600, @color: @color-font-darkGray);
+            display: inline-block;
+            padding-right: @modal-padding-horizontal;
+            line-height: @modal-header-text-h;
+            .textOverflowOneLine;
+        }
+
+        .headerBtn, .close {
+            cursor: pointer;
+            .xc-action;
+            .size(@width: @close-icon-size, @height: @close-icon-size);
+            position: absolute;
+            top: @modal-padding-vertical - 4;
+
+            .icon {
+                display: inline-block;
+                .position(absolute, @top: 0, @right: 0);
+                .size(@width: @close-icon-size, @height: @close-icon-size);
+                line-height: @close-icon-size;
+                font-size: @close-icon-size;
+            }
+        }
+
+        @padding-close: 12px;
+
+        .close {
+            right: @modal-padding-horizontal;
+        }
+
+        .fullScreen {
+            right: @modal-padding-horizontal + @close-icon-size + @padding-close;
+        }
+
+        .exitFullScreen {
+            right: @modal-padding-horizontal + @close-icon-size * 2 + @padding-close * 2;
+        }
+    }
+
+    .modalHeader .subHeader, .modalInstruction {
+        .text {
+            overflow: hidden;
+            font-weight: normal;
+        }
+
+        // b, .semibold {
+        //     color: @color-font-link-blue;
+        // }
+    }
+
+    .modalHeader, .modalInstruction {
+        .infoIcon {
+            font-size: 20px;
+            margin-right: 8px;
+
+            &.xi-warning {
+                color: @color-bg-warning;
+            }
+
+            &.xi-info-circle-outline {
+                color: @color-font-link-blue;
+
+                &.error {
+                    color: @color-error-red;
+                }
+            }
+        }
+    }
+
+    .modalHeader .infoIcon {
+        display: inline-block;
+        float: left;
+        height: @modal-header-text-h;
+        &:before {
+            display: block;
+            .vertical-align;
+        }
+    }
+
+    .modalInstruction {
+        .size(@width: 100%, @height: @modal-instr-h);
+        .modalHorizontalPadding;
+        padding-top: @modal-padding-section;
+        overflow: hidden;
+        .flex-display;
+        .flex-direction(row);
+        .text-selection;
+
+        &.oneLine {
+            height: @modal-instr-oneLine-h;
+        }
+    }
+
+    .modalTopMain {
+        .size(@width: 100%);
+        .modalHorizontalPadding;
+        padding-top: @modal-padding-section;
+    }
+
+    .modalMain {
+        .modalHorizontalPadding;
+        padding-top: @modal-padding-section;
+    }
+
+    .modalSubMain {
+        .size(@width: 100%);
+        .modalHorizontalPadding;
+        padding-top: @modal-padding-section;
+    }
+
+    .modalBottom {
+        .size(@width: 100%, @height: @modal-bottom-h);
+        .no-selection;
+        .modalHorizontalPadding;
+        padding-top: @modal-padding-section;
+        padding-bottom: @modal-padding-vertical;
+
+        .bottomItem, .btn {
+            float: right;
+            // .vertical-align;
+            margin-left: 15px;
+        }
+
+        .btn {
+            font-size: 12px;
+
+            &.cancel {
+                .btn-cancel;
+            }
+        }
+    }
+
+    &.modalContainerNew {
+        .modalHeader {
+            height: 60px;
+            padding: 0 24px;
+            border-bottom: 1px solid @color-border-medium3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            .text {
+                font-size: 16px;
+            }
+        }
+
+        .modalBottom {
+            display: flex;
+            justify-content: space-between;
+            .btn {
+                float: none;
+            }
+        }
+    }
+
+    .ui-resizable-se {
+        bottom: -5px;
+        right: -5px;
+    }
+}
+
+.modalContainer.flex {
+    flex-direction: column;
+
+    &.visible {
+        display: flex !important;
+    }
+
+    .modalHeader, .modalInstruction, .modalBottom , .modalBottomMain {
+        flex: 0 0 auto;
+    }
+    .modalMain {
+        flex: 1 1 auto;
+        overflow: auto;
+    }
+
+    .modalBottomMain {
+        .size(@width: 100%);
+        padding: 16px 24px 0px;
+    }
+}
+
+
+#modalBackground, .modalBackground {
+    .position(fixed, @top: 0, @left: 0);
+    .size(100%, 100%);
+    background-color: @color-font-black;
+    opacity: 0.5;
+    display: none;
+    z-index: @z-index-modalBackground;
+
+    &.light {
+        opacity: 0.3;
+    }
+    &.locked {
+        display: block !important;
+        z-index: @z-index-locked;
+        opacity: 0.5 !important; // overriding $.fadeIn opacity animation
+    }
+    &.anim {
+        .fadeIn(0.3s, 0.5);
+    }
+}
+
+#modalWaitingBG {
+    .size(@width: 100%, @height: ~"calc(100% - 36px)");
+    .position(absolute, @top: 36px, @left: 0);
+    background-color: @color-bg-modalWaiting;
+    z-index: 101; // higher than the resizable grabbers
+
+    .waitingIcon {
+        left: 50%;
+        top: 40%;
+        .transform(translate3d(-50%, 0%, 0));
+    }
+}
+
+
+/* Pretty Json Modal */
+#jsonModal {
+    .position(fixed, @left: 0);
+    .size(@height: 500px);
+    opacity: 1;
+    z-index: @z-index-modal;
+    display: none;
+    overflow: visible;
+    .transition(opacity 0.3s);
+    padding-bottom: @modal-padding-vertical;
+
+    &.hidden {
+        opacity: 0;
+    }
+
+    > div {
+        padding: 0;
+    }
+
+    .ui-resizable-e {
+        right: -12px;
+    }
+
+    .pulled {
+        .xi-tick {
+            .position(absolute, @top: 4px); // left being set in js
+            font-size: 7px;
+            color: @color-font-softBlue;
+            display: none;
+        }
+    }
+
+    .modalHeader {
+        .cursor-move;
+        padding-top: 16px;
+
+        .text {
+            padding-right: 8px;
+        }
+    }
+
+    .jsonArea {
+        height: ~"calc(100% - @{modal-header-h})";
+        background-color: @color-bg-default;
+        opacity: 1;
+        z-index: 36;
+        padding: 0;
+        .font(@weight: 400);
+        .flex-display;
+        overflow: hidden;
+        overflow-x: auto;
+    }
+
+    .jsonWrap {
+        .flex(1 1 0px);
+        min-width: 220px !important;
+        resize: none;
+        height: 100%;
+        padding-bottom: 10px;
+        line-height: 20px;
+        position: relative; // for dropdown menu
+        background-color: @color-bg-default;
+
+        &:not(:last-child) {
+            border-right: 1px solid @color-border-white-two;
+        }
+
+        &:first-child {
+            .tab {
+                &:first-child {
+                    border-left: none;
+                }
+            }
+        }
+
+        &:last-child {
+            min-width: 240px !important;
+            .optionsBar {
+                .dropdownBox {
+                    margin-right: 36px;
+                }
+            }
+            .menu {
+                right: 36px;
+            }
+            .flexArea {
+                width: ~"calc(100% - 186px)";
+            }
+        }
+
+        &:only-child {
+            .dragHandle {
+                pointer-events: none;
+            }
+            .optionsBar {
+                padding-left: @modal-padding-horizontal;
+            }
+        }
+
+        &.ui-sortable-helper {
+            height: ~"calc(100% - 73px)" !important;
+            box-shadow: -1px 0px 0px @color-bg-pinkish-grey2;
+            .prettyJson {
+                height: ~"calc(100% - 80px)";
+            }
+        }
+        &.active {
+            .optionsBar {
+                background-color: @color-json-active-bar;
+            }
+            .compareIcon {
+                .xi-ckbox-empty {
+                    display: none;
+                }
+                .xi-ckbox-selected {
+                    display: block;
+                }
+            }
+        }
+
+        &.comparison {
+            .primary {
+                display: none;
+            }
+            .secondary {
+                display: block;
+            }
+            .sort {
+                opacity: 0.5;
+                pointer-events: none;
+            }
+        }
+
+        &.multiSelectMode {
+            .prettyJson {
+                .noSelection;
+            }
+
+            .immediatesType {
+                .jsonCheckbox {
+                    display: block;
+                }
+
+                .jArray  {
+                    > .jString, > .jNum, > .jBool, > .jTimestamp, > .jNull , > .jUndf {
+                        cursor: default;
+                        &:hover {
+                            background-color: transparent;
+                            box-shadow: none;
+                        }
+                    }
+                }
+
+                .jObject > .jArray > .jsonBlock > .jKey {
+                    cursor: pointer;
+                    pointer-events: auto;
+                    &:hover {
+                        background-color: #dff8ff;
+                        box-shadow: 0px 0px 1px @color-table-borderBlue;
+                    }
+                }
+            }
+
+            .missingImmediatesSection {
+                .jsonCheckbox {
+                    display: block;
+                }
+            }
+
+            .pullAll, .compareIcon, .sort {
+                opacity: 0.5;
+                pointer-events: none;
+                display: none;
+            }
+            .optionsBar {
+                .clearAll, .submitMultiPull {
+                    display: inline-block;
+                }
+                .flexArea {
+                    width: ~"calc(100% - 130px)";
+
+                }
+            }
+
+            &:last-child {
+                .flexArea {
+                    width: ~"calc(100% - 152px)";
+                }
+            }
+
+            .tabBar {
+                display: none;
+            }
+        }
+
+        &.multiSelectMode {
+            .menu {
+                li.selectionOpt {
+                    color: @color-font-default;
+                    .check {
+                        display: none;
+                    }
+                }
+                li.multiSelectionOpt {
+                    color: @color-font-softBlue;
+                    .check {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .multiSelectModeBar {
+                display: block;
+            }
+
+            .prefixedType {
+                .jsonCheckbox {
+                    display: block;
+                }
+                .prefixGroupTitle {
+                    .checkbox  {
+                        display: none;
+                    }
+                }
+            }
+
+            .missingImmediatesSection {
+                .jsonCheckbox {
+                    display: block;
+                }
+            }
+
+            .optionsBar {
+                .selectAll {
+                    display: inline-block;
+                }
+                .flexArea {
+                    width: ~"calc(100% - 160px)";
+                }
+                .xi-pull-all-fields {
+                    display: inline-block;
+                }
+                .xi-back-to-worksheet {
+                    display: none;
+                }
+            }
+
+
+            &:last-child {
+                .flexArea {
+                    width: ~"calc(100% - 186px)";
+                }
+            }
+
+            .pulled {
+                > span {
+                    pointer-events: none;
+                }
+
+                > .jsonCheckbox {
+                    display: none !important;
+                }
+
+                .xi-tick {
+                    display: block;
+                }
+            }
+        }
+
+        &.tabFiltered {
+            .prefixGroupTitle {
+                display: none;
+            }
+            .jObject {
+                padding-left: 18px;
+            }
+        }
+    }
+
+    .bar {
+        height: 29px;
+        font-size: 13px;
+        font-family: @font-base;
+        font-weight: 600;
+        overflow: hidden;
+        .noSelection;
+        border-bottom: 1px solid @color-border-white-two;
+
+        > div {
+            float: left;
+            cursor: pointer;
+            line-height: 28px;
+        }
+    }
+
+    .slidingSearchWrap {
+        top: 66px;
+    }
+
+    .optionsBar {
+        height: 61px;
+        padding: 16px 0 16px 0px;
+
+        .dragHandle {
+            .size(20px, 100%);
+            .cursor-move;
+            margin-left: 2px;
+            .icon {
+                color: @color-font-greyish-brown;
+                font-size: 14px;
+                line-height: 29px;
+            }
+        }
+
+        .compareIcon {
+            margin: 0px 2px 0px 3px;
+            .icon {
+                font-size: 16px;
+            }
+        }
+
+        .btn.remove {
+            margin-right: 4px;
+            margin-left: 0px;
+        }
+
+        .vertLine {
+            border-left: 1px solid @color-border-pinkish-grey2;
+            height: 20px;
+            margin-top: 4px;
+            margin-right: 3px;
+            pointer-events: none;
+        }
+
+        .btn {
+            .size(20px, 20px);
+            margin: 4px 2px 0px 3px;
+            line-height: 20px;
+            padding-left: 1px;
+
+            .icon {
+                .size(100%, 100%);
+                font-size: 10px;
+                line-height: 20px;
+            }
+
+            &.disabled {
+                pointer-events: none;
+                opacity: 0.5;
+            }
+
+            &.sort {
+                .icon {
+                    font-size: 12px;
+                }
+            }
+
+            &.remove {
+                .icon {
+                    font-size: 14px;
+                }
+            }
+
+            &.pullAll .icon {
+                margin-left: 1px;
+                font-size: 14px;
+            }
+            &.clearAll, &.selectAll {
+                display: none;
+                .icon {
+                    font-size: 14px;
+                }
+            }
+            &.submitMultiPull {
+                display: none;
+                .icon {
+                    font-size: 14px;
+                }
+            }
+        }
+
+        .dropdownBox {
+            .size(@width: 20px, @height: 20px);
+            margin-top: 4px;
+            margin-right: 4px;
+            float: right;
+
+            .icon {
+               color: @color-bg-default;
+            }
+        }
+        .flexArea {
+            width: ~"calc(100% - 155px)";
+            .flex-display;
+            overflow: hidden;
+            cursor: default;
+        }
+    }
+
+    .multiSelectModeBar {
+        display: none;
+        .numColsSelected {
+            color: @color-font-select-blue;
+            margin-left: 14px;
+            max-width: ~"calc(100% - 20px)";
+            .textOverflowOneLine;
+            cursor: default;
+        }
+    }
+
+    .infoArea {
+        .flex-display;
+        padding: 0px 0px 0px 10px;
+        overflow: hidden;
+
+        .text {
+            margin-left: 4px;
+        }
+
+        .tableName {
+            .flex(2 1 auto);
+            .textOverflowOneLine;
+            padding-right: 6px;
+            min-width: 17px;
+        }
+        .rowNum {
+            .flex(0 1 auto);
+            .textOverflowOneLine;
+        }
+    }
+
+    .tabBar {
+        .flex-display;
+        padding: 0px;
+        border-bottom: none;
+        cursor: default;
+
+        .tabs {
+            width: 100%;
+            height: 100%;
+            float: left;
+            .flex-display;
+        }
+
+        .tab {
+            float: left;
+            display: inline-block;
+            background-color: @color-bg-dagTabInactive;
+            height: 100%;
+            line-height: 28px;
+            border-left: 1px solid @color-border-medium;
+            padding-right: 4px;
+            padding-left: 4px;
+            text-align: center;
+            .flex(1 1 90px);
+            border-bottom: 1px solid @color-border-medium;
+            .textOverflowOneLine;
+
+            &:first-child {
+                border-left: none;
+            }
+            &:hover {
+                box-shadow: inset 0 2px 0 0 @color-link-blue;
+            }
+
+            &.active {
+                background-color: @color-bg-dagTabActive;
+                border-bottom-color: transparent;
+                box-shadow: inset 0 2px 0 0 @color-link-blue;
+                overflow: visible;
+                max-width: 50%;
+            }
+
+            span {
+                display: inline-block;
+            }
+
+            .icon {
+                width: 22px;
+                padding-left: 4px;
+                height: 100%;
+                float: left;
+                margin: 0;
+            }
+
+            .text {
+                .textOverflowOneLine;
+                text-align: center;
+                width: 100%;
+            }
+
+            &.seeAll {
+                position: relative;
+                font-weight: 600;
+
+                &.active {
+                    min-width: 90px;
+                }
+            }
+        }
+    }
+
+    .jsonWrap:only-child {
+        .btn.remove, .vertLine, .dragHandle, .compareIcon {
+            display: none;
+        }
+        .flexArea {
+            width: ~"calc(100% - 120px)";
+        }
+    }
+    .prettyJson {
+        .size(@height: ~"calc(100% - 90px)", @min-width: 100px, @min-height: 100px);
+        padding-left: 10px;
+        padding: 10px 0px 10px 10px;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background-color: @color-bg-default;
+        .font(@size: 14px, @family: @font-code, @color: @color-json-default, @line-height: 16px);
+        .text-selection;
+
+        &.secondary {
+            display: none;
+        }
+    }
+
+    // json modal for table cell
+    &.singleView {
+        .optionsBar {
+            .dragHandle, .compareIcon, .vertLine, .remove {
+                display: none !important;
+            }
+            .flexArea {
+                // larger size because fewer buttons to take up space
+                width: ~"calc(100% - 112px)";
+            }
+        }
+
+        .prettyJson {
+            height: 100%;
+            background-color: @color-bg-default !important;
+        }
+
+        .multiSelectMode {
+            .optionsBar {
+                .flexArea {
+                    width: ~"calc(100% - 136px)";
+                }
+            }
+            .jsonCheckbox {
+                display: block;
+            }
+        }
+        // can't sort on arrays
+        &.isArray {
+            .optionsBar {
+                .sort {
+                    display: none;
+                }
+                .flexArea {
+                    width: ~"calc(100% - 86px)";
+                }
+            }
+            .multiSelectMode {
+                .optionsBar {
+                    .flexArea {
+                        width: ~"calc(100% - 136px)";
+                    }
+                }
+            }
+        }
+    }
+
+    &.truncatedText {
+        .optionsBar {
+            display: none;
+        }
+    }
+
+    .closeJsonModal {
+        .modalContainer.modalHeader.close();
+    }
+
+    .jObject {
+        .position(relative);
+        .size(@width: 100%, @height: auto);
+        padding-left: 18px;
+        padding-right: 5px;
+        overflow:visible;
+    }
+
+    .jsonBlock {
+        display:block;
+        margin-bottom: 1px;
+        position: relative; // for inner checkbox positioning
+    }
+
+    .jsonCheckbox {
+        .position(absolute, @top: -1px, @left: -18px);
+        height: 16px;
+        .size(20px, 20px);
+        padding-top: 6px;
+        padding-left: 4px;
+        display: none;
+    }
+
+    .jKey {
+        padding: 0px 1px;
+        margin: 0px -1px;
+        display: inline-block;
+        .rounded;
+        cursor: pointer;
+    }
+
+    .jKey  {
+        &:hover {
+            background-color: @color-bg-graph-gray;
+            box-shadow: 0px 0px 1px @color-table-borderBlue;
+        }
+    }
+
+    // .jArray  {
+    .arrayVal {
+        > .jString, > .jNum, > .jBool, > .jTimestamp, > .jNull , > .jUndf {
+            cursor: pointer;
+            &:hover {
+                background-color: @color-bg-graph-gray;
+                box-shadow: 0px 0px 1px @color-table-borderBlue;
+            }
+        }
+    }
+
+    .jArray, .jObj {
+        display: inline;
+    }
+
+    .jString {
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    .jNum, .jBool, .jTimestamp, .jMoney, .jNull , .jUndf {
+        word-break: break-all;
+    }
+    .jNull, .jUndf {
+        font-style: italic;
+    }
+
+    // .jArray > .jString {
+    .arrayVal > .jString {
+        color: @color-json-array;
+        white-space: nowrap;
+        word-break: break-all;
+    }
+
+    .groupWrap {
+        margin-top: -20px;
+    }
+    .groupType {
+        margin-top: 20px;
+        .prefixGroupTitle {
+            font-size: 15px;
+            margin-left: 15px;
+            display: block;
+            position: relative;
+            .checkbox {
+                position: absolute;
+            }
+        }
+        .prefixGroup {
+            &:first-of-type {
+                margin-top: 10px;
+            }
+        }
+    }
+    .prefixGroup {
+        margin-top: 20px;
+
+        .jObject {
+            padding-left: 31px;
+        }
+    }
+
+    .prefix {
+        color: @color-prefix-gray;
+        margin-bottom: 4px;
+        margin-left: 15px;
+    }
+
+    .brace {
+        &.empty {
+            visibility: hidden; // maintain space
+        }
+    }
+
+    .missingImmediatesSection {
+        margin-bottom: 10px;
+        .subHeading {
+            color: @color-prefix-gray;
+            margin: 10px 0px 4px 15px;
+        }
+    }
+
+    .emptyObj, .emptyArray {
+        font-size: 4px;
+        line-height: 4px;
+    }
+
+    .partial > .jsonBlock > .jKey + span {
+        box-shadow: none;
+        border-radius: 1px;
+    }
+    .unmatched > .jsonBlock > span {
+        box-shadow: none;
+        border-radius: 1px;
+    }
+
+    .partial .jArray  {
+        > .jString, > .jNum, > .jBool, > .jTimestamp, > .jNull , > .jUndf {
+            cursor: pointer;
+            &:hover {
+                background-color: transparent;
+                box-shadow: none;
+            }
+        }
+    }
+    .partial > .jsonBlock {
+        > .jKey + span, > .jKey ~ div > span, > .jKey ~ div > div  > span,
+        > .jKey ~ .emptyArray, > .jKey ~ .emptyObj {
+            border-radius: 1px;
+            background-color: @color-json-partial;
+            box-shadow: 0px 0px 0px 1px @color-json-partial-shadow;
+        }
+        > .emptyObj, .emptyArray {
+            font-size: 12px;
+            letter-spacing: -1px;
+            padding-left: 4px;
+        }
+    }
+
+    .unmatched > .jsonBlock > .jKey {
+        background-color: @color-json-partial;
+        box-shadow: 0px 0px 0px 1px @color-json-partial-shadow;
+        border-radius: 1px;
+    }
+
+    .highlightedText {
+        background-color: yellow;
+        &.selected {
+            background-color: orange;
+        }
+    }
+
+    .keySelected:not(.jsonBlock) {
+        background-color: @color-json-project-selected !important;
+        box-shadow: none !important;
+    }
+
+    .menu {
+        .size(@width: 150px);
+        .position(absolute, @top: 40px, @right: 4px);
+        li {
+            &:hover, &.hover {
+                color: @color-font-softBlue !important;
+            }
+            &.active {
+                color: @color-font-softBlue;
+                .check {
+                    display: inline-block;
+                }
+            }
+        }
+        .selectionOpt {
+            color: @color-font-softBlue;
+            .check {
+                display: inline-block;
+            }
+        }
+        .check {
+            .size(@width: 20px, @height: 10px);
+            .position(absolute, @top: 0px, @left: 5px);
+            color: @color-bg-select-blue;
+            display: none;
+        }
+        .text {
+            .position(absolute, @left: 24px);
+            font-weight: 600;
+        }
+    }
+}
+
+/* End Of Pretty Json Modal */
+
+/* Quick Aggregate Modal */
+#aggModal {
+    @modal-top-main-h: 32px;
+    @h-without-main: @modal-header-h + @modal-instr-h + @modal-top-main-h;
+
+    .size(@width: 920px, @height: 650px, @min-width: 500px, @min-height: 650px);
+
+    .modalTopMain {
+        @height: @modal-top-main-h;
+        .size(@height: @height);
+        .font(@weight: 600, @line-height: @height);
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .progressSection {
+            text-align: right;
+            float: right;
+        }
+
+        #aggModal-backToProfile {
+            display: none;
+            float: right;
+            margin-left: 16px;
+
+            .icon {
+                position: relative;
+                top: 2px;
+            }
+        }
+
+        .text {
+            margin-left: 10px;
+            .font(@weight: 600, @size: 13px, @line-height: 25px);
+        }
+        .progressValue {
+            .font(@size: 13px, @line-height: 25px);
+        }
+    }
+
+
+    &.profileMode {
+        #aggModal-backToProfile  {
+            display: block !important;
+        }
+    }
+
+    #aggModal-quickAgg {
+        .aggTableField {
+            margin-top: 5px;
+
+            &.cell {
+                span {
+                    display: inline-block;
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    #aggModal-corr {
+        display: none;
+
+        .aggContainer .aggTableField {
+            color: @color-font-default;
+        }
+
+        &:not(.empty) {
+           .headerContainer {
+                .padding {
+                    box-shadow: 1px 0px 0px 0px @color-border-medium;
+                }
+            }
+        }
+    }
+
+    .mainAgg {
+        @h: @h-without-main + @modal-padding-section + @modal-padding-vertical;
+        .size(@height: ~"calc(100% - @{h})");
+        border: 1px solid @color-border-medium;
+        margin: @modal-padding-section @modal-padding-horizontal @modal-padding-vertical @modal-padding-horizontal;
+        padding: 0;
+
+        .tabs {
+            .size(@width: 40px, @height: 100%);
+            display: inline;
+            float: left;
+
+            .tab {
+                border-right: 1px solid @color-border-medium;
+                border-bottom: 1px solid @color-border-medium;
+                height: 50%;
+                cursor: pointer;
+                color: @color-font-dagTabInactive;
+                .text {
+                    padding-top: 7px;
+                    padding-right: 6px;
+                    display: inline-block;
+                    .transform(rotate(-90deg));
+                    width: 200px;
+                    height: 200px;
+                    font-size: 17px;
+                }
+                &:last-child {
+                    border-bottom: 0px;
+                }
+                &.active {
+                    background-color: @color-bg-dagTabActive;
+                    color: @color-font-default;
+                    box-shadow: inset 2px 0px 0px 0px @color-link-blue;
+                }
+            }
+        }
+
+        >section {
+            height: 100%;
+        }
+
+        .aggTable {
+            .position(relative); // for the .padding
+            .size(@width: ~"calc(100% - 40px)", @height: 100%);
+            margin: 0 auto;
+            padding: 0;
+            float: right;
+
+            .headerContainer {
+                .size(@width: 100%, @height: 36px);
+                .flex-display;
+                overflow: hidden;
+                border-bottom: 1px solid @color-border-medium;
+
+                .padding {
+                    .position(absolute, @top: 0px, @left: 0px);
+                    .size(@width: 120px, @height: 35px);
+                    z-index: 10;
+                }
+
+                .colLabel {
+                    .flex(1 0 120px);
+                    .size(@width: 120px, @height: 35px);
+                    line-height: 16px;
+                    margin-top: -2px !important;
+                    padding: 0px;
+
+                    .prefix {
+                        opacity: 0.6;
+                        &.derived {
+                            font-style: italic;
+                        }
+                    }
+
+                    > span {
+                        width: 99%;
+                        text-align: center;
+                    }
+
+                    &.blankSpace {
+                        .flex(0 0 120px);
+                    }
+                }
+            }
+
+            .tableContainer {
+                .size(@width: 100%, @height: ~"calc(100% - 25px)");
+                .flex-display;
+
+                .aggContainer, .labelContainer {
+                    .size(@height: 100%);
+                    .flex-display;
+                    .flex-flow(row);
+                    overflow-x: scroll;
+
+                    &::-webkit-scrollbar-track {
+                        background: transparent;
+                    }
+                }
+
+                .aggContainer {
+                    .flex(1 1 auto); // has flex width
+
+                    .hint {
+                        .size(@width: 340px, @height: 20px);
+                        .center-align;
+                        color: @color-font-gray36;
+                    }
+                }
+
+                .labelContainer {
+                    .flex(0 0 120px); // has width 120px
+                    .size(@width: 120px);
+                    // margin-right: 2px;
+                    overflow-y: hidden;
+                }
+
+                .rowLabel {
+                    .prefix {
+                        opacity: 0.6;
+                        &.derived {
+                            font-style: italic;
+                        }
+                    }
+
+                    > span {
+                        .size(@width: 100%, @height: 20px);
+                        text-align: center;
+                        display: block;
+                        line-height: 20px;
+
+                        &:not(.prefix) {
+                            .position(relative, @top: -1px);
+                        }
+                    }
+                }
+            }
+
+            .aggCol {
+                .position(relative);
+                .flex(1 0 120px); // has width 120px
+                .size(@width: 120px);
+
+                .flex-display;
+                .flex-flow(column);
+
+                .aggTableField {
+                    .flex(1 0 30px);    // row has flex height with 30px
+                }
+            }
+
+            .aggTableField {
+                padding: 0 5px;
+                // for text vertical align
+                .flex-display;
+                .justify-content(center);
+                .align-items(center);
+                .flex-direction(column);
+                .font(@weight: 600, @size: 14px);
+                .textOverflow;
+                white-space: nowrap;
+
+                &.aggTableFlex {
+                    background-color: @color-bg-default;
+                    .dash {
+                        color: @color-font-default;
+                    }
+                }
+            }
+
+            .rowLabel, .colLabel {
+                background-color: @color-bg-dagTabInactive;
+
+                &.active {
+                    background-color: @color-bg-dagTabActive;
+                }
+            }
+        }
+
+        .spinny {
+            .size(@width: 35px, @height: 37px);
+            .image("../../images/waiting-1.gif");
+            margin: auto;
+            margin-top: 10px;
+        }
+
+        .loadingBar {
+            .size(@width: 50px, @height: 30px);
+        }
+    }
+}
+
+html.microsoft {
+    #leftJoin, #rightJoin {
+        .flex(none) !important;
+        width: 50%;
+        float: left;
+    }
+    #multiJoin {
+        .flex(none) !important;
+        width: 0px;
+    }
+    .multiClause {
+        #leftJoin, #rightJoin {
+            .flex(none) !important;
+            width: ~"calc(50% - 138px)";
+        }
+        #multiJoin {
+            .flex(none) !important;
+            width: 275px;
+            .title, .clauseArea {
+                .transition(visibility 0s linear 0s) !important;
+            }
+        }
+    }
+}
+/* End Of Join Modal */
+
+/* Alert Modal */
+#alertModal {
+    @checkboxHeight: 36px;
+    @instrHeight: 60px;
+    @modalBaseHeight: 210px;
+    @detailHeight: 75px;
+    .size(@width: 500px, @height: @modalBaseHeight); // for admin, error case can have 4 buttons
+    bottom: auto;
+    z-index: 100;
+    .flex-display;
+    .flex-direction(column);
+
+    &.locked {
+        z-index: @z-index-locked + 2;
+        #alertHeader {
+            cursor: default;
+        }
+        .ui-resizable-handle {
+            display: none; // no resizing locked modals
+        }
+    }
+
+    &.highZindex {
+        z-index: @z-index-locked + 2;
+    }
+    &.ultraHighZindex {
+        z-index: 10000;
+    }
+
+    &.hasCheckbox {
+        min-height: @modalBaseHeight + @checkboxHeight !important;
+    }
+    &.hasDetail {
+        &.expandDetail {
+            min-height: @modalBaseHeight + @detailHeight !important;
+
+            #alertDetail {
+                .flex(1 1 auto);
+                .detailContent {
+                    display: block;
+                    white-space: pre-wrap;
+                }
+            }
+        }
+
+        #alertDetail {
+            display: block;
+        }
+    }
+    &.hasInstr {
+        min-height: @modalBaseHeight + @instrHeight !important;
+
+        &.hasDetail.expandDetail {
+            min-height: @modalBaseHeight + @instrHeight @detailHeight !important;
+        }
+
+        &.hasCheckbox {
+            min-height: @modalBaseHeight + @instrHeight + @checkboxHeight !important;
+        }
+    }
+
+    &.flex {
+        #alertActions {
+            .flex-display;
+            .justify-content(flex-end);
+
+            .btn {
+                margin-right: 5px;
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .funcBtn:not(.btn-primary) {
+        .btn-clear;
+
+        &.inActive {
+            background: @color-bg-pinkish-grey;
+        }
+    }
+
+    .content {
+        padding: 0;
+    }
+
+    #alertDetail {
+        display: none;
+        .size(@width: 100%);
+        padding: 0 0px 5px 0px;
+        .flex(0 1 0);
+        .text-selection;
+        min-height: 24px;
+
+        .detailTitle {
+            .font(@size: 12px, @color: @color-font-softBlue);
+            text-align: right;
+            text-decoration: underline;
+            margin: 3px 0;
+            padding: 0px 25px;
+            height: 24px;
+        }
+
+        .detailContent {
+            display: none;
+            word-break: break-all;
+            padding: 10px 20px;
+            overflow: auto;
+            height: ~"calc(100% - 24px)";
+        }
+    }
+
+    >.content {
+        .size(@width: 100%);
+        .flex(1 1 50px);
+        .flex-display;
+        .flex-direction(column);
+        .align-items(center);
+        overflow: hidden; // prevents close button from extending past modal
+    }
+
+    #alertContent {
+        .size(@width: 100%);
+        padding: 8px @modal-padding-horizontal;
+        overflow: auto;
+        vertical-align: middle;
+        min-height: 50px;
+        .flex(1 1 50px);
+        .flex-display;
+        .flex-direction(column);
+        .align-items(center);
+        overflow: hidden; // for ie
+        overflow-y: auto; // for ie
+
+        .text {
+            text-align: left;
+            word-break: break-word;
+            white-space: pre-line;
+            .text-selection;
+            .flex(1 0 auto);
+            .flex-display;
+            .align-items(center);
+            width: 100%;
+
+            &.left-align {
+                text-align: left;
+            }
+
+            &.preSpace {
+                white-space: pre-wrap;
+            }
+        }
+
+        &.leftAlign {
+            .text {
+                padding-left: 52px;
+                text-align: left;
+                width: 90%;
+            }
+        }
+
+        .exportInfo {
+            text-align: left;
+            .label {
+                display: inline-block;
+                min-width: 100px;
+            }
+        }
+    }
+
+    #alertInstruction {
+        .flex(0 0 @modal-instr-h);
+
+        .text {
+            overflow: auto;
+
+            a {
+                color: @color-font-select-blue;
+                text-decoration: none;
+            }
+        }
+    }
+
+    #alertOption {
+        padding: 0 @modal-padding-horizontal;
+
+        #alertCheckBox {
+            .text {
+                display: inline-block;
+            }
+            // now make it disabled
+            &.inactive {
+                pointer-events: none;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    .modalBottom {
+        .flex(0 0 76px);
+        .btn {
+            .size(@width: 120px);
+
+            &.logout {
+                .size(@width: 110px);
+            }
+
+            &.genSub {
+                .size(@width: 135px);
+            }
+            &.larger {
+                .size(@width: 160px);
+            }
+            &.larger2 {
+                .size(@width: 180px);
+            }
+            &.larger3 {
+                .size(@width: 190px);
+            }
+            &.float-left {
+                float: left;
+                margin-left: 10px;
+                margin-right: 0;
+            }
+        }
+    }
+
+}
+.isCloud {
+    #alertModal {
+        .genSub {
+            display: none !important;
+        }
+    }
+}
+/* End Of Alert Modal */
+
+#logoutModal {
+    @h: 294px;
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: @h, @min-height: @h);
+    z-index: @z-index-locked + 4;
+
+    &.clusterStop {
+        .clusterStopProgress {
+            display: block;
+        }
+        .logoutOptions {
+            display: none;
+        }
+        .text.clusterStopText {
+            display: block;
+        }
+        .text.userActivated {
+            display: none;
+        }
+    }
+    &.autoClusterStop {
+        .text.userActivated, .text.clusterStopText {
+            display: none;
+        }
+        .text.autoActivated {
+            display: block;
+        }
+        .clusterStopProgress {
+            .title {
+                margin-bottom: 32px;
+            }
+        }
+        .modalBottom {
+            display: none;
+        }
+    }
+    &.locked {
+        .modalBottom, .close {
+            .xc-disabled;
+        }
+    }
+    .clusterStopText {
+        display: none;
+    }
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        font-weight: 500;
+
+        .shutdownWarn {
+            height: 100%;
+            display: flex;
+            align-items: center;
+        }
+    }
+    .radioButtonGroup {
+        flex-direction: column;
+        width: 100%;
+        padding: 10px 0px;
+        font-weight: 600;
+
+        .radioButton {
+            font-size: 14px;
+            margin: 5px 0px;
+        }
+    }
+    .subLabel {
+        color: @color-font-link-blue;
+        margin-top: -3px;
+        padding-bottom: 10px;
+        padding-left: 22px;
+        font-size: 12px;
+        font-weight: 500;
+    }
+
+    .text.autoActivated {
+        display: none;
+    }
+    .clusterStopProgress {
+        display: none;
+        overflow: hidden;
+
+        .title {
+            font-size: 16px;
+            margin-top: 16px;
+            margin-bottom: 16px;
+        }
+
+        .progressBarBorder {
+            box-shadow: inset 0px 0px 0px 1px rgba(200, 200, 200, 0.95);
+
+            .progressBar {
+                background-color: rgba(200, 200, 200, 0.95);
+            }
+        }
+    }
+}
+
+/* Special Case In Alert Modal */
+ #invalidDSColTable, #duplicateDSColTable, #conflictingParamsTable {
+    white-space: pre;
+    .highlight {
+        background-color: @color-bg-gold;
+    }
+}
+
+#invalidDSColTable, #duplicateDSColTable, #conflictingParamsTable {
+    text-align: left;
+    .flex-display;
+    .flex-direction(column);
+    white-space: normal;
+
+    .row {
+        white-space: pre;
+    }
+
+    .tableTitle {
+        display: inline-block;
+        max-width: 400px;
+        margin-bottom: 4px;
+    }
+
+    .header {
+        font-weight: 600;
+    }
+    .colNum {
+        width: 80px;
+        display: inline-block;
+        float: left;
+    }
+    .empty {
+        font-style: italic;
+        color: @color-defaultGray;
+    }
+}
+#duplicateDSColTable {
+    .colName {
+        width: 60%;
+        float: left;
+    }
+    .colNums {
+        width: 40%;
+        display: inline-block;
+    }
+}
+
+#conflictingParamsTable {
+    .row > span {
+        width: 33%;
+        min-width: 150px;
+        .textOverflowOneLine;
+        display: inline-block;
+        padding-right: 4px;
+    }
+}
+
+/* End of Special Case In Alert Modal */
+
+/* Delete Modal */
+.deleteItemsModal {
+    @h-without-main: @modal-header-h + @modal-instr-oneLine-h + @modal-bottom-h;
+    @h-without-main-no-instr: @modal-header-h + @modal-bottom-h;
+    .size(@height: 608px, @min-height: 500px);
+    z-index: @z-index-locked + 1;
+
+    .hint {
+        position: relative;
+        top: -1px;
+    }
+    &.load {
+        .loadingSection {
+            display: block;
+        }
+
+        .section, .confirm {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    }
+
+    &.lowZindex {
+        z-index: @z-index-locked - 1;
+        box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    &.noInstr {
+        .modalMain {
+            .size(@height: ~"calc(100% - @{h-without-main-no-instr})");
+        }
+    }
+
+    &.noSize {
+        .modalMain {
+            .titleSection, .grid-unit {
+                > div {
+                    width: ~"calc(40% - 38px)";
+
+                    &.name {
+                        width: 60%;
+                    }
+                }
+            }
+        }
+    }
+
+    &.noSize.noDate {
+        .modalMain {
+            .titleSection, .grid-unit {
+                > div {
+                    &.name {
+                        width: 90%;
+                    }
+                }
+            }
+        }
+    }
+
+    .auto {
+        display: none;
+    }
+
+    .loadingSection {
+        .position(absolute, @top: 0, @left: 0);
+        .size(100%, 100%);
+        z-index: 10;
+
+        .loadWrap {
+            .size(@width: 115px, @height: 30px);
+            .center-align;
+
+            .animatedEllipsisWrapper {
+                .size(@width: 100%, @height: 30px);
+
+                .text {
+                    .font(@size: 12px, @weight: 600, @line-height: 30px);
+                    margin-right: 3px;
+                }
+
+                .animatedEllipsis {
+                    .font(@size: 12px, @weight: 600, @line-height: 30px);
+                }
+            }
+        }
+    }
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{h-without-main})");
+        position: relative;
+
+        .section {
+            .size(@width: 100%, @height: 100%);
+            border: 1px solid @color-bg-pinkish-grey2;
+
+            &.orphan {
+                margin-top: 0;
+            }
+        }
+
+        .titleSection {
+            padding-right: 10px;
+            background-color: @color-bg-white-seven;
+            box-shadow: inset 0 -1px 0 0 rgba(0, 0, 0, 0.2);
+
+            .title {
+                span, i {
+                    display: inline-block;
+                    float: left;
+                }
+
+                .label {
+                    // .size(@width: ~"calc(100% - 20px)");
+                    .textOverflowOneLine;
+                    padding-right: 10px;
+                    cursor: pointer;
+                }
+
+                .icon {
+                    .size(@width: 20px, @height: 30px);
+                    color: @color-font-greyish-brown;
+
+                    &:before {
+                        .vertical-align;
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .listSection {
+            .size(@width: 100%, @height: ~"calc(100% - 30px)");
+            overflow-y: scroll;
+
+            .grid-unit {
+                border-bottom: inset 1px @color-bg-white-two;
+                &.failed {
+                    color: @color-text-udfError;
+                }
+            }
+        }
+
+        .titleSection {
+            .title {
+                user-select: none;
+            }
+        }
+
+        .titleSection, .grid-unit {
+            .size(@width: 100%, @height: 30px);
+
+            > div, .lockIcon {
+                display: inline-block;
+                .position(relative);
+                .size(@width: ~"calc(30% - 19px)", @height: 30px);
+                float: left;
+                cursor: default;
+                padding-left: 10px;
+                .font(@size: 12px, @line-height: 30px);
+                .textOverflowOneLine;
+                user-select: text;
+
+                &:first-child {
+                    margin-left: 0;
+                }
+
+                &.checkboxSection {
+                    .size(@width: 38px);
+                    cursor: pointer;
+                }
+
+                &.xi-lockwithkeyhole {
+                    .size(@width: 38px);
+                    .position(relative, @left: -2px);
+                    box-sizing: border-box;
+                    font-size: 18px;
+                    color: @color-font-select-blue;
+                }
+
+                &.name {
+                    .size(@width: 40%);
+                    padding-left: 2px;
+                }
+
+                &.active {
+                    .label, .icon {
+                        color: @color-font-softBlue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#SQLEditorShortcutsModal {
+    .size(@height: 500px, @min-height: 400px, @min-width:300px);
+
+    .modalMain {
+        font-size: 13px;
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .name {
+            .textOverflowOneLine;
+            margin: 2px;
+            padding: 2px;
+        }
+        .keyGroup {
+            display: flex;
+            justify-content: flex-end;
+        }
+        .key {
+            background: @color-bg-opaque05;
+            padding: 2px 4px;
+            margin: 2px;
+            border-radius: 4px;
+            min-width: 16px;
+            text-align: center;
+        }
+        .plus {
+            padding-top: 3px;
+            opacity: 0.7;
+        }
+    }
+}
+
+#CustomNodeManagerModal {
+    .size(@height: 400px, @min-height: 300px, @min-width:300px);
+
+    .modalMain {
+        font-size: 13px;
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0px;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+        .actions {
+            display: flex;
+            flex: 0 0 auto;
+            .iconWrap {
+                margin-left: 10px;
+            }
+            .icon {
+                font-size: 14px;
+            }
+        }
+        .label {
+            .textOverflowOneLine;
+        }
+    }
+}
+
+#schemaSelectionModal {
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 600px);
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+
+        .label {
+            height: 20px;
+            font-weight: 600;
+            padding-left: 15px;
+            display: none; // XXX needs redesign
+        }
+
+        .colSchemaSection {
+            height: ~"calc(100% - 20px)";
+            // overflow-y: auto;
+            overflow: hidden;
+
+            .buttonSection {
+                height: 30px;
+            }
+
+            .listSection {
+                height: ~"calc(100% - 30px)";
+
+                .title {
+                    height: 26px;
+                }
+
+                .addColumn {
+                    height: 20px;
+
+                    .qMark {
+                        display: none;
+                    }
+                }
+
+                .content {
+                    height: ~"calc(100% - 66px)";
+                    overflow-y: auto;
+                }
+            }
+
+            &.hasMapping {
+                .part > div {
+                    width: 33% !important;
+                }
+                .part .dropDownList.type {
+                    padding-left: 5px;
+                    margin-top: 2px;
+                }
+            }
+        }
+    }
+}
+
+#container.locked {
+    #deleteTableModal {
+        z-index: @z-index-locked - 1;
+    }
+}
+/* End of Delete Table Modal */
+
+/* Profile Modal */
+#profileModal {
+    .size(@width: 1000px, @height: 615px, @min-width: 750px, @min-height: 440px);
+
+    @width-stats: 180px;
+    font-size: 12px;
+
+    &.isBarChart {
+        .modalHeader {
+            .text {
+                display: none;
+            }
+            > .secondary.text {
+                display: block;
+            }
+        }
+        #profile-stats {
+            display: none;
+        }
+        .sortSection, .rangeSection {
+            display: none;
+        }
+
+        .sortAndRangeSection {
+            height: 0px !important;
+            border-top: none;
+
+            .switchSection {
+                position: absolute;
+                top: 80px;
+                right: 0px;
+                height: 56px;
+                width: 100px !important;
+                padding: 0px 24px;
+            }
+        }
+        .inputSection {
+            padding-right: 100px !important;
+        }
+        .modalTopMain {
+            height: 56px;
+        }
+        .modalMain {
+            height: ~"calc(100% - 158px)";
+        }
+        #profile-chart {
+            .groupbyInfoSection {
+                height: ~"calc(100% - 60px)";
+            }
+        }
+        .xAxisSection, .yAxisSection {
+            display: block;
+            padding-left: 24px;
+            padding-top: 8px;
+            font-size: 13px;
+
+            .label {
+                float: left;
+                margin-right: 10px;
+                line-height: 26px;
+            }
+            .yAxisName {
+                line-height: 26px;
+            }
+
+            .input-box(@w:300px, @h:26px);
+            .xAxisValue {
+                font-size: 13px;
+            }
+            .iconWrapper {
+                height: 26px;
+                width: 26px;
+            }
+            .list {
+                z-index: 91; // modal resizable handles have 90
+            }
+        }
+        .yAxisSection {
+            margin-bottom: -20px;
+        }
+    }
+
+    &.isBarChart {
+        .modalHeader {
+            .text {
+                display: none;
+            }
+            > .secondary.text {
+                display: block;
+            }
+        }
+        #profile-stats {
+            display: none;
+        }
+        .sortSection, .rangeSection {
+            display: none;
+        }
+
+        .sortAndRangeSection {
+            height: 0px !important;
+            border-top: none;
+            padding: 0 !important;
+
+            > .row:last-child {
+                position: absolute;
+                top: 94px;
+                right: 0px;
+                height: 36px;
+                width: 100px !important;
+                padding: 0px 30px;
+                .title {
+                    font-size: 13px;
+                    font-weight: 600;
+                }
+                #graphSwitcher {
+                    margin-top: -4px;
+                }
+            }
+        }
+        .inputSection {
+            padding-right: 100px !important;
+        }
+        .modalTopMain {
+            height: 56px;
+        }
+        .modalMain {
+            height: ~"calc(100% - 168px)";
+        }
+        #profile-chart {
+            width: 100% !important;
+            .groupbyInfoSection {
+                height: ~"calc(100% - 60px)";
+            }
+        }
+        .xAxisSection, .yAxisSection {
+            display: block;
+            padding-left: 24px;
+            padding-top: 8px;
+            font-size: 13px;
+
+            .label {
+                float: left;
+                margin-right: 10px;
+                line-height: 26px;
+            }
+            .yAxisName {
+                line-height: 26px;
+            }
+
+            .input-box(@w:300px, @h:26px);
+            .xAxisValue {
+                font-size: 13px;
+            }
+            .iconWrapper {
+                height: 26px;
+                width: 26px;
+            }
+            .list {
+                z-index: 91; // modal resizable handles have 90
+            }
+        }
+        .yAxisSection {
+            margin-bottom: -20px;
+        }
+    }
+
+    .modalLeft {
+        .size(@width: ~"calc(100% - @{width-stats})");
+    }
+
+    .popBar {
+        .xi-previous {
+            display: none;
+        }
+
+        .xi-next {
+            display: block;
+        }
+    }
+
+    &.collapse, &.isBarChart {
+        .popBar {
+            .xi-previous {
+                display: block;
+            }
+
+            .xi-next {
+                display: none;
+            }
+        }
+
+
+        #profile-stats {
+            width: 10px;
+            min-width: 10px;
+            .transition(width 0.3s);
+
+            .container {
+                display: none;
+            }
+
+            .ui-resizable-handle {
+                // cannot resize when collapse
+                display: none;
+            }
+        }
+
+        .modalTopMain, .modalMain, .modalBottom {
+            .size(@width: ~"calc(100% - 10px)");
+        }
+    }
+
+    &.allNull {
+        .sortAndRangeSection {
+            pointer-events: none;
+        }
+    }
+
+    &.loading {
+        .loadDisabled {
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        .loadingSection {
+            display: block !important;
+        }
+
+        .bar {
+            opacity: 0.6;
+        }
+        .xAxisSection, .yAxisSection {
+            display: none !important;
+        }
+    }
+
+    &.noScrollBar {
+        .rowScrollArea {
+            display: none;
+        }
+    }
+
+    &:hover {
+        #profile-chart  {
+            .groupbyInfoSection {
+                .download {
+                    visibility: visible;
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .disabled {
+        pointer-events: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    &.dragging {
+        cursor: pointer;
+    }
+
+    &.dragging, &.selecting {
+        .noSelection;
+
+        .modalInstruction, #profile-stats, input {
+            .noSelection;
+        }
+    }
+
+    &:not(.type-number) {
+        .rangeSection {
+            opacity: @opacity-disabled !important;
+            pointer-events: none;
+
+            input {
+                .noSelection;
+            }
+        }
+
+        #profile-stats {
+            .corr {
+                display: none;
+            }
+        }
+
+        .decimalInput {
+            display: none !important;
+        }
+    }
+
+    @profile-header-h: 78px;
+    @modal-rangeSection-h: 84px;
+    @modal-inputSection-h: 56px;
+    @profile-top-main-h: @modal-rangeSection-h + @modal-inputSection-h;
+    @profile-bottom-h: 20px;
+    @modal-h-without-main: @profile-header-h + @profile-top-main-h + @profile-bottom-h;
+
+    .modalHeader {
+        height: @profile-header-h;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        .text.secondary {
+            display: none;
+        }
+    }
+
+    .modalTopMain {
+        .size(@height: @profile-top-main-h);
+        padding: 0;
+        border-bottom: 1px solid @color-profile-gray;
+
+        > div {
+            border-top: 1px solid @color-profile-gray;
+        }
+
+        .sortAndRangeSection {
+            .size(@width: 100%, @height: @modal-rangeSection-h);
+            .flex-display;
+
+            > div {
+                .size(@height: 100%);
+                float: left;
+                border-left: 1px solid @color-profile-gray;
+                padding: 16px @modal-padding-horizontal;
+
+                &:first-child {
+                    border-left: none;
+                }
+
+                .title {
+                    .size(@height: 22px);
+                    line-height: 22px;
+                    font-weight: normal;
+                }
+
+                .radioButton {
+                    .size(@height: 30px);
+
+                    > div, > i, > input {
+                        display: inline-block;
+                        float: left;
+                    }
+
+                    .radio {
+                        .size(@height: 30px);
+                        .icon {
+                            .vertical-align;
+                        }
+                    }
+
+                    .text {
+                        .font(@size: 13px, @color: @color-font-navy);
+                        line-height: 30px;
+                        .textOverflowOneLine;
+                    }
+                }
+            }
+
+            .sortSection {
+                .flex(0 1 280px);
+
+                .radioButton {
+                    .flex(1 1 100px);
+                    min-width: 50px;
+
+                    &.origin {
+                        .flex(1 1 80px);
+                    }
+
+                    .sortIcon {
+                        color: @color-font-greyish-brown;
+                        .vertical-align;
+                        margin: 0 3px;
+                    }
+
+                    .text {
+                        .size(@width: ~"calc(100% - 40px)");
+                    }
+                }
+            }
+
+            .rangeSection {
+                .flex(1 1 auto);
+
+                .group {
+                    .flex-display;
+                }
+
+                .dropDownList {
+                    .styleDropDownList(200px, 30px);
+                    .flex(1 1 200px);
+                    margin-right: 20px;
+
+                    .list {
+                        width: ~"calc(100% + 30px)";
+                    }
+
+                    .divider {
+                        .size(@width: 100%, @height: 1px);
+                        background-color: @color-bg-white-eight;
+                    }
+
+                    .iconWrapper {
+                        // this is to fix a display issue in download PNG
+                        .position(absolute, @right: 0px, @top: 0);
+                    }
+                }
+
+                .input {
+                    .flex(1 1 300px);
+                    .input-box(@w: 100%, @h: 30px);
+                    margin-right: 20px;
+                }
+
+                .radioButton {
+                    .flex(1 3 60px);
+                    .text {
+                        .size(@width: ~"calc(100% - 20px)");
+                    }
+
+                    input {
+                        margin-left: 5px;
+                        max-width: 190px;
+                    }
+
+                    &.range {
+                        .flex(3 1 220px);
+
+                        .text {
+                            .size(@width: 40px);
+                        }
+                    }
+                }
+            }
+
+            .switchSection {
+                width: 150px;
+                padding-right: 0;
+                overflow: hidden;
+
+                .title {
+                    white-space: nowrap;
+                }
+            }
+
+            #graphSwitcher {
+                margin-top: 4px;
+            }
+        }
+
+        .inputSection {
+            padding: 16px @modal-padding-horizontal;
+            .size(@height: @modal-inputSection-h);
+            .flex-display;
+
+            > div {
+                .size(@height: 30px);
+                line-height: 30px;
+                .font(@size: 13px);
+            }
+
+            .rowInput {
+                .flex(1 0 190px);
+                .textOverflowOneLine;
+                .input-box(@w: auto, @h: 20px);
+
+                input {
+                    .size(@min-width: 80px);
+                    max-width: ~"calc(100% - 80px)";
+                    margin: 0 10px;
+                }
+            }
+
+            .selectInput {
+                .flex(1 1 200px);
+                .flex-display;
+
+                > div, > input {
+                    display: inline-block;
+                    float: left;
+                }
+
+                &.decimalInput {
+                    .justify-content(center);
+
+                    .text {
+                        .size(@width: 94px);
+                    }
+
+                    input {
+                        .size(@width: 35px);
+                        padding: 0;
+                        text-align: center;
+                    }
+                }
+
+                &.displayInput {
+                    .justify-content(flex-end);
+
+                    input {
+                        border: none;
+                        background-color: transparent;
+                    }
+
+                    .control {
+                        border-color: transparent;
+
+                        > div {
+                            &:first-child {
+                                border-color: transparent;
+                            }
+                        }
+                    }
+                }
+
+                .input-box(@w: 50px, @h: 20px);
+
+                input {
+                    border: 1px solid @color-border-medium;
+                    margin-left: 5px;
+                    .vertical-align;
+                    padding: 0 5px;
+                }
+
+                .control {
+                    .size(@width: 10px, @height: 20px);
+                    border: 1px solid @color-border-medium;
+                    border-left: 0;
+                    margin-right: 10px;
+                    .vertical-align;
+
+                    > div {
+                        .size(@width: 100%, @height: 50%);
+                        .position(relative);
+
+                        .icon {
+                            color: @color-border-medium;
+                            .position(absolute, @top: 1px, @left: 1px);
+                        }
+
+                        &:first-child {
+                            border-bottom: 1px solid @color-border-medium;
+
+                            .icon {
+                                top: 0;
+                            }
+                        }
+
+                        &:hover {
+                            background-color: @color-bg-default;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{modal-h-without-main})");
+        .position(relative);
+        overflow: hidden;
+        padding: 0;
+    }
+
+    .modalBottom {
+        .size(@height: @profile-bottom-h);
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .scrollSection {
+            .size(@width: 100%, @height: 11px);
+            cursor: default;
+            background-color: @color-bg-white-three;
+
+            &.hidden {
+                display: block;
+
+                > div {
+                    display: none;
+                }
+            }
+
+            .rowScrollArea {
+                padding: 0px;
+
+                .scrollBar {
+                    .size(@width: 100%, @height: 10px);
+                    .position(relative);
+                    background-color: @color-bg-white-nine;
+                }
+
+                .scroller {
+                    .position(absolute, @top: 0, @left: 0);
+                    .size(@width: 25px, @height: 10px);
+                    background-color: @color-bg-pinkish-grey;
+                    .transition(left 0.13s);
+                    cursor: pointer;
+                    .rounded(5px);
+
+                    &.scrolling {
+                        .transition(left 0s);
+                    }
+                }
+            }
+        }
+    }
+
+    #profile-filterOption {
+        .size(@width: 120px, @height: 60px);
+        .position(absolute);
+        background-color: @color-bg-default;
+        color:  @color-font-default;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+        display: none;
+
+        .option {
+            .size(@height: 20px);
+            padding: 0 3px;
+
+            .text {
+                .font(@size: 11px);
+            }
+
+            &:hover {
+               background-color: @color-bg-list-hover;
+            }
+        }
+    }
+
+
+    #profile-chart {
+        .loadingSection {
+            display: none;
+            .size(@width: 100%, @height: 100%);
+            .position(absolute);
+            padding-top: 16px;
+            .waitingIcon {
+                display: block;
+                .center-align;
+            }
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        // XXX temporarily using size transform on hover instead
+        // of colors until we implement gray outer block on hover
+        .pieChart .area {
+            opacity: 1;
+            .transition(transform 0.3s);
+            &:hover {
+                .transform(scale(1.1));
+            }
+            &:only-of-type {
+                .transform(none);
+            }
+            &.color-1 {
+                fill : @color-arc-1;
+            }
+            &.color-2 {
+                fill : @color-arc-2;
+            }
+            &.color-3 {
+                fill : @color-arc-3;
+            }
+            &.color-4 {
+                fill : @color-arc-4;
+            }
+            &.color-5 {
+                fill : @color-arc-5;
+            }
+            &.color-6 {
+                fill : @color-arc-6;
+            }
+            &.color-7 {
+                fill : @color-arc-7;
+            }
+            &.color-8 {
+                fill : @color-arc-8;
+            }
+            &.color-9 {
+                fill : @color-arc-9;
+            }
+            &.color-10 {
+                fill : @color-arc-10;
+            }
+            &.color-11 {
+                fill : @color-arc-11;
+            }
+            &.other {
+                fill : @color-arc-other;
+            }
+            &.nullVal {
+                fill : @color-profile-bar-null;
+            }
+
+            &.selected {
+                .transform(none);
+                &, &.hover {
+                    stroke: @color-profile-bar-selected-border;
+                    stroke-width: 2;
+                }
+                &.color-1 {
+                    fill : darken(@color-arc-1, 20%);
+                }
+                &.color-2 {
+                    fill : darken(@color-arc-2, 20%);
+                }
+                &.color-3 {
+                    fill : darken(@color-arc-3, 20%);
+                }
+                &.color-4 {
+                    fill : darken(@color-arc-4, 20%);
+                }
+                &.color-5 {
+                    fill : darken(@color-arc-5, 20%);
+                }
+                &.color-6 {
+                    fill : darken(@color-arc-6, 20%);
+                }
+                &.color-7 {
+                    fill : darken(@color-arc-7, 20%);
+                }
+                &.color-8 {
+                    fill : darken(@color-arc-8, 20%);
+                }
+                &.color-9 {
+                    fill : darken(@color-arc-9, 20%);
+                }
+                &.color-10 {
+                    fill : darken(@color-arc-10, 20%);
+                }
+                &.color-11 {
+                    fill : darken(@color-arc-11, 20%);
+                }
+                &.other {
+                    fill : darken(@color-arc-other, 20%);
+                }
+                &.nullVal {
+                    fill : darken(@color-profile-bar-null, 20%);
+                }
+            }
+
+            &.unselected {
+                opacity: .85;
+
+                &.hover {
+                    .bar {
+                        fill: @color-profile-bar;
+
+                        &.bar-nullVal {
+                            fill: @color-profile-bar-null;
+                        }
+                    }
+
+                    .bar-extra {
+                        fill: @color-profile-gray;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &.selecting {
+                .transform(none);
+                &, &.hover {
+                    stroke: @color-profile-bar-border-highlight;
+                    stroke-width: 2;
+                }
+                &.color-1 {
+                    fill : darken(@color-arc-1, 20%);
+                }
+                &.color-2 {
+                    fill : darken(@color-arc-2, 20%);
+                }
+                &.color-3 {
+                    fill : darken(@color-arc-3, 20%);
+                }
+                &.color-4 {
+                    fill : darken(@color-arc-4, 20%);
+                }
+                &.color-5 {
+                    fill : darken(@color-arc-5, 20%);
+                }
+                &.color-6 {
+                    fill : darken(@color-arc-6, 20%);
+                }
+                &.color-7 {
+                    fill : darken(@color-arc-7, 20%);
+                }
+                &.color-8 {
+                    fill : darken(@color-arc-8, 20%);
+                }
+                &.color-9 {
+                    fill : darken(@color-arc-9, 20%);
+                }
+                &.color-10 {
+                    fill : darken(@color-arc-10, 20%);
+                }
+                &.color-11 {
+                    fill : darken(@color-arc-11, 20%);
+                }
+                &.other {
+                    fill : darken(@color-arc-other, 20%);
+                }
+                &.nullVal {
+                    fill : darken(@color-profile-bar-null, 20%);
+                }
+            }
+        }
+
+        .pieChart {
+            .xlabel {
+                fill: @color-text-midlightGray;
+            }
+
+            .tick {
+                fill: @color-font-greyish-brown;
+            }
+
+            polyline {
+                pointer-events: none;
+                stroke: @color-font-greyish-brown;
+                stroke-width: 1px;
+                fill: none;
+            }
+
+            circle {
+                fill: @color-font-greyish-brown;
+                pointer-events: none;
+            }
+        }
+
+        .barChart .area {
+            &.highlight {
+                .bar-extra {
+                    fill: @color-profile-bar-extra-highlight;
+                }
+
+                .bar {
+                    fill: @color-profile-bar-highlight;
+                }
+
+                .bar-border {
+                    stroke: @color-profile-bar-border-highlight;
+                    stroke-width: 2;
+                }
+
+                .tick:not(.last) {
+                    fill: @color-profile-bar;
+                    font-weight: 600;
+                }
+            }
+
+            &.hover {
+                .bar-extra {
+                    fill: @color-font-default;
+                    opacity: 0.15;
+                }
+
+                .bar {
+                    fill: @color-profile-bar-hover;
+
+                    &.bar-nullVal {
+                        fill: @color-profile-bar-null-hover;
+                    }
+                }
+            }
+
+            &.selected {
+                &, &.hover {
+                    .bar-extra {
+                        fill: @color-profile-selected-bar-extra;
+                        opacity: 1;
+                    }
+
+                    .bar {
+                        fill: @color-profile-bar-hover;
+                        &.bar-nullVal {
+                            fill: @color-profile-selected-bar-null;
+                        }
+                    }
+
+                    .bar-border {
+                        stroke: @color-profile-bar-selected-border;
+                        stroke-width: 2;
+                    }
+
+                    .tick, .xlabel {
+                        fill: @color-font-defaultInverse;
+                    }
+                }
+            }
+
+            &.unselected {
+                opacity: 0.7;
+
+                &.hover {
+                    .bar {
+                        fill: @color-profile-bar;
+
+                        &.bar-nullVal {
+                            fill: @color-profile-bar-null;
+                        }
+                    }
+
+                    .bar-extra {
+                        fill: @color-table-col-darkGray;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &.selecting {
+                &, &.hover {
+                    .bar-border {
+                        stroke: @color-profile-bar-border-highlight;
+                        stroke-width: 2;
+                    }
+                }
+                .bar {
+                    fill: @color-profile-bar-hover;
+
+                    &.bar-nullVal {
+                        fill: darken(@color-profile-bar-null, 20%);
+                    }
+                }
+            }
+
+            .bar {
+                fill: @color-profile-bar;
+
+                &.bar-nullVal {
+                    fill: @color-profile-bar-null;
+                }
+            }
+
+            .bar-extra {
+                fill:  @color-profile-bar-extra;
+            }
+
+            .bar-border {
+                fill: none;
+            }
+
+            .tick, .xlabel {
+              font: 11px sans-serif;
+              text-anchor: middle;
+              font-weight: lighter;
+              fill: @color-font-default;
+            }
+
+            .tick {
+                cursor: default;
+            }
+        }
+
+        .tick.nullVal {
+            font-style: italic !important;
+        }
+
+        .errorSection {
+            padding: 16px 20px;
+
+            .title {
+                .size(@height: 25px);
+                .font(@size: 13px, @line-height: 25px, @color: @color-text-error);
+            }
+
+            .text {
+                .size(@height: 20px);
+                .font(@size: 12px, @line-height: 20px, @color: @color-text-error);
+            }
+        }
+
+        .groupbyInfoSection {
+            .size(@width: 100%, @height: ~"calc(100% - 5px)");
+            padding: 30px 0 2px 0;
+
+            .download {
+                visibility: hidden;
+                opacity: 0;
+                .size(15px, 15px);
+                font-size: 15px;
+                display: block;
+                .position(absolute, @top: 7px, @right: 25px);
+                .transition(opacity 0.5s);
+            }
+
+            .cover {
+                fill: @color-bg-white-three;
+            }
+
+            .arrow {
+                .size(@width: 8px, @height: 13px);
+                .position(absolute, @top: 50%);
+                .transform(translateY(-50%));
+                color: @color-font-greyish-brown;
+
+                &.left-arrow {
+                    left: 9px;
+
+                }
+
+                &.right-arrow {
+                    right: 9px;
+                }
+            }
+        }
+    }
+
+    #profile-stats {
+        .size(@width: @width-stats, @min-width: @width-stats, @height: ~"calc(100% - @{profile-header-h})");
+        .position(absolute, @top: @profile-header-h, @right: 0);
+        .text-selection;
+        padding: 0;
+        border-left: 1px solid @color-profile-gray;
+
+        .ui-resizable-handle {
+            left: -5px;
+        }
+
+        .popBar {
+            .size(@width: 18px, @height: 18px);
+            .position(absolute, @top: 20px, @left: -10px);
+            .rounded(100%);
+            background-color: @color-font-default;
+            z-index: 100; // higher than .ui-resizable-w
+
+            .icon {
+                color: @color-font-defaultInverse;
+                font-size: 9px;
+                position: relative;
+                top: 5px;
+                left: 5px;
+            }
+        }
+
+        .container {
+            .size(@width: 100%);
+            padding: 5px 0;
+            border-top: 1px solid @color-border-pinkish-grey2;
+            .flex-display;
+            .flex-direction(column);
+
+            > div {
+                padding: 0 15px;
+            }
+
+            .button, button {
+                margin: 0 auto;
+            }
+
+            &:first-child {
+                border-top: 0;
+            }
+
+            &.aggInfo {
+                &.hasAgg {
+                    .info.aggCount {
+                        margin-bottom: 0;
+                        border-bottom: none;
+
+                        + .info {
+                            margin-top: 0;
+                        }
+                    }
+
+                    .button {
+                        display: none;
+                    }
+                }
+
+                .size(@height: 50%);
+
+                .label {
+                    text-transform: capitalize;
+                }
+
+                .info {
+                    &.aggCount {
+                        margin-bottom: 2px;
+                        border-bottom: 1px solid @color-bg-pinkish-grey2;
+
+                        + .info {
+                            margin-top: 2px;
+                        }
+                    }
+                }
+
+                .button {
+                    padding-top: 15px;
+                    .flex(1 0 30px);
+                }
+            }
+
+            &.statsInfo {
+                .size(@height: ~"calc(50% - 50px)");
+
+                .instruction {
+                    .flex(0 1 50px);
+                }
+
+                .button {
+                    .flex(0 1 45px);
+                    padding: 5px 15px;
+                }
+
+                .warn {
+                    .font(@size: 10px);
+                    opacity: 0.5;
+                    padding: 0 8px;
+                    text-align: center;
+                }
+
+                .info {
+                    display: none;
+                }
+
+                &.hasStats {
+                    .info {
+                        .flex-display;
+                    }
+
+                    .instruction, .button, .warn {
+                        display: none;
+                    }
+                }
+            }
+
+            &.corr {
+                padding: 10px 15px;
+                .size(@height: 50px);
+                button {
+                    i {
+                        position: relative;
+                        left: -8px;
+                        top: 3px;
+                    }
+                }
+
+            }
+
+            .title {
+                .flex(0 0 25px);
+                .font(@size: 14px);
+            }
+
+            .instruction {
+                .font(@size: 11px);
+                opacity: 0.7;
+            }
+
+            .info {
+                position: relative;
+                .flex(1 1 auto);
+                .font(@size: 12px, @line-height: 20px);
+                white-space: nowrap;
+
+                > span {
+                    display: inline-block;
+                    float: left;
+                }
+
+                .label {
+                    .font(@weight: 400);
+                    .size(@width: 55px);
+                    position: absolute;
+                    bottom: 0px;
+                }
+
+                .text {
+                    .position(absolute, @bottom: 0, @left: 70px);
+                    .size(@width: ~"calc(100% - 85px)");
+                    .textOverflow;
+
+                    &.animatedEllipsis {
+                        vertical-align: sub;
+                        width: 2px !important;
+                    }
+                }
+            }
+
+            .btn {
+                .size(@height: 30px);
+                line-height: 30px;
+            }
+        }
+    }
+
+    .xAxisSection, .yAxisSection {
+        display: none;
+    }
+}
+/* End Of Profile Modal */
+
+#licenseModal {
+    @h: 200px;
+    .size(@height: @h, @min-height: @h);
+
+    .formRow {
+        .flex-wrap(wrap);
+        position: relative;
+
+        label {
+            .flex-display;
+            .text {
+                .flex(1 0 auto);
+                margin-right: 10px;
+                line-height: 30px;
+            }
+        }
+    }
+}
+
+#supTicketModal {
+    @sidePadding: 23px;
+    @fontSize: 13px;
+    .flex-direction(column);
+    .size( @height: 620px, @min-width: 480px, @min-height: 620px);
+
+    &.locked {
+        z-index: @z-index-locked + 2;
+    }
+
+    &.flex-container {
+        .flex-display;
+    }
+
+    &.downloadSuccess {
+        .modalInstruction, .modalMain, .btn.confirm, .btn.cancel, .commentArea,
+        .formRow {
+            display: none !important;
+        }
+        .downloadMsg {
+            display: block;
+            .flex-display;
+            text-align: center;
+            .align-items(center);
+            .align-self(center);
+            .flex(1 1 auto);
+        }
+        .btn.close {
+            display: block;
+        }
+    }
+
+    &.downloadMode {
+        .btn {
+            &.confirm {
+                display: none;
+            }
+            &.download {
+                display: block;
+            }
+        }
+    }
+
+    &.bundleError {
+        .defaultText {
+            display: none !important;
+        }
+        .errorText {
+            display: block;
+            color: @color-error-border-light;
+        }
+        .errorText {
+            .flex-display !important;
+        }
+    }
+
+    .modalMain {
+        border-bottom: 1px solid @color-bg-pinkish-grey2;
+        padding: 20px @sidePadding;
+    }
+
+    section.inactive {
+        opacity: 0.5;
+        background: @color-bg-default;
+    }
+
+    .formRow {
+        .flex-display;
+        font-size: @fontSize;
+
+        .label {
+            line-height: 30px;
+            margin-right: 16px;
+        }
+        .dropDownList {
+            max-width: 300px;
+            width: ~"calc(100% - 110px)";
+            float: right;
+
+            .text {
+                width: ~"calc(100% - 30px)";
+                font-size: @fontSize;
+            }
+            .iconWrapper {
+                .size(30px, 30px);
+            }
+        }
+
+        .checkbox {
+            margin-top: 1px;
+            margin-left: 10px;
+        }
+
+        &.genBundleRow {
+            .flex-display;
+            .justify-content(space-between);
+            > .label {
+                .flex(0 0 auto);
+            }
+            .options {
+                .flex-display;
+                .flex-wrap(wrap);
+            }
+            .checkboxSection {
+                .flex(0 0 auto);
+            }
+        }
+
+        &.customTicketRow {
+            margin-top: 10px;
+            > .label {
+                width: auto !important;
+                margin-left: 3px;
+            }
+            input {
+                width: 100px;
+                margin-left: 10px;
+                font-size: 13px;
+            }
+            .qMark {
+                margin-top: 9px;
+                margin-left: 8px;
+            }
+        }
+    }
+
+    .refresh {
+        .position(absolute, @right: 27px, @top: 27px)
+    }
+
+    .modalMain .formRow > .label {
+        width: 110px;
+        margin-right: 6px;
+    }
+
+    .severityList {
+        .qMark {
+            float: right;
+            margin-top: 9px;
+            margin-right: 6px;
+        }
+    }
+
+    .ticketIDSection {
+        .flex-display;
+        .flex-direction(column);
+        .flex(0 1 auto);
+        // max-height: ~"calc(100% - 200px)";
+        min-height: 140px;
+        .position(relative); // for refresh icon positioning
+
+        &.closed {
+            display: none;
+        }
+
+        &.expanded {
+            .tableBody {
+                 max-height: 250px;
+            }
+        }
+
+        &.fetching {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+
+        .formRow {
+            .flex(0 0 30px);
+        }
+    }
+
+    .table {
+        @rowHeight: 30px;
+
+        border: 1px solid @color-border-pinkish-grey2;
+        margin-top: 4px;
+        .flex-display;
+        .flex-direction(column);
+
+        .tableHeader {
+            background-color: @color-bg-white-gray;
+            font-size: 12px;
+            padding-right: 11px;
+            .row {
+                .flex-display;
+                height: @rowHeight;
+            }
+        }
+
+        .tableBody {
+            .flex(0 1 auto);
+            overflow-y: scroll;
+            max-height: 150px;
+            background: @color-bg-default;
+            .text-selection;
+            .row {
+                &:nth-child(even) {
+                    background: @color-bg-white-three;
+                }
+                font-size: 11px;
+            }
+        }
+
+        .row {
+            height: @rowHeight;
+            line-height: @rowHeight;
+
+            &.empty {
+                font-style: italic;
+                text-align: center;
+                color: @color-font-gray36;
+                border-top: 1px solid @color-border-pinkish-grey2;
+                .td {
+                    line-height: @rowHeight - 15px;
+                }
+            }
+            &.invalid {
+                pointer-events: none;
+                opacity: @opacity-hint;
+            }
+            .innerRow {
+                .flex-display;
+
+                &:first-child {
+                    .comment {
+                        display: none;
+                    }
+                    .expand {
+                        display: block;
+                    }
+
+                    .subjectWrap {
+                        .flex-display;
+                        cursor: pointer;
+                    }
+
+                    .subject {
+                        .flex(1 1 auto);
+                        .textOverflow;
+                        margin-bottom: 4px;
+                    }
+
+                    .severity {
+                        width: 72px;
+                        min-width: 72px;
+                        padding-left: 6px;
+                        white-space: nowrap;
+                        margin-bottom: 4px;
+                    }
+
+                    .severity.unavailable {
+                        display: none;
+                    }
+                }
+                &:not(:first-child) {
+                    display: none;
+                    .text {
+                        width: ~"calc(100% - 4px)"
+                    }
+                }
+            }
+
+            &.expanded {
+                height: auto;
+
+                .innerRow {
+                    .flex-display;
+                }
+
+                .subjectWrap {
+                    .flex-direction(column);
+                    .severity {
+                        padding-left: 0px;
+                    }
+                }
+
+                .details{
+                    cursor: initial;
+                    .text {
+                        white-space: normal;
+                    }
+                    .expand {
+                        display: block;
+                        .transform(rotate(0deg));
+                        .icon {
+                            top: -1px;
+                        }
+                    }
+                    .comment {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .th, .td {
+            .flex(0 1 85px);
+            min-width: 85px;
+            padding: 7px 4px 7px 14px;
+            line-height: @rowHeight - 14px;
+            border-left: 1px solid @color-border-pinkish-grey2;
+            &:first-child {
+                border-left: none;
+            }
+            &:nth-child(3) {
+                .flex(0 1 125px);
+                min-width: 125px;
+            }
+            &:last-child {
+                .flex(3 1 275px);
+                overflow-y: auto;
+            }
+        }
+
+        .details {
+            padding: 0px;
+            .text {
+                padding: 7px 0px 7px 14px;
+                float: left;
+                .size(@width: ~"calc(100% - 17px)");
+                height: 100%;
+                .textOverflowOneLine;
+            }
+            .expand {
+                display: none;
+                cursor: pointer;
+                .size(@width: 16px);
+                text-align: center;
+                line-height: @rowHeight;
+                float: right;
+                .transform(rotate(180deg));
+                .icon {
+                    .position(relative, @top: -1px);
+                }
+            }
+
+            &.overflow {
+                cursor: pointer;
+                .expand {
+                    display: block;
+                }
+            }
+
+            .comment {
+                text-overflow: ellipsis;
+                overflow: hidden;
+            }
+        }
+
+        .closed .radioButton {
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .radioButton {
+            font-size: 11px;
+            line-height: @rowHeight - 14px;
+            height: @rowHeight - 14px;
+            .radio {
+                margin-right: 0px;
+            }
+            .label {
+                .text-selection;
+                cursor: pointer;
+            }
+        }
+        .radioButtonGroup {
+            margin-left: -4px;
+        }
+
+    }
+
+    .modalSubMain {
+        padding-left: @sidePadding;
+        padding-right: @sidePadding;
+        .flex(1 0 auto);
+        .flex-display;
+        .flex-direction(column);
+        font-size: @fontSize;
+        padding-top: 10px;
+        border-bottom: 1px solid @color-bg-pinkish-grey2;
+    }
+    .commentArea {
+        .flex-display;
+        .flex-direction(column);
+        .flex(1 0 auto);
+        margin-top: 6px;
+    }
+    .textLimitArea {
+        float: right;
+        font-size: 10px;
+    }
+    .descriptionArea {
+        .flex-display;
+        .flex-direction(column);
+        .flex(1 0 auto);
+    }
+    .subjectInput, .emailInput {
+        font-size: @fontSize;
+        background: @color-bg-default;
+        margin-top: 10px;
+    }
+    .emailInput {
+        margin-bottom: 12px;
+    }
+    .bundleArea, .downloadMsg {
+        display: none;
+    }
+    .xc-textArea {
+        .flex(1 1 40px);
+        margin-top: 10px;
+        margin-bottom: 20px;
+        font-size: @fontSize;
+    }
+    .modalBottom {
+        height: 70px;
+        padding-right: @sidePadding - 10px;
+        .flex( 0 0 70px);
+    }
+    .btn.close, .btn.download, .altIcon, .errorText {
+        display: none;
+    }
+    .errorText {
+        display: none !important;
+    }
+}
+
+#aboutModal {
+    .size(@height: 425px);
+    bottom: auto;
+
+    .modalHeader {
+        .size(@height: 31px);
+        padding: 0;
+
+        .close {
+            top: 13px;
+        }
+    }
+
+    .modalMain {
+        height: 390px;
+        position: relative;
+        .font(@size: 12px);
+
+        .contents {
+            position: relative;
+            z-index: 0;
+            .logoSection {
+                .icon {
+                    display: inline-block;
+                    &.xi-xcalar-full-logo {
+                        font-size: 38px;
+                    }
+                }
+            }
+            .header {
+                margin-top: 20px;
+                font-weight: 600;
+                font-size: 16px;
+            }
+            .textRow {
+                padding-top: 5px;
+                .clearfix;
+            }
+            .label {
+                font-weight: 100;
+                float: left;
+            }
+            .value {
+                font-weight: 600;
+                float: left;
+                padding-left: 5px;
+                &.keyValue {
+                    width: ~"calc(100% - 55px)";
+                }
+            }
+            .iconWrapper {
+                padding-left: 5px;
+                position: relative;
+                float: left;
+                top: 3px;
+                opacity: 0.8;
+                &:hover {
+                    opacity: 1.0;
+                    cursor: pointer;
+                }
+                .icon {
+                    font-size: 15px;
+                }
+            }
+        }
+
+        .copyRightSection {
+            margin-top: 13px;
+            position: absolute;
+            bottom: 15px;
+            left: 0px;
+            width: 100%;
+            .font(@align: center);
+        }
+    }
+}
+
+#rawFileModal {
+    @normalSectionWidth: 340px;
+
+    width: 600px;
+    height: 500px;
+    @h-without-main: @modal-header-with-subHeader-h;
+
+    &.loading, &.error {
+        .toggleHex {
+            .xc-disabled;
+        }
+    }
+
+    &.hexMode {
+        .hexDump {
+            display: block;
+            float: left;
+            .size(@width: ~"calc(100% - @{normalSectionWidth})");
+        }
+
+        .normal {
+            .size(@width: @normalSectionWidth);
+            border-left: none;
+            margin: 0;
+            float: right;
+        }
+    }
+
+    .hexDump {
+        display: none;
+        padding: 0 0 0 10px;
+    }
+
+    .normal {
+        // width: @normalSectionWidth;
+        margin: 0 auto;
+        padding: 0 5px;
+    }
+
+    .loadingSection {
+        width: 120px;
+        height: 30px;
+        .center-align;
+    }
+
+    .subHeader {
+        .textOverflowOneLine;
+
+        .fileName {
+            font-weight: 600;
+        }
+    }
+
+    .modalMain {
+        @top-h: 30px;
+        @bottom-h: 50px;
+        @topAndBottom-h: @top-h + @bottom-h;
+
+        height: ~"calc(100% - @{h-without-main})";
+        padding: 15px;
+        overflow-x: auto;
+        position: relative;
+        text-transform: none;
+
+        .topSection {
+            margin-left: 10px;
+
+            .size(@height: @top-h);
+        }
+
+        .contentSection {
+            .size(@width: 100%, @height: ~"calc(100% - @{topAndBottom-h})");
+
+            .preview {
+                .size(@height: 100%);
+                overflow: auto;
+
+                .line {
+                    font-family: monospace;
+                    font-size: 11px;
+                    text-align: center;
+
+                    .cell {
+                        .size(@height: 20px);
+                        .vertical-align;
+                        text-transform: none;
+                        white-space: pre;
+                        line-height: 20px;
+
+                        &.active {
+                            outline: 1px solid @color-border-softBlue;
+                            background-color: @color-bg-highlight-blue-trans;
+                        }
+                    }
+                }
+
+                &.hexDump {
+                    text-align: center;
+
+                    .cell {
+                        margin: 0 1px;
+                        padding: 0 3px;
+                    }
+                }
+            }
+        }
+
+
+        .bottomSection {
+            .size(@width: 100%, @height: @bottom-h);
+            padding: 5px 10px;
+            .flex-display;
+            .flex-wrap(wrap);
+            .justify-content(flex-end);
+
+            > div {
+                .size(@height: 30px);
+                .input-box(@w: 60px, @h: 30px);
+                .font(@line-height: 30px);
+                float: right;
+                clear: right;
+                text-transform: none;
+
+                span {
+                    display: inline-block;
+                }
+
+                .text {
+                    margin-left: 10px;
+                }
+
+                .offsetNum {
+                    padding-left: 3px;
+                    .size(@min-width: 60px, @max-width: ~"calc(100% - 50px)");
+                }
+
+                .qMark {
+                    position: relative;
+                    bottom: 2px;
+                }
+
+                input {
+                    margin-left: 3px;
+                    padding: 0 3px;
+                }
+            }
+        }
+    }
+}
+
+#fileInfoModal {
+    .size(@width: 320px, @height: 160px, @min-width: 320px);
+
+    .modalHeader {
+        .size(@height: 25px);
+        padding-top: 0;
+        padding-bottom: 0;
+
+        .text {
+            font-size: 14px;
+            line-height: 25px;
+            text-transform: none;
+        }
+
+        .close {
+            top: 2px;
+            right: 7px;
+
+            .icon {
+                font-size: 14px;
+            }
+        }
+    }
+
+    .modalMain {
+        .font(@size: 12px);
+        .size(@height: ~"calc(100% - 25px)");
+        padding-top: 12px;
+
+        .fileName {
+            text-transform: none;
+        }
+
+        .fileInfoDetails {
+            display: flex;
+            > div {
+                display: flex;
+                align-items: flex-start;
+                flex-direction: column;
+            }
+            .fileInfoText {
+                margin-left: 30px;
+                margin-top: 3px;
+                > div {
+                    margin-bottom: 2px;
+                }
+            }
+            .size(@width: 100%, @height: 88px);
+            padding: 8px 0;
+            .icon {
+                color: @color-font-greyish-brown;
+                font-size: 16px;
+            }
+            .fileIcon {
+                font-size: 65px;
+                color: @color-bg-cardHeader;
+                align-self: center;
+                margin-bottom: 11px;
+            }
+            span {
+                display: inline-block;
+                &.content {
+                    display: block;
+                }
+            }
+            .contentWrapper {
+                margin-left: 30px;
+                margin-top: -21px;
+            }
+        }
+    }
+}
+
+#skewInfoModal {
+    .size(@width: 920px, @height: 650px, @min-width: 500px, @min-height: 650px);
+    @skewInfo-topMain: 50px;
+    @skewInfo-restOfMain: @modal-header-h + @modal-instr-h + @skewInfo-topMain;
+
+    .modalInstruction {
+        a {
+            color: @color-bg-select-blue;
+            text-decoration: none;
+        }
+    }
+
+    .modalTopMain {
+        // .size(@height: @skewInfo-topMain);
+        padding: 16px @modal-padding-horizontal 8px;
+        .font(@size: 14px, @line-height: 24px);
+        .flex-display;
+        .text-selection;
+        .flex-wrap(wrap);
+
+        > div {
+            .flex(1 1 auto);
+            margin-right: 8px;
+            .textOverflowOneLine;
+
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+
+        .text {
+            margin-left: 3px;
+        }
+    }
+
+    .modalMain {
+        // .size(@height: ~"calc(100% - @{skewInfo-restOfMain})");
+        padding: @modal-padding-vertical @modal-padding-horizontal;
+
+        .chart {
+            .size(100%, 100%);
+            overflow: visible;
+        }
+    }
+
+    svg {
+        .bar {
+            fill: @color-profile-bar-hover;
+        }
+
+       .axis {
+          font-size: 11px;
+        }
+
+        .axis {
+            path, line {
+                fill: none;
+                stroke: @color-font-default;
+                shape-rendering: crispEdges;
+            }
+
+            text {
+                text-transform: capitalize;
+                fill: @color-font-default;
+            }
+        }
+    }
+}
+
+#workbookInfoModal {
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 288px);
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{h-without-main})");
+        .flex-display;
+        .flex-direction(column);
+
+        .section {
+            .flex(1 1 auto);
+
+            div, input {
+                margin-bottom: 5px;
+            }
+
+            input {
+                background: @color-bg-default;
+            }
+
+            .error {
+                .size(@height: 20px);
+                color: @color-table-red;
+            }
+        }
+    }
+}
+
+#dfNodeLineagePopup {
+    @magin-top: 16px;
+    @magin-bottom: @modal-padding-vertical;
+    @h-without-main: @modal-header-h + @magin-bottom + @magin-top;
+    width: 300px;
+    min-width: 300px;
+    .size(@height: 210px);
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        overflow: auto;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        margin-bottom: @magin-bottom;
+        margin-top: @magin-top;
+
+        .row {
+            height: 20px;
+            line-height: 20px;
+            margin-top: 8px;
+            white-space: nowrap;
+
+            &.error {
+               color: @color-error-red;
+            }
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            &.collapse {
+                ~ .row {
+                    display: none;
+                }
+
+                .toggle {
+                    .xi-down {
+                        display: none;
+                    }
+
+                    .xi-next {
+                        display: inline-block;
+                    }
+                }
+            }
+
+            .padding {
+                margin-left: 16px;
+            }
+
+            .toggle {
+                margin-right: 4px;
+
+                .xi-next {
+                    display: none;
+                }
+
+                .icon {
+                    font-size: 12px;
+                    color: @color-icon-default;
+                }
+            }
+
+            .link {
+                color: @color-link-blue;
+                text-decoration: underline;
+                text-transform: capitalize;
+                font-weight: 600;
+                margin-right: 8px;
+                .xc-action;
+            }
+
+            .nodeIcon {
+                width: 16px;
+                height: 10px;
+                border-radius: 5px;
+                border: 1px solid @color-icon-default-hover;
+                background-color: @color-bg-dagIcon2;
+                display: inline-block;
+                margin-right: 5px;
+            }
+
+            .xi-dataflow-thin {
+                font-size: 14px;
+                margin-right: 5px;
+                color: #9E9E9E;
+                position: relative;
+                top: 1px;
+            }
+
+            .highlightRelated {
+                margin-left: 8px;
+
+                .icon {
+                    font-size: 14px;
+                    position: relative;
+                    top: 1px;
+                }
+            }
+
+            .label {
+                font-weight: normal;
+            }
+        }
+    }
+}
+
+
+/* ========== Dataflow uploader ============= */
+#dfUploadModal {
+    @btn-w: 85px;
+    @total-w: @btn-w + 10px;
+    @h-without-main: @modal-header-h + @modal-instr-h + @modal-bottom-h;
+
+    .size(@height: 404px);
+
+    &.locked {
+        pointer-events: none;
+
+        .close, button {
+            opacity: @opacity-disabled;
+        }
+    }
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{h-without-main})");
+
+        .row {
+            height: 30px;
+            margin-bottom: 10px;
+
+            &.label {
+                height: 23px;
+                margin-bottom: 0;
+            }
+
+            button {
+                width: @btn-w;
+                height: 30px;
+                float: right;
+            }
+
+            input {
+                width: ~"calc(100% - @{total-w})";
+                background-color: @color-bg-default;
+            }
+        }
+
+        .checkboxSection {
+            .qMark {
+                float: left;
+                .position(relative, @top: 10px);
+            }
+
+            .text {
+                margin-right: 8px;
+            }
+        }
+    }
+
+    .modalBottom {
+        .buttonTooltipWrap {
+            // Keep same as the button that it wraps
+            margin-left: 10px;
+            width: 150px;
+            height: @height-btn;
+            float: right;
+        }
+        .btn {
+            &.unavailable {
+                pointer-events: none;
+            }
+        }
+    }
+}
+/* ========== End of Dataflow uploader ============= */
+// configNodeModal located in opPanel.less
+
+/* ========== Dataflow download ============= */
+#dfDownloadModal {
+    .size(@height: 328px);
+    @r-h: @modal-header-h + @modal-instr-h + @modal-bottom-h;
+
+    &.locked {
+        pointer-events: none;
+
+        .close, button {
+            opacity: @opacity-disabled;
+        }
+    }
+
+    .modalMain {
+        height: ~"calc(100% - @{r-h})";
+
+        .row {
+            height: 30px;
+
+            &.label {
+                height: 23px;
+                margin-bottom: 0;
+            }
+
+            &.format {
+                margin-bottom: 10px;
+            }
+
+            &.optimized {
+                &.inVisible {
+                    visibility: hidden;
+                }
+
+                .qMark {
+                    margin-left: 5px;
+                    .position(relative, @top: -1px);
+                }
+            }
+
+            .dropDownList {
+                width: 100%;
+
+                .text {
+                    height: 30px;
+                    width: ~"calc(100% - 30px)";
+                    line-height: 30px;
+                }
+            }
+        }
+    }
+}
+/* ========== End of Dataflow download ============= */
+
+/* ========== SQL Func Setting ============= */
+#sqlFuncSettingModal {
+    @h-without-main: @modal-header-with-subHeader-h + @modal-bottom-h;
+    .size(@height: 246px, @min-width: 565px);
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        @label-w: 170px;
+        @margin: 10px;
+        @total-w: @label-w + @margin;
+
+        .row {
+            height: 30px;
+            margin-top: 16px;
+
+            &:first-child {
+                margin-top: 0;
+            }
+        }
+
+        .label, input {
+            display: block;
+            float: left;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        .label {
+            width: @label-w;
+            margin-right: @margin;
+        }
+
+        input {
+            width: ~"calc(100% - @{total-w})";
+        }
+    }
+}
+/* ========== End of SQL Func Setting ============= */
+
+#clusterStatusModal {
+    @h-without-main: @modal-header-with-subHeader-h + @modal-bottom-h;
+    .size(@height: 800px, @min-height: 300px, @max-height: 800px);
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        overflow-y: auto;
+    }
+
+    .section {
+        padding: 15px 0;
+        border-bottom: 1px solid @color-border-medium2;
+
+        &:first-child {
+            padding-top: 0;
+        }
+
+        &:last-child {
+            border-bottom: none;
+        }
+
+        .row {
+            margin-top: 5px;
+        }
+
+        .key {
+            font-weight: 600;
+        }
+
+        .val {
+            font-weight: normal;
+
+            &.row {
+                padding-left: 16px;
+                white-space: pre;
+            }
+        }
+    }
+}
+
+/* Login Config Modal */
+#loginConfigModal {
+    @h-without-main: @modal-header-with-subHeader-h + @modal-bottom-h;
+    .size(@height:650px);
+    @rowHeight: 25px;
+    @leftPadding: 20px;
+    @labelWidth: 187px;
+    .clearfix;
+    bottom: auto;
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        overflow-y: auto;
+        padding-left: 0;
+        padding-right: 0;
+        font-size: 12px;
+    }
+
+    .modalMainSection {
+        vertical-align: middle;
+        background-color: @color-bg-default;
+        &:not(:last-child) {
+            border-bottom: 1px solid @color-border-pinkish-grey2;
+        }
+        .clearfix;
+    }
+
+    .loginSectionToggle {
+        cursor: pointer;
+    }
+
+    .longDescription {
+        padding-left: @leftPadding;
+    }
+
+    .optionSet {
+        position: relative;
+        top: -2px;
+    }
+
+    .formRow {
+        margin-bottom: 10px;
+        margin-top: 10px;
+        padding-right: 40px;
+        width: 100%;
+        .label {
+            float: left;
+            padding-left: @leftPadding;
+            padding-right: 24px;
+            text-transform: uppercase;
+            height: @rowHeight;
+            line-height: @rowHeight;
+        }
+
+        .xc-input {
+            .size(@width: ~"calc(100% - @{labelWidth})");
+            height: @rowHeight;
+            line-height: @rowHeight;
+        }
+
+        .checkbox {
+            height: @rowHeight;
+            .icon {
+                font-size: 18px;
+            }
+        }
+    }
+
+    .formBiRow {
+        .formRow;
+        width: ~"calc(50% - 20px)";
+        float: left;
+        padding-right: 0px;
+
+        .label {
+            .size(@width: @labelWidth);
+        }
+        .xc-input {
+            margin-right: 0px;
+        }
+        .clearfix;
+    }
+
+    .inputRow {
+        .label {
+            .size(@width: @labelWidth);
+        }
+    }
+
+    .radioButton {
+        padding-left: @leftPadding;
+    }
+
+    .modalBottom {
+        border-top: 1px solid @color-border-pinkish-grey2;
+        padding: 10px;
+    }
+
+    #loginConfigMSALSignOnUrl {
+        user-select: all;
+    }
+
+    #loginConfigAdminPassword {
+        &.invalid {
+            border-color: @color-invalid;
+        }
+        &.veryWeak {
+            border-color: @color-very-weak;
+        }
+        &.weak {
+            border-color: @color-weak;
+        }
+        &.strong {
+            border-color: @color-strong;
+        }
+        &.veryStrong {
+            border-color: @color-very-strong;
+        }
+    }
+    #passwordStrengthHint {
+        &.invalid {
+            color: @color-invalid;
+        }
+        &.veryWeak {
+            color: @color-very-weak;
+        }
+        &.weak {
+            color: @color-weak;
+        }
+        &.strong {
+            color: @color-strong;
+        }
+        &.veryStrong {
+            color: @color-very-strong;
+        }
+    }
+    #passwordStrengthHint, #passwordRequirement {
+        margin-left: 187px;
+        margin-top: 5px;
+        font-size: 12px;
+    }
+}
+
+.ui-draggable-dragging {
+    .cursor-grabbing;
+
+    .ui-draggable-handle {
+        .cursor-grabbing;
+    }
+}
+
+#debugAlert {
+    position: absolute;
+    z-index: 2000;
+    top: 19%;
+    left: 40%;
+    min-width: 200px;
+    min-height: 100px;
+    width: 400px;
+    height: 200px;
+    background-color: @color-bg-default;
+    font-size: 18px;
+    display: none;
+
+    .title {
+        text-align: center;
+        background-color: @color-error-border-light;
+        color: @color-font-defaultInverse;
+        height: 30px;
+        line-height: 30px;
+    }
+    .clear {
+        position: absolute;
+        top:2px;
+        right: 32px;
+        cursor: pointer;
+    }
+    .close {
+        position: absolute;
+        top:2px;
+        right: 2px;
+        cursor: pointer;
+    }
+    .content {
+        b, .semibold {
+            font-family: @font-base;
+        }
+        padding: 10px;
+        height: ~"calc(100% - 30px)";
+        overflow: auto;
+        font-size: 14px;
+        font-family: @font-code;
+        .text-selection;
+    }
+}
+
+.prettyJson {
+    color: @color-json-default;
+    font-weight: 400;
+    .text-selection;
+
+    .jsonBlock {
+        display:block;
+        margin-bottom: 1px;
+        position: relative; // for inner checkbox positioning
+    }
+
+    .jKey {
+        color: @color-json-key;
+        padding: 0px 1px;
+        margin: 0px -1px;
+        display: inline-block;
+        .rounded;
+    }
+
+    .jArray, .jObj {
+        display: inline;
+    }
+
+    .jString {
+        color: @color-json-string;
+        white-space: pre-wrap;
+        word-break: break-all;
+    }
+
+    .jNum, .jBool, .jTimestamp, .jMoney, .jNull , .jUndf {
+        color: @color-json-num;
+        word-break: break-all;
+    }
+    .jNull, .jUndf {
+        font-style: italic;
+    }
+    .arrayVal > .jString {
+        color: @color-json-array;
+        white-space: nowrap;
+        word-break: break-all;
+    }
+}
+
+#dagUDFErrorModal {
+    .size(@height: 400px, @min-height: 260px);
+    @top-main-h: 67px;
+    @h-without-main: @modal-header-h + @top-main-h + @modal-bottom-h;
+    @modalRowHeight: 36px;
+
+    &.visible {
+        display: flex !important;
+        flex-direction: column;
+    }
+
+    &.hasExtraErrors {
+        .modalInstruction {
+            display: flex;
+        }
+        .extraErrors {
+            display: block;
+        }
+
+        .modalMain {
+            height: ~"calc(100% - @{h-without-main} - @{modal-instr-h})";
+        }
+    }
+
+    &.optimized {
+        .modalInstruction {
+            display: flex;
+        }
+        .optimizedMsg {
+            display: block;
+        }
+        .modalMain, .modalTopMain, .divider {
+            display: none !important;
+        }
+    }
+    &.noErrors {
+        .modalMain, .modalTopMain, .divider {
+            display: none !important;
+        }
+    }
+
+    .extraErrors, .optimizedMsg {
+        display: none;
+    }
+
+    .modalInstruction {
+        display: none;
+        flex: 1 0 auto;
+        align-items: center;
+
+        .xi-error {
+            color: @color-error-red;
+            margin-top: 0px;
+            margin-right: 8px;
+            line-height: 18px;
+            height: 30px; // to prevent other text from flowing under
+            font-size: 14px;
+            float: left;
+        }
+
+        .extraErrors {
+            flex: 1 1 auto;
+            font-size: 13px;
+        }
+    }
+
+    .modalTopMain {
+        height: @top-main-h;
+    }
+
+    .columnHeader {
+        font-weight: 600;
+        float: left;
+    }
+    .expandAll, .collapseAll {
+        color: @color-font-link-blue;
+        float: right;
+        text-decoration: underline;
+    }
+    .modalRow {
+        background-color: @color-bg-2;
+        border-top: 1px solid @color-border-menubar-grey;
+        border-bottom: 1px solid @color-border-menubar-grey;
+        font-size: 15px;
+        min-height: @modalRowHeight;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 600;
+    }
+    .modalMain {
+        overflow: auto;
+        // border-bottom: 1px solid @color-border-menubar-grey;
+        padding: 0px;
+        height: ~"calc(100% - @{h-without-main})";
+    }
+
+    .noErrors {
+        display: flex;
+        width: 100%;
+        height: 80px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .evalGroup {
+        .errorRow {
+            display: none;
+        }
+        &.expanded {
+            .errorRow {
+                display: block;
+            }
+            .xi-plus {
+                display: none;
+            }
+            .xi-minus {
+                display: block;
+            }
+        }
+        &:not(.expanded) {
+            .groupHeader {
+                margin-bottom: 0px;
+                padding-bottom: 16px;
+                border-bottom: 1px solid @color-border-menubar-grey;
+            }
+        }
+    }
+
+    .groupHeader {
+        font-weight: 600;
+        padding: 16px 24px 0px;
+        margin-bottom: -8px; // to counter 16px padding from first row
+        cursor: pointer;
+
+        .text {
+            .textOverflowOneLine;
+            display: inline-block;
+            width: ~"calc(100% - 30px)";
+        }
+        .icon {
+            float: right;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        .xi-minus {
+            display: none;
+        }
+    }
+
+    .errorRow {
+        border-bottom: 1px solid @color-border-menubar-grey;
+        padding: 8px 24px 16px;
+        font-size: 12px;
+        user-select: text;
+        cursor: auto;
+
+        .subRow {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .evalString {
+            .textOverflowOneLine;
+            opacity: 0.8;
+            padding-bottom: 8px;
+        }
+
+        .count {
+            padding-left: 10px;
+            color: @color-error-red;
+            text-align: right;
+            font-weight: 600;
+        }
+    }
+    .errorText {
+        white-space: pre-wrap;
+    }
+
+    .divider {
+        width: 100%;
+        height: 0px;
+        border-top: 1px solid @color-border-menubar-grey;
+    }
+    // .evalGroup:nth-child(even) {
+    //     background-color: #F6F7F9; // XXX new color??
+    // }
+    .btn-large {
+        width: 250px;
+    }
+}
+
+#dagDescriptionModal, #dagCustomRenameModal {
+    @h-without-main: @modal-header-with-subHeader-h +  @modal-bottom-h;
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{h-without-main})");
+        overflow: auto;
+    }
+
+    .formRow {
+        .flex-display;
+        .flex-direction(column);
+        height: 100%;
+    }
+}
+
+#dagDescriptionModal {
+    .size(@height: 300px, @min-height: 250px, @width: 500px, @min-width: 400px);
+
+    .subHeading {
+        .flex-display;
+        .justify-content(space-between);
+        margin-bottom: 5px;
+
+        .optionButtons {
+            color: @color-font-light-blue;
+            margin-right: 2px;
+        }
+    }
+
+    .xc-textArea {
+        width: 100%;
+        .flex(1 0 auto);
+        background-color: @color-bg-list-hover;
+    }
+
+    &.viewOnly {
+        .optionButtons {
+            display: none;
+        }
+        .confirm, .subHeader, .optionButtons {
+            display: none;
+        }
+        .xc-textArea {
+            border: none;
+            background-color: transparent;
+        }
+    }
+}
+
+#dagCustomRenameModal {
+    @h: 201px;
+    .size(@height: @h, @min-height: @h);
+    z-index: @z-index-modal + 1; // place in front of custom node modal
+}
+
+#createPublishTableModal {
+    @row-height: 26px;
+    @row-margin: 16px;
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 500px, @min-height: 500px);
+    overflow: hidden;
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        overflow-y: auto;
+        display: block;
+        position: relative;
+
+        .formRow {
+            height: @row-height;
+            margin-bottom: @row-margin;
+
+            .subHeading {
+                float: left;
+                margin-top: 0;
+
+                .label {
+                    height: 26px;
+                    line-height: 26px;
+                    padding-left: 0;
+
+                }
+            }
+        }
+
+        .IMDName, .IMDKey {
+            width: 100%;
+
+            .subHeading {
+                .label {
+                    width: 100px;
+                }
+            }
+        }
+
+        .IMDName {
+            .inputWrap {
+                border: 1px @color-border-softGray;
+                float: right;
+                width: ~"calc(100% - 120px)";
+                height: 26px;
+                margin-left: 20px;
+                input {
+                    text-transform: uppercase;
+                }
+            }
+        }
+
+        .IMDKey {
+            .primaryKeys {
+                float: right;
+                width: ~"calc(100% - 120px)";
+                .primaryKeyList {
+                    margin-bottom: 10px;
+                    .xi-cancel {
+                        position: absolute;
+                        left: 7px;
+                        top: 5px;
+                        color: @color-bg-unselect-gray;
+                        font-size: 14px;
+                        opacity: 0.8;
+                        cursor: pointer;
+                    }
+                    .primaryKeyInput {
+                        padding-left: 26px;
+                    }
+                    .primaryKeyInput.first {
+                        padding-left: 5px;
+                    }
+                }
+            }
+
+        }
+
+        .keyOptions {
+            .disableKey {
+                float: left;
+                width: 150px;
+
+                .checkbox {
+                    margin-left: 0;
+                }
+
+                .text {
+                    float: left;
+                    width: 106px;
+                }
+            }
+            .btnWrap {
+                width: 200px;
+                float: right;
+
+                .addArgWrap {
+                    margin-top: 0;
+                    width: auto;
+                }
+
+                .text {
+                    line-height: 22px;
+                    font-size: 12px;
+                    float: right;
+                }
+                .btn-rounded {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 14px;
+                    margin: 0;
+
+                    .xi-plus {
+                        line-height: 16px;
+                    }
+                }
+            }
+        }
+
+        #publishTableModalColumns {
+            @base-row: @row-height + @row-margin;
+            @rest-h: 3 * @base-row;
+            height: ~"calc(100% - @{rest-h})";
+            margin-bottom: 0;
+
+            .selectAllWrap {
+                float: right;
+            }
+            .columnsToPublish {
+                height: ~"calc(100% - @{base-row})";
+
+                .cols {
+                    padding-top: 1px;
+                    border-left: 1px solid @color-bg-white-five;
+                    .col {
+                        padding-left: 0px;
+                        border: 1px solid @color-bg-white-five;
+                        border-left: none;
+                        .icon.type {
+                            float: left;
+                            font-size: 15px;
+                            padding-top: 5px;
+                            padding-right: 4px;
+                            padding-left: 4px;
+                            border-right: 1px solid @color-bg-white-five;
+                            background-color: @color-bg-list-hover;
+                            height: 19px;
+                        }
+                    }
+                    overflow-y: none;
+                }
+
+                &.flexWrap {
+                    li {
+                        .flex(1 1 150px);
+                        width: 150px;
+                        margin-top: -1px; // fixes double thickness of the bottom of a
+                                        // cell's border when next to the top border
+                                        // of another cell
+                        .text {
+                            width: 100%;
+                            padding-left: 30px;
+                        }
+
+                        .icon {
+                            position: absolute;
+                        }
+                    }
+                    .flexSpace {
+                        .flex(1 1 150px);
+                        width: 150px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+#exportSQLTableModal {
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 600px, @min-height: 600px);
+    overflow: hidden;
+
+    .modalMain {
+        height: ~"calc(100% - @{h-without-main})";
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        padding-top: 12px;
+
+        .subHeading {
+            .label {
+                padding-left: 0;
+            }
+            .qMark {
+                margin-top: 15px;
+            }
+        }
+
+        .exportDriver {
+
+            .subHeading {
+                float: left;
+                padding-left: 0;
+            }
+            #exportSQLTableDriverList {
+                float: right;
+                margin-top: 13px;
+                width: 100%;
+            }
+        }
+
+        .argsSectionBox {
+            height: ~"calc(100% - 200px)";
+            width: 100%;
+            margin-top: 20px;
+            float: left;
+            overflow: hidden;
+
+            .argsSection {
+                border: 1px solid @color-border-medium2;
+                max-height: 100%;
+                overflow-y: auto;
+                overflow-x: hidden;
+                padding-bottom: 8px;
+
+                .exportDescription {
+                    padding-left: 10px;
+                    padding-top: 5px;
+                    padding-right: 5px;
+                }
+
+                .exportArg {
+                    .subHeading {
+                        font-size: 12px;
+                        .label {
+                            margin-top: 4px;
+                            margin-bottom: 4px;
+                            height: 25px;
+                            padding-left: 10px;
+                        }
+                    }
+                    .dropDownList {
+                        padding: 0 10px;
+                        .iconWrapper {
+                            right: 10px;
+                        }
+                    }
+                    .instrText {
+                        max-height: 75%;
+                        float: left;
+                        padding-bottom: 5px;
+                    }
+                    .checkbox {
+                        padding-right: 26px;
+                    }
+                }
+            }
+        }
+
+        #exportSQLTableColumns {
+            max-height: 191px;
+
+            .subHeading {
+                padding-left: 0;
+            }
+
+            .selectAllWrap {
+                float: right;
+
+                .text {
+                    float: left;
+                }
+            }
+            .columnsToExport {
+                .searchBox {
+                    position: relative;
+                    clear: both;
+
+                    .icon {
+                        .position(absolute, @right: 10px);
+                        margin-top: 6px;
+                        font-size: 14px;
+                        color: @color-border-bar;
+                    }
+                }
+
+                .filterHint {
+                    color: @color-border-bar;
+                }
+
+                .cols {
+                    padding-top: 1px;
+                    border-left: 1px solid @color-bg-white-five;
+                    .col {
+                        padding-left: 0px;
+                        border: 1px solid @color-bg-white-five;
+                        border-left: none;
+                        .icon.type {
+                            float: left;
+                            font-size: 15px;
+                            padding-top: 5px;
+                            padding-right: 4px;
+                            padding-left: 4px;
+                            border-right: 1px solid @color-bg-white-five;
+                            background-color: @color-bg-list-hover;
+                            height: 19px;
+                        }
+                    }
+                    max-height: 101px;
+                    overflow-y: none;
+                }
+
+                &.flexWrap {
+                    li {
+                        .flex(1 1 150px);
+                        width: 150px;
+                        margin-top: -1px; // fixes double thickness of the bottom of a
+                                        // cell's border when next to the top border
+                                        // of another cell
+                        .text {
+                            width: 100%;
+                            padding-left: 30px;
+                        }
+
+                        .icon {
+                            position: absolute;
+                        }
+                    }
+                    .flexSpace {
+                        .flex(1 1 151px);
+                        width: 151px;
+                    }
+                }
+            }
+        }
+
+    }
+}
+
+#createPublishTableModal, #exportSQLTableModal {
+    &.creating {
+        .modalMain {
+            position: relative;
+
+            > div:not(.creatingHint) {
+                opacity: 0.1;
+                pointer-events: none;
+            }
+
+            .creatingHint {
+                display: block;
+                .position(absolute, @top: 0, @left: 0);
+                padding: 15px;
+                width: 100%;
+                height: 100%;
+
+                > .wrap {
+                    width: 230px;
+                    .center-align;
+
+                    > div {
+                        height: 25px;
+                    }
+                }
+            }
+        }
+
+        .modalBottom {
+            button {
+                .xc-disabled;
+            }
+        }
+    }
+
+    .modalMain {
+        .creatingHint {
+            display: none;
+        }
+    }
+}
+
+#dagDatasetModal {
+    .size(@width: 500px, @height: 500px, @min-width: 500px, @min-height: 500px);
+    .modalMain {
+        .flex(1 1 auto);
+        .flex-display;
+        .flex-direction(column);
+        overflow: hidden;
+        font-size: 13px;
+    }
+
+    .mainRow {
+        border-bottom: 1px solid @color-bg-pinkish-grey2;
+        padding: 20px 40px;
+        flex: 1 1 auto;
+        overflow: auto;
+
+        .title {
+            font-weight: 600;
+            padding-bottom: 10px;
+        }
+    }
+
+    .columnsSection {
+        display: flex;
+    }
+
+    .modalBottom {
+        min-height: 56px;
+    }
+}
+
+#sqlQueryHistModal {
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 400px);
+
+    .content {
+        .font(@weight: normal, @family: @font-code);
+        .size(@height: ~"calc(100% - @{h-without-main})");
+        overflow: auto;
+        user-select: text;
+    }
+}
+
+#fileManagerSaveAsModal {
+    @h-without-main: @modal-header-h + @modal-bottom-h;
+    .size(@height: 480px);
+
+    .modalMain {
+        .size(@height: ~"calc(100% - @{h-without-main})");
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .saveAs {
+            height: 30px;
+            margin-bottom: 4px;
+
+            .label {
+                line-height: 28px;
+            }
+
+            input {
+                background-color: @color-bg-default;
+                width: ~"calc(100% - 62px)";
+                margin-left: 3px;
+                float: right;
+            }
+        }
+
+        .saveWarning {
+            color: @color-text-error;
+            font-size: 12px;
+            margin: 8px 0;
+        }
+    }
+
+    .fileManager {
+        height: auto;
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+
+        .fileManagerBar {
+            min-height: 26px;
+            background-color: @color-bg-default;
+            box-shadow: none;
+            flex-direction: row-reverse;
+
+            .navigationArea {
+                min-width: 52px;
+                padding: 0 5px 0 5px;
+                .navigationButtonRefresh {
+                    display: none;
+                }
+            }
+
+            .addressArea {
+                padding: 2px 0 0 8px;
+                .addressContent {
+                    border: none;
+                    padding: 0;
+                }
+            }
+
+            .actionArea {
+                display: none;
+            }
+
+            .operationArea {
+                display: none;
+            }
+        }
+
+        .fileManagerSearchBar {
+            display: none;
+        }
+
+        .fileManagerMainArea {
+            flex: 1 1 auto;
+            overflow: hidden;
+            padding: 0px;
+            .section {
+                .row {
+                    padding: 0 6px;
+                }
+
+                .checkBox {
+                    display: none;
+                }
+            }
+
+            .titleSection {
+                display: none;
+            }
+
+            .mainSection {
+                border: 1px solid @color-border-medium2;
+            }
+        }
+    }
+}
+
+/* ========== End Of Log Section ========== */
+#adminSetupModal {
+    width: 96%;
+    height: 96%;
+
+    .modalMain {
+        height: ~"calc(100% - @{modal-header-h})";
+        display: flex;
+        padding-left: 0;
+        padding-right: 0;
+
+        > .rightSection {
+            overflow: auto;
+            flex: 1 1 auto;
+        }
+
+        .cardMain {
+            padding: 30px 60px;
+        }
+        .optionsArea {
+            @rowHeight: 48px;
+            .optionRow {
+                height: @rowHeight;
+                font-size: 12px;
+                white-space: nowrap;
+                overflow: hidden;
+
+                .input-box(@w: ~"calc(100% - 50px)" , @h: 30px, @focus: true);
+                .flex-display;
+            }
+
+            .optionRow > div {
+                // float: left;
+                margin-left: 28px;
+                line-height: @rowHeight;
+                display: inline-block;
+            }
+
+            .nameArea {
+                margin-left: 0px;
+                .flex(0 1 310px);
+                .textOverflowOneLine;
+            }
+            .valueArea {
+                .flex(1 1 400px);
+                margin-left: 12px !important;
+            }
+            .buttonArea {
+                min-width: 90px;
+                .flex(0 1 150px);
+                margin-left: 20px !important;
+                button {
+                    width: 100%;
+                    max-width: 150px;
+                }
+            }
+
+            .label {
+                font-weight: 600;
+                margin-right: 5px;
+            }
+
+            .name {
+                color: @color-font-select-blue;
+                font-weight: 600;
+            }
+
+            input {
+                color: @color-font-warm-grey-two;
+                font-size: 12px !important;
+                &:focus {
+                    color: @color-font-gray36;
+                }
+            }
+
+        }
+
+        .cardBottom {
+            padding: 10px 60px 20px 60px;
+            .btn {
+                letter-spacing: normal;
+                width: 160px; // decrease width if we decide to lower font weight
+                margin-bottom: 10px;
+            }
+        }
+    }
+}
+
+#userSettingsModal {
+    @itemsHeight: 36px;
+    @rowHeight: @itemsHeight;
+    @border-color: @color-border-medium2;
+    .size(@height: 450px, @min-height: 300px, @max-height: 800px, @min-width: 650px);
+
+    .modalHeader {
+        height: 60px;
+        border-bottom: 1px solid @border-color;
+        padding-top: 16px;
+
+        .close {
+            top: 20px;
+        }
+    }
+
+    .modalMain {
+        height: ~"calc(100% - 60px)";
+        overflow: hidden;
+        display: flex;
+        padding: 0px !important;
+    }
+
+    .modalBottom {
+        background-color: @color-bg-modal;
+        z-index: 1; // to block scroll gradient
+        border-bottom-right-radius: 16px;
+    }
+
+    .optionSet {
+        min-height: @rowHeight;
+        line-height: @rowHeight;
+        position: relative;
+
+        .checkbox {
+            float: left;
+            margin-right: 8px;
+        }
+    }
+
+    .label {
+        display: inline-block;
+        margin-right: 16px;
+        float: left;
+
+        > .qMark {
+            float: none;
+            top: -3px;
+            margin-left: 4px;
+        }
+    }
+
+    .qMark {
+        position: relative;
+        top: 10px;
+        margin-left: -8px;
+        float: left;
+        height: 15px;
+        width: 15px;
+        font-size: 9px;
+
+        &:before {
+            top: 2px;
+            position: relative;
+        }
+    }
+
+    .optionSelector {
+        display: inline-block;
+        float: left;
+        min-height: @rowHeight; // for ie
+    }
+
+    .rangeSliderWrap {
+        margin-bottom: 10px;
+        padding-top: 3px;
+
+        .rangeSlider {
+            width: 275px;
+            float: left;
+        }
+
+        .input-box(@w: 50px, @h: 25px);
+        input {
+            padding: 0 4px;
+        }
+
+        .value {
+            display: inline-block;
+            float: left;
+            text-align: center;
+            margin-left: 20px;
+            margin-right: 4px;
+            .position(relative, @top: 3px);
+        }
+        span {
+            float: left;
+            line-height: @rowHeight;
+        }
+
+    }
+
+    .inputList {
+        // .size(@height: 60px);
+        line-height: 30px;
+        padding-top: 10px;
+
+        .inputWrap {
+            .input-box(@w: 80px, @h: 30px);
+            margin-left: 10px;
+            float: left;
+        }
+
+        .dropDownList {
+            margin-left: -1px;
+            .styleDropDownList(80px, 30px);
+
+            ul {
+                margin: 0;
+            }
+
+            li {
+                .size(@height: 20px);
+                line-height: 20px;
+                text-align: center;
+                padding: 0;
+                box-shadow: none;
+                opacity: @opacity-hover;
+            }
+        }
+    }
+
+    #colorThemeSelector {
+        height: @rowHeight;
+        margin-top: 3px;
+        margin-bottom: 4px;
+
+        .text {
+            height: 30px;
+            width: 150px;
+            line-height: 30px;
+        }
+    }
+
+    .leftSection {
+        width: 130px;
+        flex: 0 0 auto;
+        padding-top: 12px;
+        border-right: 1px solid @border-color;
+        z-index: 1; // to block scrollgradient
+
+        .tab {
+            height: 40px;
+            padding: 0px 24px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+
+            &.active {
+                background-color: @color-link-blue;
+            }
+            &:not(.active):hover {
+                background-color: @color-bg-menu;
+            }
+        }
+    }
+
+    .rightSection {
+        .flex-display;
+        .flex-direction(column);
+        flex: 1 1 auto;
+        position: relative;
+
+        .settingsArea {
+            overflow: auto;
+            flex: 1 1 auto;
+            padding: 24px 30px;
+            padding-top: 0px;
+        }
+    }
+
+    .settingsGroup {
+        .flex-display;
+        .flex-direction(column);
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        &:not(:first-child) {
+            border-top: 1px solid @border-color;
+        }
+
+        .subHeading {
+            font-weight: 600;
+            padding-bottom: 12px;
+        }
+
+        .content {
+            .flex-display;
+            .flex-direction(column);
+            font-size: 13px;
+        }
+
+        .checkbox {
+            height: @itemsHeight;
+        }
+
+        .checkboxSection {
+            height: @rowHeight;
+            line-height: @rowHeight;
+        }
+
+        .row {
+            .flex(1 1 auto);
+        }
+    }
+
+    .scrollGradient {
+        position: absolute;
+        bottom: 70px;
+        height: 1px;
+        width: ~"calc(100% - 10px)";
+        // box-shadow: 0px 0px 10px 0px rgba(46,46,46,1),
+        //             0px 0px 15px 0px rgba(46,46,46,1),
+        //             0px 0px 20px 0px rgba(46,46,46,1),
+        //             0px 0px 25px 0px rgba(46,46,46,1),
+        //             0px 0px 30px 0px rgba(46,46,46,1);
+    }
+}
+
+#createAppModal {
+    font-size: 12px;
+    min-height: 300px;
+    min-width: 380px;
+
+    &.load {
+        .loadingSection {
+            display: block;
+        }
+
+        .graphList {
+            display: none;
+        }
+
+        .modalBottomMain {
+            display: none;
+        }
+
+        .confirm {
+            .xc-disabled;
+        }
+    }
+
+    &.submit {
+        .modalInstruction {
+            .normal {
+                display: none;
+            }
+        }
+
+        .confirm {
+            .xc-disabled;
+        }
+    }
+
+    &.submit {
+        .modalInstruction {
+            .progress {
+                display: block;
+            }
+        }
+    }
+
+    .loadingSection {
+        display: none;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+
+    .modalInstruction {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        height: auto;
+        min-height: 66px;
+
+        .progress {
+            display: none;
+        }
+    }
+
+    .modalMain {
+        padding-top: 8px;
+        padding-right: 8px;
+    }
+
+    .row {
+        display: flex;
+        margin-bottom: 8px;
+    }
+
+    .checkbox {
+        height: 16px;
+        width: auto;
+        margin-top: 3px;
+        padding-left: 1px;
+        padding-right: 8px;
+
+        .icon {
+            font-size: 11px;
+            padding-left: 1px; // prevents weird thin left border issue
+        }
+    }
+
+    .listWrap {
+        width: 100%;
+        overflow: hidden;
+
+        .listInfo {
+            height: 20px;
+            padding: 0px 8px 0px 0px;
+            display: flex;
+            cursor: pointer;
+
+            .expand {
+                margin-left: auto;
+            }
+        }
+
+        .name, .text {
+            .textOverflowOneLine;
+            float: none;
+        }
+
+        li {
+            border-top: none;
+            border-bottom: none;
+            height: 24px;
+            font-size: 11px;
+            padding: 0px 8px 0px 0px;
+            line-height: 20px;
+            cursor: pointer;
+
+            &:hover {
+                opacity: 1;
+                .icon {
+                   visibility: visible;
+                }
+            }
+
+            .icon {
+                visibility: hidden;
+                font-size: 12px;
+                line-height: 15px;
+                margin-right: 4px;
+            }
+       }
+    }
+
+    .emptyMsg {
+        text-align: center;
+        padding: 24px;
+        width: 100%;
+    }
+
+    .options {
+        label {
+            float: left;
+            margin-right: 15px;
+        }
+
+        .radioButtonGroup {
+            margin-top: 4px;
+        }
+    }
+
+    .inputWrap {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        margin-top: 8px;
+
+        label {
+            flex: 0 0 65px;
+            padding-right: 8px;
+        }
+
+        .dropDownList {
+            width: 100%;
+        }
+
+        .xc-input {
+            height: 24px;
+            font-size: 12px;
+        }
+    }
+}
+
+#dsTarget-create-card {
+    .size(@height: 500px, @width: 600px, @min-height: 400px, @min-width:500px);
+    border-radius: 12px;
+    border: 1px solid @color-border-medium;
+    box-shadow: none;
+
+    .modalHeader {
+        .text {
+            width: 100%;
+            text-align: center;
+            padding-right: 0px;
+        }
+        .backBtn {
+            position: absolute;
+            top: 19px;
+
+            .icon {
+                font-size: 24px;
+            }
+        }
+    }
+
+    .modalMain {
+        padding-top: 0px !important;
+        height: ~"calc(100% - 92px)" !important;
+    }
+
+    .formSection {
+        input {
+            .input-placeholder(@color-text-placeholder2);
+        }
+
+        .label {
+            font-size: 16px;
+            line-height: 40px;
+            display: inline-block;
+        }
+        .formRow {
+            margin-top: 12px;
+
+            > input, > .dropDownList {
+                width: 100%;
+                float: none;
+
+                input {
+                    width: ~"calc(100% - 30px)";
+                }
+            }
+        }
+        .dropDownList {
+            input {
+                width: ~"calc(100% - 30px)";
+            }
+        }
+        .formContent {
+            margin-top: -4px;
+            padding-bottom: 12px;
+
+            label {
+                font-size: 14px;
+                line-height: 30px;
+                text-transform: capitalize;
+            }
+        }
+    }
+    .formBottom {
+        bottom: 10px;
+        position: absolute;
+    }
+    #dsTarget-type-menu {
+        max-height: 90px;
+
+        .unavailable {
+            opacity: @opacity-disabled;
+            cursor: not-allowed;
+        }
+    }
+    #dsTarget-description {
+        width: 100%;
+        word-wrap: break-word;
+    }
+    .modalBottom .btn {
+        font-size: 14px;
+    }
+}

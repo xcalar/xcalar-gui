@@ -1,0 +1,129 @@
+<div id="userSettingsModal" class="modalContainer mainSection no-selection">
+  <header class="modalHeader">
+    <span class="text"><%= dicts.monitor.Preferences %></span>
+    <div class="close" data-container="body" data-toggle="tooltip"
+    data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <div class="optionsContainer modalMain">
+    <section class="leftSection">
+      <ul>
+        <li class="tab active" data-action="generalSettings">General</li>
+        <li class="tab" data-action="notebookSettings">Notebook</li>
+      </ul>
+    </section>
+    <section class="rightSection">
+      <div class="settingsArea">
+          <div class="settingsSection generalSettings">
+              <div class="settingsGroup">
+                  <div class="content">
+                      <!-- health check interval -->
+                    <div class="optionSet">
+                      <div class="label"><%= dicts.monitor.commitInterval %></div>
+                      <div id="commitIntervalSlider" class="optionSelector rangeSliderWrap">
+                        <div class="rangeSlider">
+                          <div class="leftArea">
+                            <div class="slider"></div>
+                          </div>
+                          <div class="rightArea"></div>
+                        </div>
+                        <input class="value" value="120" type="number" min="10" max="600">
+                        <span><%= dicts.common.seconds %></span>
+                      </div>
+                    </div>
+                    <!-- logout interval -->
+                    <div class="optionSet">
+                      <div class="label"><%= dicts.monitor.logOutInterval %>
+                        <i class="qMark icon xi-unknown cloudOnly"
+                      data-toggle="tooltip"
+                      data-container="body"
+                      data-title="<%= dicts.TooltipTStr.Logout %>"
+                      data-placement="auto top"></i>
+                      </div>
+                      <div id="logOutIntervalSlider" class="optionSelector rangeSliderWrap">
+                        <div class="rangeSlider">
+                          <div class="leftArea">
+                            <div class="slider"></div>
+                          </div>
+                          <div class="rightArea"></div>
+                        </div>
+                        <input class="value" value="25" type="number" min="10" max="120">
+                        <span><%= dicts.common.minutes %></span>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="settingsSection notebookSettings xc-hidden">
+            <div class="settingsGroup">
+                <div class="subHeading">Code Editor</div>
+                <div class="content">
+                  <!-- color theme -->
+                  <div class="optionSet">
+                      <div class="optionSelector">
+                        <div class="label">Editor theme:</div>
+                        <div id="colorThemeSelector" class="dropDownList">
+                            <div class="text"></div>
+                            <div class="iconWrapper">
+                              <i class="icon xi-arrow-down"></i>
+                            </div>
+                            <div class="list">
+                              <ul>
+                                <li data-option="xcalar-dark">Xcalar Dark</li>
+                                <li data-option="3024-night">3024 Night</li>
+                                <li data-option="ayu-dark">Ayu Dark</li>
+                                <li data-option="erlang-dark">Erlang Dark</li>
+                                <li data-option="midnight">Midnight</li>
+                              </ul>
+                              include "../../util/menuScrollArea.html"
+                            </div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- show syntax highlight -->
+                    <div class="optionSet">
+                      <div class="optionSelector checkboxSection">
+                        <div id="showSyntaxHighlight" class="checkbox">
+                          <i class="icon xi-ckbox-empty fa-13"></i>
+                          <i class="icon xi-ckbox-selected fa-13"></i>
+                        </div>
+                      </div>
+                      <div class="label">Show syntax highlighting for editors</div>
+                    </div>
+                </div>
+              </div>
+              <div class="settingsGroup dfSettings">
+                <div class="subHeading"><%= dicts.dataflow.Title %></div>
+                <div class="content"></div>
+              </div>
+              <div class="settingsGroup">
+                  <div class="subHeading">Table Preview</div>
+                  <div class="content">
+                    <!-- show data col -->
+                    <div class="optionSet">
+                      <div class="optionSelector checkboxSection">
+                        <div id="showDataColBox" class="checkbox">
+                          <i class="icon xi-ckbox-empty fa-13"></i>
+                          <i class="icon xi-ckbox-selected fa-13"></i>
+                        </div>
+                      </div>
+                      <div class="label"><%= dicts.monitor.showDataCol %></div>
+                      <i class="qMark icon xi-unknown"
+                      data-toggle="tooltip"
+                      data-container="body"
+                      data-title="<%= dicts.monitor.showDataColHint %>"
+                      data-placement="auto top"></i>
+                    </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="scrollGradient"></div>
+      <div class="modalBottom">
+          <button id="userSettingsSave" class="btn confirm btn-submit btn-rounded"><%= dicts.common.Save %></button>
+          <button id="userSettingsDefault" class="btn cancel btn-secondary btn-rounded"><%= dicts.exportView.restoreDefaults %></button>
+      </div>
+    </section>
+  </div>
+</div>

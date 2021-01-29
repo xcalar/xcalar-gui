@@ -1,0 +1,27 @@
+{ 
+    "Load": [
+        {
+            "description": "Connector input qMark",
+            "id": "LoadConnectorInputTip",
+            "text": "Select a connector ",
+            "link": "https://xcalar.com/documentation/Content/Content_QSG/qs_intro_build_datam_connect.htm",
+            "linkText": "View More"
+        }
+    ],
+    "Notebook": [
+        {
+            "description": "aka 'location' -- This can be an optional field that can be used to help describe where this tooltip is located or whatever information you want.",
+            "id": "JoinPanelNextBtn",
+            "text": "To go to the next screen click next",
+            "link": "www.xcalar.com/helpDocs/joinPanel",
+            "linkText": "Click Here"
+        },
+        {
+            "description": "no need to provide linkText, will default to 'click here' or something",
+            "id": "UnderscoreOrCameCaseNoSpaces",
+            "text": "No destination worksheet",
+            "link": "",
+            "linkText": ""
+        }
+    ]
+}

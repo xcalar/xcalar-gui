@@ -1,0 +1,109 @@
+  <div class="testForm hintHidden">
+    <div class="testFormWrap">
+        <i class="icon xi-close closeTestForm xc-icon-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+        <div class="row">
+          <div class="inputWrap">
+            <span class="label"><%= dicts.common.FunctionName %>: <i class="qMark icon xi-unknown"
+              data-toggle="tooltip"
+              data-container="body"
+              data-placement="auto top"
+              data-title="Select a function to test from your module above. Any unsaved changes will not be used." >
+            </i></span>
+            <div class="dropDownList">
+              <input class="text xc-input inputable tooltipOverflow arg" data-arg="function" type="text" spellcheck="false">
+              <div class="iconWrapper">
+                <i class="icon xi-arrow-down"></i>
+              </div>
+              <div class="list">
+                <ul></ul>
+                include "../../util/menuScrollArea.html"
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="inputWrap">
+            <div class="label">Table Name: <i class="qMark icon xi-unknown"
+              data-toggle="tooltip"
+              data-container="body"
+              data-placement="auto top"
+              data-title="Select a table to run your function against." >
+            </i></div>
+            <div class="dropDownList">
+              <input class="text xc-input inputable tooltipOverflow arg" data-arg="table" type="text" spellcheck="false" placeholder="">
+              <div class="iconWrapper">
+                <i class="icon xi-arrow-down"></i>
+              </div>
+              <div class="list">
+                <ul></ul>
+                include "../../util/menuScrollArea.html"
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="inputWrap">
+            <span class="label">Input Arguments: <i class="qMark icon xi-unknown"
+              data-toggle="tooltip"
+              data-container="body"
+              data-placement="auto top"
+              data-title="Columns or values to pass into your function, comma separated. Column names should be prefixed with $ and strings should not be wrapped in quotes." >
+            </i>
+          </span>
+            <div class="dropDownList columnsList">
+              <input type="text" class="xc-input inputable text arg columns" data-arg="columns" spellcheck="false" placeholder="$Column1, 3">
+              <div class="iconWrapper">
+                <i class="icon xi-arrow-down"></i>
+              </div>
+              <div class="list">
+                <ul>
+                </ul>
+                include "../../util/menuScrollArea.html"
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row xc-hidden">
+          <div class="inputWrap">
+            <div class="checkboxSection">
+                <div class="checkbox keepColumns">
+                    <i class="icon xi-ckbox-empty fa-11"></i>
+                    <i class="icon xi-ckbox-selected fa-11"></i>
+                </div>
+                <div class="text">View all columns in resultant table</div>
+                <i class="qMark icon xi-unknown"
+                  data-toggle="tooltip"
+                  data-container="body"
+                  data-placement="auto top"
+                  data-title="Unless selected, the output table will only display relevant columns.">
+                </i>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="inputWrap">
+              <span class="label">Number of rows to sample: <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="Select the number of rows from your table you would like to test your function on." >
+              </i></span>
+              <div class="dropDownList">
+                <input type="number" value="100" min="1" class="xc-input inputable text arg" data-arg="rows" spellcheck="false">
+              </div>
+          </div>
+        </div>
+        <div class="bottomRow row">
+            <div class="btnWrap">
+                <button class="btn btn-secondary btn-secondary btn-rounded clear">
+                    Reset
+                </button>
+            </div>
+          <div class="btnWrap">
+              <button class="btn btn-secondary btn-submit btn-rounded submit">
+                  Test
+              </button>
+          </div>
+        </div>
+    </div>
+  </div>

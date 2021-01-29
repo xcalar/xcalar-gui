@@ -1,0 +1,14 @@
+{
+    "Unknown state" : 0,
+    "Created" : 1,
+    "Queued" : 2,
+    "Processing" : 3,
+    "Cleaned" : 4,
+    "Ready" : 5,
+    "Dropped" : 6,
+    "Error" : 7,
+    "Archived" : 8,
+    "Archiving" : 9,
+    "Error during Archiving" : 10
+}
+

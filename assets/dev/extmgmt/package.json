@@ -1,0 +1,20 @@
+{
+  "name": "livehelp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.102.0",
+    "body-parser": "^1.18.1",
+    "express": "^4.15.4",
+    "jquery": "^1.5.1",
+    "jsdom": "^1.2.1",
+    "nodemailer": "^4.0.1",
+    "socket.io": "^2.0.3"
+  }
+}

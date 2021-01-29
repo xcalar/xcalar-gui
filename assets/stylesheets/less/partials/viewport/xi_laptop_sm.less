@@ -1,0 +1,65 @@
+
+
+// for monitor system
+@media screen and (max-width: 945px) {
+    #monitor-system {
+        height: ~"calc(100% - 149px)";
+        .asupSubSection {
+            > div {
+                line-height: 25px !important;
+            }
+
+            .title {
+                height: 19px;
+                .position(relative, @left: 7px);
+                display: block;
+                width: 200px;
+            }
+
+            .btn  {
+                height: 25px;
+                top: 25% !important;
+                line-height: 25px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: @width-minScreen) {
+    #userBox {
+        left: @width-minScreen - @width-userBox;
+    }
+}
+
+@media screen and (max-width: 1040px) {
+    #pTblView {
+        .infoSection {
+            .action {
+                display: none;
+            }
+        }
+    }
+}
+
+// for operation view
+@media screen and (min-height: 750px) {
+    @listHeight: 26px;
+    .opView {
+        .catFuncMenus {
+            ul {
+                height: @listHeight * 6 - 1px;
+            }
+        }
+    }
+}
+
+@media screen and (min-height: 1100px) {
+    @listHeight: 26px;
+    #mapOpPanel {
+        .catFuncMenus {
+            ul {
+                height: @listHeight * 7 - 1px;
+            }
+        }
+    }
+}

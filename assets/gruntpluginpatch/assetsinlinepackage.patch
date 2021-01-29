@@ -1,0 +1,11 @@
+--- tasks/assets_inline.js.orig	1985-10-26 01:15:00.000000000 -0700
++++ tasks/assets_inline.js	2019-02-12 16:56:00.731794874 -0800
+@@ -20,7 +20,7 @@
+ 
+   var path = require('path');
+   var url = require('url');
+-  var uglifyjs = require('uglify-js');
++  var uglifyjs = require('uglify-es');
+   var jsdom = require('jsdom');
+ 
+   var { JSDOM } = jsdom;

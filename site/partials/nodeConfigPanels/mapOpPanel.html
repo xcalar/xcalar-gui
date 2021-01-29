@@ -1,0 +1,85 @@
+<section id="mapOpPanel" class="xc-hidden opPanel generalOpPanel">
+    <header>
+        <div class="row">
+            <div class="title"><%= dicts.opsView.map %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <div class="mainContent">
+        <div class="opSection">
+            <p class="mainInstructions instrText"><%= dicts.opsView.mapInstr %></p>
+            <div class="group mapGroup firstGroup">
+                <i class="icon xi-minus minGroup"></i>
+                <div class="altFnTitle">No Scalar Function Chosen</div>
+                <div class="functionType">
+                    <div class="description">Scalar Function Type:</div>
+                    <div class="radioButtonGroup">
+                        <div class="radioButton xc-action active" data-option="builtin">
+                            <div class="radio">
+                                <i class="icon xi-radio-selected"></i>
+                                <i class="icon xi-radio-empty"></i>
+                            </div>
+                            <div class="label">Built In</div>
+                        </div>
+                        <div class="radioButton xc-action" data-option="custom">
+                            <div class="radio">
+                                <i class="icon xi-radio-selected"></i>
+                                <i class="icon xi-radio-empty"></i>
+                            </div>
+                            <div class="label">Custom</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="functionsRow">
+                  <div class="label">Function:</div>
+                  <div class="inputWrap clearfix">
+                    <div class="dropDownList functionsMenu">
+                      <input class="text inputable functionsInput textNoCap tooltipOverflow" type="text" spellcheck="false">
+                      <div class="iconWrapper">
+                        <i class="icon xi-arrow-down"></i>
+                      </div>
+                      <div class="list">
+                        <ul></ul>
+                        <div class="scrollArea top">
+                          <i class="arrow icon xi-arrow-up"></i>
+                        </div>
+                        <div class="scrollArea bottom">
+                          <i class="arrow icon xi-arrow-down"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="descriptionText"></div>
+                <div class="argsSection inactive"></div>
+            </div>
+            <div class="addArgWrap addArgWrapSmall addGroup addExtraGroup">
+                <button class="btn btn-secondary btn-100-rounded addArg addMapGroup">
+                    <i class="icon xi-plus"></i>
+                </button>
+                <span class="text"><%= dicts.opsView.additionalMapFunc %>
+                  <i class="qMark icon xi-unknown"
+                    data-toggle="tooltip"
+                    data-container="body"
+                    data-placement="auto top"
+                    data-title="<%= dicts.opsView.additionalMapFuncTip %>">
+                    </i>
+                </span>
+            </div>
+            <!-- icvContainer is deprecated, need to remove from MapOpPanel.ts -->
+            <div class="icvContainer xc-hidden">
+                <div class="icvMode checkboxSection inactive">
+                    <div class="checkbox">
+                        <i class="icon xi-ckbox-empty fa-11"></i>
+                        <i class="icon xi-ckbox-selected fa-11"></i>
+                    </div>
+                    <div class="text"><%= dicts.opsView.erroneousRows %></div>
+                </div>
+            </div>
+            <div class="strPreview"></div> <!-- this gets filled by JS -->
+        </div>
+        include "opPanelAdvancedSection.html"
+        include "opPanelBottomSection.html"
+    </div>
+</section>

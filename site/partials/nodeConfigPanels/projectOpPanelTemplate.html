@@ -1,0 +1,50 @@
+<!-- Derived Column List Template -->
+<div data-xcid="xdtemp_projop_column_derive" style="display:none">
+    <li class="col {{isHidden}}" (click)="onColClick">
+        <div class="typeIcon flexContainer flexRow {{colTypeClass}}">
+            <div class="flexWrap flex-left" data-toggle="tooltip" data-title="{{colType}}" data-container="body" data-placement="auto top">
+                <span class="iconHidden"></span>
+                <span class="type icon"></span>
+            </div>
+            <div class="flexWrap flex-mid text" data-original-title="{{origTitle}}" data-toggle="tooltip" data-placement="auto top" data-container="body">{{colName}}</div>
+            <div class="flexWrap flex-right">
+                <div class="checkbox {{checkClass}}">
+                    <i class="icon xi-ckbox-empty fa-13"></i>
+                    <i class="icon xi-ckbox-selected fa-13"></i>
+                </div>
+            </div>
+        </div>
+    </li>
+</div>
+
+<!-- Prefixed Column Template -->
+<div data-xcid="xdtemp_projop_column_nocheck" style="display:none">
+    <li>
+        <div class="typeIcon flexContainer flexRow {{colTypeClass}}">
+            <div class="flexWrap flex-left" data-toggle="tooltip" data-title="{{colType}}" data-container="body" data-placement="auto top">
+                <span class="iconHidden"></span>
+                <span class="type icon"></span>
+            </div>
+            <div class="flexWrap flex-mid text" data-original-title="{{origTitle}}" data-toggle="tooltip" data-placement="auto top" data-container="body">{{colName}}</div>
+            <div class="flexWrap flex-right"></div>
+        </div>
+    </li>
+</div>
+
+<!-- Prefixed Column List Template -->
+<div data-xcid="xdtemp_projop_prefixed" style="display:none">
+    <div class="prefixGroup columnGroup">
+        <div class="prefixName" data-toggle="tooltip" data-container="body" data-original-title="{{prefixTip}}">{{prefix}}</div>
+        <div class="checkboxWrap selectAllWrap" (click)="onSelAllClick">
+            <div class="checkbox {{selAllCss}}">
+                <i class="icon xi-ckbox-empty fa-13"></i>
+                <i class="icon xi-ckbox-selected fa-13"></i>
+            </div>
+            <div class="text">{{textSelectAll}}</div>
+        </div>
+        <div class="columnsToExport columnsWrap flexWrap clearfix">
+            <ul class="cols" data-xcid="columnContainer"></ul>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,39 @@
+
+<div id="dataflowStatsModal" class="modalContainer">
+<!-- Header -->
+<header class="modalHeader">
+    <span class="text">Application stats</span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Minimize %>">
+    <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Maximize %>">
+    <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+    <i class="icon xi-close"></i>
+    </div>
+</header>
+<!-- Instruction Section -->
+<section class="modalInstruction">
+    <!-- <div class="text">Some text goes here</div> -->
+</section>
+<!-- Info Section -->
+<!-- <section class="modalTopMain">
+
+</section> -->
+<!-- Main Section -->
+<section class="modalMain">
+    <!-- <svg class="chart"></svg>
+     -->
+    <div class="leftArea">
+        <header>Graph options</header>
+        <ul class="graphList">
+            <li data-action="timeline">Timeline</li>
+            <li data-action="barChart">Bar chart</li>
+        </ul>
+    </div>
+    <div class="rightArea">
+        <div id="dataflowStatsModalChart"></div>
+    </div>
+</section>
+</div>

@@ -1,0 +1,43 @@
+<!-- SQLFuncIn Panel -->
+<section id="sqlFuncInPanel" class="xc-hidden opPanel">
+  <!-- Header -->
+  <header class="headerSection">
+    <div class="row">
+        <div class="title"><%= dicts.SQLFunc.Input %></div>
+        <div class="subTitle"></div>
+    </div>
+    <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+  </header>
+  <!-- content -->
+  <div class="mainContent">
+    <div class="opSection">
+    <p class="mainInstructions instrText"><%= dicts.SQLFunc.InputInstr %></p>
+    <div class="argsSection">
+      <!-- source -->
+      <div class="row clearfix source">
+      <div class="description"><%= dicts.SQLFunc.Source %>:</div>
+        <div class="inputWrap">
+        <div class="dropDownList">
+          <input type="text" autocomplete="off">
+          <div class="list hint autoHighlight">
+          <ul></ul>
+          include "../../util/menuScrollArea.html"
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- schema -->
+      <div class="row clearfix schema">
+      <div class="description"><%= dicts.DFLink.Schema %>:</div>
+        include "colSchemaView.html"
+      </div>
+      <!-- end of schema row -->
+    </div>
+    <!-- end of arg section -->
+    </div>
+    <!-- end of opsection -->
+    include "opPanelAdvancedSection.html"
+    include "opPanelBottomSection.html"
+  </div>
+</section>
+<!-- End Of SQLFuncIn Panel -->

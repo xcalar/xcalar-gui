@@ -1,0 +1,41 @@
+<div id="dsForm-path" class="cardContainer xc-hidden">
+  <div class="cardInstruction">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span><%= dicts.dsForm.PathInstr %></span>
+    </div>
+  </div>
+  <div class="cardMain">
+    <div class="content target">
+      <label><%= dicts.ds.Target %>:</label>
+      <!-- data target dropdown -->
+      <div id="dsForm-target" class="dropDownList long">
+        <input class="text" type="text" spellcheck="false" disabled>
+        <div class="iconWrapper">
+          <i class="icon xi-arrow-down"></i>
+        </div>
+        <!-- data target Menu -->
+        <div id="dsForm-targetMenu" class="list">
+          <ul></ul>
+          include "../../util/menuScrollArea.html"
+        </div>
+      </div>
+    </div>
+    <div class="content path">
+      <label for="filePath"><%= dicts.dsForm.filePath %>:</label>
+      <div class="dropDownList">
+        <input id="filePath" class="test" type="text" spellcheck="false">
+        <div class="list">
+          <ul></ul>
+          include "../../util/menuScrollArea.html"
+        </div>
+      </div>
+      <button class="btn btn-secondary browse" type="button"><%= dicts.common.Browse %>...</button>
+    </div>
+  </div>
+  <div class="cardBottom">
+    <button class="btn btn-submit confirm"><%= dicts.common.Next %></button>
+    <button class="btn btn-secondary cancel clear"><%= dicts.common.Clear %></button>
+    <button class="btn btn-secondary back"><%= dicts.common.Cancel %></span>
+  </div>
+</div>

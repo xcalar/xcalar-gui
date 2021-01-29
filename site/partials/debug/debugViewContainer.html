@@ -1,0 +1,31 @@
+<div id="debugViewContainer">
+  <div class="topSection">
+    <div class="tabSection">
+      <div class="tab active" data-tab="output"><%= dicts.Debug.NotebookOutput %></div>
+      <div class="tab" data-tab="sqlHistory"><%= dicts.Debug.SQLHistory %></div>
+      <div class="tab" data-tab="console"><%= dicts.Debug.Console %></div>
+      <div class="tab" data-tab="systemLog"><%= dicts.Debug.SystemLog %></div>
+      <!-- <div class="tab" data-tab="udfLog"><%= dicts.Debug.ScalarLog %></div> -->
+    </div>
+    <i class="closeResult xc-icon-action icon xi-close"
+    data-toggle="tooltip"
+    data-container="body"
+    data-original-title="<%= dicts.common.Close %>"
+    ></i>
+  </div>
+  <div class="contentSection">
+    <div class="section output"></div>
+    <div class="section sqlHistory xc-hidden">
+      include "sqlQueryHistory.html"
+    </div>
+    <div class="section console xc-hidden">
+      include "shellPanel.html"
+    </div>
+    <div class="section systemLog xc-hidden">
+      include "systemLogArea.html"
+    </div>
+    <div class="section udfLog xc-hidden">
+      <%= dicts.common.Unavailable %>
+    </div>
+  </div>
+</div>

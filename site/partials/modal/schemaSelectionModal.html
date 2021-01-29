@@ -1,0 +1,27 @@
+<!-- Schema Selection Modal -->
+<div id="schemaSelectionModal" class="modalContainer large opPanel">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.SchemaSelect.Title %></span>
+    <div class="close" data-container="body" data-toggle="tooltip"
+    data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Main Section -->
+  <section class="modalMain">
+
+    <div class="label"><%= dicts.DFLink.Schema %>:</div>
+    <div class="numColsArea">
+      <i class="icon xi-info-circle-outline"></i>
+      <span class="numCols"></span> column(s) detected.
+    </div>
+    include "../nodeConfigPanels/colSchemaView.html"
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End of Schema Selection Modal -->

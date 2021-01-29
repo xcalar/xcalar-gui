@@ -1,0 +1,8 @@
+{
+    "0" : "qrNotStarted",
+    "1" : "qrProcessing",
+    "2" : "qrFinished",
+    "3" : "qrError",
+    "4" : "qrCancelled"
+}
+

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="description" content="Materialize is a modern responsive CSS framework based on Material Design by Google. ">
+    <title>Extension Management</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link href="/assets/css/customize.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+    <div>
+        <ul id="nav-mobile" class="side-nav fixed" style="transform: translateX(0px);">
+            <li class="logo-container">
+                <img class="logo" src="/assets/images/logo.png">
+            </li>
+            <li class="no-padding">
+                <ul class="collapsible collapsible-accordion">
+                    <li class="bold">
+                        <a class="menuBar collapsible-header waves-effect waves-teal">Extension</a>
+                        <div class="collapsible-body">
+                            <ul>
+                                <li><a id="extMgmtMenu" href="#">Extension Management</a></li>
+                                <li><a id="extUpMenu" href="#">Extension Uploader</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    </header>
+    <main>
+    <div class="container">
+        <div class="section about">
+            <div class="row">
+                <div class="col s10 m8 offset-m2">
+                    <p>Welcome! This site is currently for 
+                    <a href="https://livechat.xcalar.com/extMgmt">Extension Management</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="section extUploader">
+            <div class="row">
+                <form class="col s11 offset-s3" id="uploadContent" method="post">
+                    <div class="row">
+                        <div class="input-field col s7">
+                            <input type="text" id="appName">
+                            <label class="active" for="appName">App Name</label>
+                        </div>
+                        <div class="input-field col s3">
+                            <input type="text" id="version">
+                            <label class="active" for="version">Version</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="file-field input-field col s10">
+                            <div class="file-path-wrapper col s9">
+                                <input class="file-path validate" type="text" id="jsFilePath">
+                            </div>
+                            <div id="jsBtn" class="btn col s3">
+                                <span>JS File</span>
+                            </div>
+                            <input type="file" class="file-input" id="jsFile">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="file-field input-field col s10">
+                            <div class="file-path-wrapper col s9">
+                                <input class="file-path validate" type="text" id="pyFilePath">
+                            </div>
+                            <div id="pyBtn" class="btn col s3">
+                                <span>PY File</span>
+                            </div>
+                            <input type="file" class="file-input" id="pyFile">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="file-field input-field col s10">
+                            <div class="file-path-wrapper col s9">
+                                <input class="file-path validate" type="text" id="shFilePath">
+                            </div>
+                            <div id="shBtn" class="btn col s3">
+                                <span>SH File</span>
+                            </div>
+                            <input type="file" class="file-input" id="shFile">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <textarea id="description" class="materialize-textarea"></textarea>
+                            <label class="active" for="description">Description</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input type="text" id="main">
+                            <label class="active" for="main">Main Name</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" id="author">
+                            <label class="active" for="author">Author</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s4">
+                            <input type="text" id="category">
+                            <label class="active" for="category">Category</label>
+                        </div>
+                        <div class="input-field col s6">
+                            <input type="text" id="website">
+                            <label class="active" for="website">Website</label>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s10">
+                            <!-- <div class="file-path-wrapper col s9">
+                                <input class="file-path validate" type="text" id="imgPath">
+                            </div>
+                            <div id="imgBtn" class="btn col s3">
+                                <span>Image File</span>
+                            </div>
+                            <input type="file" class="file-input" id="imgFile"> -->
+                            <select id="imgSelect">
+                                <option value="" disabled selected>Choose your image</option>
+                                <option value="database.png">Database</option>
+                                <option value="finance.png">Finance</option>
+                                <option value="machineLearning.png">Machine Learning</option>
+                                <option value="tools.png">Tools</option>
+                            </select>
+                            <label>Images</label>
+                        </div>
+                    </div>
+                    <div class="row" id="uploadFailure">Upload failed. Please try again.</div>
+                    <div class="row">
+                        <div class="form-submission row col s10">
+                            <button class="btn-large waves-effect waves-light" id="upload" type="submit">Upload
+                                <i class="material-icons right">send</i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="section extMgmt">
+            <div class="row">
+                <table class="striped col s11 offset-s3">
+                <thead>
+                    <tr>
+                        <td>App Name</td>
+                        <td>Main Name</td>
+                        <td>Version</td>
+                        <td>Author</td>
+                        <td>Category</td>
+                        <td>Operations</td>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    </main>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="/assets/js/extMgmt.js"></script>
+</body>
+</html>

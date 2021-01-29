@@ -1,0 +1,9 @@
+{
+    "DfFormatUnknown" : 0,
+    "DfFormatJson" : 1,
+    "DfFormatCsv" : 2,
+    "DfFormatSql" : 3,
+    "DfFormatInternal" : 4,
+    "DfFormatParquet" : 5
+}
+

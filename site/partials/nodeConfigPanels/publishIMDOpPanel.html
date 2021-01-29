@@ -1,0 +1,117 @@
+<!-- Publish IMD Operation Panel -->
+<div id="publishIMDOpPanel" class="xc-hidden opPanel">
+    <!-- Project Header -->
+    <header class="headerSection">
+      <div class="row">
+        <div class="title"><%= dicts.publishIMDOp.publishIMD %></div>
+        <div class="subTitle"></div>
+      </div>
+      <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <!-- content -->
+    <div class="mainContent">
+      <div class="publishIMD opSection">
+        <p class="mainInstructions instrText"><%= dicts.publishIMDOp.publishInstr %></p>
+        <!-- Publish IMD View Top Section-->
+        <section class="modalTopMain">
+          <div class="IMDName formRow">
+            <div class="subHeading clearfix">
+              <div class="label"><%= dicts.publishIMDOp.tableName %>:</div>
+              <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.publishIMDOp.tableNameTip %>">
+                </i>
+            </div>
+            <div class="inputWrap">
+              <input class="arg IMDNameInput" type="text" tabindex="10"
+                spellcheck="false" autocomplete="off" data-typeid="-1"
+                data-casted="false" data-casttype="null">
+            </div>
+          </div>
+          <div class="IMDOverwrite formRow">
+            <div class="checkboxWrap overwrite">
+              <span class="text"><%= dicts.publishIMDOp.overwrite %>
+              </span>
+              <span class="checkbox"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.publishIMDOp.overwriteTip %>">
+                <i class="icon xi-ckbox-empty fa-13"></i>
+                <i class="icon xi-ckbox-selected fa-13"></i>
+              </span>
+            </div>
+          </div>
+          <div class="IMDKey formRow">
+              <div class="subHeading clearfix">
+                <div class="label"><%= dicts.publishIMDOp.key %>:</div>
+                <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.publishIMDOp.keyInstr %>">
+                </i>
+                <div class="checkboxWrap disableKey">
+                  <div class="text"><%= dicts.publishIMDOp.noKey %></div>
+                  <div class="checkbox">
+                    <i class="icon xi-ckbox-empty fa-13"></i>
+                    <i class="icon xi-ckbox-selected fa-13"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="primaryKeyList dropDownList">
+                  <input class="text primaryKeyInput" type="text" value="" spellcheck="false" autocomplete="off">
+                  <div class="iconWrapper">
+                      <i class="icon xi-arrow-down"></i>
+                  </div>
+                  <div class="list">
+                      <ul class="primaryKeyColumns"></ul>
+                      include "../../util/menuScrollArea.html"
+                  </div>
+              </div>
+          </div>
+          <div class="btnWrap formRow">
+            <div class="addArgWrap addArgWrapSmall">
+              <button class="btn btn-secondary btn-100-rounded addArg addKeyArg"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.publishIMDOp.addColTip %>">
+                <i class="icon xi-plus"></i>
+              </button>
+              <span class="text"><%= dicts.common.AddCol %>
+              </span>
+            </div>
+          </div>
+          <div id="publishIMDColumns" class="publishColumnsSection formRow">
+            <div class="subHeading clearfix">
+              <div class="label">
+                <%= dicts.publishIMDOp.colsInTable %>:
+                <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.publishIMDOp.colsInTableTip %>">
+                </i>
+              </div>
+              <div class="checkboxWrap selectAllWrap">
+                <div class="text"><%= dicts.common.SelectAll %></div>
+                <div class="checkbox">
+                  <i class="icon xi-ckbox-empty fa-13"></i>
+                  <i class="icon xi-ckbox-selected fa-13"></i>
+                </div>
+              </div>
+            </div>
+            <div class="columnsToPublish columnsWrap flexWrap clearfix">
+              <ul class="cols"></ul>
+              <div class="hint noColsHint empty"><%= dicts.dataflow.noColsHint %></div>
+            </div>
+          </div>
+      </div>
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </div>
+  <!-- End of Publish IMD View -->

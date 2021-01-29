@@ -1,0 +1,64 @@
+<!-- Dataflow uploader -->
+<div id="dfUploadModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.dataflow.uploadHeader %></span>
+    <div class="close" data-container="body" data-toggle="tooltip"
+      data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Instruction -->
+  <section class="modalInstruction">
+    <div class="text">
+      <span><%= dicts.dataflow.uploadInstr %></span>
+    </div>
+  </section>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="row label"><%= dicts.workbook.uploadFile %>:</div>
+    <div class="row source">
+      <input class="path xc-input" type="text" readonly>
+      <input class="browse" spellcheck="false" type="file" style="display: none" accept=".gz">
+      <button class="btn btn-secondary browse"><%= dicts.common.Browse %>...</button>
+    </div>
+    <div class="row label"><%= dicts.dataflow.DestDFName %>:</div>
+    <div class="row dest">
+      <input class="path xc-input" type="text" spellcheck="false" autocomplete="off">
+    </div>
+    <!-- overwrite UDF check box -->
+    <div class="row overwrite">
+      <div class="checkboxSection">
+        <div class="checkbox">
+          <i class="icon xi-ckbox-empty"></i>
+          <i class="icon xi-ckbox-selected"></i>
+        </div>
+        <div class="text"><%= dicts.dataflow.overwriteUdf %></div>
+        <i class="qMark icon xi-unknown" data-toggle="tooltip"
+        data-container="body" data-title="<%= dicts.dataflow.overwriteUdfHint %>"
+        data-placement="auto top"></i>
+      </div>
+    </div>
+    <!-- restore dataset section -->
+    <div class="row restoreDS">
+      <div class="checkboxSection">
+        <div class="checkbox">
+          <i class="icon xi-ckbox-empty"></i>
+          <i class="icon xi-ckbox-selected"></i>
+        </div>
+        <div class="text"><%= dicts.dataflow.restoreDS %></div>
+        <i class="qMark icon xi-unknown" data-toggle="tooltip"
+        data-container="body" data-title="<%= dicts.dataflow.restoreDSHint %>"
+        data-placement="auto top"></i>
+      </div>
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <div class="buttonTooltipWrap" data-toggle="tooltip" data-container="body" data-placement="auto top" data-original-title="<%= dicts.TooltipTStr.SelectFile %>">
+      <button type="button" class="btn confirm btn-disabled"><%= dicts.dataflow.upload %></button>
+    </div>
+    <button type="button" class="btn btn-cancel cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End of Dataflow uploader -->

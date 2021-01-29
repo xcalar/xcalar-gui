@@ -1,0 +1,47 @@
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('Open-Sans-regular.eot') format('embedded-opentype'),
+       local('Open Sans'),
+       local('Open-Sans-regular'),
+       url('Open-Sans-regular.woff2') format('woff2'),
+       url('Open-Sans-regular.woff') format('woff'),
+       url('Open-Sans-regular.ttf') format('truetype'),
+       url('Open-Sans-regular.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 600;
+  font-style: normal;
+  src: url('Open-Sans-600.eot') format('embedded-opentype'),
+       local('Open-Sans-600'),
+       url('Open-Sans-600.woff2') format('woff2'),
+       url('Open-Sans-600.woff') format('woff'),
+       url('Open-Sans-600.ttf') format('truetype'),
+       url('Open-Sans-600.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  font-weight: 700;
+  font-style: normal;
+  src: url('Open-Sans-700.eot') format('embedded-opentype'),
+       local('Open-Sans-700'),
+       url('Open-Sans-700.woff2') format('woff2'),
+       url('Open-Sans-700.woff') format('woff'),
+       url('Open-Sans-700.ttf') format('truetype'),
+       url('Open-Sans-700.svg') format('svg');
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:  url('../webfonts/icomoon.eot?qfkfdd');
+  src:  url('../webfonts/icomoon.eot?qfkfdd#iefix') format('embedded-opentype'),
+    url('../webfonts/icomoon.ttf?qfkfdd') format('truetype'),
+    url('../webfonts/icomoon.woff?qfkfdd') format('woff'),
+    url('../webfonts/icomoon.svg?qfkfdd#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}

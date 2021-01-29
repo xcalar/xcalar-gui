@@ -1,0 +1,47 @@
+<!-- Set Op Panel -->
+<section id="setOpPanel" class="xc-hidden opPanel">
+  <!-- Header -->
+  <header class="headerSection">
+    <div class="row">
+        <div class="title">
+          <span class="modeList"></span>
+        </div>
+        <div class="subTitle"></div>
+    </div>
+    <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+  </header>
+  <!-- content -->
+  <div class="mainContent">
+    <div class="opSection">
+      <p class="mainInstructions instrText setInstr"></p>
+      <!-- topSection -->
+      <section class="topSection">
+        <div class="dedupSection radioButtonGroup">
+          <div class="header"><%= dicts.SetOpPanel.IncludeAll %>:</div>
+          <div class="radioButton xc-action active yes" data-option="yes"
+          data-toggle="tooltip" data-placement="auto top" data-container="body"
+          data-title="When selected, this option includes rows in the result that are identical.">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div>Yes</div>
+          </div>
+          <div class="radioButton xc-action no" data-option="no"
+          data-toggle="tooltip" data-placement="auto top" data-container="body"
+          data-title="When selected, this option does not include rows in the result that are identical.">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div>No</div>
+          </div>
+        </div>
+      </section>
+      include "colAssignmentView.html"
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </div>
+</section>
+<!-- End Of Set Op Panel -->

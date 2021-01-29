@@ -1,0 +1,14 @@
+{
+    "0" : "LibMsgFuncStressThreads",
+    "1" : "LibMsgTypeBasicSuccessEnable",
+    "2" : "LibMsgTypeBasicSuccessIter",
+    "3" : "LibMsgTypeBasicSuccessThreads",
+    "4" : "LibMsgTypeBasicFailureEnable",
+    "5" : "LibMsgTypeBasicFailureIter",
+    "6" : "LibMsgTypeBasicFailureThreads",
+    "7" : "LibMsgTypeLargePayloadEnable",
+    "8" : "LibMsgTypeLargePayloadIter",
+    "9" : "LibMsgTypeLargePayloadThreads",
+    "10" : "LibMsgTypeMsgStreamEnable"
+}
+

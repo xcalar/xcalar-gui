@@ -1,0 +1,22 @@
+https://livechat.xcalar.com:443 {
+    redir 301 {
+        if {>X-Forwarded-Proto} is http
+        /  https://{host}{uri}
+    }
+
+    tls wlu@xcalar.com
+    root /home/xcalar/livechat
+    proxy /socket.io http://127.0.0.1:12124/ {
+        max_fails 5
+        fail_timeout 10s
+        transparent
+        websocket
+    }
+    proxy /slack http://127.0.0.1:12124/ {
+        max_fails 5
+        fail_timeout 10s
+        transparent
+    }
+    log stdout
+    errors stderr
+}

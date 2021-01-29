@@ -1,0 +1,29 @@
+<!-- path -->
+<div class="pathSection">
+  <div class="pathWrap">
+    <div class="path"></div>
+  </div>
+  <div class="iconSection">
+    <i class="backFolderBtn xc-icon-action  xc-disabled icon xi-previous2 fa-12"
+        title="<%= dicts.dsView.Back %>" data-container="body"
+        data-toggle="tooltip" data-placement="auto top">
+    </i>
+    <i class="forwardFolderBtn xc-icon-action  xc-disabled icon xi-next2 fa-12"
+        title="<%= dicts.dsView.Forward %>" data-container="body"
+        data-toggle="tooltip" data-placement="auto top">
+    </i>
+  </div>
+</div>
+<div class="sortSection xc-sortSection">
+  <span class="label"><%= dicts.common.SortBy %>:&nbsp;</span>
+  <span class="sortOption" data-key="name"><%= dicts.common.Name %></span>
+  <span class="divider"></span>
+  <span class="sortOption" data-key="size"><%= dicts.common.Size %></span>
+  <span class="divider"></span>
+  <span class="sortOption" data-key="type"><%= dicts.common.Type %></span>
+  <span class="divider"></span>
+  <span class="sortOption" data-key="none"><%= dicts.common.None %></span>
+</div>
+<div class="listView">
+  <ul></ul>
+</div>

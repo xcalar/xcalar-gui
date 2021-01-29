@@ -1,0 +1,435 @@
+@import "partials/mixins/common.less";
+@import "partials/icon.less";
+@import "partials/basic.less";
+@div-width: 800px;
+
+html, body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+    min-width: 780px;
+    height: 100%;
+    font: 13px @font-base;
+    font-weight: 600;
+    .box-sizing;
+}
+
+table, tr, td, th, input, textarea, header, p, div {
+    margin: 0;
+    padding: 0;
+    .box-sizing;
+    border: none;
+}
+input {
+    font: 13px @font-base;
+}
+
+body {
+    -webkit-font-smoothing: antialiased;
+    color: @color-font-defaultInverse;
+    // font-size: 0; /* Need to use this to get rid of stupid white space */
+    .linear-gradient(top, @color-bg-select-blue, @color-bg-marine);
+}
+
+form {
+    a {
+        color: @color-font-softBlue;
+        cursor: pointer;
+    }
+    &.disabled {
+        opacity: 0.5;
+        pointer-events: none;
+    }
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}
+
+#logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.container {
+    height: ~"calc(100% - 130px)";
+}
+
+.outerWrap {
+    width: 100%;
+
+    header {
+        .size(@width: @div-width, @height: 50px);
+        .position(relative, @top: 10px);
+        overflow: hidden;
+        margin: 50px auto 10px;
+        .font(@weight: 400, @size: 36px, @line-height: 36px, @family: @font-base);
+    }
+
+    .instruction {
+        .size(@width: @div-width, @height: 60px);
+        margin: 10px auto 18px auto;
+        padding-top: 10px;
+
+        .icon, .text {
+            display: inline-block;
+            float: left;
+        }
+
+        .icon {
+            font-size: 20px;
+            .vertical-align;
+            color: @color-bg-select-blue;
+        }
+
+        .text {
+            width: 90%;
+            padding-left: 10px;
+            margin-left: 6px;
+            .font(@size: 14px, @line-height: 24px);
+        }
+    }
+
+    &#bottomSection {
+        padding-top: 15px;
+        height: 100%;
+    }
+
+}
+
+#loadingBar {
+    .size(@width: 100%, @height: 1px);
+    background-color: @color-border-softBlue;
+    position: relative;
+    overflow: hidden;
+
+    .innerBar {
+        height: 1px;
+        width: 200px;
+        background-color: @color-bg-default;
+        position:absolute;
+        left: -200px;
+        // XX need to add this to mixin
+        background: linear-gradient(to right, @color-border-softBlue, #d6e4ec, @color-border-softBlue);
+        .keyframe(slideRight, {
+            0%   {left: -200px;}
+            100% {left: 100%;}
+        });
+        .keyframeAnim(slideRight 0.7s linear forwards 0.3s);
+
+        &.immediateAnimation {
+           .keyframeAnim(slideRight 0.7s linear forwards 0s);
+        }
+    }
+}
+
+.animatedEllipsis > div {
+    margin-left: 1px !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:active,
+input:-webkit-autofill:focus {
+    background-color: @color-border-select-blue !important;
+    color: @color-font-white !important;
+    -webkit-box-shadow: 0 0 0 1000px  @color-border-select-blue inset !important;
+    -webkit-text-fill-color: @color-font-white !important;
+}
+
+#formArea {
+    margin: 0 auto;
+    position: relative;
+    height: 100%;
+
+    .title {
+        font-weight: 500;
+        .position(relative, @left: -50px);
+        > div:not(.hint) {
+            span {
+                display: inline-block;
+                font-weight: 700;
+                &:first-child {
+                    width: 78px;
+                }
+            }
+        }
+
+        .step {
+            .font(@size: 14px);
+        }
+
+
+    }
+
+    .hint {
+        .font(@size: 12px);
+        margin-top: 9px;
+        span {
+            display: inline-block;
+            font-weight: 600;
+            &:first-child {
+                width: 78px;
+            }
+        }
+    }
+
+    .header {
+        display: inline-block;
+        margin-top: 20px;
+        margin-bottom: 10px;
+        font-weight: 700;
+        color: @color-font-defaultInverse;
+        font-size: 14px;
+    }
+
+    .hidden {
+        display: none !important;
+        .transition(all 0.5s);
+    }
+
+    .results {
+        position: relative;
+    }
+
+    .overall {
+        font-size: 16px;
+        text-align: right;
+    }
+
+    .topSection {
+        border: 0px;
+        border-bottom: 1px;
+        border-color: @color-border-softBlue;
+        border-style: solid;
+    }
+
+    .verticalSection {
+        &.leftSection {
+            border-right: 1px;
+            border-color: @color-border-softBlue;
+            border-style: solid;
+            border-left: 0px;
+        }
+        &.rightSection {
+            border-right: 0px;
+            border-left: 0px;
+        }
+        height: 100%;
+        width: 50%;
+        float: left;
+        border-top: 0px;
+        border-bottom: 0px;
+    }
+
+    .section {
+        padding-bottom: 20px;
+        position: relative;
+        font-size: 13px;
+        font-weight: 500;
+        overflow: hidden;
+
+        .heading {
+            .font(@weight: 400, @size: 20px, @line-height: 20px, @family: @font-base);
+            width: 100%;
+            text-align: center;
+            padding: 5px;
+        }
+
+        .bar {
+            position: absolute;
+            line-height: 16px;
+            left: 0px;
+            top: 15px;
+            text-indent: 4px;
+            .transition(color 0.5s);
+            pointer-events: none;
+            z-index: 0;
+            color: @color-font-softGrayBlue;
+            width: 76%;
+            margin-left: 5%;
+            text-transform: uppercase;
+
+            &.error {
+                &::after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    bottom: 0px;
+                    .size(@width: 100%, @height: 1px);
+                    background-color: @color-log-brown;
+                    .transition(all 0.5s);
+                }
+            }
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0px;
+                .size(@width: 100%, @height: 1px);
+                background-color: @color-border-select-blue;
+                .transition(all 0.5s);
+            }
+        }
+
+        .option {
+            position: relative;
+        }
+
+        .row {
+            font-size: 14px;
+            background-color: rgba(255, 255, 255, 0.1);
+            width: ~"calc(100% - 10px)";
+            position: relative;
+            display: inline-block;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin: 3px 6px 3px 6px;
+
+            div {
+                display: inline-block;
+                padding-right: 5px;
+                padding-left: 5px;
+            }
+
+            .pastBuild {
+                &::before {
+                    content: "Build: ";
+                }
+            }
+
+            .pastTime {
+                &::before {
+                    content: "Time: ";
+                }
+            }
+
+            .pastDuration {
+                &::before {
+                    content: "Duration: ";
+                }
+            }
+
+            .pastResults {
+                &::before {
+                    content: "Results: ";
+                }
+            }
+
+            .leftCol {
+                padding-left: 5px;
+                position: relative;
+                width: 125px;
+                float: left;
+
+            }
+            .rightCol {
+                position: relative;
+                overflow: visible;
+                float: left;
+            }
+            &.fail {
+                background-color: rgba(204, 56, 56, 0.5);
+            }
+            &.close {
+                background-color: rgba(208, 176, 63, 0.32);
+            }
+            &.pass {
+                background-color: rgba(5, 208, 2, 0.32);
+            }
+        }
+
+        .input {
+            width: ~"calc(100% - 90px)";
+            height: 30px;
+            background-color: transparent;
+            outline: none;
+            margin-left: 150px;
+            padding-left: 10px;
+            .font(@weight: 500, @size: 16px, @line-height: 16px, @color: @color-font-white);
+            position: relative;
+            z-index: 1;
+            padding-top: 2px;
+            margin-top: 4px;
+
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0px;
+                margin-left: 5%;
+                .size(@width: 90%, @height: 1px);
+                background-color: @color-border-select-blue;
+                .transition(all 0.5s);
+            }
+
+            &:focus {
+                .font(@color: @color-font-white);
+                outline: none;
+
+                &::after {
+                    background-color: @color-bg-default;
+                    height: 2px;
+                    bottom: 0px;
+                }
+
+                ~ .bar {
+                    color: @color-font-defaultInverse;
+                    &::after {
+                        background-color: @color-bg-default;
+                        height: 2px;
+                    }
+                }
+            }
+            &:active {
+                outline: none;
+            }
+        }
+    }
+
+    .buttonSection {
+        margin-top: 0px;
+        overflow: hidden; // Clearfix da shit
+        height: auto;
+        width: 100%;
+    }
+
+    .part {
+        display: inline-block;
+    }
+
+    .btn {
+        width: 150px;
+        height: 36px;
+        border: 1px solid @color-font-white;
+        background-color: rgba(0,0,0,0);
+        .font(@weight: bold, @align: center, @color: @color-font-white);
+        float: right;
+        margin-left: 10px;
+        margin-top: 36px;
+        margin-bottom: 10px;
+        .transition(all 0.2s);
+        outline: none;
+
+        &:focus {
+            background-color: rgba(0,0,0,0.2);
+        }
+
+        &:hover {
+            background-color: rgba(0,0,0,0.2);
+        }
+        &:active {
+            border-color: @color-border-activeBlue !important;
+        }
+
+        &.inactive {
+            color: @color-bg-unselect-gray;
+            border-color: @color-bg-unselect-gray;
+            pointer-events: none;
+        }
+    }
+}

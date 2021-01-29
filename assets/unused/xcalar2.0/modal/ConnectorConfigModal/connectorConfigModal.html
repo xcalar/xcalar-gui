@@ -1,0 +1,37 @@
+<!-- Connector Config Modal -->
+<div id="connectorConfigModal" class="modalContainer large xc-viewMode">
+  <!-- Header -->
+  <header class="modalHeader">
+    <div class="title">
+      <span class="text"></span>
+    </div>
+    <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="xc-loadView">
+      include "../../util/animatedEllipsis.html"
+    </div>
+    <div class="xc-errorView">
+      Fail to load configuration, please close the modal and try again
+    </div>
+    <div class="xc-contentView">
+      <div class="formSection name">
+        <div class="formRow">
+          <label>Name:</label>
+          <input class="xc-input white" type="text" autocomplete="off">
+        </div>
+      </div>
+      <div class="formContent"></div>
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End Of Connector Config Modal -->
+  

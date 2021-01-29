@@ -1,0 +1,83 @@
+<div id="createAppModal" class="modalContainer flex">
+  <header class="modalHeader">
+    <span class="text"><%= dicts.App.Create %></span>
+    <div class="close" data-container="body" data-toggle="tooltip"
+    data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+    </div>
+  </header>
+
+  <div class="modalInstruction">
+    <div class="normal">
+      <%= dicts.App.CreateInstr %>
+    </div>
+    <div class="progress">
+      <div class="animatedEllipsisWrapper">
+        <div class="text"></div>
+        <div class="wrap">
+          <div class="animatedEllipsis hiddenEllipsis">....</div>
+          <div class="animatedEllipsis staticEllipsis">....</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modalMain">
+    <div class="graphList"></div>
+    <div class="loadingSection">
+      <div class="animatedEllipsisWrapper">
+        <div class="text"><%= dicts.App.Loading %></div>
+        <div class="wrap">
+          <div class="animatedEllipsis hiddenEllipsis">....</div>
+          <div class="animatedEllipsis staticEllipsis">....</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modalBottomMain">
+    <div class="options">
+      <label>Export To:</label>
+      <div class="radioButtonGroup">
+        <div class="radioButton active" data-option="local">
+          <div class="radio">
+            <i class="icon xi-radio-selected"></i>
+            <i class="icon xi-radio-empty"></i>
+          </div>
+          <div class="radioLabel">Local</div>
+        </div>
+        <div class="radioButton" data-option="s3">
+          <div class="radio">
+            <i class="icon xi-radio-selected"></i>
+            <i class="icon xi-radio-empty"></i>
+          </div>
+          <div class="radioLabel">S3 bucket</div>
+        </div>
+      </div>
+    </div>
+    <div class="inputWrap bucket xc-hidden">
+      <label>S3 Bucket:</label>
+      <div class="dropDownList">
+        <input type="text" class="bucketName xc-input white textOverflow" spellcheck="false" autocomplete="off">
+        <div class="list">
+          <ul>
+            <li>test1</li>
+            <li>test2</li>
+          </ul>
+          include "../../util/menuScrollArea.html"
+        </div>
+      </div>
+    </div>
+    <div class="inputWrap bucketPath xc-hidden">
+      <label>Path:</label>
+      <input type="text" class="xc-input white textOverflow" spellcheck="false" autocomplete="off">
+    </div>
+    <div class="inputWrap appName">
+      <label><%= dicts.App.Name %>:</label>
+      <input type="text" class="newName xc-input white textOverflow" spellcheck="false" autocomplete="off">
+    </div>
+
+  </div>
+  <div class="modalBottom">
+    <button class="btn confirm btn-submit btn-rounded"><%= dicts.common.Create %></button>
+    <button class="btn cancel btn-secondary btn-rounded"><%= dicts.common.Cancel %></button>
+  </div>
+</div>

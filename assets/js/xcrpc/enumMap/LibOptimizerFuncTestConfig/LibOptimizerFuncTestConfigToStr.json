@@ -1,0 +1,6 @@
+{
+    "0" : "LibOptimizerThreadsPerCore",
+    "1" : "LibOptimizerRunsPerThread",
+    "2" : "LibOptimizerNumberOfCores"
+}
+

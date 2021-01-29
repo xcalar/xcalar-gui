@@ -1,0 +1,23 @@
+{
+    "0" : "DfUnknown",
+    "1" : "DfString",
+    "2" : "DfInt32",
+    "3" : "DfUInt32",
+    "4" : "DfInt64",
+    "5" : "DfUInt64",
+    "6" : "DfFloat32",
+    "7" : "DfFloat64",
+    "8" : "DfBoolean",
+    "9" : "DfTimespec",
+    "10" : "DfBlob",
+    "11" : "DfNull",
+    "12" : "DfMixed",
+    "13" : "DfFatptr",
+    "14" : "DfScalarPtr",
+    "15" : "DfScalarObj",
+    "16" : "DfOpRowMetaPtr",
+    "17" : "DfArray",
+    "18" : "DfObject",
+    "19" : "DfMoney"
+}
+

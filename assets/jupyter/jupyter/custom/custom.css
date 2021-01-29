@@ -1,0 +1,25 @@
+/*.list_item.xc-wkbkFolder {
+	box-shadow: inset 0px 0px 0px 2px #5CB2E8;
+}*/
+
+.list_item.xc-wkbkFolder .item_link {
+	font-weight: bold;
+}
+
+.list_item.xc-wkbkFolder .running-indicator {
+	visibility: visible !important;
+}
+
+.list_item.xc-wkbkFolder .item_icon {
+	color: #337AB7;
+}
+
+#xc-showFolderOption {
+	display: inline-block;
+	font-weight: normal;
+}
+
+#xc-showFolderOption input {
+	margin-left: 8px;
+	cursor: pointer;
+}

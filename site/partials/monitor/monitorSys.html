@@ -1,0 +1,225 @@
+<!-- monitors -->
+<div id="monitor-graphCard" class="cardContainer monitorCard">
+  <header class="cardHeader"><span class="title"><%= dicts.monitor.Statistics %></span></header>
+  <!-- asupSub section -->
+  <div class="asupSubSection cardTopMain">
+     <div id="connectionInfo">
+        <span class="text" id="phyNodeText"><%= dicts.monitor.PhysicalNode %>: </span>
+        <span class="text" id="phyNode">localhost</span>
+      </div>
+      <div class="time">
+        <span class="text"><%= dicts.monitor.LastCheckTime %>: </span>
+        <span class="timeValue" id="graphTime"></span>
+        <span class="text"><%= dicts.monitor.Uptime %>: </span>
+        <span class="timeValue" id="upTime"></span>
+      </div>
+  </div>
+  <!-- end of asupsub section -->
+  <div class="cardMain">
+    <!-- top section -->
+    <div class="topSection clearfix">
+      <div class="graphSection xdbMode usrMode">
+        <div id="graphWrap">
+          <div id="graph">
+            <div id="grids"></div>
+            <div class="svgWrap">
+              <div class="leftBlock"></div>
+            </div>
+            <div class="separator"></div>
+            <div class="xLabelsWrap">
+              <div class="spacer"></div>
+              <div class="xLabels"></div>
+            </div>
+          </div>
+        </div>
+        <div id="graphParts">
+          <div id="memYAxis" class="yAxis left"></div>
+          <div class="graphBackground"></div>
+          <div class="yAxis right">
+              <span>100</span>
+              <span>80</span>
+              <span>60</span>
+              <span>40</span>
+              <span>20</span>
+              <span>0 (%)</span>
+              <span class="type"><%= dicts.monitor.CPU %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of top section -->
+    <!-- bottom section -->
+    <div id="monitor-donuts" class="bottomSection flex-container flex-row">
+      <div class="flexOuter flex-container flex-row">
+        <!-- donut0 memory-->
+        <div class="donutSection ramDonut xdbMode">
+          <div class="innerSection">
+            <div id="donut0" class="donut">
+              <div class="holeCover"></div>
+              <div class="donutInfo" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.monitor.AmountUsed %>">
+                <span class="userSize">
+                  <span class="num">0</span>
+                  <span class="unit">GB</span>
+                </span>
+                <hr/>
+                <span class="totalSize">
+                  <span class="num">0</span>
+                  <span class="unit">GB</span>
+                </span>
+                <span class="pctSize">
+                  <span class="num">0</span><span class="unit">%</span>
+                </span>
+              </div>
+              <div class="donutLegendInfo xc-hidden">
+                <span class="unitSize">
+                  <span class="num">0</span>
+                  <span class="unit">GB</span>
+                </span>
+                <span class="pctSize">
+                  <span class="num">0</span><span class="unit">%</span>
+                </span>
+              </div>
+            </div>
+            <div id="donutStats0" class="statsSection xdbStats">
+              <div class="statsTopHeading">
+                  <span class="title">Memory</span>
+                  <span class="user"><%= dicts.monitor.UTotal %> / <%= dicts.monitor.GTotal %></span>
+              </div>
+              <div class="statsHeadingBar open">
+                <span class="totalSize">
+                  <span class="totNum">0 GB</span>
+                </span>
+                <span class="divider">&nbsp;/&nbsp;</span>
+                <span class="userSize">
+                  <span class="avgNum">0 GB</span>
+                </span>
+              </div>
+              <div class="listWrap open">
+                <ul></ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="innerSection legend">
+            <ul>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.FreeSysMem %></span></li>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.UsedSysMem %></span></li>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.FreeXcalarMem %></span></li>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.OtherUsers %></span></li>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.YourTables %></span></li>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.PubTables %></span></li>
+              <li><span class="key"></span><span class="text"><%= dicts.monitor.Datasets %></span></li>
+            </ul>
+          </div>
+        </div>
+        <!-- donut1 swap -->
+        <div class="donutSection swapDonut">
+          <div class="innerSection">
+            <div id="donut1" class="donut">
+              <div class="holeCover"></div>
+              <div class="donutInfo" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.monitor.AmountUsed %>">
+                <span class="userSize">
+                  <span class="num">0</span>
+                  <span class="unit">GiB</span>
+                </span>
+                <hr/>
+                <span class="totalSize">
+                  <span class="num">0</span>
+                  <span class="unit">GiB</span>
+                </span>
+                <span class="pctSize">
+                  <span class="num">0</span><span class="unit">%</span>
+                </span>
+              </div>
+            </div>
+            <div id="donutStats1" class="statsSection">
+                <div class="statsTopHeading">
+                  <span class="title">Swap</span>
+                  <span class="user"><%= dicts.monitor.UTotal %> / <%= dicts.monitor.GTotal %></span>
+                </div>
+                <div class="statsHeadingBar open">
+                  <span class="totalSize">
+                    <span class="totNum">0 GiB</span>
+                  </span>
+                  <span class="divider">&nbsp;/&nbsp;</span>
+                  <span class="userSize">
+                    <span class="avgNum">0 GiB</span>
+                  </span>
+                </div>
+                <div class="listWrap open">
+                  <ul></ul>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flexOuter flex-container flex-row">
+        <!-- donut2 cpu -->
+        <div class="donutSection cpuDonut usrMode">
+          <div id="donut2" class="donut">
+            <div class="holeCover"></div>
+            <div class="donutInfo first">
+              <span class="percent userSize" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.monitor.AmountUsed %>">
+                <span class="num">0</span><span class="unit">%</span>
+              </span>
+            </div>
+          </div>
+          <div id="donutStats2" class="statsSection">
+            <div class="statsTopHeading">
+              <span class="title"><%= dicts.monitor.CPU %></span>
+              <span class="user">Usrnode</span>
+            </div>
+            <div class="statsHeadingBar small open">
+              <span class="percent">%</span>
+              <span class="num avgNum">0</span>
+            </div>
+            <div class="listWrap open">
+              <ul class="small"></ul>
+            </div>
+          </div>
+        </div>
+         <!-- donut3 network -->
+        <div class="donutSection networkDonut">
+          <div id="donut3" class="donut">
+            <div class="donutInfo">
+              <span class="userSize network">
+                <i class="icon xi-up fa-15"></i>
+                <span class="num network">0</span>
+                <span class="unit network">B</span>/s
+              </span>
+              <hr class="network"/>
+              <span class="totalSize network">
+                <i class="icon xi-down fa-15"></i>
+                <span class="num network">0</span>
+                <span class="unit network">B</span>/s
+              </span>
+            </div>
+          </div>
+          <div id="donutStats3" class="statsSection">
+            <div class="statsTopHeading">
+              <span class="title"><%= dicts.monitor.NETWORK %></span>
+              <span class="user"><%= dicts.monitor.NSent %> / <%= dicts.monitor.NRecv %></span>
+            </div>
+            <div class="statsHeadingBar open">
+               <span class="totalSize">
+                <i class="icon xi-down fa-11"></i>
+                <span class="totNum">0</span>
+               </span>
+               <span class="userSize">
+                <i class="icon xi-up fa-11"></i>
+                <span class="avgNum">0</span>
+               </span>
+            </div>
+            <div class="listWrap open">
+              <ul></ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end of bottom section -->
+  </div>
+  <div class="statsErrorContainer xc-hidden">
+  <!-- error message goes here -->
+  </div>
+</div>

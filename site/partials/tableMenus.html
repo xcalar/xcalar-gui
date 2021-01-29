@@ -1,0 +1,281 @@
+<!-- TABLE MENU -->
+<div id="tableMenu" class="menu tableMenu" data-submenu="tableSubMenu">
+  <ul>
+    <li class="copyTableName"><%= dicts.MenuTStr.CopyTbl %></li>
+    <li class="copyColNames"><%= dicts.MenuTStr.CPColNames %></li>
+    <li class="deleteTable"><span class="label"><%= dicts.MenuTStr.DelTbl %></span></li>
+    <li class="exportTable"><span class="label"><%= dicts.MenuTStr.ExportTbl %></span><span class="ellipsis">...</span></li>
+    <li class="saveTable"><span class="label">Save Result as Table</span><span class="ellipsis">...</span></li>
+    <li class="exportTableFromSQL"><span class="label">Export Table</span><span class="ellipsis">...</span></li>
+    <li class="saveTableFromSQL"><span class="label">Save Result as Table</span><span class="ellipsis">...</span></li>
+    <li class="multiCast"><span class="label"><%= dicts.MenuTStr.ChangeType %></span><span class="ellipsis">...</span></li>
+    <li class="corrAgg">
+      <span class="label"><%= dicts.MenuTStr.QuickAgg %></span>
+      <span class="ellipsis">...</span>
+    </li>
+    <div class="divider identityDivider"></div>
+    <li class="sortByName parentMenu" data-submenu="sortByName" data-option="name">
+      <%= dicts.MenuTStr.SortColsByName %>
+    </li>
+    <li class="sortByType parentMenu" data-submenu="sortByType" data-option="type">
+      <%= dicts.MenuTStr.SortColsByType %>
+    </li>
+    <div class="divider identityDivider"></div>
+    <li class="resizeCols parentMenu" data-submenu="resizeCols">
+      <%= dicts.MenuTStr.ResizeAllCols %>
+    </li>
+    <li class="advancedOptions parentMenu" data-submenu="advancedOptions">
+      <span class="label"><%= dicts.common.AdvancedOpts %></span>
+    </li>
+    <li class="exitOp exitMainMenuOp"></li>
+  </ul>
+  include "../util/menuScrollArea.html"
+</div>
+<!-- tableSubMenu -->
+<div id="tableSubMenu" class="menu subMenu">
+  <ul class="sortByName">
+    <li class="sortForward">
+      <i class="icon blue fa-15 xi-arrowtail-up sortUp"></i>
+      <%= dicts.MenuTStr.SortAsc %>
+    </li>
+    <li class="sortReverse">
+      <i class="icon blue fa-15 xi-arrowtail-down sortDown"></i>
+      <%= dicts.MenuTStr.SortDesc %>
+    </li>
+  </ul>
+  <ul class="sortByType">
+    <li class="sortForward">
+      <i class="icon blue fa-15 xi-arrowtail-up sortUp"></i>
+      <%= dicts.MenuTStr.SortAsc %>
+    </li>
+    <li class="sortReverse">
+      <i class="icon blue fa-15 xi-arrowtail-down sortDown"></i>
+      <%= dicts.MenuTStr.SortDesc %>
+    </li>
+  </ul>
+  <ul class="resizeCols">
+    <li class="sizeToHeader">
+      <%= dicts.MenuTStr.ResizeHeaders %>
+    </li>
+    <li class="sizeToContents">
+      <%= dicts.MenuTStr.ResizeToContents %>
+    </li>
+    <li class="sizeToFitAll">
+      <%= dicts.MenuTStr.ResizeToAll %>
+    </li>
+  </ul>
+  <ul class="advancedOptions">
+    <li class="generateIcv unavailable" data-toggle="tooltip"
+        data-placement="bottom" data-container="body"
+        data-original-title="">
+      <%= dicts.MenuTStr.GenER %>
+    </li>
+    <li class="complementTable unavailable" data-toggle="tooltip"
+        data-placement="bottom" data-container="body"
+        data-original-title="">
+      <%= dicts.MenuTStr.ComplementTable %>
+    </li>
+    <li class="skewDetails">
+      <%= dicts.MenuTStr.Skew %><span class="ellipsis">...</span>
+    </li>
+  </ul>
+</div>
+<!-- END TABLE MENU -->
+
+<!-- START COLUMN MENU -->
+<div id="colMenu" class="menu mainMenu" data-submenu="colSubMenu">
+  <ul>
+    <li class="minimize">
+      <span class="label single"><%= dicts.MenuTStr.MinimizeCol %></span>
+      <span class="label multiple"><%= dicts.MenuTStr.MinimizeColPlura %></span>
+    </li>
+    <li class="maximize">
+      <span class="label single"><%= dicts.MenuTStr.MaximizeCol %></span>
+      <span class="label multiple"><%= dicts.MenuTStr.MaximizeColPlura %></span>
+    </li>
+    <li class="hideColumn">
+      <span class="label single"><%= dicts.MenuTStr.HideCol %></span>
+      <span class="label multiple"><%= dicts.MenuTStr.HideColPlura %></span>
+    </li>
+    <li class="hideColumn newColumn">
+      <span class="label"><%= dicts.MenuTStr.HideNewCol %></span>
+    </li>
+    <li class="textAlign parentMenu" data-submenu="textAlign">
+      <%= dicts.MenuTStr.TxtAlign %>
+    </li>
+    <li class="resize parentMenu" data-submenu="resize">
+      <%= dicts.MenuTStr.Resize %>
+    </li>
+    <div class="divider identityDivider thDropdown"></div>
+    <li class="changeDataType parentMenu"
+    data-submenu="changeDataType">
+      <span class="label"><%= dicts.MenuTStr.ChangeType %></span>
+    </li>
+    <li class="format parentMenu" data-submenu="format">
+      <%= dicts.MenuTStr.Format %>
+    </li>
+    <li class="roundToFixed parentMenu" data-submenu="roundToFixed">
+      <%= dicts.MenuTStr.Round %>
+    </li>
+    <div class="divider functionsDivider"></div>
+    <li class="sort parentMenu" data-submenu="sort">
+      <i class="icon xi-sort fasjIcon"></i>
+      <span class="label"><%= dicts.MenuTStr.Sort %></span>
+    </li>
+    <li class="project">
+      <i class="icon xi-pull-all-field fasjIcon"></i>
+      <span class="label"><%= dicts.MenuTStr.Project%></span><span class="ellipsis">...</span>
+    </li>
+    <li class="splitCol">
+      <i class="icon xi_split fasjIcon"></i>
+      <span class="label"><%= dicts.MenuTStr.SplitCol %></span>
+      <span class="ellipsis">...</span>
+    </li>
+    <li class="round">
+      <i class="icon xi-integer fasjIcon"></i>
+      <span class="label"><%= dicts.MenuTStr.Round %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="functions aggregate" data-func="aggregate">
+      <i class="icon xi-aggregate fasjIcon"></i><span class="label"><%= dicts.MenuTStr.Agg %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="functions filter" data-func="filter">
+      <i class="icon xi-filter fasjIcon"></i><span class="label"><%= dicts.MenuTStr.Flt %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="functions groupby" data-func="group by">
+      <i class="icon xi-groupby fasjIcon"></i>
+      <span class="label"><%= dicts.MenuTStr.GB %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="functions map" data-func="map">
+      <i class="icon xi-data-update fasjIcon"></i><span class="label"><%= dicts.MenuTStr.Map %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="join">
+      <i class="icon xi-join-inner fasjIcon"></i><span class="label"><%= dicts.MenuTStr.Join %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="set parentMenu" data-submenu="set">
+      <i class="icon xi-union fasjIcon"></i><span class="label"><%= dicts.MenuTStr.Set %></span>
+    </li>
+    <li class="corrAgg">
+      <i class="icon xi-corr-coeff fasjIcon"></i><span class="label"><%= dicts.MenuTStr.QuickAgg %></span><span class="ellipsis">...</span>
+    </li>
+    <li class="profile">
+      <i class="icon xi-original fasjIcon"></i><span class="label"><%= dicts.MenuTStr.Profile %></span><span class="ellipsis">...</span>
+    </li>
+    <!-- <li class="barChart">
+        <i class="icon xi-graph"></i><span class="label">Chart</span><span class="ellipsis">...</span>
+    </li> -->
+    <div class="divider functionsDivider"></div>
+    <li class="exitOp exitMainMenuOp"></li>
+  </ul>
+  include "../util/menuScrollArea.html"
+</div>
+<!-- colSubMenu -->
+<div id="colSubMenu" class="menu subMenu">
+  <ul class="textAlign">
+    <li class="textAlign leftAlign">
+      <%= dicts.MenuTStr.TxtAlignLeft %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="textAlign centerAlign">
+      <%= dicts.MenuTStr.TxtAlignCenter %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="textAlign rightAlign">
+      <%= dicts.MenuTStr.TxtAlignRight %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="textAlign wrapAlign">
+      <%= dicts.MenuTStr.TxtAlignWrap %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+  </ul>
+  <ul class="resize">
+    <li class="resize sizeToHeader">
+      <%= dicts.MenuTStr.ResizeHeader %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="resize sizeToContents">
+      <%= dicts.MenuTStr.ResizeToContents %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="resize sizeToFitAll">
+      <%= dicts.MenuTStr.ResizeToAll %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+  </ul>
+  <ul class="format">
+    <li class="changeFormat formatPercent" data-format="percent">
+      <%= dicts.MenuTStr.Percent %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="changeFormat formatDefault" data-format="default">
+      <%= dicts.MenuTStr.BackToOrig %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+  </ul>
+  <ul class="roundToFixed">
+    <li style="text-align: center" class="clickable">
+      <div title="<%= dicts.MenuTStr.RoundHint %>">
+        <%= dicts.MenuTStr.RoundTitle %>
+      </div>
+      <div class="inputWrap">
+        <input class="digitsToRound" type="number" max="14" min="0" autocomplete="off" spellcheck="false" />
+        <div class="inputAction xc-action">
+          <i class="icon xi-tick fa-11"></i>
+        </div>
+      </div>
+    </li>
+  </ul>
+  <ul class="changeDataType"></ul>
+  <ul class="sort">
+    <li class="sort">
+      <i class="icon blue xi-arrowtail-up fa-15 sortUp"></i><%= dicts.MenuTStr.SortAsc %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="revSort">
+      <i class="icon blue xi-arrowtail-down fa-15 sortDown"></i><%= dicts.MenuTStr.SortDesc %>
+      <i class="icon xi-tick fa-11 blue"></i>
+    </li>
+    <li class="sortView">
+        <%= dicts.common.Advanced %><span class="ellipsis">...</span>
+    </li>
+  </ul>
+  <ul class="set">
+      <li class="union">
+        <%= dicts.MenuTStr.Union %>
+      </li>
+      <li class="intersect">
+        <%= dicts.MenuTStr.Intersect %>
+      </li>
+       <li class="except">
+        <%= dicts.MenuTStr.Except %>
+      </li>
+    </ul>
+  include "../util/menuScrollArea.html"
+</div>
+<!-- END COLUMN MENU -->
+<!-- START CELL MENU -->
+<ul id="cellMenu" class="menu">
+  <li class="tdFilter">
+    <span class="label default"><%= dicts.MenuTStr.FltCell %></span>
+    <span class="label default plural"><%= dicts.MenuTStr.FltCellPlural %></span>
+    <span class="label preFormatted"><%= dicts.MenuTStr.FltCellPref %></span>
+    <span class="label preFormatted plural"><%= dicts.MenuTStr.FltCellPrefPlur %></span>
+  </li>
+  <li class="tdExclude">
+    <span class="label default"><%= dicts.MenuTStr.ExclCell %></span>
+    <span class="label default plural"><%= dicts.MenuTStr.ExclCellPlural %></span>
+    <span class="label preFormatted"><%= dicts.MenuTStr.ExclCellPref %></span>
+    <span class="label preFormatted plural"><%= dicts.MenuTStr.ExclCellPrefPlur %></span>
+  </li>
+  <li class="tdJsonModal">
+    <span class="label"><%= dicts.MenuTStr.ExamCell %></span>
+  </li>
+  <li class="tdUnnest" data-toggle="tooltip" data-container="body" data-original-title="">
+    <span class="label"><%= dicts.MenuTStr.PullAllCell %></span>
+  </li>
+  <li class="tdCopy">
+    <span class="label"><%= dicts.MenuTStr.CPCell %></span>
+  </li>
+</ul>
+<!-- END CELL MENU -->
+

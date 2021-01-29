@@ -1,0 +1,36 @@
+<section class="loadingSection">
+  <div class="waitingIcon"></div>
+</section>
+<section class="mainSection leftPart">
+    <!-- only a placeholder -->
+  <div class="topSection"></div>
+  <div class="contentSection">
+    <div class="preview hexDump"></div>
+  </div>
+  <!-- only a placeholder -->
+  <div class="bottomSection"></div>
+</section>
+<section class="mainSection rightPart">
+  <div class="topSection">
+    <button class="toggleHex xc-action btn btn-small" data-toggle="tooltip" data-container="body" data-title="<%= dicts.fileBrowser.toggleHex %>">0x</button>
+    <i class="icon xi-close xc-action closePreview"></i>
+  </div>
+  <div class="contentSection">
+    <div class="errorSection"></div>
+    <div class="preview normal"></div>
+  </div>
+  <div class="bottomSection">
+    <div>
+      <span class="text"><%= dicts.fileBrowser.Offset %>:</span>
+      <span class="offsetNum"></span>
+    </div>
+    <div>
+      <span class="text"><%= dicts.fileBrowser.SkipToOffset %>:</span>
+      <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="Character offset to skip to" data-placement="auto top" data-original-title="" title=""></i>
+      <input class="skipToOffset" type="number">
+    </div>
+  </div>
+  <div class="sliderPart">
+    <i class="icon xi-next"></i>
+  </div>
+</section>

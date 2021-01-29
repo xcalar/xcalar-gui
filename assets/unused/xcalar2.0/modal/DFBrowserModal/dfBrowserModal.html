@@ -1,0 +1,27 @@
+<!-- DF Browser Modal -->
+<div id="dfBrowserModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.dataflow.DestSelectionTitle %></span>
+    <div class="close" data-container="body" data-toggle="tooltip" 
+    data-original-title="<%= dicts.common.Close %>">
+    <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Info Section -->
+  <section class="modalMain">
+    <div class="row saveAs">
+      <span class="label"><%= dicts.common.SaveAs %>:</span>
+      <input type="text" class="xc-input white">
+    </div>
+    <div class="row fileList xc-fileListView">
+      include "../util/fileListView.html"
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Save %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End of Browser Modal -->

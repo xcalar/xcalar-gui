@@ -1,0 +1,51 @@
+<!-- Monitor Query Menu -->
+<div class="topSection">
+  <div class="titleSection">
+    <header>
+      <span><%= dicts.monitor.Queries %></span>
+    </header>
+  </div>
+</div>
+<div id="monitorMenu-query" class="mainSection">
+  <div class="topSection clearfix">
+    <div class="filterSection">
+      <div class="xc-action iconWrap all active" title="<%= dicts.TooltipTStr.AllQueries %>" data-toggle="tooltip" data-container="body">
+        <i class="icon fa-17 center xi-show-all"></i>
+      </div>
+      <div class="xc-action iconWrap error" title="<%= dicts.TooltipTStr.ErrorQueries %>" data-toggle="tooltip" data-container="body">
+        <i class="icon fa-17 center xi-error done"></i>
+      </div>
+      <div class="xc-action iconWrap processing" title="<%= dicts.TooltipTStr.RunQueries %>" data-toggle="tooltip" data-container="body">
+        <i class="icon fa-17 center xi-progress run"></i>
+      </div>
+      <div class="xc-action iconWrap done" title="<%= dicts.TooltipTStr.DoneQueries %>" data-toggle="tooltip" data-container="body">
+        <i class="icon fa-17 center xi-success done"></i>
+      </div>
+    </div>
+    <div class="bulkOptionsSection">
+      <div class="xc-action iconWrap" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.monitor.DeleteOptions %>" data-placement="right">
+        <i class="icon fa-17 center xi-trash deleteIcon"></i>
+      </div>
+      <span class="exitOptions xc-action" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.common.Exit %>" data-placement="right">
+        <i class="icon xi-close"></i>
+        <i class="icon xi-arrow-up"></i>
+      </span>
+      <ul class="bulkOptions">
+        <li class="deleteAll xc-action" data-action="deleteAll" data-container="body" data-toggle="tooltip" data-placement="auto top" data-original-title="<%= dicts.monitor.DeleteSelected %>">
+          <i class="icon xi-trash deleteAll"></i>
+        </li>
+        <li class="clearAll xc-action" data-action="clearAll" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.DeSelectAll %>">
+          <i class="icon xi-select-none clearAll"></i>
+        </li>
+        <li class="selectAll xc-action" data-action="selectAll" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.SelectAll %>">
+          <i class="icon xi-select-all selectAll" ></i>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <!-- queryList section -->
+  <div id="monitor-queryList" class="queryListSection">
+    <div class="hint loadmore no-selection xc-action"><%= dicts.monitor.QueryHintLoadMore %></div>
+    <div class="hint nomore no-selection xc-hidden"><%= dicts.monitor.QueryHint %></div>
+  </div>
+</div>

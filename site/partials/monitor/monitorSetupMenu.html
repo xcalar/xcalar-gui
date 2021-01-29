@@ -1,0 +1,86 @@
+<!-- Monitor Sys Menu -->
+<div id="monitorMenu-setup" class="mainSection">
+  <div class="preference listWrap xc-expand-list active">
+    <div class="listInfo no-selection">
+      <span class="expand">
+        <i class="icon xi-down fa-13"></i>
+      </span>
+      <span class="text"><%= dicts.monitor.Config %></span>
+    </div>
+    <ul class="no-selection">
+      <li id="configStartNode">
+        <i class="icon xi-start-nodes fa-14"></i>
+        <span class="text"><%= dicts.monitor.StartNode %></span>
+      </li>
+      <li id="configStopNode">
+        <i class="icon xi-stop-nodes fa-14"></i>
+        <span class="text"><%= dicts.monitor.StopNode %></span>
+      </li>
+      <li id="configRestartNode">
+        <i class="icon xi-restart-nodes fa-14"></i>
+        <span class="text"><%= dicts.monitor.RestartNode %></span>
+      </li>
+      <li id="configSupportStatus">
+        <i class="icon xi-info-circle fa-14"></i>
+        <span class="text">Cluster Status</span>
+        <div class="spinnerWrap">
+          <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+        </div>
+      </li>
+      <li id="configLicense">
+        <i class="icon xi-upgrade fa-12"></i>
+        <span class="text"><%= dicts.monitor.UpdateLicense %></span>
+      </li>
+      <li id="adminAlert">
+        <i class="icon xi-alert fa-14"></i>
+        <span class="text"><%= dicts.monitor.AdminAlert %></span>
+      </li>
+      <li id="loginConfig">
+        <i class="icon xi-human fa-12"></i>
+        <span class="text"><%= dicts.monitor.LoginConfig %></span>
+        <div class="spinnerWrap">
+          <div class="spinner">
+              <div class="bounce1"></div>
+              <div class="bounce2"></div>
+              <div class="bounce3"></div>
+            </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="adminOnly userList listWrap xc-expand-list active sortedByName">
+    <div class="listInfo no-selection">
+      <span class="expand">
+        <i class="icon xi-down fa-13"></i>
+      </span>
+      <span class="text"><%= dicts.monitor.Users %></span>
+    </div>
+    <div class="refreshUserList">
+      <i class="icon xi-refresh refresh xc-action fa-18" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Refresh %>"></i>
+    </div>
+    <div class="searchWrap">
+      <div id="adminUserSearch" class="searchbarArea">
+        <!-- <i class="icon searchIcon xi-search"></i> -->
+        <input type="text" spellcheck="false" autocomplete="off" placeholder="<%= dicts.admin.searchUser %>">
+        <div class="closeBox iconWrap"><i class="icon xi-cancel"></i></div>
+        <div class="counter"><span class="position"></span> <span class="total"></span></div>
+        <div class="arrows">
+          <div class="upArrow iconWrap"><i class="icon xi-up"></i></div>
+          <div class="downArrow iconWrap"><i class="icon xi-down"></i></div>
+        </div>
+      </div>
+    </div>
+    <div class="sortSection">
+        <span class="label"><%= dicts.common.SortBy %>:&nbsp;</span>
+        <span class="sortName sortOption"><%= dicts.common.Name %></span>
+        <span class="divider"></span>
+        <span class="sortUsage sortOption"><%= monitor.memoryUsage %></span>
+    </div>
+    <ul class="no-selection">
+    </ul>
+  </div>
+</div>

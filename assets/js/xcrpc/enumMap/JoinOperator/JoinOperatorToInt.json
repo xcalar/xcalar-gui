@@ -1,0 +1,10 @@
+{
+    "InnerJoin" : 0,
+    "LeftOuterJoin" : 1,
+    "RightOuterJoin" : 2,
+    "FullOuterJoin" : 3,
+    "CrossJoin" : 4,
+    "LeftSemiJoin" : 5,
+    "LeftAntiJoin" : 6
+}
+

@@ -1,0 +1,47 @@
+<div id="gridViewMenu" class="menu" data-submenu="gridViewSubMenu">
+  <ul>
+    <li class="preview dsOpt"><%= dicts.MenuTStr.View %></li>
+    <li class="open folderOpt"><%= dicts.MenuTStr.Open %></li>
+    <li class="rename folderOpt"><%= dicts.MenuTStr.Rename %></li>
+    <li class="moveUp dsOpt folderOpt disabled"><%= dicts.MenuTStr.MoveUp %></li>
+    <li class="activate dsOpt"><%= dicts.MenuTStr.ActivateDS %></li>
+    <li class="deactivate dsOpt"><%= dicts.MenuTStr.DeactivateDS %></li>
+    <li class="delete dsOpt folderOpt"><%= dicts.MenuTStr.Del %></li>
+    <li class="share dsOpt"><%= dicts.MenuTStr.Share %></li>
+    <li class="unshare dsOpt"><%= dicts.MenuTStr.Unshare %></li>
+    <li class="getInfo dsOpt"><%= dicts.MenuTStr.GetInfo %></li>
+    <li class="multiActivate multiOpt"><%= dicts.MenuTStr.ActivateDS %></li>
+    <li class="multiDeactivate multiOpt"><%= dicts.MenuTStr.DeactivateDS %></li>
+    <li class="multiDelete multiOpt"><%= dicts.MenuTStr.Del %></li>
+    <li class="newFolder bgOpt"><%= dicts.MenuTStr.NewFolder %></li>
+    <li class="back bgOpt disabled"><%= dicts.MenuTStr.Back %></li>
+    <li class="refresh bgOpt"><%= dicts.MenuTStr.Refresh %></li>
+    <li class="sort bgOpt parentMenu" data-submenu="sort">
+      <%= dicts.common.SortBy %>
+    </li>
+  </ul>
+  include "../../util/menuScrollArea.html"
+</div>
+<!-- grid view submenu -->
+<div id="gridViewSubMenu" class="menu subMenu">
+  <ul class="sort">
+    <li name="name">
+      <span class="label"><%= dicts.common.Name %></span>
+      <i class="icon xi-tick fa-12"></i>
+    </li>
+    <li name="type">
+      <span class="label"><%= dicts.common.Type %></span>
+      <i class="icon xi-tick fa-12"></i>
+    </li>
+    <li name="size">
+      <span class="label"><%= dicts.common.Size %></span>
+      <i class="icon xi-tick fa-12"></i>
+    </li>
+    <div class="divider"></div>
+    <li name="none">
+      <span class="label"><%= dicts.common.None %></span>
+      <i class="icon xi-tick fa-12"></i>
+    </li>
+  </ul>
+  include "../../util/menuScrollArea.html"
+</div>

@@ -1,0 +1,16 @@
+{
+    "LibNsFuncTestNumberOfCores" : 0,
+    "LibNsFuncTestNumThreadPerCore" : 1,
+    "LibNsFuncTestEnableMultiOpTest" : 2,
+    "LibNsFuncTestDeletionFreq" : 3,
+    "LibNsFuncTestNumObjPerThread" : 4,
+    "LibNsFuncTestNumLoop" : 5,
+    "LibNsFuncTestEnableCreateObjTest" : 6,
+    "LibNsFuncTestNumObjCreationTest" : 7,
+    "LibNsFuncTestEnablePathInfoTest" : 8,
+    "LibNsFuncTestNumObjPathInfoTest" : 9,
+    "LibNsFuncTestNumPathInfoCalls" : 10,
+    "LibNsFuncTestEnableHugeObjTest" : 11,
+    "LibNsFuncTestNumHugeObjects" : 12
+}
+

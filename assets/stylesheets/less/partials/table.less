@@ -1,0 +1,1541 @@
+html.microsoft {
+    .xcTableWrap .tableTitle .text {
+        position: relative !important;
+        display: inline-block;
+    }
+}
+
+html.firefox {
+    .xcTableWrap {
+        &.tableLockedDisplayed, &.jsonModalOpen {
+            .tableCover.visible {
+                box-shadow: 0px 1px rgba(0,0,0,0.3);
+            }
+        }
+    }
+
+    #statusBar #pageStatusText .menuIcon {
+        float: none;
+    }
+}
+
+html.firefox, html.microsoft {
+    .xcTable {
+        margin-right: -12px;
+    }
+    .dataTable {
+        .header {
+            height: @height-colHeaderOuter;
+            input {
+                pointer-events: none;
+            }
+        }
+    }
+
+    .xcTableWrap {
+        &.tableLockedDisplayed, &.jsonModalOpen {
+            .xcTbodyWrap {
+                // overflow hidden prevents scrolling but breaks styling
+                // in firefox and microsoft
+                overflow-x: hidden;
+                overflow-y: scroll;
+            }
+        }
+    }
+}
+
+html.edge {
+    .xcTable {
+        margin-right: -7px;
+    }
+}
+
+/* Currently used for worksheet table, dataset preview */
+.dataTable {
+    .size(@width: 0px);
+    border-collapse: separate;
+    border-spacing: 0px;
+    margin-right: 5px;
+    margin-top: 4px;
+    table-layout: fixed;
+    cursor: default;
+    overflow: hidden; // fixes XC-310
+
+    .animating { // on th and tds
+        pointer-events: none;
+    }
+
+    thead {
+        background-color: @color-bg-2;
+        box-shadow: inset 0px -1px 0 0 rgba(0, 0, 0, 0.2);
+        white-space: pre;
+
+        .selectedCell, .selectedCol, .colSelected {
+            .flexContainer, .columnTab {
+                background-color: @color-table-headerSelected;
+                .editableHead {
+                    color: @color-font-white !important;
+                    -webkit-text-fill-color: @color-font-white !important;
+                    text-overflow: clip;
+                }
+            }
+        }
+    }
+
+    th {
+        .size(@height: @height-colHeaderOuter);
+        background-color: @color-bg-default;
+        border-left: none;
+        padding: 0px;
+        .font(@weight: 600, @size: 13px);
+
+        &.rowNumHead {
+            // style for rowNum
+            .header {
+                z-index: @z-index-firstHeader;
+                border-left: @width-tableCellPadding solid @color-bg-2;
+                &::before {
+                    .transition(opacity 0.3s);
+                    content: "";
+                    opacity: 0;
+                }
+
+                &::after {
+                    width: ~"calc(100% + (@{width-tableCellPadding} * 2))";
+                    left: -@width-tableCellPadding;
+                    z-index: @z-index-firstHeader;
+                }
+            }
+
+            input {
+                .position(absolute, @left: 0);
+                .size(@width: ~"calc(100% + (@{width-tableCellPadding} * 2))", @height: @height-colHeaderOuter);
+                border: @width-tableCellPadding solid @color-bg-2;
+                background: @color-bg-dataColHeader;
+                margin-left: -@width-tableCellPadding;
+                margin-top: -@width-tableCellPadding;
+                border-radius: 0;
+                .transition(border-color 0s);
+            }
+        }
+        &.dataCol {
+            .flexRow {
+                background-color: @color-bg-dataColHeader !important;
+                height: @height-xcColHeaderOuter - (@width-tableCellPadding * 2);
+            }
+        }
+        &.indexedColumn:not(.noIndexStyle) {
+            .header {
+                .sortIcon {
+                    visibility: visible;
+                }
+            }
+        }
+    }
+
+    td {
+        .size(@height: @height-tableCell);
+        .font(@size: 11px, @line-height: @height-innerTableCell, @family: @font-code, @weight: 500, @color: @color-font-default);
+        overflow: hidden;
+        padding: 2px;
+        vertical-align: middle;
+        text-align: left;
+
+        &:last-child {
+            border-right: @width-tableCellPadding solid @color-bg-2 !important;
+        }
+
+        &.highlightedCell {
+            position: relative;
+        }
+    }
+
+    tbody {
+        white-space: pre;
+        tr {
+
+            background-color: @color-bg-2;
+            td {
+               border-right: @width-tableCellPadding solid @color-bg-2;
+               &.emptyTable {
+                   padding-left: 48px;
+               }
+            }
+
+            &:nth-child(odd) {
+                td {
+                    background-color: @color-bg-default;
+
+                    &.indexedColumn:not(.noIndexStyle) {
+                        background-color: @color-table-indexed-blue !important;
+                    }
+                    &.selectedCell, &.selectedCol, &.colSelected {
+                        background-color: @color-table-oddSelectedCell-blue;
+                    }
+                    &.jsonElement, &.jsonElement .pop, &.dataCol {
+                        background-color: @color-table-col-green;
+                    }
+                }
+
+                .idSpan {
+                    background-color: @color-bg-default;
+                }
+            }
+            &:nth-child(even) {
+                td {
+                    background-color: @color-table-evenRow-gray;
+
+                    &.indexedColumn:not(.noIndexStyle) {
+                        background-color: @color-table-indexed-lightBlue !important;
+                    }
+                    &.selectedCell, &.selectedCol, &.colSelected {
+                        background-color: @color-table-evenSelectedCell-blue;
+                    }
+                    &.jsonElement, &.jsonElement .pop, &.dataCol {
+                        background-color: @color-table-col-lightGreen;
+                    }
+                }
+
+                .idSpan {
+                    background-color: @color-table-evenRow-gray;
+                }
+            }
+        }
+    }
+
+    &:not(.tableLockedDisplayed) tbody tr:not(.notDragging):hover, tbody tr.dragging {
+        td {
+            border-right: @width-tableCellPadding solid @color-table-lightGray;
+            background-color: @color-table-hoverBg-gray;
+
+            &.indexedColumn:not(.noIndexStyle) {
+                background-color: @color-table-indexed-hover !important;
+            }
+            &.selectedCell, &.colSelected, &.selectedCol {
+                background-color: @color-table-selected-hover !important;
+            }
+            &.jsonElement, &.jsonElement .pop, &.dataCol {
+                background-color: @color-table-dataCol-hover;
+            }
+
+            .idSpan {
+                background-color: @color-table-hoverBg-gray;
+                border-right-color: @color-table-lightGray;
+            }
+        }
+    }
+
+    .idSpan {
+        .position(relative);
+        .size(@width: ~"calc(100% + 10px)", @height: 100%);
+        margin-left: -@width-tableCellPadding;
+        border-right: @width-tableCellPadding solid @color-bg-2;
+        border-left: @width-tableCellPadding solid @color-bg-2;
+        font-weight: normal;
+        .flex-display;
+        .justify-content(center);
+        .align-items(center);
+        z-index: @z-index-firstColumn;
+
+        &::after {
+            content: "";
+            opacity: 0;
+            .transition(opacity 0.3s);
+        }
+    }
+
+    .header {
+        .position(relative);
+        .rounded;
+        .noSelection;
+
+        border-color: @color-bg-2 !important;
+
+        &::after {
+            .position(absolute, @top: @height-colHeader + 4px, @left: 0);
+            .size(@width: ~"calc(100% + @w{idth-tableCellPadding})", @height: 1px);
+            content: "";
+            display: block;
+        }
+        &::before {
+            .transition(opacity 0.3s);
+            content: "";
+            opacity: 0;
+            white-space: normal; // otherwise, has height in firefox
+        }
+
+        &.editable {
+            &.flex-mid {
+                pointer-events: initial;
+            }
+            .editableHead {
+                cursor: default;
+                &:focus {
+                    cursor: initial;
+                }
+            }
+        }
+
+        .flexContainer {
+            overflow: hidden;
+            background-color: @color-bg-default;
+           .flexWrap {
+                &.flex-left {
+                    .position(relative);
+                    .size(@height: @height-colHeader);
+                    .flex(0 1 16px);
+                    white-space: normal;
+                    margin: 0;
+                    overflow: hidden;
+                    background-color: @color-bg-default;
+
+                    .iconHidden {
+                        .size(@width: 1px, @height: @height-colHeader);
+                        display: inline-block;
+                    }
+
+                    .type.icon {
+                        font-size: 12px;
+                        font-weight: normal;
+                    }
+                }
+
+                &.flex-mid {
+                    .flex(1 0 0px);
+                    position: relative;
+                    height: 18px;
+                    margin-top: 4px;
+                    z-index: @z-index-tableHeaderInput;
+                    pointer-events: none;
+                    // make unclickable to allow dragging area to take
+                    //  precedence
+
+                    &.editable {
+                        .editableHead {
+                            pointer-events: initial;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    input {
+        font: 13px @font-base;
+        background-color: transparent;
+
+        &[disabled] {
+            .size(@width: 100%);
+            text-align: center;
+            outline: none;
+            font-weight: 600;
+        }
+
+        &:focus {
+            outline-offset: -1px;
+        }
+    }
+
+    .editableHead {
+        .position(relative);
+        .size(@width: ~"calc(100% + 2px)", @height: 18px);
+        padding: 0px 0px 0px 3px;
+        background-color: transparent;
+        border: none;
+        display: block;
+        text-align: center;
+        overflow: hidden;
+        .font(@weight: 600, @size: 11px, @family: @font-base, @color: @color-font-default);
+        margin-left: -2px;
+        // pointer-events: none;
+        pointer-events: initial;
+        z-index: @z-index-tableHeaderInput;
+        .cursor-move;
+    }
+
+    .textAlignLeft {
+        text-align: left !important;
+        .dataColText {
+            text-align: left;
+        }
+        .flexContainer {
+            .justify-content(flex-start);
+        }
+
+    }
+
+    .textAlignRight {
+        text-align: right !important;
+        .dataColText {
+            text-align: right;
+        }
+        .flexContainer {
+            .justify-content(flex-end);
+        }
+    }
+
+    .textAlignCenter {
+        text-align: center !important;
+        .dataColText {
+            text-align: center;
+        }
+        .flexContainer {
+            .justify-content(center);
+        }
+    }
+
+    .textAlignWrap {
+        .textAlignLeft;
+        white-space: pre-wrap !important;
+        overflow-wrap: break-word !important;
+        .displayedData {
+            height: auto;
+        }
+        .dataColText  {
+            .textAlignLeft;
+            white-space: pre-wrap !important;
+            overflow-wrap: break-word !important;
+        }
+        &.animating {
+            white-space: nowrap !important;
+        }
+    }
+
+    tr.empty {
+        .jsonElement {
+            cursor: initial;
+            &:hover {
+                .pop {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .jsonElement {
+        cursor: pointer;
+        .position(relative);
+
+        &:hover {
+            .pop {
+                display: block;
+            }
+        }
+
+        .pop {
+            display: none;
+            .vertical-align;
+            .position(absolute, @left: 2px);
+            z-index: 2; // highlight box has z-index 1
+            .size(15px, 15px);
+            color: @color-table-datacolIcon;
+            &:hover {
+                color: @color-table-datacolIcon-hover;
+                &:active {
+                    color: @color-table-datacolIcon-active;
+                }
+            }
+        }
+    }
+
+    .originalData {
+        display: none;
+    }
+
+    .displayedData {
+        display: block;
+        height: @height-innerTableCell;
+        overflow: hidden;
+    }
+
+    .dataColText {
+        cursor: pointer;
+        text-align: left;
+        white-space: pre;
+    }
+
+    span.undefined, span.null {
+        font-style: italic;
+        color: @color-defaultGray;
+        width: 100%;
+        display: block;
+    }
+
+    .lineChar {
+        color: @color-bg-select-blue;
+        padding-left: 1px;
+        padding-right: 2px;
+        display: inline-block;
+        white-space: nowrap;
+    }
+}
+
+.xcTableWrap {
+    .position(relative);
+    .size(@width: auto, @height: 100%);
+    margin-bottom: 0px;
+    overflow: hidden;
+    padding: 0;
+    display: inline-block;
+
+    &:only-child, &.noDrag {
+        .tableGrab, .dragArea {
+            cursor: pointer !important;
+        }
+    }
+
+    &.pTblViewPreview {
+        .tableGrab, .dragArea, .editableHead {
+            cursor: default !important;
+        }
+    }
+
+    &.inActive {
+        display: none;
+    }
+
+
+    &.resizingCol {
+        .tableScrollBar {
+            display: none;
+        }
+    }
+
+    &.checkingColDrag {
+        .tableScrollBar {
+            opacity: 1;
+        }
+    }
+
+    &:hover {
+        .tableScrollBar {
+            opacity: 1;
+            .transition(0.1s opacity 0.1s);
+        }
+    }
+
+    &.modalOpen {
+
+        .dropdownBox {
+            display: none;
+        }
+
+        th:first-child {
+            pointer-events: none;
+        }
+
+        td:first-child {
+            .rowGrab {
+                pointer-events: none;
+            }
+        }
+
+        .dragArea {
+            display: none;
+        }
+
+        .tableTitle {
+            pointer-events: none;
+        }
+
+        th {
+            .noSelection;
+        }
+
+        th.modalHighlighted {
+            .header {
+                z-index: @z-index-modalBackground;
+            }
+            .flexContainer{
+                background-color: @color-bg-select-blue;
+                input {
+                    color: @color-bg-defaultStrong !important;
+                    -webkit-text-fill-color: @color-bg-defaultStrong !important;
+                }
+            }
+        }
+
+        tbody tr {
+            &:nth-child(odd) {
+                td.modalHighlighted, td.jsonElement.modalHighlighted .pop {
+                    background-color: @color-selectedCell-dark;
+                }
+            }
+            &:nth-child(even) {
+                td.modalHighlighted, td.jsonElement.modalHighlighted .pop {
+                    background-color: @color-table-selectedCell-light;
+                }
+            }
+            &:hover {
+                td.modalHighlighted, td.jsonElement.modalHighlighted .pop {
+                    background-color: @color-table-selected-hover !important;
+                }
+            }
+        }
+    }
+
+    &.tableLocked, &.jsonModalOpen {
+        .tableTitle, .header, td {
+            pointer-events: none;
+        }
+        .tableTitle .dropdownBox {
+            pointer-events: auto;
+        }
+        .tableScrollBar {
+            display: none !important;
+        }
+    }
+
+    &.tableLockedDisplayed, &.jsonModalOpen {
+        &:before {
+            display: none;
+        }
+
+        .xcTable {
+            background-color: @color-font-black;
+
+            &::after {
+                background-color: @color-table-after-gray;
+                .transition(0.2s);
+            }
+
+            th {
+                &:first-child {
+                    .header::before {
+                        display: block;
+                        position: absolute;
+                        background-color: rgba(0,0,0,1);
+                        z-index: @z-index-modal;
+                        opacity: 0.3;
+                        width: ~"calc(100% + 10px)";
+                        height: @height-xcColHeaderOuter;
+                        left: -@width-tableCellPadding;
+                        top: -@width-tableCellPadding;
+                    }
+                }
+
+                .header {
+                    &::before {
+                        content: "";
+                        .position(absolute, @top: -@width-tableCellPadding, @left: 0px);
+                        .size(@width: ~"calc(100% + @{width-tableCellPadding})", @height: @height-xcColHeaderOuter);
+                        z-index: 21;
+                        background-color: rgba(0, 0, 0, 1);
+                        opacity: 0.3;
+                    }
+                }
+            }
+
+            tbody {
+                opacity: 0.7;
+            }
+        }
+
+        .tableScrollBar {
+            display: none !important;
+        }
+
+        // lockedtableicon styling in basic.less
+        .tableCover {
+            // XXX TODO unify with the one in dagView.less
+            .position(absolute, @top: @height-xcColHeaderOuter + 35px);
+            .size(@width: ~"calc(100% - 5px)", @height: auto);
+            background-color: @color-table-cover;
+            z-index: 5;
+            .transition(opacity 0.3s);
+            &.visible {
+                opacity: 1 !important;
+            }
+        }
+        tbody {
+            opacity: 1 !important;
+        }
+
+        th:first-child input {
+            box-shadow: none !important;
+        }
+    }
+
+    &.tableLocked {
+        .editableHead {
+            pointer-events: none;
+        }
+        .xcTbodyWrap {
+            pointer-events: none;
+            overflow: hidden; // prevents scrolling
+        }
+        .lockedTableIcon {
+            display: none;
+        }
+    }
+    &.tableLockedDisplayed {
+        .tableTitle {
+            background: @color-bg-unselect-gray !important;
+        }
+        .lockedTableIcon {
+            display: inline-block;
+        }
+    }
+
+    &.building {
+        display: none !important;
+    }
+
+    .tempRow {
+        cursor: progress;
+        .idWrap, .jsonElement {
+            cursor: progress;
+        }
+    }
+
+    .tableCoverWaiting {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10;
+        cursor: progress;
+    }
+
+    &.jsonModalOpen {
+        td.modalHighlighted.jsonModalOpen, td.modalHighlighted.jsonElement {
+            pointer-events: all;
+            border-color: @color-table-border-darkened !important;
+            position: relative;
+            z-index: @z-index-modalBackground + 1;
+        }
+
+        .header {
+            z-index: @z-index-modalBackground + 2 !important;
+
+            input {
+                pointer-events: none;
+            }
+        }
+
+        th:first-child .header {
+            z-index: @z-index-modalBackground + 3 !important;
+        }
+
+        .idWrap {
+            z-index: @z-index-modalBackground + 2;
+            pointer-events: none;
+            .idSpan::after {
+                display: block;
+                position: absolute;
+                background-color: @color-font-black;
+                width: ~"calc(100% + 10px)";
+                height: 100%;
+                left: -@width-tableCellPadding;
+                top: 0px;
+                opacity: 0.3;
+            }
+        }
+        .darkenedCell {
+            .size(@width: ~"calc(100% + 10px)", @height: 100%);
+            .position(absolute, @top: 0, @left: -@width-tableCellPadding);
+            display: block;
+            content: "";
+            background-color: @color-font-black;
+            z-index: @z-index-modalBackground + 1;
+            opacity: 0.3;
+            display: none;
+            // jquery fades in display
+        }
+
+        .formColNum {
+            top: -@width-tableCellPadding !important;
+        }
+    }
+    &.tableDarkened {
+        pointer-events: none;
+        .dropdownBox {
+            display: none !important;
+        }
+    }
+    &.hollowed {
+        .xcTbodyWrap {
+            display: none;
+        }
+    }
+
+    &.allowSelectAll {
+        th:first-child {
+            pointer-events: initial;
+        }
+    }
+
+
+}
+
+#container.columnPicker {
+    .dataTable {
+        .dragArea {
+            display: none;
+        }
+
+        .tableTitle {
+            .tableGrab {
+                cursor: pointer;
+            }
+            .labelWrap .text {
+                pointer-events: none;
+            }
+        }
+
+        th:first-child, td:first-child {
+            pointer-events: none;
+        }
+        .rowGrab {
+            display: none;
+        }
+
+        th {
+            cursor: pointer; // xx may not want all headers to have this
+            .editableHead {
+                cursor: pointer;
+            }
+            .header.noColumnPicker {
+                cursor: not-allowed;
+                .editableHead {
+                    pointer-events: none; // disables clicking and colname tooltip
+                    // and prevents clash with "not allowed" tooltip on .header
+                }
+            }
+        }
+
+        th.modalHighlighted {
+            .header {
+                // z-index: 2 !important;
+                .type.icon {
+                    color: @color-font-defaultInverse;
+                }
+            }
+            .flexContainer{
+                background-color: @color-bg-select-blue;
+                input {
+                    color: @color-bg-defaultStrong !important;
+                    -webkit-text-fill-color: @color-bg-defaultStrong !important;
+                }
+            }
+        }
+
+        tbody tr {
+            &:nth-child(odd) {
+                td.modalHighlighted {
+                    background-color: @color-selectedCell-dark;
+                }
+            }
+            &:nth-child(even) {
+                td.modalHighlighted {
+                    background-color: @color-table-selectedCell-light;
+                }
+            }
+            &:hover {
+                td.modalHighlighted {
+                    background-color: @color-table-selected-hover !important;
+                }
+            }
+        }
+
+        .formColNum {
+            .position(absolute, @top: -8px, @right: -@width-tableCellPadding);
+            height: 24px;
+            min-width: 24px;
+            line-height: 18px;
+            color: @color-font-defaultInverse;
+            text-align: center;
+            border-radius: 100%;
+            border: 3px solid @color-bg-2;
+            background: @color-bg-select-blue;
+            box-shadow: -1px 1px 2px rgba(0, 0, 0, 0.4);
+            z-index: 3;
+        }
+    }
+
+    .tableLockedDisplayed {
+        .formColNum {
+            opacity: 0.5;
+        }
+    }
+
+    // the second step in the join form
+    &.joinState2 {
+        .dataTable {
+            .rowNumHead {
+                pointer-events: initial !important;
+                input {
+                    cursor: pointer;
+                }
+            }
+            .header.noColumnPicker {
+                cursor: pointer;
+            }
+            .dataCol .header.noColumnPicker {
+                cursor: not-allowed;
+            }
+        }
+        ~ .invalidTypeTip {
+            display: none !important;
+        }
+    }
+
+    &.exportState, &.projectState {
+        .dataTable {
+            th.col0 {
+                pointer-events: initial !important;
+                // columnPicker class disables the select all behavior of the first
+                // column header, but we want it for export
+            }
+        }
+    }
+}
+
+.xcTbodyWrap {
+    @table-offset: @height-tableTitle + 1px;
+    .position(@right: -17px);
+    .size(@width: ~"calc(100% + 17px)", @max-height: ~"calc(100% - @{table-offset})");
+    .font(@size: 11px);
+    margin-bottom: 0;
+    margin-top: -3px;
+    padding: 0;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        .transition(background-color 0.2s);
+    }
+
+    .userHidden {
+        .editableHead {
+            padding-left: 6px;
+        }
+
+        .sortIcon {
+           display: none !important;
+        }
+
+        .flex-left {
+            display: none;
+        }
+
+        .flex-right > .dropdownBox .innerBox {
+            right: 3px !important;
+        }
+
+        .colGrab {
+            right: -14px;
+        }
+
+        .tdText, .dataColText {
+            display: none;
+        }
+
+        &.dataCol {
+            input {
+                padding-left: 10px;
+            }
+        }
+    }
+
+    td.modalHighlighted {
+        // xi2 commented out
+        // position: relative;
+        // z-index:36;
+        .transition(border-color 0.3s);
+        &.jsonModalOpen {
+            border-color: @color-table-border-gray !important;
+            position: relative;
+            z-index: @z-index-modalBackground + 1;
+            &:not(.jsonElement) {
+                pointer-events: none;
+            }
+        }
+    }
+    .dataCol {
+        .flexWrap.flex-left {
+           display: none;
+        }
+        input {
+            padding-right: @width-tableCellPadding !important;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+.tableScrollBar {
+    @scrollTop: @height-xcColHeaderOuter + @height-tableTitle;
+    width: 12px;
+    height: ~"calc(100% - @{scrollTop})";
+    .position(absolute, @top: @scrollTop, @right: 0px);
+    overflow: auto;
+    overflow-x: hidden;
+    opacity: 1;
+    z-index: 3;
+
+    &::-webkit-scrollbar-thumb {
+        min-height: 30px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background:  @color-bg-opaqueInverse8;
+    }
+    .sizer {
+        height: 20000px;
+    }
+}
+
+.xcTable, .datasetTable {
+    tbody {
+        td:first-child {
+            padding: 0;
+            .noSelection;
+            overflow: visible;
+            border-left: @width-tableCellPadding solid @color-bg-default;
+        }
+    }
+
+    .header {
+        border: @width-tableCellPadding solid @color-table-header-gray;
+        background-color: @color-bg-default;
+        border-left: none;
+        border-radius: 0px;
+        .typeIcon;
+
+        .type.icon {
+            color: @color-font-form;
+        }
+
+        .dropDown;
+        .editableHead {
+            width: 100%;
+            outline: none;
+            text-overflow: ellipsis;
+            padding-bottom: 2px;
+        }
+        input {
+            height: @height-colInput;
+        }
+    }
+
+    .selectedHeaderStyling {
+        .type.icon {
+            color: @color-font-white;
+        }
+        .flexWrap.flex-left, .topHeader {
+            background-color: @color-table-headerSelected !important;
+        }
+
+        .sortIcon, .sortNum {
+            color: @color-font-white !important;
+        }
+
+        .prefix {
+            color: @color-font-white !important;
+            opacity: 1 !important;
+        }
+    }
+
+    .selectedCell, .selectedCol {
+        .header {
+            .selectedHeaderStyling;
+        }
+    }
+
+    // basic highlighted column settings
+    th.modalHighlighted {
+        .header {
+            .selectedHeaderStyling;
+        }
+        .flexContainer{
+            background-color: @color-bg-select-blue;
+            input {
+                color: @color-font-defaultInverse !important;
+                -webkit-text-fill-color: @color-font-defaultInverse !important;
+            }
+        }
+    }
+
+    tbody tr {
+        &:nth-child(odd) {
+            td.modalHighlighted {
+                background-color: @color-selectedCell-dark;
+            }
+        }
+        &:nth-child(even) {
+            td.modalHighlighted {
+                background-color: @color-table-selectedCell-light;
+            }
+        }
+        &:hover {
+            td.modalHighlighted {
+                background-color: @color-table-selected-hover !important;
+            }
+        }
+    }
+}
+
+.xcTable {
+    &::after {
+        content: "";
+        .size(@width: ~"calc(100% - 5px)", @height: 5px);
+        position: absolute;
+        background-color: @color-bg-default;
+    }
+
+    &.noOperation {
+        th {
+            .header {
+                .sortIcon {
+                    visibility: hidden !important;
+                }
+
+                .dropdownBox {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    &.emptyTable {
+        .dragArea, .editableHead {
+            cursor: initial;
+        }
+    }
+
+    &.allImmediates {
+        .dragArea {
+            height: @height-colHeaderOuter + 1;
+        }
+        th {
+            height: @height-colHeaderOuter;
+            &.rowNumHead input {
+                height: @height-colHeaderOuter;
+            }
+            &.dataCol {
+                .header .flexContainer .flexWrap.flex-mid {
+                    height: @height-colHeaderOuter - (@width-tableCellPadding * 2);
+                    line-height: @height-colInput;
+                }
+                .flexRow {
+                    height: @height-colHeaderOuter - (@width-tableCellPadding * 2);
+                }
+            }
+        }
+        .header {
+            .topHeader {
+                display: none;
+            }
+            .iconHelper {
+                top: 4px;
+            }
+        }
+    }
+
+    tbody tr {
+        td {
+            .idWrap {
+                .position(relative);
+                .size(100%, 100%);
+                .flex-display;
+            }
+        }
+
+        &.changedHeight {
+            white-space: pre-wrap;
+            overflow-wrap: break-word;
+            .displayedData {
+                height: auto;
+            }
+            .dataColText {
+                white-space: pre-wrap;
+            }
+        }
+    }
+
+    &:not(.tableLockedDisplayed) tbody tr:not(.notDragging):hover, tbody tr.dragging {
+        td {
+            &:first-child {
+                border-right: 0px;
+            }
+        }
+    }
+
+    tbody tr td:first-child {
+        border-right: 0px;
+    }
+
+    th {
+        height:  @height-xcColHeaderOuter;
+
+        &.rowNumHead input {
+            height:  @height-xcColHeaderOuter;
+        }
+
+        &.dataCol {
+            .header {
+                .flexContainer {
+                    .flexWrap.flex-mid {
+                        height: @height-xcColHeader;
+                        line-height: @height-xcColHeader - 6;
+                    }
+                }
+            }
+        }
+
+        &.sortable {
+            .header {
+                .position(absolute, @top: 35px);
+                width: inherit;
+                z-index: @z-index-tableHeaderInput;
+
+                &:after {
+                    top: @height-xcColHeaderOuter - 6px;
+                }
+            }
+            .sortIcon {
+                cursor: pointer;
+                opacity: @opacity-unhover;
+            }
+            &:not(.indexedColumn), &.noIndexStyle {
+                &:hover {
+                    .sortIcon {
+                        visibility: visible;
+                        &:hover {
+                            color: @color-font-greyish-brown;
+                            opacity: @opacity-hover;
+                        }
+
+                        .sortHalf:hover {
+                            background: @color-bg-opaque2;
+                        }
+                    }
+                }
+            }
+
+            &.indexedColumn  {
+                .sortIcon {
+                    opacity: @opacity-hover;
+                }
+            }
+        }
+    }
+
+    .dragArea {
+        .position(absolute, @top: -@width-tableCellPadding, @left: 0);
+        .size(@width: 100%, @height: @height-xcColHeaderOuter + 1);
+        .cursor-move;
+        z-index: 2;
+
+        .iconHelper {
+            .position(absolute, @top: @height-xcColPrefix, @left: 2px);
+            .size(20px, @height-colHeader);
+        }
+    }
+
+    .header {
+        .position(absolute, @top: 35px);
+        width: inherit;
+        z-index: @z-index-tableHeaderInput;
+
+        &:after {
+            top: @height-xcColHeaderOuter - 6px;
+        }
+
+        .topHeader {
+            height: @height-xcColPrefix;
+            .flex-display;
+            .position(relative);
+            .rounded(2px 2px 0 0);
+            background-color: @color-bg-default;
+            border-style: solid;
+            border-width: 0 0 1px 0;
+            border-color: @color-bg-2;
+
+            .prefix {
+                .flex(1 1 auto);
+                .font(@color: @color-font-darkGray, @size: 11px);
+                line-height: @height-xcColPrefix;
+                .textOverflowOneLine;
+
+                &.immediate {
+                    font-style: italic;
+                }
+            }
+        }
+
+        .sortIcon {
+            color: @color-font-greyish-brown;
+            display: block;
+            z-index: @z-index-tableHeaderGrab;
+            position: absolute;
+            right: 3px;
+            visibility: hidden;
+
+            .icon {
+                position: relative;
+                top: -1px;
+            }
+            .xi-sort {
+                top: 1px;
+                pointer-events: none;
+            }
+
+            .sortHalf {
+                position: absolute;
+                top: 0px;
+                left: 0px;
+                height: 50%;
+                width: 100%;
+                border-radius: 2px;
+
+                &.sortDesc {
+                    top: 50%;
+                }
+            }
+        }
+
+        .sortNum {
+            position: absolute;
+            left: -5px;
+            top: -2px;
+            font-size: 9px;
+            color: @color-font-greyish-brown;
+            font-family: @font-base;
+            pointer-events: none;
+        }
+
+        .flexContainer {
+            .position(relative);
+
+            .flexWrap.flex-mid {
+                .editableHead, input.dataCol {
+                    width: ~"calc(100% - 15px)";
+                    margin-left: 0px;
+                    padding: 0px;
+                    line-height: 18px;
+                    .noSelection;
+
+                    &.highlight {
+                        background-color: @color-bg-gold;
+                    }
+                }
+            }
+
+            .flexWrap.flex-right {
+                .flex(0 1 0px);
+                height: @height-colHeader;
+            }
+
+        }
+
+        &:hover {
+            .flexWrap.flex-right > .dropdownBox {
+                opacity: 0.7;
+            }
+        }
+
+        &.type-data .flexWrap.flex-left {
+            background: transparent;
+        }
+    }
+
+    .colDragging.sortable {
+        .sortIcon {
+            visibility: visible !important;
+        }
+    }
+}
+
+
+/* DRAG AND DROP TABLES */
+.tableDragging {
+    position: absolute !important;
+    opacity: 0.7;
+    z-index: 10;
+    .innerBox {
+        display: none !important;
+    }
+    .idSpan {
+        left: 0 !important;
+    }
+    .th.rowNumHead .header {
+        left: 0 !important;
+    }
+}
+
+/* DRAG AND DROP COLUMNS styling */
+#shadowDiv {
+    .position(absolute);
+    background-color: @color-table-midGray;
+    z-index: @z-index-firstColumn - 1;
+    opacity: 1;
+    margin-top: 5px;
+}
+
+#fauxCol{
+    .position(absolute, @top: @height-topBar + 40px);
+    background-color: @color-bg-default;
+    z-index: 12;
+    opacity: 0.7;
+    pointer-events: none;
+    overflow: hidden;
+    box-shadow: 1px 0px 1px 1px @color-fauxCol-shadow;
+    white-space: nowrap;
+}
+
+#fauxTable {
+    background-color: @color-bg-default;
+    z-index: 12;
+    margin-left: 0 !important;
+    margin-top: 5px;
+    th {
+        outline: 1px solid @color-fauxTable-outline;
+    }
+    tr:first-child {
+        position: absolute;
+        background-color: @color-font-defaultInverse !important;
+    }
+    .header {
+        border-left: none !important;
+        border-right: none !important;
+    }
+    &.selectedCol {
+        .header .flexContainer {
+            background-color: @color-table-headerSelected !important;
+
+            .editableHead {
+                color: @color-font-white !important;
+                -webkit-text-fill-color: @color-font-white !important;
+                text-overflow: clip;
+            }
+        }
+    }
+    &.userHidden {
+        .tdText, .dataColText, .dataCol .flex-mid {
+            display: none;
+        }
+    }
+    .dataCol {
+        .flexWrap.flex-left {
+           display: none;
+        }
+        input {
+            padding-right: @width-tableCellPadding !important;
+            text-overflow: ellipsis;
+        }
+    }
+}
+
+#fauxTable {
+    th, td {
+        border-right: none !important;
+        border-left: none;
+    }
+
+    td {
+        padding: 2px !important;
+        overflow: hidden;
+    }
+
+    tr {
+        &:nth-child(odd) {
+            td {
+                &.indexedColumn:not(.noIndexStyle) {
+                    background-color: @color-table-indexed-lightBlue !important;
+                }
+                &.jsonElement, &.jsonElement .pop, &.dataCol {
+                    background-color: @color-table-col-lightGreen !important;
+                }
+            }
+
+        }
+        &:nth-child(even) {
+            td {
+                &.indexedColumn:not(.noIndexStyle) {
+                    background-color: @color-table-indexed-blue !important;
+                }
+                &.jsonElement, &.jsonElement .pop, &.dataCol {
+                    background-color: @color-table-col-green !important;
+                }
+            }
+        }
+    }
+}
+
+#dropTargets {
+    .position(absolute, @top: 0, @left: 0);
+    .cursor-grabbing();
+}
+
+.dropTarget {
+    .position(absolute, @top: 0);
+    z-index: 23;
+    background-color: rgba(0,0,50,0.2); // only used in testing
+    font-size: 50px;
+    opacity: 0;
+}
+/* END DRAG AND DROP STYLING */
+
+/* Row and Column Resizing*/
+.colGrab {
+    .position(absolute, @top: -@width-tableCellPadding, @right: -14px);
+    .size(@width: 22px, @height: ~"calc(100% + 5px)");
+    display: inline-block;
+    cursor: col-resize;
+    z-index: 2;
+    background-color: @color-black-invisible; //ie hack
+    border-left: 6px solid @color-black-invisible !important;
+    .noSelection;
+
+    &:hover, &:active {
+        // active is for when it's click down
+        &::after {
+            content: "";
+            .position(absolute, @top: @width-tableCellPadding, @right: 10px);
+            .size(@width: 4px, @height: 100%);
+            background-color: @color-hover-blue;
+        }
+    }
+}
+
+.rowGrab {
+    .position(absolute, @top: -3px, @left: -2px);
+    .size(@width: 1000px, @height: 8px);
+    z-index: 3;
+    cursor: row-resize;
+    visibility: hidden;
+    .transition(0s visibility 0.25s);
+    &.last {
+        top: auto;
+        visibility: visible;
+    }
+}
+
+tr:hover .rowGrab, tr:hover + tr .rowGrab {
+    visibility: visible;
+}
+
+tbody tr:first-child .rowGrab {
+    display: none;
+}
+
+td.col0:hover {
+    .rowGrab {
+        .transition(0s visibility 0.25s);
+    }
+}
+
+.highlightBox, .jsonModalHighlightBox {
+    .position(absolute, @top: 0px, @left: 0px);
+    .size(100%, 100%);
+    z-index: 1;
+    .rounded(2px);
+    box-shadow: inset 0px 0px 0px 2px @color-hover-blue;
+}

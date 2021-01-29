@@ -1,0 +1,54 @@
+<section id="tableSearchPanel" class="menuSection">
+  <div class="topSection">
+    <div class="titleSection">
+      <span>Search</span>
+      <i class="qMark icon xi-unknown"
+        data-toggle="tooltip"
+        data-container="body"
+        data-placement="auto top"
+        data-title="<%= dicts.resouceMenu.SearchTable %>">
+      </i>
+    </div>
+    <div class="iconSection">
+      <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </div>
+  </div>
+  <div class="mainSection">
+    <div class="searchArea">
+      <input class="xc-input white" type="text" placeholder="Press enter to search" spellcheck="false" autocomplete="off">
+      <i class="clear icon fa-14 xi-close xc-icon-action"
+        data-toggle="tooltip"
+        data-container="body"
+        data-placement="auto top"
+        data-title="Clear search">
+      </i>
+    </div>
+    <div class="resultArea">
+      <section class="summary"></section>
+      <section class="listSection xc-resourceMenu">
+        <!-- sql list -->
+        <div class="sqlList listWrap xc-expand-list">
+          <div class="listInfo">
+            <span class="expand">
+              <i class="icon xi-down fa-12"></i>
+            </span>
+            <span class="text"><%= dicts.resouceMenu.SQL %></span>
+          </div>
+          <ul></ul>
+        </div>
+        <!-- end of sql list -->
+        <!-- module list -->
+        <div class="moduleList listWrap xc-expand-list">
+          <div class="listInfo">
+            <span class="expand">
+              <i class="icon xi-down fa-12"></i>
+            </span>
+            <span class="text"><%= dicts.resouceMenu.Modules %></span>
+          </div>
+          <ul></ul>
+        </div>
+        <!-- end of module list -->
+      </section>
+    </div>
+  </div>
+</section>

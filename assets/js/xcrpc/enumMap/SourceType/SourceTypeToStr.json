@@ -1,0 +1,8 @@
+{
+    "0" : "Unknown",
+    "1" : "Dataset",
+    "2" : "Table",
+    "3" : "Constant",
+    "4" : "Export"
+}
+

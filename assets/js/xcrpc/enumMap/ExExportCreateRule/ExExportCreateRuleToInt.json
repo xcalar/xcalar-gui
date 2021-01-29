@@ -1,0 +1,8 @@
+{
+    "ExExportUnknownRule" : 0,
+    "ExExportCreateOnly" : 1,
+    "ExExportCreateOrAppend" : 2,
+    "ExExportAppendOnly" : 3,
+    "ExExportDeleteAndReplace" : 4
+}
+

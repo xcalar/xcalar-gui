@@ -1,0 +1,36 @@
+<!-- table menu -->
+<div class="topSection">
+  <div class="titleSection"></div>
+  <div class="iconSection">
+    <!-- switch list view -->
+    <i class="switchView right icon xi-view-as-list-2 gridView" data-toggle="tooltip" data-placement="auto top" data-original-title="<%= dicts.TooltipTStr.SwitchToListView %>" data-container="body"></i>
+    <!-- refresh icon -->
+    <i class="refresh right icon xi-refresh" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Refresh %>"></i>
+  </div>
+</div>
+<div class="buttonSection">
+  <!-- import data button -->
+  <button class="btn btn-submit iconBtn import createTable">
+    <i class="icon xi-plus fa-11"></i>
+    <span><%= dicts.ds.AddTable %></span>
+  </button>
+</div>
+<div id="sourceTableListSection" class="mainSection">
+  <div class="topWrapper">
+    <div class="sortSection xc-sortSection">
+      <span class="label"><%= dicts.common.SortBy %>:&nbsp;</span>
+      <span class="sortOption" data-key="name"><%= dicts.common.Name %></span>
+      <span class="divider"></span>
+      <span class="sortOption" data-key="size"><%= dicts.common.Size %></span>
+      <span class="divider"></span>
+      <span class="sortOption" data-key="date"><%= dicts.common.Date %></span>
+      <span class="divider"></span>
+      <span class="sortOption" data-key="none"><%= dicts.common.None %></span>
+    </div>
+  </div>
+  <!-- Grid View -->
+  <div class="gridViewWrapper">
+    <div class="gridView gridItems xc-grid clearfix"></div>
+  </div>
+</div>
+include "tblGridViewMenu.html"

@@ -1,0 +1,288 @@
+// used for admin
+#container.admin {
+    .adminOnly {
+        display: block;
+    }
+
+    #userNameArea {
+        .icon {
+            font-size: 17px;
+            margin-top:  4px;
+        }
+    }
+
+    &.locked {
+        #menuBar, #mainMenu, #homeBtn {
+            pointer-events: none;
+        }
+        #homeBtn .logo, #topMenuBarTabs {
+            opacity: @opacity-disabled;
+        }
+        #helpAreaMenu, #userMenu .setup, #memoryAlert {
+            .xc-disabled;
+        }
+        #monitorMenu-setup {
+            .preference {
+                pointer-events: initial;
+            }
+            #configLicense, .userList {
+                .xc-disabled;
+            }
+        }
+    }
+
+    .monitorLogColorSchema();
+}
+
+#container.admin {
+    @menuWidth: @width-bottomMenu;
+    #monitorLogCard {
+        display: block;
+        .flex-display;
+        .flex-direction(column);
+    }
+}
+
+#container.posingAsUser {
+    #adminStatusBar {
+        display: block;
+        z-index: @z-index-locked + 1;
+    }
+}
+
+.adminOnly {
+    display: none;
+}
+#adminStatusBar {
+    @barHeight: 42px;
+    .position(absolute, @bottom: @height-bottomBar, @right: 0px);
+    padding-right: 40px;
+    .size(@max-width: 700px, @height: @barHeight);
+    .textOverflowOneLine;
+    line-height: @barHeight;
+    font-size: 13px;
+    z-index: @z-index-adminBar;
+    background-color: @color-bg-light-blue-grey-two;
+    box-shadow: 0px 0px 1px rgba(0,0,0,0.2);
+    cursor: default;
+    .no-selection;
+    .transition(@time-menuAnim all);
+    position: absolute;
+    bottom: @height-bottomBar;
+
+    &.active {
+        .position(absolute, @right: 0px);
+
+    }
+
+    .pulloutTab {
+        float: left;
+        padding-left: 6px;
+        height: 100%;
+        width:20px;
+        cursor: pointer;
+        .border {
+            .size(2px, 28px);
+            background-color: @color-bg-pinkish-grey2;
+            margin-top: 7px;
+            margin-right: 2px;
+            display: inline-block;
+            float: left;
+        }
+    }
+
+    .username {
+        color: @color-font-select-blue;
+        margin-left: 4px;
+    }
+
+    .xi-close {
+        color: inherit;
+        position: absolute;
+        right: 0px;
+        top: 0px;
+        .size(32px, 100%);
+        line-height: inherit;
+        text-align: center;
+        display: block;
+        opacity: 0.8;
+        cursor: pointer;
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+}
+
+//  main menu in monitor/setup panel
+#monitorMenu-setup {
+    .preference {
+        li {
+            cursor: pointer;
+        }
+    }
+    .userList {
+        position: relative;
+        .flex-display !important;
+        .flex-direction(column);
+        .flex(1 1 auto);
+        margin-top: 10px;
+        overflow: hidden;
+
+        &.refreshing {
+            .listInfo, .refreshUserList, .sortSection, ul {
+                pointer-events: none;
+            }
+        }
+
+        .xi-user {
+            margin-left: 1px;
+        }
+
+        .userLi {
+            position: relative;
+            padding-right: 11px;
+            .memory, .useAs {
+                float: right;
+                .size(24px, 20px);
+                line-height: 16px;
+                text-align: center;
+                .icon {
+                    font-size: 14px;
+                }
+            }
+            .useAs {
+                .icon {
+                    font-size: 15px;
+                }
+            }
+
+            .text {
+                .textOverflowOneLine;
+                .size(@max-width: ~"calc(100% - 76px)");
+            }
+
+            &.loggedIn {
+                .xi-user {
+                    color: @color-bg-apple-green;
+                }
+            }
+
+            &.notExists {
+                opacity: @opacity-disabled;
+            }
+
+            &.self {
+                .useAs {
+                    opacity: @opacity-disabled;
+                    cursor: default;
+                }
+            }
+        }
+
+        .refreshUserList {
+            .position(absolute, @top: -2px, @right: 9px);
+            .size(25px, 25px);
+            text-align: center;
+            .icon {
+                line-height: 25px;
+            }
+        }
+
+        ul {
+            margin-top: 0px;
+            overflow: auto;
+            position: relative; // for scrolling to search match
+        }
+
+        .highlightedText {
+            background-color: @color-font-bright-light-blue;
+            &.selected {
+                background-color: @color-macaroni-and-cheese;
+            }
+        }
+
+        .searchbarArea {
+            input {
+                background-color: @color-bg-default;
+                opacity: 0.8;
+                height: 30px;
+                line-height: 30px;
+                margin-top: 8px;
+                .input-placeholder(@color-bg-dropdown-gray);
+                font-size: 13px;
+                padding-right: 60px;
+
+                &:focus {
+                    opacity: 1;
+                }
+            }
+            .arrows {
+                display: none !important; // not showing arrows for now
+                top: 9px;
+                right: 20px;
+            }
+            .closeBox {
+                right: 5px;
+                top: 14px;
+            }
+            .counter {
+                right: 26px;
+                top: 15px;
+            }
+        }
+
+        &.sortedByName {
+            .sortUsage {
+                opacity: @opacity-unhover;
+                cursor: pointer;
+            }
+        }
+        &.sortedByUsage {
+            .sortName {
+                opacity: @opacity-unhover;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .sortSection {
+        text-align: right;
+        text-transform: uppercase;
+        font-size: 10px;
+        height: 30px;
+        .flex(0 0 30px);
+        padding: 5px 15px;
+        cursor: default;
+
+        > span {
+            opacity: @opacity-unhover;
+        }
+
+        .sortOption {
+            opacity: @opacity-hint;
+        }
+
+        .divider {
+            height: 100%;
+            width: 1px;
+            margin: 0 3px;
+            background-color: @color-border-softGray;
+            display: inline-block;
+            .position(relative, 3px, 0px);
+            vertical-align: bottom;
+        }
+    }
+
+
+    .xc-expand-list {
+        .searchbarArea, .refreshUserList, .sortSection {
+            display: none;
+        }
+        &.active {
+            .searchbarArea, .refreshUserList, .sortSection {
+                display: block;
+            }
+        }
+    }
+}

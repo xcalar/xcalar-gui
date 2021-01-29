@@ -1,0 +1,578 @@
+<div id="dsForm-config" class="cardContainer xc-hidden">
+  <div class="cardWrap">
+    <% var types = ['Boolean', 'Integer', 'Float', 'String', 'Timestamp', 'money']; %>
+    <header class="previewHeader" >
+        <span data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="Toggle preview">
+            <i class="icon xi-arrow-right"></i><i class="icon xi-arrow-down"></i>Preview
+        </span>
+        <div class="showPreview">
+            <i class="icon xi-show"></i>
+            <span class="xc-action-link">Show</span>
+        </div>
+        <div class="hidePreview">
+            <i class="icon xi-hide"></i>
+            <span class="xc-action-link">Hide</span>
+        </div>
+         <!-- Refresh icon -->
+        <div class="refresh" data-xcid="format.refresh">
+            <i class="icon xi-refresh"></i>
+            <span class="xc-action-link">Refresh</span>
+        </div>
+    </header>
+    include "dsPreview.html"
+    <div class="cardBottom">
+      <div id="dsForm-minimize" class="pulloutTab xc-resizeHandler" title="<%= dicts.dsForm.Minimize %>" data-toggle="tooltip" data-body="container">
+        <div class="border"></div>
+      </div>
+      <form id="importDataForm" target="_blank">
+        <div id="importDataForm-content" class="contentSection">
+          <!-- top section -->
+            <section class="topSection">
+                <div class="row title">
+                    <label class="prevFileLabel"><%= dicts.dsForm.FileName %>:</label>
+                    <label class="prevFileLabel right"><%= dicts.dsTable.DSName %>:</label>
+                </div>
+                <div class="inputPart">
+                    <div class="row">
+                        <div class="inputWrap">
+                            <input class="large dsName" type="text" autocomplete="off" spellcheck="false" class="textOverflowOneLine" title="<%= dicts.dsForm.fileNameTitle %>" required>
+                        </div>
+                        <label>/path1/test.csv</label>
+                    </div>
+                </div>
+                <div class="actionPart">
+                    <div class="text more"><%= dicts.dsForm.SeeMore %></div>
+                    <div class="text less"><%= dicts.dsForm.SeeLess %></div>
+                    <i class="more icon xi-arrow-down fa-11"></i>
+                    <i class="less icon xi-arrow-up fa-11"></i>
+                </div>
+            </section>
+          <!-- end of top section -->
+          <div class="divider"></div>
+          <!-- middle section -->
+          <section class="middleSection">
+            <!-- format menu -->
+            <div class="row">
+              <label class="formatLabel"><%= dicts.dsForm.Format %>:</label>
+               <div id="fileFormat" class="dropDownList rowContent">
+                <input class="text" type="text" spellcheck="false" disabled>
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <div id="fileFormatMenu" class="list">
+                  <ul>
+                    <li name="CSV"><%= dicts.dsFormat.CSV %></li>
+                    <li name="JSON"><%= dicts.dsFormat.JSON %></li>
+                    <li name="JSONL"><%= dicts.dsFormat.JSONL %></li>
+                    <li name="EXCEL"><%= dicts.dsFormat.EXCEL %></li>
+                    <li name="TEXT"><%= dicts.dsFormat.TEXT %></li>
+                    <li name="XML"><%= dicts.dsFormat.XML %></li>
+                    <li name="PARQUET"><%= dicts.dsFormat.PARQUET %></li>
+                    <li name="PARQUETFILE"><%= dicts.dsFormat.PARQUETFILE %></li>
+                    <li name="UDF"><%= dicts.dsFormat.UDF %></li>
+                    <li name="DATABASE"><%= dicts.dsFormat.DATABASE %></li>
+                    <li name="CONFLUENT"><%= dicts.dsFormat.CONFLUENT %></li>
+                    <li name="SNOWFLAKE"><%= dicts.dsFormat.SNOWFLAKE %></li>
+                  </ul>
+                  include "../../util/menuScrollArea.html"
+                </div>
+              </div>
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSFormat %>" data-placement="auto top"></i>
+              <!-- New XPath button -->
+              <div class="add_xpath format xml">
+                  <button class="btn btn-secondary" data-xcid="xml.newXPath"><%= dicts.dsForm.NEWXPATH %></button>
+              </div>
+            </div>
+            <div class="thinDivider divider"></div>
+            <!-- schema section-->
+            <div id="dsForm-tblSchema" class="row schema">
+                <label><%= dicts.Table.Schema %>:</label>
+                <div class="multiLine">
+                    <div class="rowContent checkboxSection">
+                        <div class="checkbox checked">
+                            <i class="icon xi-ckbox-empty"></i>
+                            <i class="icon xi-ckbox-selected"></i>
+                        </div>
+                        <div class="text">Auto detect</div>
+                    </div>
+                    <div class="rowContent schemaDesc">
+                        Use <span class="schemaWizard xc-wizard">Schema Wizard</span> to generate the table schema or edit the auto-detected schema in the text box below.
+                        <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="Use Schema Wizard to generate the table schema or edit the auto-detected schema in the text box below." data-placement="auto top"></i>
+                    </div>
+                    <div class="textSection rowContent">
+                        <div class="schemaError"></div>
+                        <textarea class="xc-textArea textarea"
+                            placeholder='Example: [{"name": "Column1", "type": "integer"}, {"name": "column2.nest", "newName": "column2_nest", "type": "string"}]'></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- end schema section -->
+            <!-- promote header -->
+            <div class="row format csv text excel checkboxRow">
+              <div id="promoteHeaderCheckbox" class="checkboxSection rowContent">
+                <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSCSVPromote %>" data-placement="auto top"></i>
+                <div class="checkbox">
+                  <i class="icon xi-ckbox-empty"></i>
+                  <i class="icon xi-ckbox-selected"></i>
+                </div>
+                <div class="text"><%= dicts.dsForm.Header %></div>
+              </div>
+            </div>
+            <!-- line delimiter -->
+            <div class="row format csv text">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSRecordDelim %>" data-placement="auto top"></i>
+              <label for="lineText"><%= dicts.dsForm.LineDelim %>:</label>
+              <div id="lineDelim" class="dropDownList">
+                <input id="lineText" class="text inputable" type="text" spellcheck="false" autocomplete="off">
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <!-- dropdown menu -->
+                <div class="list">
+                  <ul>
+                    <li name="LF">\n</li>
+                    <li name="CR">\r</li>
+                    <li name="CRLF">\r\n</li>
+                    <li name="null" class="nullVal"><%= dicts.common.Null %></li>
+                  </ul>
+                  include "../../util/menuScrollArea.html"
+                </div>
+              </div>
+            </div>
+            <!-- field delimiter -->
+            <div class="row format csv">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSFieldDelim %>" data-placement="auto top"></i>
+              <label for="fieldText"><%= dicts.dsForm.FieldDelim %>:</label>
+              <div id="fieldDelim" class="dropDownList">
+                <input id="fieldText" class="text inputable" type="text" spellcheck="false" autocomplete="off">
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <!-- dropdown menu -->
+                <div class="list">
+                  <ul>
+                    <li name="tab"><%= dicts.dsPreview.Tab %> (\t)</li>
+                    <li name="comma"><%= dicts.common.Comma %> (,)</li>
+                    <li name="null" class="nullVal"><%= dicts.common.Null %></li>
+                  </ul>
+                  include "../../util/menuScrollArea.html"
+                </div>
+              </div>
+            </div>
+            <!-- quote char -->
+            <div class="row format csv text">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSQuote %>" data-placement="auto top"></i>
+              <label for="dsForm-quote"><%= dicts.dsForm.Quoting %>:</label>
+              <div class="inputWrap">
+                <input id="dsForm-quote" class="text" type="text" spellcheck="false">
+              </div>
+            </div>
+            <!-- skip rows -->
+            <div class="row format csv text excel">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSSkipRows %>" data-placement="auto top"></i>
+              <label for="dsForm-skipRows"><%= dicts.dsForm.SkipRows %>:</label>
+              <div class="inputWrap">
+                <input id="dsForm-skipRows" class="text" type="number" value="0">
+              </div>
+            </div>
+            <!-- worksheet index -->
+            <div class="row format excel">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSExcelIndex %>" data-placement="auto top"></i>
+              <label for="dsForm-excelIndex"><%= dicts.dsForm.ExcelIndex %>:</label>
+              <div class="inputWrap">
+                <input id="dsForm-excelIndex" class="text" type="number" value="0">
+              </div>
+            </div>
+            <!-- udf module -->
+            <div class="row format udf">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSUDFModule %>" data-placement="auto top"></i>
+              <label><%= dicts.dsForm.Module %>:</label>
+              <div id="udfArgs-moduleList" class="rowContent dropDownList">
+                <input class="text inputable" type="text" spellcheck="false" placeholder="<%= dicts.UDF.Module %>">
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <div class="list">
+                  <ul></ul>
+                  include "../../util/menuScrollArea.html"
+                </div>
+              </div>
+            </div>
+            <!-- udf function -->
+            <div class="row format udf">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSUDFFunction %>" data-placement="auto top"></i>
+              <label><%= dicts.dsForm.Function %>:</label>
+              <div class="inputPart">
+                <div id="udfArgs-funcList" class="dropDownList disabled">
+                  <input class="text inputable" type="text" spellcheck="false" placeholder="<%= dicts.UDF.Func %>">
+                  <div class="iconWrapper">
+                    <i class="icon xi-arrow-down"></i>
+                  </div>
+                  <div class="list">
+                    <ul></ul>
+                    include "../../util/menuScrollArea.html"
+                  </div>
+                </div>
+              </div>
+            </div>
+             <!-- udf extra args -->
+             <div class="row format udf extraArgs">
+              <i class="qMark icon xi-unknown qmark-mid" data-toggle="tooltip" data-container="body" data-title="<%= dicts.dsForm.UDFArgsHint %>" data-placement="auto top"></i>
+              <label for="dsForm-udfExtraArgs"><%= dicts.dsForm.UDFArgs %>:</label>
+              <div class="inputWrap-large">
+                <textarea id="dsForm-udfExtraArgs" class="xc-textArea textarea" spellcheck="false" placeholder="Optional"></textarea>
+              </div>
+            </div>
+            <!-- udf buttons -->
+            <div class="row format udf writeUDF">
+              <button id="dsForm-applyUDF" class="btn btn-secondary"><%= dicts.dsForm.ApplyUDF %></button>
+            </div>
+            <!-- parquet file secition -->
+            <div class="row format parquetfile">
+                <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.dsForm.ParquetParserTooltip %>" data-placement="auto top"></i>
+              <label><%= dicts.dsForm.ParquetParser %>:</label>
+              <div id="dsForm-parquetParser" class="dropDownList">
+                <input class="text inputable" type="text" spellcheck="false" autocomplete="off" disabled>
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <!-- dropdown menu -->
+                <div class="list">
+                  <ul></ul>
+                  include "../../util/menuScrollArea.html"
+                </div>
+              </div>
+            </div>
+            <!-- xml section -->
+            <div class="row format xml">
+                <!-- XPath section template -->
+                <div class="xpath_template" style="display:none;">
+                    <div class="xpath_section">
+                        <div class="divider xpath_divider"></div>
+                        <div class="xpath_info">
+                            <!-- XPath -->
+                            <div class="row xml_row xml_row-xpath">
+                              <i class="col icon xi-trash" data-placement="auto top" data-xcid="xpath.close"></i>
+                              <div class="col xpath_col xpath_col-left">
+                                <div class="row">
+                                  <!-- <label class="col xpathLabel"><%= dicts.dsForm.xPath %>:</label> -->
+                                  <div class="col xpathInputWrap">
+                                    <input class="text text-xpath" type="text" spellcheck="false" data-xcid="xpath.xpath" placeholder="<%= dicts.dsForm.xPath %>">
+                                  </div>
+                                  <i class="col qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLXPath %>" data-placement="auto top"></i>
+                                </div>
+                              </div>
+                              <div class="col xpath_col">
+                                <div class="row">
+                                  <div class="col xpathInputWrap">
+                                    <input class="text text-xpath" type="text" spellcheck="false" data-xcid="xpath.name" placeholder="<%= dicts.dsForm.xPathName %>">
+                                  </div>
+                                  <i class="col qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLXPathName %>" data-placement="auto top"></i>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- XtraKeys -->
+                            <div class="extrakey">
+                                <div class="extrakey_list xc-hidden" data-xcid="xpath.extrakeyList"></div>
+                                <!-- New Key button -->
+                                <div class="newKey_wrap">
+                                  <button class="btn btn-secondary xml_newkey" data-xcid="xpath.newKey"><%= dicts.dsForm.NEWEXTRAKEY %></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Extrakey section template -->
+                <div class="xtrakey_template" style="display:none;">
+                    <div class="divider xpath_divider"></div>
+                    <div class="row xml_row">
+                        <i class="col icon xi-trash" data-placement="auto top" data-xcid="xtrakey.close"></i>
+                        <div class="col key_col key_col-left">
+                            <div class="row">
+                                <!-- <label class="col"><%= dicts.dsForm.extraKeyValue %>:</label> -->
+                                <div class="col keyInputWrap">
+                                  <input class="text" type="text" spellcheck="false" data-xcid="xtrakey.value" placeholder="<%= dicts.dsForm.extraKeyValue %>">
+                                </div>
+                                <i class="col qMark icon xi-unknown" data-xcid="xtrakey.tooltip" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLExtraKeyValue %>" data-placement="auto top"></i>
+                            </div>
+                        </div>
+                        <div class="col key_col">
+                            <div class="row">
+                                <!-- <label class="col"><%= dicts.dsForm.extraKeyName %>:</label> -->
+                                <div class="col keyInputWrap">
+                                  <input class="text" type="text" spellcheck="false" data-xcid="xtrakey.name" placeholder="<%= dicts.dsForm.extraKeyName %>">
+                                </div>
+                                <i class="col qMark icon xi-unknown" data-xcid="xtrakey.tooltip" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLExtraKeyName %>" data-placement="auto top"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- XPaths container -->
+                <div class="xpath_container"></div>
+
+                <div class="divider section_divider"></div>
+
+                <!-- Matched XPath -->
+                <div class="row format xml checkboxRow matchedXPath">
+                  <div class="checkboxSection rowContent">
+                    <div class="checkbox" data-xcid="xml.matchedPath">
+                        <i class="icon xi-ckbox-empty"></i>
+                        <i class="icon xi-ckbox-selected"></i>
+                    </div>
+                    <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLMatched %>" data-placement="auto top"></i>
+                    <div class="text"><%= dicts.dsForm.MatchedXPath %></div>
+                  </div>
+                </div>
+
+                <!-- xml element xPath -->
+                <div class="row format xml checkboxRow elementXPath">
+                  <div class="checkboxSection rowContent">
+                    <div class="checkbox" data-xcid="xml.withPath">
+                      <i class="icon xi-ckbox-empty"></i>
+                      <i class="icon xi-ckbox-selected"></i>
+                    </div>
+                    <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLElement %>" data-placement="auto top"></i>
+                    <div class="text"><%= dicts.dsForm.ElementXPath %></div>
+                  </div>
+                </div>
+
+                <!-- xml delimiter -->
+                <div class="row format xml xmlDelimiter">
+                  <div class="rowContent">
+                    <label class="delimLabel"><%= dicts.dsForm.LabelXmlDelimiter %>:</label>
+                    <div class="inputWrap">
+                      <input class="text" type="text" spellcheck="false" data-xcid="xml.delimiter" placeholder="<%= dicts.dsForm.PlaceholderXmlDelimiter %>" />
+                    </div>
+                    <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSXMLDelimiter %>" data-placement="auto top"></i>
+                  </div>
+                </div>
+            </div>
+            <!-- database DSN -->
+            <!-- <div class="row format database">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSDatabaseDSN %>" data-placement="auto top"></i>
+              <label><%= dicts.dsForm.DatabaseDSN %>:</label>
+              <div id="dbArgs-dsnList" class="rowContent dropDownList">
+                <input class="text" type="text" spellcheck="false" disabled>
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <div class="list">
+                  <ul></ul>
+                  include "../../util/menuScrollArea.html"
+                </div>
+              </div>
+            </div> -->
+            <!-- database SQL -->
+            <div class="row format database">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSDatabaseQuery %>" data-placement="auto top"></i>
+              <label for="dsForm-dbSQL"><%= dicts.dsForm.DatabaseQuery %>:</label>
+              <div class="inputWrap inputWrap-large">
+                <input id="dsForm-dbSQL" class="text" type="text" spellcheck="false">
+              </div>
+            </div>
+             <!-- snowflake -->
+             <div class="row format snowflake">
+              <label for="dsForm-snowflake-table">Snowflake Table:</label>
+              <div class="inputWrap inputWrap-large">
+                <input id="dsForm-snowflake-table" class="text" type="text" spellcheck="false">
+              </div>
+            </div>
+            <!-- confluent number of rows -->
+            <!--div class="row format confluent">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSKafkaNumRows %>" data-placement="auto top"></i>
+              <label for="dsForm-cfNumRows"><%= dicts.dsForm.KafkaNumRows %>:</label>
+              <div class="inputWrap inputWrap-large">
+                <input id="dsForm-cfNumRows" class="text" type="number" placeholder="<%= dicts.dsForm.KafkaNumRowsHint %>">
+              </div>
+            </div-->
+            <!-- JSON Jmespath -->
+            <div class="row format json clearfix">
+              <i class="qMark icon xi-unknown qmark-mid" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSJsonJmespath %>" data-placement="auto top"></i>
+              <label for="dsForm-jsonJmespath"><%= dicts.dsForm.Jmespath %>:</label>
+              <div class="inputWrap-large">
+                <textarea class="xc-textArea textarea" id="dsForm-jsonJmespath" spellcheck="false"></textarea>
+              </div>
+            </div>
+          </section>
+          <!-- end of middle section -->
+          <div class="divider"></div>
+          <!-- advance section-->
+          <section class="advanceSection">
+            <div class="listWrap xc-expand-list">
+              <div class="listInfo no-selection">
+                <span class="expand">
+                  <i class="icon xi-arrow-down fa-10"></i>
+                </span>
+                <span class="text"><%= dicts.common.AdvancedOpts %></span>
+              </div>
+            </div>
+            <!-- metadata file
+            <div class="row metadata">
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvMeta %>" data-placement="auto top"></i>
+              <label><%= dicts.dsForm.MetaDataFile %>:</label>
+              <div class="inputWrap">
+                <input id="dsForm-metadataFile" class="large" type="text">
+              </div>
+            </div> -->
+            <!-- table schema -->
+            <!-- extra columns -->
+            <div class="row extraCols">
+              <label><%= dicts.dsForm.ExtraCols %>:
+                <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvAddCols %>" data-placement="auto top"></i>
+              </label>
+              <div class="multiLine">
+                <!-- file name -->
+                <div class="part fileName">
+                  <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvFile %>" data-placement="auto top"></i>
+                  <div class="checkboxSection">
+                    <div class="text"><%= dicts.dsForm.FileName %>:</div>
+                    <div class="checkbox">
+                      <i class="icon xi-ckbox-empty"></i>
+                      <i class="icon xi-ckbox-selected"></i>
+                    </div>
+                  </div>
+                  <div class="inputWrap">
+                    <input type="text" placeholder="<%= dicts.MenuTStr.RenameColTitle %>...">
+                  </div>
+                </div>
+                <!-- row number -->
+                <div class="part rowNumber">
+                  <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvRow %>" data-placement="auto top"></i>
+                  <div class="checkboxSection">
+                    <div class="text"><%= dicts.dsForm.RowNum %>:</div>
+                    <div class="checkbox">
+                      <i class="icon xi-ckbox-empty"></i>
+                      <i class="icon xi-ckbox-selected"></i>
+                    </div>
+                  </div>
+                  <div class="inputWrap">
+                    <input type="text" placeholder="<%= dicts.MenuTStr.RenameColTitle %>...">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- performance
+            <div class="row performance">
+              <label><%= dicts.dsForm.Performance %>:</label>
+              <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="" data-placement="auto top"></i>
+              <div class="checkboxSection">
+                <div class="text"><%= dicts.dsForm.UnsortedRows %>:</div>
+                <div class="checkbox">
+                  <i class="icon xi-ckbox-empty"></i>
+                  <i class="icon xi-ckbox-selected"></i>
+                </div>
+              </div>
+            </div> -->
+            <!-- termination -->
+            <div class="row termination">
+              <div class="divider advancedDivider"></div>
+              <label>
+                <%= dicts.dsForm.Termination %>:
+                <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvTerm %>" data-placement="auto top"></i>
+              </label>
+              <div>
+                <div class="multiLine termOptions">
+                  <!-- radio buttons -->
+                  <div class="radioButtonGroup">
+                    <div class="radioButton xc-action" data-option="stop">
+                      <div class="radio">
+                        <i class="icon xi-radio-selected"></i>
+                        <i class="icon xi-radio-empty"></i>
+                      </div>
+                      <span><%= dicts.dsForm.TerminateOnError %></span>
+                      <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvTermStopAll %>" data-placement="auto top"></i>
+                    </div>
+  <!--                   <div class="radioButton xc-action" data-option="stopfile">
+                      <div class="radio">
+                        <i class="icon xi-radio-selected"></i>
+                        <i class="icon xi-radio-empty"></i>
+                      </div>
+                      <span><%= dicts.dsForm.StopFile %></span>
+                    </div> -->
+                    <div class="radioButton xc-action" data-option="stoprecord">
+                      <div class="radio">
+                        <i class="icon xi-radio-selected"></i>
+                        <i class="icon xi-radio-empty"></i>
+                      </div>
+                      <span><%= dicts.dsForm.StopRecord %></span>
+                      <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvTermStopRecord %>" data-placement="auto top"></i>
+                    </div>
+                    <div class="radioButton xc-action" data-option="continue">
+                      <div class="radio">
+                        <i class="icon xi-radio-selected"></i>
+                        <i class="icon xi-radio-empty"></i>
+                      </div>
+                      <span><%= dicts.dsForm.ContinueOnError %></span>
+                      <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body" data-title="<%= dicts.TooltipTStr.RawDSAdvTermAllow %>" data-placement="auto top"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <!-- end of advance section -->
+          <section class="parquetSection format parquet">
+            <div class="partitionAdvanced">
+              <div class="listWrap xc-expand-list">
+                <div class="listInfo no-selection">
+                  <span class="expand">
+                    <i class="icon xi-arrow-down fa-10"></i>
+                  </span>
+                  <span class="text"><%= dicts.dsForm.PartitionsAdvanced %></span>
+                </div>
+              </div>
+              <div class="partitionList"></div>
+            </div>
+            <div class="partitionColumns">
+              <div class="columnHalf selectedColSection">
+                <div class="mainLabel"><%= dicts.common.Columns %>:</div>
+                <div class="label"><%= dicts.dsForm.SelectedColumns %></div>
+                <div class="dropDownList columnSearch">
+                  <div class="iconWrapper">
+                    <i class="icon xi-search"></i>
+                  </div>
+                  <input type="text" class="text xc-input inputable" spellcheck="false" placeholder="<%= dicts.common.Search %>">
+                  <div class="clear">
+                    <i class="icon xi-close xc-action"></i>
+                  </div>
+                </div>
+                <div class="removeAllCols bulkColSelector">
+                  <i class="icon xi-close"></i>
+                  <%= dicts.dsForm.RemoveAll %>
+                </div>
+                <ul class="colList"></ul>
+              </div>
+              <div class="columnHalf availableColSection">
+                <div class="mainLabel"></div>
+                <div class="label"><%= dicts.dsForm.AvailableColumns %></div>
+                <div class="dropDownList columnSearch">
+                  <div class="iconWrapper">
+                    <i class="icon xi-search"></i>
+                  </div>
+                  <input type="text" class="text xc-input inputable" spellcheck="false" placeholder="<%= dicts.common.Search %>">
+                  <div class="clear">
+                    <i class="icon xi-close xc-action"></i>
+                  </div>
+                </div>
+                <div class="addAllCols bulkColSelector">
+                  <i class="icon xi-close"></i>
+                  <%= dicts.dsForm.AddAll %>
+                </div>
+                <ul class="colList"></ul>
+              </div>
+            </div>
+          </section>
+
+        </div>
+        <!-- buttons -->
+        <div class="buttonSection">
+          <button type="button" class="btn btn-submit confirm"><%= dicts.dsForm.CreateDS %></button>
+          <button type="button" class="btn btn-submit createTable"><%= dicts.Table.Create %></button>
+          <button type="button" class="btn btn-cancel cancel"><%= dicts.common.Back %></button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

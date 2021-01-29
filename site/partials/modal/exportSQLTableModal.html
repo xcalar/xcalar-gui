@@ -1,0 +1,69 @@
+<div id="exportSQLTableModal" class="modalContainer large xc-viewMode opPanel">
+    <!-- Header -->
+    <header class="modalHeader">
+        <span class="text"><%= dicts.exportView.ExportTbl %></span>
+        <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+        <i class="icon xi-close"></i>
+        </div>
+    </header>
+    <!-- card main -->
+    <section class="modalMain">
+        <div id="exportSQLTableColumns" class="exportColumnsSection formRow">
+            <div class="subHeading clearfix">
+                <div class="label"><%= dicts.exportView.colsToExport %>:</div>
+            </div>
+            <div class="checkboxWrap selectAllWrap">
+                <div class="checkbox">
+                    <i class="icon xi-ckbox-empty fa-13"></i>
+                    <i class="icon xi-ckbox-selected fa-13"></i>
+                </div>
+                <div class="text"><%= dicts.common.SelectAll %></div>
+            </div>
+            <div class="columnsToExport columnsWrap flexWrap clearfix">
+                <div class="searchBox">
+                    <input type="text" class="searchInput xc-input" placeholder="Search Columns" autocomplete="off">
+                    <i class="icon xi-search colSearchIcon"></i>
+                </div>
+                <ul class="cols"></ul>
+                <div class="hint noColsHint empty"><%= dicts.dataflow.noColsHint %></div>
+            </div>
+        </div>
+        <div class="exportDriver formRow">
+            <div class="subHeading clearfix">
+                <div class="label">Export Method:</div>
+            </div>
+            <div id="exportSQLTableDriverList" class="dropDownList">
+                <input readonly id="exportSQLTableDriver" class="text" type="text" value="" spellcheck="false">
+                <div class="iconWrapper">
+                    <i class="icon xi-arrow-down"></i>
+                </div>
+                <div class="list">
+                    <ul class="exportDrivers"></ul>
+                    include "../../util/menuScrollArea.html"
+                </div>
+            </div>
+        </div>
+        <div class="argsSectionBox xc-hidden">
+            <div class="argsSection"></div>
+        </div>
+        <div class="creatingHint">
+            <div class="wrap">
+                <div class="animatedEllipsisWrapper">
+                    <div class="text"><%= dicts.exportView.ExportTbl %></div>
+                    <div class="wrap">
+                      <div class="animatedEllipsis hiddenEllipsis">....</div>
+                      <div class="animatedEllipsis staticEllipsis">....</div>
+                    </div>
+                </div>
+                <div>
+                    <%= dicts.exportView.ExportHint %>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Button Section -->
+    <section class="modalBottom">
+        <button type="button" class="btn confirm btn-submit"><%= dicts.common.Confirm %></button>
+        <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+    </section>
+</div>

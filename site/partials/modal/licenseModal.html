@@ -1,0 +1,26 @@
+<!-- Update License Modal -->
+<div id="licenseModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader has-subHeader">
+    <span class="text"><%= dicts.monitor.UpdateLicense %></span>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+    <div class="subHeader"><%= dicts.monitor.UpdateLicenseInstr %></div>
+  </header>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="formRow">
+      <label>
+        <span class="text"><%= dicts.monitor.LicenseKey %>:</span>
+        <input type="text" class="xc-input newLicenseKey" autocomplete="off">
+      </label>
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End of Update License Modal -->

@@ -1,0 +1,9 @@
+{
+    "0" : "unknown",
+    "1" : "json",
+    "2" : "csv",
+    "3" : "sql",
+    "4" : "internal",
+    "5" : "parquet"
+}
+

@@ -1,0 +1,29 @@
+.logo-container {
+    height: 150px;
+    margin-top: 80px;
+    margin-left: 50px;
+}
+.logo {
+    width: 80%;
+}
+.side-nav .collapsible-header .menuBar {
+    padding: 0 30px;
+}
+.file-input {
+    z-index: -1;
+}
+.file-path-wrapper.col {
+    padding-left: 0;
+}
+.form-submission {
+    text-align: center
+}
+.extUploader .row {
+    margin-bottom: 0;
+}
+textarea.materialize-textarea {
+    padding: 0;
+}
+.extMgmt .btn-floating {
+    margin-right: 10px;
+}

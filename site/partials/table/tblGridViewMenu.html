@@ -1,0 +1,39 @@
+<div id="tableGridViewMenu" class="menu" data-submenu="tableGridViewSubMenu">
+    <ul>
+      <li class="preview dsOpt"><%= dicts.MenuTStr.View %></li>
+      <li class="activate dsOpt"><%= dicts.Table.Activate %></li>
+      <li class="deactivate dsOpt"><%= dicts.Table.Deactivate %></li>
+      <li class="cancel dsOpt"><%= dicts.common.Cancel %></li>
+      <li class="multiActivate multiOpt"><%= dicts.Table.Activate %></li>
+      <li class="multiDeactivate multiOpt"><%= dicts.Table.Deactivate %></li>
+      <li class="multiDelete multiOpt"><%= dicts.MenuTStr.PermanentDel %></li>
+      <li class="refresh bgOpt"><%= dicts.MenuTStr.Refresh %></li>
+      <li class="sort bgOpt parentMenu" data-submenu="sort">
+        <%= dicts.common.SortBy %>
+      </li>
+    </ul>
+    include "../../util/menuScrollArea.html"
+  </div>
+  <!-- grid view submenu -->
+  <div id="tableGridViewSubMenu" class="menu subMenu">
+    <ul class="sort">
+      <li name="name">
+        <span class="label"><%= dicts.common.Name %></span>
+        <i class="icon xi-tick fa-12"></i>
+      </li>
+      <li name="date">
+        <span class="label"><%= dicts.common.Date %></span>
+        <i class="icon xi-tick fa-12"></i>
+      </li>
+      <li name="size">
+        <span class="label"><%= dicts.common.Size %></span>
+        <i class="icon xi-tick fa-12"></i>
+      </li>
+      <div class="divider"></div>
+      <li name="none">
+        <span class="label"><%= dicts.common.None %></span>
+        <i class="icon xi-tick fa-12"></i>
+      </li>
+    </ul>
+    include "../../util/menuScrollArea.html"
+  </div>

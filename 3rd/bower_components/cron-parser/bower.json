@@ -1,0 +1,12 @@
+{
+  "name": "cron-parser",
+  "main": "./dist/cron-parser.js",
+  "ignore": [],
+  "keywords": [
+    "cron",
+    "crontab",
+    "parser"
+  ],
+  "dependencies": {},
+  "devDependencies": {}
+}

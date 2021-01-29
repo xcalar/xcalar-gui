@@ -1,0 +1,67 @@
+{
+    // rules mode: 0 = turn off, 1 = warning, 2 = error
+    "rules": {
+        "strict": 0, // not using stric mode
+        "no-underscore-dangle": 0,
+        "indent": [
+            2,
+            4,
+            SwitchCase: 1
+        ],
+        "linebreak-style": [
+            2,
+            "unix"
+        ],
+        "quotes": [  // No quotes checking
+            0
+        ],
+        "semi": [
+            1,
+            "always"
+        ],
+        "no-undef": 0,  // temporarily not checking global function undefined
+        "no-extra-semi": 2,
+        "no-multi-spaces": [
+            1, {
+                "exceptions": {
+                    "VariableDeclarator": true
+                }
+        }],
+        "no-use-before-define": [
+            2,
+            "nofunc"
+        ],
+        "no-loop-func": 1,
+        "no-trailing-spaces": [
+            2,
+            {
+                "skipBlankLines": true
+            }
+        ],
+        "no-redeclare": 1,
+        "no-console": 0, // use of console
+        "no-alert": 1,  // use of alert
+        "no-extra-bind": 1,
+        "no-unused-vars": [1, {"vars": "local", "args": "after-used"}],
+        "eqeqeq": [   // use === and !== but allow == null/undefined
+            2,
+            "allow-null"
+        ],
+        "key-spacing": [
+            1, {
+                "beforeColon": false,
+                "afterColon": true
+        }],
+        "keyword-spacing": [
+            2,
+        ],
+        "new-cap": [
+            2,
+            "capIsNew": false // allow function to be uppercase
+        ]
+    },
+    "env": {
+        "browser": true,
+        "jquery" : true
+    }
+}

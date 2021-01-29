@@ -1,0 +1,9 @@
+[submodule "3rd/microsoft-authentication-library-for-js"]
+	path = 3rd/microsoft-authentication-library-for-js
+	url = https://github.com/AzureAD/microsoft-authentication-library-for-js.git
+[submodule "ts/xd_idl"]
+	path = ts/xd_idl
+	url = ./xcalar-idl-gui
+[submodule "3rd/wetty"]
+	path = 3rd/wetty
+	url = ./wetty

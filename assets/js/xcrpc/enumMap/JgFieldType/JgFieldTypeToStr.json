@@ -1,0 +1,17 @@
+{
+    "0" : "JgString",
+    "1" : "JgUnsignedInteger",
+    "2" : "JgSignedInteger",
+    "3" : "JgFloat",
+    "4" : "JgBool",
+    "5" : "JgStringInt",
+    "6" : "JgStringFloat",
+    "7" : "JgPrimaryKey",
+    "8" : "JgUnsignedInteger32",
+    "9" : "JgSignedInteger32",
+    "10" : "JgFloat32",
+    "11" : "JgArray",
+    "12" : "JgObject",
+    "13" : "JgTypeUnknown"
+}
+

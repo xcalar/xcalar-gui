@@ -1,0 +1,6 @@
+{
+    "XlogFlushNone" : 0,
+    "XlogFlushGlobal" : 1,
+    "XlogFlushLocal" : 2
+}
+

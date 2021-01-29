@@ -1,0 +1,28 @@
+<div class="contentSection">
+  <i class="closeResult xc-icon-action icon xi-close"
+  data-toggle="tooltip"
+  data-container="body"
+  data-original-title="<%= dicts.common.Close %>"
+  ></i>
+  <i class="icon xi_popout undock xc-icon-action"
+    data-toggle="tooltip" data-placement="auto top" data-container="body"
+    data-original-title="<%= dicts.bottomMenu.popOutBtn %>"></i>
+  <div class="hintHidden section result">
+    include "sqlTableArea.html"
+    <!-- include "../worksheet/dagViewTableArea.html" -->
+    <div class="hintArea">
+      <div class="hint"><%= dicts.SQL.ResultLoading %></div>
+    </div>
+  </div>
+  <div class="hintHidden section sql">
+    include "sqlTableListerArea.html"
+    include "sqlTableSchemaArea.html"
+  </div>
+  <div class="hintHidden section error"></div>
+  <div class="sectionBar hintBar">
+    <div class="sectionHeader"></div>
+  </div>
+  <div class="hintSection">
+    <%= dicts.SQL.ResultHint %>
+  </div>
+</div>

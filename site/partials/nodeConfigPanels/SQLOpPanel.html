@@ -1,0 +1,62 @@
+<!-- SQL Section -->
+<section id="sqlOpPanel" class="xc-hidden opPanel sqlOpPanel">
+  <header>
+    <div class="row">
+      <div class="title"><%= dicts.SQLOpPanel.Header %></div>
+      <div class="subTitle"></div>
+    </div>
+    <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+  </header>
+  <div class="mainContent">
+    <!-- Operation panel-->
+    <section class="opSection">
+      <p class="mainInstructions instrText">
+        <%= dicts.SQLOpPanel.Instr %>
+      </p>
+      <div class="nextForm">
+        <div class="tableTitle">
+          <div class="title"><%= dicts.SQLOpPanel.TableMap %>:</div>
+          <div class="maximize">
+            <i class="icon xi-minus"
+            data-container="body"
+            data-title="<%= dicts.SQLOpPanel.Collapse %>"
+            data-placement="auto top"></i>
+          </div>
+        </div>
+        <div class="tableSection tableWrapper">
+          <div class="instruction">
+            <%= dicts.SQLOpPanel.TableMapInstr %>
+          </div>
+          <div class="identifiersSection">
+            <div class="header">
+              <div class="sourceHeader"><%= dicts.SQLOpPanel.TableLabel %></div>
+              <div class="destHeader"><%= dicts.SQLOpPanel.ModuleLabel %></div>
+            </div>
+            <div class="tableInstruction noTableHint">
+              <%= dicts.SQLOpPanel.NoTableHint %>
+            </div>
+            <div class="tableInstruction noSQLHint xc-hidden">
+              <%= dicts.SQLOpPanel.NoSQLHint %>
+            </div>
+            <div class="identifiersList"></div>
+          </div>
+        </div>
+        <div class="dropAsYouGo checkboxSection">
+          <div class="checkbox">
+            <i class="icon xi-ckbox-empty"></i>
+            <i class="icon xi-ckbox-selected"></i>
+          </div>
+          <div class="text"><%= dicts.SQLOpPanel.DropTempTable %></div>
+          <i class="qMark icon xi-unknown"
+            data-toggle="tooltip"
+            data-container="body"
+            data-title="<%= dicts.SQLOpPanel.DropTempTableHint %>"
+            data-placement="auto top"></i>
+        </div>
+        <div class="editorWrapper"></div>
+      </div>
+    </section>
+    include "opPanelAdvancedSection.html"
+    include "opPanelBottomSection.html"
+  </div>
+</section>

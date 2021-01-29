@@ -1,0 +1,65 @@
+<div id="dsImportErrorModal" class="modalContainer">
+  <div class="modalHeader">
+    <header class="text"><%= dicts.dsImportError.Header %></header>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-tipclasses="highZindex" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </div>
+  <!-- cardMain -->
+  <div class="modalMain">
+    <section class="topSection">
+      <div class="topRow generalInfo">
+        <div class="infoPart infoTotalFiles">
+          <span class="label"><%= dicts.dsImportError.NumFileErrors %>:</span>
+          <span class="value">0</span>
+        </div>
+        <div class="infoPart infoTotalErrors">
+          <span class="label"><%= dicts.dsImportError.NumErrors %>:</span>
+          <span class="value">N/A</span>
+        </div>
+        <div class="download">
+          <i class="icon xi-download downloadErrorModal xc-action" title="" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.dsImportError.DownloadLogs %>"></i>
+        </div>
+      </div>
+      <div class="topRow sizeInfo xc-hidden">
+        <div class="sizeInfoTitle">
+          <i class="icon xi-warning"></i>
+          <span><%= dicts.dsImportError.SizeLimit %>:</span>
+        </div>
+        <p class="text">Due to the dataset size limit imposed by your admin, you were only able to ingest xx / xxx of your files. To bump up the limit, contact your Xcalar Admin.</p>
+      </div>
+    </section>
+    <!-- cardMain -->
+    <section class="bottomSection">
+      <div class="fileListSection">
+        <div class="closeArea">
+          <!-- <i class="icon xi-close closeList"></i> -->
+        </div>
+        <div class="errorFileList">
+          <div class="tempRow">
+            <div class="waitingIcon"></div>
+          </div>
+        </div>
+      </div>
+      <div class="errorMsgSection">
+        <div class="recordErrorSection">
+          <div class="headerArea">
+            <div class="title recordNum">Record No.</div>
+            <div class="title errorMsg"><%= dicts.common.ErrorMessage %></div>
+          </div>
+          <div class="recordMessageList"></div>
+          <div class="scrollBar">
+            <div class="sizer"></div>
+          </div>
+        </div>
+        <div class="fileErrorSection"></div>
+      </div>
+    </section>
+  </div>
+</div>

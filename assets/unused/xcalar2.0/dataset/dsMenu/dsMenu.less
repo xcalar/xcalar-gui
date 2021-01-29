@@ -1,0 +1,710 @@
+#dsListSection, #sourceTableListSection {
+  color: @color-font-default;
+  @top-h: 65px;
+
+  .topWrapper {
+      .size(@height: @top-h);
+
+      .iconSection {
+          .size(@width: 48px);
+          margin-right: 9px;
+          float: left;
+          margin-left: 15px;
+          margin-top: 1px;
+
+          .xc-action {
+              .size(24px, 24px);
+              .position(relative, @top: -2px);
+              background-color: @color-font-edge;
+              float: right;
+
+              &:active {
+                  box-shadow: none;
+              }
+
+              .icon {
+                  margin-top: 6px;
+                  .size(12px, 12px);
+                  .horizontal-align;
+                  color: @color-font-defaultInverse;
+              }
+          }
+      }
+
+      .pathSection {
+          .size(@width: ~"calc(100% - 88px)", @height: 20px);
+          .textOverflowOneLine;
+          cursor: default;
+          float: left;
+          margin-right: 15px;
+          margin-bottom: 12px;
+
+          span {
+              cursor: pointer;
+              text-decoration: underline;
+          }
+      }
+
+      .sortSection {
+          clear: both;
+          padding-left: 15px;
+          padding-top: 6px;
+          text-align: left;
+          font-size: 12px;
+
+          .label {
+              font-weight: 600;
+              opacity: 1;
+          }
+
+          .sortOption {
+              &.key {
+                  opacity: 0.5;
+                  cursor: default;
+              }
+          }
+
+          .divider {
+              .size(@height: 19px);
+              top: 0px;
+          }
+      }
+  }
+
+  .gridViewWrapper {
+      @margin: 8px;
+      @total: @top-h + @margin;
+      background-color: @color-bg-default;
+      .size(@height: ~"calc(100% - @{total})");
+      .position(relative);
+      overflow-x: hidden;
+      overflow-y: auto;
+      margin-top: @margin;
+      padding-left: 1px;
+
+      .gridItems {
+          .size(@width: 100%);
+          padding: 1px;
+
+          &.drag {
+              .dragWrap {
+                display: block;
+                z-index: 99;
+              }
+
+              .grid-unit.uneditable {
+                  &, &:hover {
+                      opacity: 0.5;
+                  }
+              }
+          }
+
+          &.drawing {
+              .grid-unit {
+                  pointer-events: none;
+              }
+          }
+
+          &.disableShare {
+              .action.share {
+                  display: none !important;
+              }
+          }
+
+          .dragWrap {
+              display: none;
+          }
+
+          .waitingIcon {
+              z-index: 20;
+
+          }
+
+          .xc-hidden .waitingIcon {
+            display: none !important;
+          }
+
+          .grid-unit {
+              cursor: default;
+              opacity: @opacity-unhover;
+              color: @color-bg-cardHeader;
+
+              &.inActivated {
+                  .gridIcon, .dsCount {
+                      opacity: @opacity-disabled;
+                  }
+              }
+
+              &:hover {
+                  opacity: @opacity-hover;
+              }
+
+              &.unlistable {
+                  &.noAction {
+                      &, &:hover {
+                          opacity: 0.5;
+
+                          .delete, .unlock, .lock {
+                              pointer-events: none;
+                          }
+                      }
+                  }
+              }
+
+              &.active {
+                  opacity: 1;
+                  outline: 1px solid @color-bg-select-blue;
+                  // should have highter z-index to show outline
+                  // but should lower than menu
+                  z-index: @z-index-gridViewMenu - 1;
+              }
+
+              &.selected {
+                  outline: 1px solid @color-icon-darkGreen;
+              }
+
+              &.uneditable {
+                  > .label {
+                      .no-selection;
+                  }
+              }
+
+              &.selecting {
+                  opacity: 0.8;
+              }
+
+              &.deleting {
+                  .xc-disabled;
+              }
+
+              &.loading {
+                  border-style: dashed;
+                  border-width: 1px;
+
+                  .icon, div {
+                      opacity: @opacity-disabled;
+                  }
+
+                  .action {
+                      pointer-events: none;
+                  }
+              }
+
+              > .label {
+                  color: @color-font-default;
+
+                  textarea {
+                      background-color: transparent;
+                      color: @color-font-defaultInverse;
+                      outline: none;
+                      resize: none;
+                  }
+              }
+
+              .dsCount {
+                  .font(@weight: 600, @color: @color-font-defaultInverse);
+                  opacity: 0.9;
+                  .no-selection;
+                  .textOverflowOneLine;
+                  text-align: center;
+              }
+
+              .action {
+                  display: none;
+                  .size(@width: 25px, @height: 100%);
+                  float: right;
+                  cursor: pointer;
+
+                  &:before {
+                      display: inline-block;
+                      .vertical-align;
+                  }
+              }
+
+              .deactivatingIcon {
+                  .position(absolute, @top: 25px, @right: 15px);
+                  .size(12px, 12px);
+                  border-radius: 50%;
+                  display: inline-block;
+                  background-color: @color-error-red;
+                  z-index: 0;
+                  .deactivating {
+                      .position(absolute, @top: 1.5px, @right: 1.5px);
+                      font-size: 9px;
+                      color: @color-font-defaultInverse;
+                  }
+              }
+
+
+              .xi-tick {
+                  .position(absolute, @top: 0px, @right: 0px);
+                  font-size: 16px;
+                  z-index: 0;
+                  display: none;
+              }
+          }
+
+          &.gridView {
+              overflow: visible;
+              padding-bottom: 2px;
+
+              .grid-unit {
+                  border: 1px solid transparent;
+
+                  > .label {
+                      display: block;
+                      background-color: transparent;
+                      text-align: center;
+
+                      b, .semibold {
+                         color: @color-font-softGrayBlue;
+                      }
+                  }
+
+                  &.active {
+                      outline: 1px solid @color-bg-select-blue;
+                  }
+
+                  .gridIcon {
+                      font-size: 30px;
+
+                      &:before {
+                          .position(relative, @top: 6px);
+                      }
+                  }
+
+                  .waitingIcon {
+                      left: 15px;
+                  }
+
+                  .size {
+                      display: none;
+                  }
+
+                  &.notSeen {
+                      .xi-dataset-checkmark {
+                          font-size: 39px;
+                          margin-top: -5px;
+                          margin-bottom: 5px;
+                          margin-left: 8px;
+                      }
+                  }
+              }
+
+              .grid-unit.ds > .dragWrap {
+                  .size(@width: 50%, @height: 100%);
+                  position: absolute;
+                  background: transparent;
+
+                  &.leftTopDragWrap {
+                      left: 0;
+                      &.active {
+                           box-shadow: inset 2px 0px 0px @color-hover-blue;
+                      }
+                  }
+
+                  &.rightBottomDragWrap {
+                      left: 50%;
+                      &.active {
+                          box-shadow: 2px 0px 0px @color-hover-blue;
+                      }
+                  }
+              }
+
+              .grid-unit.folder {
+                  > .label {
+                      &.focused {
+                          overflow: visible;
+                      }
+
+                      textarea {
+                          .size(@width: 130%, @height: 15px, @min-height: 15px, @max-height: 30px);
+                          .position(absolute, @left: -7px);
+                          box-shadow: inset 0px 0px 3px @color-bg-defaultStrong;
+                          padding: 1px 1px;
+                          .font(@size: 9px, @color: @color-font-default);
+                          text-align: center;
+                      }
+                  }
+
+                  > .dsCount {
+                      .position(absolute, @top: 13px);
+                      .size(@width: @width-grid, @height: 20px);
+                      padding: 0 17px;
+                      .font(@size: 12px);
+                  }
+
+                  > .dragWrap {
+                      height: 100%;
+                      position: absolute;
+                      background: transparent;
+
+                      &.leftTopDragWrap {
+                          left: 0;
+                          width: 16.5%;
+
+                          &.active {
+                              box-shadow: inset 2px 0px 0px @color-hover-blue;
+                          }
+                      }
+
+                      &.rightBottomDragWrap {
+                          left: 82.5%;
+                          width: 16.5%;
+
+                          &.active {
+                              box-shadow: 2px 0px 0px @color-hover-blue;
+                          }
+                      }
+
+                      &.midDragWrap {
+                          width: 66%;
+                          left: 16.5%;
+                      }
+                  }
+              }
+          }
+
+          &.listView {
+
+              > .waitingIcon {
+                  left: 98px;
+                  top: -1px;
+                  background-size: 24px 25px;
+              }
+
+              .grid-unit {
+                  &:hover {
+                      .edit, .share, .unshare {
+                          display: inline-block;
+                      }
+
+                      &:not(.inActivated) {
+                          .delete {
+                              display: none;
+                          }
+                      }
+                  }
+                  > .waitingIcon {
+                      width: 25px;
+                      height: 25px;
+                      background-size: contain;
+                      top: 5px;
+                      left: 5px;
+                  }
+
+                  .gridIcon {
+                      font-size: 16px;
+                  }
+
+                  .deactivatingIcon {
+                      .position(absolute, @top: 5px, @left: 20px);
+                      font-size: 12px;
+                      .size(12px, 12px);
+                      background-size: 12px 12px;
+
+                      &:after {
+                          .size(8px, 8px);
+                      }
+                  }
+
+                  .deactivating {
+                      font-size: 12px;
+                      .size(12px, 12px);
+                      background-size: 12px 12px;
+                      top: 0px;
+
+                      &:after {
+                          .size(8px, 8px);
+                      }
+                  }
+              }
+
+              .grid-unit.ds {
+                  > .label {
+                      .size(@width: ~"calc(100% - 110px)");
+                  }
+
+                  > .size {
+                      .textOverflowOneLine;
+                      float: right;
+                      .size(@width: 80px);
+                      padding-right: 5px;
+                      text-align: right;
+                      line-height: 35px;
+                      .font(@size: 11px);
+                  }
+
+                  > .dragWrap {
+                      .position(absolute);
+                      .size(@width: 100%, @height: 17.5px);
+                      background: transparent;
+
+                      &.leftTopDragWrap {
+                          &.active {
+                              box-shadow: inset 0px 2px 0px @color-hover-blue;
+                          }
+                      }
+
+                      &.rightBottomDragWrap {
+                          top: 17.5px;
+                          &.active {
+                              box-shadow: 0px 2px 0px @color-hover-blue;
+                          }
+                      }
+                  }
+              }
+
+              .grid-unit.folder {
+                  > .label {
+                      &.focused {
+                          .size(@width: ~"calc(100% - 85px)");
+                          padding: 5px 0;
+                      }
+
+                      @text-height: @height-grid-list - 10;
+                      textarea {
+                          width: 100%;
+                          height: @text-height !important;
+                          padding: 0 2px;
+                          box-shadow: inset 0px 0px 3px @color-bg-defaultStrong;
+                          .font(@size: 11px, @line-height: @text-height);
+                          .textOverflowOneLine;
+                          background: transparent;
+                      }
+                  }
+
+                  > .dsCount {
+                      .size(@width: 25px, @height: 35px);
+                      .position(absolute, @top: 2px, @left: 5px);
+                      .font(@size: 10px, @line-height: 35px);
+                      padding: 0 5px;
+                  }
+
+                  > .dragWrap {
+                      width: 100%;
+                      position: absolute;
+                      background: transparent;
+
+                      &.leftTopDragWrap {
+                          height: 10px;
+
+                          &.active {
+                              box-shadow: inset 0px 2px 0px @color-hover-blue;
+                          }
+                      }
+
+                      &.rightBottomDragWrap {
+                          top: 25px;
+                          height: 10px;
+
+                          &.active {
+                              box-shadow: 0px 2px 0px @color-hover-blue;
+                          }
+                      }
+
+                      &.midDragWrap {
+                          height: 15px;
+                          top: 10px;
+                      }
+                  }
+              }
+          }
+
+          .grid-unit {
+              .xi-dataset-checkmark {
+                  display: none;
+              }
+              &.notSeen {
+                  border-color: @color-bg-bright-light-blue;
+                  border-width: 1px;
+                  border-style: solid;
+                  box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.5);
+                  .xi_data {
+                      display: none;
+                  }
+                  .xi-dataset-checkmark {
+                      display: inline-block;
+                  }
+              }
+          }
+      }
+  }
+
+  #dsListFocusTrakcer {
+      .size(0, 0);
+      opacity: 0;
+      z-index: -1;
+      .position(absolute);
+  }
+}
+
+#gridViewMenu, #dsTarget-menu, #tableGridViewMenu {
+    z-index: @z-index-gridViewMenu;
+
+    li {
+        display: none;
+    }
+    &.dsOpts {
+        .dsOpt {
+            display: block;
+        }
+
+        &.dsActivated {
+            &.tblOpts {
+                .dsOpt {
+                    &.delete {
+                        pointer-events: all;
+                        opacity: 1;
+                    }
+                }
+            }
+
+            &.dsInCreate {
+                .dsOpt {
+                    &.deactivate {
+                        display: none;
+                    }
+                }
+            }
+
+            .dsOpt {
+                &.activate {
+                    display: none;
+                }
+
+                &.delete {
+                    pointer-events: none;
+                    opacity: @opacity-disabled;
+                }
+            }
+        }
+
+        &:not(.dsActivated) {
+            &.tblOpts {
+                &.preview {
+                    display: block;
+                }
+            }
+
+            .dsOpt {
+                &.preview {
+                    display: none;
+                }
+
+                &.deactivate {
+                    display: none;
+                }
+            }
+        }
+    }
+    &.folderOpts {
+        .folderOpt {
+            display: block;
+        }
+
+        &.hasDS {
+            .delete {
+                pointer-events: none;
+                opacity: @opacity-disabled;
+            }
+        }
+    }
+    &.targetOpts {
+        .targetOpt {
+            display: block;
+        }
+    }
+    &.bgOpts {
+        .bgOpt {
+            display: block;
+        }
+    }
+    &.multiOpts {
+        .multiOpt {
+            display: block;
+        }
+    }
+    .disabled {
+        opacity: @opacity-disabled;
+        pointer-events: none;
+    }
+
+    &.uneditable {
+        .moveUp, .rename, &.folderOpts .delete {
+            opacity: @opacity-disabled;
+            pointer-events: none;
+        }
+    }
+
+    &.unlistable.noAction {
+        .preview, .delete, .deactivate, .activate, .share {
+            opacity: @opacity-disabled;
+            pointer-events: none;
+        }
+    }
+
+    &.loading {
+        &.tblOpts {
+            .delete {
+                opacity: @opacity-disabled;
+                pointer-events: none;
+            }
+        }
+
+        .preview, .share, .deactivate, .activate, .delete {
+            opacity: @opacity-disabled;
+            pointer-events: none;
+        }
+    }
+
+    &.sharedDir {
+        .share {
+            display: none;
+        }
+
+        &.sharedHomeDir {
+            .moveUp {
+                display: none;
+            }
+        }
+
+        &.noUnshare {
+            .unshare {
+                opacity: @opacity-disabled;
+                pointer-events: none;
+            }
+        }
+    }
+
+    &:not(.sharedDir) {
+        .unshare {
+            display: none;
+        }
+    }
+
+    &.disableShare {
+        .share {
+            opacity: @opacity-disabled;
+        }
+    }
+}
+
+#gridViewSubMenu, #tableGridViewSubMenu {
+    z-index: @z-index-gridViewMenu + 1;
+    .size(@width: 80px);
+
+    li {
+        .position(relative);
+
+        &.select .icon {
+            display: inline-block;
+        }
+
+        .icon {
+            display: none;
+            float: right;
+            .vertical-align;
+        }
+    }
+}

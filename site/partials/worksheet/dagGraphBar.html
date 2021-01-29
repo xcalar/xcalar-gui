@@ -1,0 +1,99 @@
+<div id="dagGraphBar">
+    <div class="topButtons left">
+        <div id="undo" class="topButton undo" data-toggle="tooltip" data-container="body" data-placement="auto top">
+            <i class="icon xi-undo-outline actionIcon"></i>
+        </div>
+        <div id="redo" class="topButton redo" data-toggle="tooltip" data-container="body" data-placement="auto top">
+            <i class="icon xi-redo-outline actionIcon"></i>
+        </div>
+        <div class="divider"></div>
+        <div class="topButton zoomOut" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%=
+                dicts.dag.zoomOut %>">
+            <i class="icon xi-minus actionIcon"></i>
+        </div>
+        <div class="topButton zoomPercent" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.dag.zoom %>">
+            <input disabled class="zoomPercentInput xc-input white" type="text" pattern="\d*" maxlength="3" max="200" min="25" step="1" value="100" placeholder="100">
+            <div class="percent-sign">%</div>
+        </div>
+        <div class="topButton zoomIn" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%=
+                dicts.dag.zoomIn %>">
+            <i class="icon xi-plus actionIcon"></i>
+        </div>
+    </div>
+    <div class="infoSection">
+        <div class="divider"></div>
+        <div class="numNodesSection">
+            <span class="label"><%= dicts.dag.NumOperatorNodes %>:</span>
+            <span class="numNodes">0</span>
+        </div>
+
+        <div class="runStatus">
+            <div class="divider"></div>
+            <div class="animatedEllipsisWrapper">
+                <div class="text">
+                    Executing operator
+                    <span class="operatorName" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="Click to focus on the operator"></span>
+                </div>
+                <div class="text altText">
+                    Canceling
+                </div>
+                <div class="wrap">
+                  <div class="animatedEllipsis hiddenEllipsis">....</div>
+                  <div class="animatedEllipsis staticEllipsis">....</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="topButtons right">
+        <button class="btn btn-secondary useInSQL"
+        data-toggle="tooltip"
+        data-placement="auto top"
+        data-container="body"
+        data-original-title="<%= dicts.TooltipTStr.UseInSQL %>"
+        ><%= dicts.dag.UseInSQL %></button>
+        <div class="topButton viewOnly editSQLGraph xc-action" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.dag.ViewOnlyHint %>">
+            <i class="actionIcon icon xi-edit" ></i>
+            <span class="text"><%= dicts.dag.ModifyPlan %></span>
+        </div>
+        <div class="topButton configuring" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.dag.executeDisabled %>">
+          <span>
+            <span class="text"><%= dicts.dag.executeAll %></span>
+            <i class="icon xi-play-outline actionIcon"></i>
+          </span>
+        </div>
+        <div class="topButton publish dropDownList" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.dag.PublishHint %>">
+            <span>
+                <span class="text"><%= dicts.dag.Publish %></span>
+                <i class="icon xi-download actionIcon"></i>
+            </span>
+        </div>
+        <div class="topButton rerunOptimized">
+          <span>
+              <span class="text"><%= dicts.dag.reexecute %></span>
+              <i class="icon xi-play-outline actionIcon"></i>
+          </span>
+        </div>
+        <div class="topButton run dropDownList">
+            <span>
+                <span class="text"><%= dicts.dag.executeAll %></span>
+                <i class="icon xi-play-outline actionIcon"></i>
+            </span>
+            <div class="iconWrapper" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.dag.executeHint %>">
+                <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="list">
+            <ul>
+                include "../../util/menuScrollArea.html"
+            </ul>
+            </div>
+        </div>
+        <div class="topButton stop" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.dag.cancelExecute %>">
+            <span class="text">Cancel</span>
+            <i class="icon xi-stop-outline actionIcon"></i>
+        </div>
+        <div class="divider"></div>
+        <button class="noTabRequired btn-secondary dropDown optionsBtn clickable">
+            <i class="icon xi-ellipsis-h xc-action"></i>
+        </button>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>XI Test Suite Manager</title>
+    <link href='3rd/fonts/raleway/raleway.css' rel='stylesheet' type='text/css'>
+    <link href='3rd/fonts/opensans/opensans.css' rel='stylesheet' type='text/css'>
+    <link href="assets/stylesheets/css/testSuite.css" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+    <div id="logo" class="xc-logo">
+      <div class="innerShadow"></div>
+      <i class="icon xd-logo-bw"></i>
+    </div>
+    <div id="installerContainer" class="container">
+      <div class="outerWrap">
+        <header class="title">Xcalar Test Suite Manager</header>
+      </div>
+      <div id="loadingBar">
+        <div class="innerBar"></div>
+      </div>
+      <div class="outerWrap" id="bottomSection">
+        <div id="formArea">
+          <div class="verticalSection leftSection">
+            <div class="section topSection">
+            </div>
+            <div id = "pastRuns" class="section">
+              <div class="heading">
+                Previous Runs
+              </div>
+              <div class="results"></div>
+            </div>
+          </div>
+          <div class="verticalSection rightSection">
+            <div class="section results">
+              <div class="row">
+                <div class="leftCol">Instance -1</div>
+                <div class="rightCol">Running...</div>
+              </div>
+              <div class="row">
+                <div class="leftCol">Instance -1</div>
+                <div class="rightCol">Running...</div>
+              </div>
+              <div class="row">
+                <div class="leftCol">Instance -1</div>
+                <div class="rightCol">Running...</div>
+              </div>
+            </div>
+            <div class="section overall"></div>
+          </div>
+        </div>
+      </div>
+     </div>
+    <script src="3rd/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="assets/test/testSuiteManager.js"></script>
+    <script src="assets/test/fetchJenkins.js"></script>
+  </body>
+</html>

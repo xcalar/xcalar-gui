@@ -1,0 +1,75 @@
+<div id="monitor-queryDetail" class="cardContainer">
+  <header class="cardHeader">
+    <div class="title"><%= dicts.monitor.DetailQuery %></div>
+  </header>
+  <div class="cardMain">
+    <section class="xc-query query no-selection querySection xc-hidden">
+      <div class="queryIconWrap">
+        <i class="icon queryIcon processing xi-progress"></i>
+        <i class="icon queryIcon error xi-error"></i>
+        <i class="icon queryIcon done xi-success"></i>
+      </div>
+      <div class="op">
+        <div class="text"></div>
+        <div class="status processing"><%= dicts.query.Processing %></div>
+        <div class="status canceled"><%= dicts.query.Canceled %></div>
+        <div class="status error"><%= dicts.query.Error %></div>
+        <div class="status done"><%= dicts.query.Done %></div>
+      </div>
+      <div class="queryProgress">
+        <div class="progressBar" style="width: 100%;" data-step="0"></div>
+        <div class="querySteps"></div>
+      </div>
+      <div class="actions">
+        <i class="icon xi-trash xc-icon-action deleteIcon" data-container="body" data-toggle="tooltip" title="<%= dicts.monitor.RemoveOperation %>"></i>
+        <i class="icon xi-cancel xc-icon-action cancelIcon" data-container="body" data-toggle="tooltip" title="<%= dicts.monitor.CancelOperation %>"></i>
+      </div>
+    </section>
+    <div class="divider"></div>
+    <section class="infoSection clearfix">
+      <!-- Status Part -->
+      <div class="statusSection">
+        <header class="title"><%= dicts.monitor.Status %></header>
+        <div class="content">
+          <div class="status start">
+            <span class="name"><%= dicts.monitor.StartTime %>:</span>
+            <span class="text">N/A</span>
+          </div>
+          <div class="status opTime">
+            <span class="name"><%= dicts.monitor.OpTime %>:</span>
+            <span class="text">N/A</span>
+          </div>
+          <div class="status elapsed">
+            <span class="name"><%= dicts.monitor.ElaspedTime %>:</span>
+            <span class="text">N/A</span>
+          </div>
+          <div class="status total">
+            <span class="name"><%= dicts.monitor.TotalTime %>:</span>
+            <span class="text">N/A</span>
+          </div>
+        </div>
+      </div>
+      <!-- Output Detail -->
+      <!-- XXX TODO: decide should show it or remove it -->
+      <!-- <div class="outputSection">
+        <header class="title"><%= dicts.monitor.Output %></header>
+        <div class="content">
+          <span class="text">N/A</span>
+        </div>
+        <div class="buttonArea">
+          <button id="monitor-inspect" class="btn iconBtn btn-disabled">
+            <i class="icon xi-show"></i><%= dicts.monitor.VIEWOUTPUT %>
+          </button>
+        </div>
+      </div> -->
+    </section>
+    <div class="divider"></div>
+    <!-- Log Part -->
+    <section class="operationSection">
+      <div class="title"><%= dicts.common.Op %>
+        <div class="copy xc-icon-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.ClickToCopy %>">Copy <i class="icon xi-copy-clipboard"></i></div>
+        </div>
+      <div class="content"></div>
+    </section>
+  </div>
+</div>

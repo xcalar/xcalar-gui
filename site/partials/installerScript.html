@@ -1,0 +1,17 @@
+<% var tag = dicts.isUnitTest ? 'data-cover' : '' %>
+<!-- installer -->
+<script src="3rd/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="3rd/jquery-ui.js" charset="utf-8"></script>
+<script src="3rd/jquery.caret-master/src/jquery.caret.js" type="text/javascript"></script>
+<script src="3rd/bower_components/bootstrap/js/tooltip.js"></script>
+<script src="assets/lang/en/globalAutogen.js" type="text/javascript"></script>
+<script src="assets/lang/en/jsTStr.js" type="text/javascript"></script>
+<script src="assets/js/globalEnums.js"></script>
+<script src="assets/js/httpStatus.js"></script>
+<script src="assets/js/promiseHelper.js"></script>
+<script src="assets/js/installer/errorMessage.js"<%= tag %>></script>
+<script src="assets/js/installer/installerCommon.js"<%= tag %>></script>
+<script src="assets/js/installer/installer.js"<%= tag %>></script>
+<script src="assets/js/installer/upgrader.js"<%= tag %>></script>
+<script src="assets/js/installer/uninstaller.js"<%= tag %>></script>
+<!-- end of installer -->

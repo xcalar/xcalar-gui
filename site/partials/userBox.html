@@ -1,0 +1,55 @@
+<!-- userBox -->
+<div id="userBox">
+	<button id="userNameArea" class="clickable xc-innerIcon-action">
+    <i class="icon xi-user"></i>
+  </button>
+  <button id="userSettingsBtn" class="clickable btn btn-small xc-innerIcon-action"
+      data-toggle="tooltip" data-container="body" data-placement="bottom"
+      data-title="Preferences">
+    <i class="icon xi-setting"></i>
+  </button>
+  <button id="helpArea" class="clickable btn btn-small xc-innerIcon-action"
+        data-toggle="tooltip" data-container="body" data-placement="bottom"
+        data-title="<%= dicts.common.Help %>">
+    <i class="icon xi-unknown"></i>
+	</button>
+  <div id="memoryAlert" class="inActive" data-toggle="tooltip" data-container="body" data-placement="bottom">
+    <div class="memoryBoxOutline">
+        <div class="memoryBoxFill">
+        </div>
+    </div>
+    <i class="icon xi-memory-outline"></i>
+  </div>
+</div>
+<div id="helpAreaMenu" class="menu noBorder">
+  <ul>
+    <li class="supTicket"><%= dicts.monitor.GenSub %></li>
+    <li class="document"><%= dicts.menuBar.HelpDocs %></li>
+    <li class="discourse"><%= dicts.menuBar.discourse %></li>
+  </ul>
+</div>
+<div id="userMenu" class="menu noBorder">
+  <ul>
+    <li id="userName" class="textOverflowOneLine">
+      <%= dicts.menuBar.user %>
+    </li>
+    <div class="divider"></div>
+    <li class="credits">
+      <span class="num">Credits: N/A</span>
+      <i class="icon xi-warning"></i>
+      <!-- <span class="add">Add</span> -->
+    </li>
+    <li class="setup adminOnly"><%= dicts.monitor.Setup %></li>
+    <li class="about"><%= dicts.menuBar.About %></li>
+    <li id="logout"><%= dicts.menuBar.LogOut %></li>
+  </ul>
+</div>
+<!-- This is here for the z-index -->
+<div id="funcBarMenu" class="menu">
+  <ul>
+    <li class="funcBarOption mapMode">f(x)</li>
+      <li class="funcBarOption searchMode">
+      <i class="icon xi-search"></i>
+    </li>
+  </ul>
+</div>

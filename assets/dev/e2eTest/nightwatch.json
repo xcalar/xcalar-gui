@@ -1,0 +1,58 @@
+{
+    "src_folders" : ["../../test/e2eTest/"],
+    "filter" : "*.js",
+    "custom_commands_path": ["../../test/e2eTest/customCommands"],
+    "globals_path": "../../test/e2eTest/globalModule.js",
+    "launch_url": "https://localhost:8443/",
+    "webdriver" : {
+      "start_process": true,
+      "server_path": "node_modules/.bin/chromedriver",
+      "log_path": "",
+      "port": 9515
+    },
+
+    "test_settings" : {
+        "default" : {
+            "globals": {
+                "launchUrl": "http://localhost:8888/"
+            },
+            "desiredCapabilities": {
+            "browserName": "chrome",
+            "chromeOptions": {
+                "args": ["--headless", "window-size=4000,2000", "--ignore-certificate-errors"]
+            },
+            "loggingPrefs": {
+                    "driver": "ALL",
+                    "server": "OFF",
+                    "browser": "ALL"
+                }
+            }
+        },
+       "jenkins": {
+            "globals": {
+                "launchUrl": "https://localhost:8443/"
+            },
+            "desiredCapabilities": {
+                "browserName": "chrome",
+                "chromeOptions": {
+                    "args": ["--headless", "window-size=6000,3000", "--no-sandbox", "--ignore-certificate-errors"]
+                },
+                "loggingPrefs": {
+                    "driver": "ALL",
+                    "server": "OFF",
+                    "browser": "ALL"
+                }
+            }
+        }
+    },
+    "chrome" : {
+      "desiredCapabilities": {
+        "browserName": "chrome",
+        "javascriptEnabled": true,
+        "acceptSslCerts": true
+      },
+      "chromeOptions" : {
+        "args" : ["disable-web-security", "user-data-dir"]
+      }
+    }
+  }

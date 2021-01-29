@@ -1,0 +1,77 @@
+<div class="cardContainer">
+  <div class="cardHeader">
+    <header class="title"><%= dicts.dsTable.Header %></header>
+  </div>
+  <div class="cardInstruction oneLine">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span><%= dicts.ds.TableInstr %></span>
+    </div>
+  </div>
+  <!-- cardTop -->
+  <div class="cardTopMain">
+    <div class="infoSection flexContainer">
+      <!-- left part -->
+      <div class="contentSection flexContainer">
+        <button id="createDF" class="btn btn-submit iconBtn">
+          <i class="icon xi-dfg2"></i>
+          <%= dicts.dsTable.createDF %>
+        </button>
+        <span id="dsInfo-title"><%= dicts.ds.Datasets %></span>
+        <span class="divider">|</span>
+        <span><%= dicts.dsTable.Path %>:</span>
+        <div id="dsInfo-pathContainer">
+          <span id="dsInfo-path" class="dsValue active" data-placement="auto top" data-container="body" data-toggle="tooltip">
+          </span>
+          <i class="icon xi-copy-clipboard"></i>
+          <i class="icon xi-tick"></i>
+        </div>
+        <button id="showFileListBtn" class="btn btn-clear iconBtn">
+          <i class="icon xi-show"></i>
+          <%= dicts.dsTable.clickToView %>
+        </button>
+      </div>
+      <div class="flexWrap flex-left">
+        <div class="contentSection">
+          <span><%= dicts.dsTable.CreatedBy %>:</span>
+          <span class="dsValue" id="dsInfo-author"></span>
+          <span class="divider">|</span>
+          <span><%= dicts.common.DateCreated %>:</span>
+          <span class="dsValue" id="dsInfo-date">2017-01-01</span>
+          <span class="divider">|</span>
+          <span><%= dicts.dsTable.Records %>:</span>
+          <span class="dsValue" id="dsInfo-records">N/A</span>
+          <i id="dsInfo-error" class="icon xi-error xc-hidden" data-toggle="tooltip" data-container="body" data-placement="auto top"></i> <!-- tooltip text gets filled in with JS -->
+          <span class="divider">|</span>
+          <span><%= dicts.dsTable.Columns %>:</span>
+          <span class="dsValue" id="dsInfo-cols">N/A</span>
+          <span class="divider">|</span>
+          <span><%= dicts.common.Size %>:</span>
+          <span class="dsValue" id="dsInfo-size">N/A</span>
+          <span class="divider">|</span>
+          <span><%= dicts.dsForm.Format %>:</span>
+          <span class="dsValue" id="dsInfo-format"></span>
+          <span class="dsDetail" id="dsInfo-udf">...</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- cardMain -->
+  <div class="cardMain">
+    <!-- Datastore Table -->
+    <div id="dsTableContainer">
+      <div class="loadSection clearfix">
+        include "../../util/animatedEllipsis.html"
+      </div>
+      <div class="errorSection">
+        <div class="error"></div>
+        <div class="suggest point">
+          <div class="title"><%= dicts.ds.RetryPoint %></div>
+          <div class="retry point xc-action">
+            Change import configuration
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

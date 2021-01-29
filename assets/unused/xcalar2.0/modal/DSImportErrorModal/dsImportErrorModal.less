@@ -1,0 +1,337 @@
+#dsImportErrorModal {
+    .size(750px, 400px, @min-width:750px, @min-height: 400px);
+    @left-main-padding: 24px;
+    @rowHeight: 44px;
+    @h-without-main: @modal-header-h;
+
+    .ui-resizable-e {
+        right: -13px;
+    }
+
+    .ui-resizable-se {
+        bottom: -18px;
+        right: -18px;
+        &:before, &:after {
+            display: none;
+        }
+    }
+
+    .modalMain {
+        .flex-display;
+        .flex-direction(column);
+        height: ~"calc(100% - @{h-without-main})";
+        font-size: 12px;
+        padding: 0;
+        padding-bottom: @modal-padding-vertical;
+    }
+
+    p {
+        font-size: 12px;
+    }
+
+    .topRow {
+        height: 50px;
+        .flex-display;
+        background: @color-bg-default;
+        border-bottom: 1px solid @color-border-pinkish-grey2;
+        padding-left: @left-main-padding;
+
+        .text {
+            padding: 10px 20px;
+        }
+        .value {
+            color: @color-error-border;
+        }
+    }
+
+    .generalInfo {
+        line-height: 50px;
+        position: relative;
+
+        .infoPart {
+            margin-right: 30px;
+        }
+        .label {
+            margin-right: 2px;
+        }
+
+        .download {
+            .position(absolute, @top: 0px, @right: 25px);
+
+            .downloadErrorModal {
+                width: 20px;
+                height: 20px;
+                text-align: center;
+                font-size: 16px;
+                color: @color-bg-select-blue;
+            }
+        }
+    }
+
+    .sizeInfoTitle {
+        float: left;
+        line-height: 60px;
+        padding-right: 10px;
+        .flex(0 0 auto);
+
+        .icon {
+            margin-right: 20px;
+            font-size: 24px;
+            .position(relative, @top: 4px);
+            color: @color-macaroni-and-cheese;
+        }
+    }
+
+    .bottomSection {
+        .flex-display;
+        .flex(1 1 100%);
+        overflow-y: auto;
+
+        .row {
+            height: @rowHeight;
+            border-bottom: 1px solid @color-border-pinkish-grey2;
+        }
+
+        .tempRow {
+            background: @color-bg-default !important;
+            height: @rowHeight * 2;
+            position: relative;
+            border-bottom: none;
+            cursor: progress;
+
+            .waitingIcon {
+                .center-align;
+                display: block;
+            }
+        }
+    }
+
+    // left tab
+    .fileListSection {
+        .flex(1 1 40%);
+        min-width: 300px;
+        width: 300px;
+        height: 100%;
+        position: relative; // for .scrollbar
+        float: left;
+        border-right: 1px solid @color-border-pinkish-grey2;
+
+        .closeArea {
+            height: 36px;
+            line-height: 36px;
+            padding-left: @left-main-padding;
+            background-color: @color-bg-white-seven;
+            border-bottom: 1px solid @color-border-pinkish-grey2;
+
+            .icon {
+                float: right;
+            }
+        }
+
+        .errorFileList {
+            .size(@height: ~"calc(100% - 36px)");
+            overflow: auto; // allow vert scrollbar
+            position: relative;
+
+            &.scrolling {
+                cursor: wait;
+            }
+            &.full {
+                .tempRow {
+                    display: none;
+                }
+            }
+        }
+
+        .tempRow {
+            cursor: progress;
+        }
+
+        .row {
+            padding-left: @left-main-padding;
+            padding-right: 4px;
+            line-height: @rowHeight - 2px;
+            cursor: pointer;
+            .flex-display;
+
+
+
+            &:nth-child(odd) {
+                background-color: @color-bg-white-seven;
+            }
+
+            &:hover {
+                background-color: rgba(221, 234, 242, 0.5);
+            }
+
+            &.type-record {
+                .icon {
+                    color: @color-macaroni-and-cheese;
+                }
+            }
+
+            &.type-file {
+                .icon {
+                    color: @color-error-border;
+                }
+            }
+
+            &.active {
+                background-color: @color-bg-select-blue;
+                color: @color-font-white;
+
+                .icon {
+                    color: @color-font-white;
+                }
+            }
+
+            .icon {
+                line-height: @rowHeight - 2px;
+                margin-right: 8px;
+            }
+
+            .filePath {
+                display: inline-block;
+                max-width: ~"calc(100% - 40px)";
+                .textOverflowOneLine;
+                direction: rtl;
+            }
+
+            .hiddenChar {
+                color: @color-font-defaultInverse;
+                font-size: 0px;
+                width: 0px;
+                overflow: hidden;
+                visibility: hidden;
+            }
+        }
+
+    }
+
+    // larger right area
+    .errorMsgSection {
+        .flex(1 1 60%);
+        min-width: 300px;
+        overflow: hidden;
+    }
+
+    .recordErrorSection {
+        height: 100%;
+        position: relative; // for .scrollbar
+
+        .headerArea {
+            font-weight: 600;
+            height: 36px;
+            border-bottom: 1px solid @color-border-pinkish-grey2;
+
+            .recordNum {
+                padding-left: 14px;
+            }
+
+            .recordNum, .errorMsg {
+                line-height: 36px;
+                float: left;
+            }
+        }
+
+        .recordNum {
+            height: 100%;
+            line-height: @rowHeight - 2px;
+            width: 100px;
+            padding-left: 12px;
+
+            .arrow {
+                font-size: 12px;
+                padding: 3px;
+                color: @color-font-gray36;
+            }
+
+            .num {
+                margin-left: 10px;
+            }
+        }
+
+        .errorMsg {
+            width: ~"calc(100% - 100px)";
+            overflow: hidden;
+            padding-right: 20px;
+            padding-left: 12px;
+        }
+
+        .recordMessageList {
+            .size(@height: ~"calc(100% - 36px)");
+            overflow: auto; // allow vert scrollbar
+            position: relative;
+            // width: 90%;
+            // &::-webkit-scrollbar {
+            //     display: none;
+            // }
+            &.scrolling {
+                cursor: wait;
+            }
+
+            .row {
+                min-height: @rowHeight;
+                .flex-display;
+
+                &:nth-child(odd) {
+                    background-color: @color-bg-white-seven;
+                }
+                &.collapsed {
+                    .errorMsg {
+                        height: 100%;
+                        .textOverflowOneLine;
+                    }
+                    .recordNum {
+                        .icon {
+                            .transform(rotate(270deg));
+                        }
+                    }
+                }
+                &.expanded {
+                    height: auto;
+                    .errorMsg {
+                        padding-bottom: 16px;
+                    }
+                }
+
+                .recordNum {
+                    cursor: pointer;
+                }
+
+                .errorMsg {
+                    padding-top: 14px;
+                    font-family: @font-code;
+                    .text-selection;
+                }
+            }
+        }
+
+        .scrollBar {
+            .position(absolute, @top: 36px, @right: 0px);
+            overflow: auto;
+            z-index: 1;
+            height: ~"calc(100% - 36px)";
+            &::-webkit-scrollbar-thumb {
+                min-height: 30px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: rgba(255, 255, 255, 0.3);
+            }
+
+            &.bulkFetch {
+                pointer-events: none;
+            }
+        }
+    }
+
+    .fileErrorSection {
+        white-space: pre-wrap;
+        color: @color-error-border;
+        padding: 30px;
+        height: 100%;
+        overflow: auto; // allow vert scrollbar
+        .text-selection;
+    }
+}

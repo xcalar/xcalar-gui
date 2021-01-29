@@ -1,0 +1,42 @@
+# Global ignores in all directories
+*.DS_Store
+*.tar.gz
+*~
+*.swp
+*.swo
+.vscode
+node_modules
+index.html
+unitTest.html
+install.html
+install-tarball.html
+testSuite.html
+unitTestInstaller.html
+tags
+
+# Top level directories
+/xcalar-gui
+
+# ts/
+/ts/config.js
+/ts/jsTStr.d.ts
+
+# services/
+/services/expServer/*.tar.gz
+/services/appMarketplace/extensionUploader.html
+/services/test/report
+!/services/expServer/test/dagComponent/*.tar.gz
+
+# assets/
+/assets/stylesheets/**/*.css
+/assets/dev/!shortCutStyles.css
+/assets/dev/unitTest/coverage/coverage.js
+/assets/dev/unitTest/coverage/coverage.json
+/assets/dev/e2eTest/tests_output/*
+!/assets/dev/e2eTest/workbooks/*
+/assets/js/*.js
+/assets/js/*.js.map
+
+#dev
+/assets/dev/e2eTest/*.png
+/assets/dev/e2eTest/*.log

@@ -1,0 +1,456 @@
+#debugViewContainer {
+    @tab-h: 24px;
+    height: 100%;
+    padding-top: 8px;
+
+    .topSection {
+        height: @tab-h;
+        padding-right: 24px;
+        position: relative;
+
+        .tabSection {
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+
+            .tab {
+                flex: 0 0 auto;
+                font-size: 12px;
+                font-weight: 600;
+                color: @color-font-dagTabInactive;
+                line-height: @tab-h;
+                text-align: center;
+                margin-left: 20px;
+                margin-right: 4px;
+                padding: 0px 12px;
+                cursor: pointer;
+
+                &:hover {
+                    color: @color-font-default;
+                }
+
+                &.active {
+                    color: @color-font-default;
+                    box-shadow: inset 0 -2px 0 0 @color-border-select-blue;
+                }
+            }
+        }
+
+        .closeResult {
+            position: absolute;
+            top: 5px;
+            right: 8px;
+            font-size: 14px;
+        }
+    }
+
+    .contentSection {
+        height: ~"calc(100% - @{tab-h})";
+        padding: 8px;
+        overflow: hidden;
+        font-size: 11px;
+
+        .btn {
+            font-size: 11px;
+        }
+
+        .section {
+            height: 100%;
+
+            &.output {
+                padding-top: 4px;
+                overflow-x: hidden;
+                overflow-y: auto;
+            }
+        }
+    }
+
+    .selQueryHistCard {
+        height: 100%;
+        margin-bottom: 0px;
+
+        .cardHeader {
+            display: block;
+            padding-left: 8px;
+            position: absolute;
+            top: 0;
+            right: 32px;
+            width: auto;
+            font-size: 12px;
+
+            label {
+                font-size: 14px;
+                font-weight: 600;
+            }
+
+            .action {
+                float: right;
+                margin-left: 0;
+                .position(relative, @top: 8px);
+            }
+
+            .selCancelQueryHist {
+                .icon {
+                    color: @color-red-forbid;
+                }
+            }
+
+            .searchbarArea {
+                float: right;
+                margin-right: 10px;
+                input {
+                    .size(@width: 131px, @height: 24px);
+                    font-size: 12px;
+                    line-height: 24px;
+                    padding-left: 22px;
+                    background-color: @color-bg-default;
+                    border-radius: 3px;
+                }
+                .icon {
+                    .position(absolute, @top: 12px, @left: 5px);
+                    font-size: 14px;
+                    color: @color-border-bar;
+                }
+            }
+        }
+
+        .flexTable {
+            .col-action {
+                .icon {
+                    position: relative;
+                    top: 2px;
+                    font-size: 18px;
+                }
+            }
+        }
+    }
+}
+
+.sqlQueryHist {
+    @cardHeaderHeight: 36px;
+    .size(@min-width: 650px, @height: ~"calc(100% - 5px)");
+    .cardHeader {
+        .refresh-queryHist, .selCancelQueryHist {
+            color: @color-font-defaultInverse;
+            cursor: pointer;
+            align-self: center;
+            margin-left: auto;
+        }
+    }
+    .cardMain {
+        padding: 0;
+        height: 100%;
+
+        .col {
+            &:first-child {
+                border-left: none;
+            }
+        }
+    }
+
+    &.loading {
+        .cardHeader {
+            span.refresh, span.cancel, span.delete {
+                pointer-events: none;
+                opacity: @opacity-disabled;
+            }
+        }
+    }
+
+    .resizing {
+        pointer-events: none;
+    }
+
+    .icon-run, .icon-done, .icon-cancel, .icon-fail, .icon-compile {
+        font-size: 10px;
+        margin-right: 9px;
+    }
+
+    .icon-run {
+        color: #ffd345;
+    }
+
+    .icon-done {
+        color: @color-icon-darkGreen;
+    }
+
+    .icon-cancel {
+        color: @color-bg-dropdown-gray;
+    }
+
+    .icon-fail {
+        color: @color-error-red;
+    }
+
+    .icon-compile {
+        color: @color-font-light-blue;
+    }
+
+    .text-query {
+        .font(@family: @font-code);
+    }
+}
+
+#systemLogCard {
+    @inputHeight: 24px;
+
+    min-width: 520px;
+    height: 100%;
+
+    .cardHeader {
+        display: block;
+        padding-left: 8px;
+        position: absolute;
+        top: 0;
+        right: 32px;
+        width: auto;
+    }
+    .cardMain {
+        overflow: hidden;
+        padding: 0px;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        height: 100%;
+    }
+
+    .inputSection {
+        .flex-display;
+        .justify-content(space-between);
+        box-sizing: border-box;
+        min-width: 480px;
+        flex-wrap: wrap;
+        margin-left: 10px;
+        margin-right: 0px;
+    }
+    .column {
+        display: flex;
+        flex: 1 1 auto;
+        margin-bottom: 10px;
+        align-items: center;
+        margin-right: 20px;
+        min-width: 200px;
+
+        &:last-child {
+            margin-right: 10px;
+        }
+
+        .text {
+            flex: 0 0 auto;
+        }
+
+        .inputWrap {
+            .flex-display;
+            flex: 1 1 120px;
+
+            .dropDownList {
+                margin-left: 10px;
+                .styleDropDownList(100%, @inputHeight);
+
+                .text, li {
+                    font-size: 11px;
+                }
+            }
+        }
+
+        .xc-input {
+            width: 100%;
+            min-width: 80px;
+            margin-left: 10px;
+            .flex(1 1 70px);
+            font-size: 11px;
+            height: @inputHeight;
+            line-height: @inputHeight;
+        }
+
+        .btn-small {
+            height: @inputHeight;
+            width: @inputHeight;
+            .icon {
+                line-height: @inputHeight;
+            }
+        }
+
+        &.buttons {
+            flex: 1 1 0;
+
+            .btn {
+                min-width: 90px;
+                width: 100px;
+            }
+
+            .streamBtns {
+                margin-right: 10px;
+                min-width: 90px;
+                .flex-display;
+                .align-items(center);
+                padding-right: 0px;
+
+                .btn {
+                    width: 110px;
+
+                    &.stopStream {
+                        display: none;
+                        background-color: @color-error-border-light;
+                        &:hover {
+                            background-color: @color-bg-red-hover;
+                        }
+                    }
+                }
+                &.streaming {
+                    .btn {
+                        &.startStream {
+                            display: none;
+                        }
+                        &.stopStream {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .tabSection {
+        height: 24px;
+        width: 100%;
+        &.withTabs {
+            .leftEnd {
+                border-right: none !important;
+            }
+        }
+        .tabWrapper {
+            height: 100%;
+            border: none;
+            display: flex;
+            background-color: @color-bg-dagTabBar;
+
+            .tabAreaWrapper {
+                display: flex;
+                overflow: hidden;
+                width: ~"calc(100% - 48px)";
+                border: none;
+            }
+            .tabArea {
+                .size(@width: 100%, @height: 100%);
+                display: flex;
+            }
+            .end {
+                .size(@height: 100%, @width: 24px);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                .icon {
+                    color: @color-font-default;
+                }
+                &.rightEnd {
+                    .icon {
+                        transform: rotate(180deg);
+                    }
+                }
+            }
+            .tab {
+                .size(@height: 100%, @width: 50px);
+                min-width: 50px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                font-size: 11px;
+                text-align: center;
+                display: flex;
+                flex-direction: row;
+                justify-content: flex-end;
+                position: relative;
+                border: solid 1px @color-bg-2;
+                background-color: @color-bg-dagTabInactive;
+                &:last-child {
+                    border-right: solid 1px @color-bg-2;
+                }
+                border-top: none;
+                border-right: none;
+                border-bottom: none;
+
+                .tabLabel {
+                    .size(@width: 100%);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .tabClose {
+                    .size(@height: 10px, @width: 100%);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: flex-end;
+                    justify-content: flex-start;
+                    position: absolute;
+                    cursor: pointer;
+
+                    .icon {
+                        display: none;
+                    }
+                }
+                &.focus {
+                    background-color: @color-bg-dagTabActive;
+                    color: @color-font-default;
+                }
+                &:hover {
+                    .tabClose {
+                        .icon {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            .end {
+                border: solid 1px @color-bg-2;
+                border-top: none;
+                border-bottom: none;
+            }
+        }
+    }
+
+    .logSection {
+        position: relative;
+        .flex-display;
+        min-height: 40px;
+        overflow: hidden;
+        flex: 1 1 auto;
+
+        &:hover {
+            .barSection {
+                .flex-display;
+            }
+        }
+
+        .barSection {
+            position: absolute;
+            display: none;
+            top: 0px;
+            right: 10px;
+
+            .downloadLog, .copyLog {
+                flex-direction: row;
+                overflow: hidden;
+                .size(@width: 30px, @height: 30px);
+                white-space: normal;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+
+        .content {
+            margin: 0px;
+            padding: 5px 20px 10px;
+            .size(@width: 100%);
+            white-space: pre-wrap;
+            overflow: auto;
+            user-select: text;
+        }
+        .msgRow {
+            &.error {
+                color: @color-error-border;
+            }
+        }
+    }
+}

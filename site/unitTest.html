@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en-US">
+    <head>
+        <meta charset="UTF-8">
+        <title>Xcalar UnitTest</title>
+        <link rel="stylesheet" href="3rd/mocha.css" />
+        include "partials/link.html"
+        <script type="text/javascript">
+            window.unitTestMode = true;
+        </script>
+        <style type="text/css">
+            #unitTestBody {
+                background: transparent !important;
+                color: black !important;
+                overflow: auto !important;
+            }
+
+            #xc {
+                overflow: hidden;
+                background-color: #D6DCDF;
+                color: #4d4d4d;
+            }
+
+            #container {
+                height: 400px !important;
+            }
+
+            #xc.large #container {
+                height: 1000px !important;
+            }
+
+            #mocha.small {
+                height: 500px;
+                overflow: auto;
+            }
+
+            #mocha-stats .passes a {
+                color: green;
+            }
+
+            #mocha-stats .failures a {
+                color: red;
+            }
+
+            #mocha-stats .duration:not(em) {
+                color: blue;
+            }
+
+            #mocha .test a.replay {
+                right: -25px;
+            }
+
+            #blanket-main {
+                height: 500px;
+                overflow: scroll;
+            }
+
+            #unitTestTopBar {
+                position: fixed;
+                top: 5px;
+                left: 100px;
+                z-index: 200;
+            }
+
+            #unitTestTopBar button {
+                margin-right: 10px;
+                background-color: beige;
+            }
+
+            #mocha-stats {
+                right: 100px;
+                z-index: 100;
+            }
+
+            .hideTest #mocha-report .test.pass {
+                display: none;
+            }
+
+            .hideCoverage #blanket-main {
+                display: none;
+            }
+
+            #blanket-main.large {
+                height: 1000px !important;
+            }
+        </style>
+    </head>
+    <body id="unitTestBody" class="hideTest hideCoverage">
+        <div id="unitTestTopBar">
+            <button id="toggleTest">Show/Hide Test Detail</button>
+            <button id="toggleCoverage">Show/Hide Code Coverage</button>
+            <button id="toggleXC">Show/Hide XC</button>
+            <button id="toggleTestSize">Toggle Test Size</button>
+            <button id="toggleXCSize">Toggle XC Size</button>
+            <!--<button id="toggleCoverageSize">Toggle Coverage Size</button>-->
+            <button id="backXC">Back To Xcalar Design</button>
+        </div>
+        <div id="xc" width="100%" height="300">
+            include "partials/container.html"
+        </div>
+        <div id="mocha"></div>
+        <div id="messages"></div>
+        <div id="fixtures"></div>
+        include "partials/script.html"
+        <script src="assets/test/testSuiteSetup.js"></script>
+        <script src="3rd/mocha.js"></script>
+        <script src="3rd/chai.js"></script>
+        <script src="3rd/chai-string.js"></script>
+        <script src="3rd/ifvisible.js"></script>
+        <script src="assets/test/unitTest/unitTest.js"></script>
+        include "partials/unitTestScript.html"
+        <!-- cloudLogin -->
+        <script src="3rd/bower_components/aws-sdk/dist/aws-sdk.min.js"></script>
+        <script src="3rd/bower_components/amazon-cognito-identity-js/dist/aws-cognito-sdk.min.js"></script>
+        <script src="3rd/bower_components/amazon-cognito-identity-js/dist/amazon-cognito-identity.min.js"></script>
+        <script src="assets/js/cloudConstants.js"></script>
+        <script src="assets/js/cloudEnums.js"></script>
+        <script src="assets/js/cloudLogin/cloudLoginLambdaService.js"></script>
+        <script src="assets/js/cloudLogin/cloudLoginCognitoService.js"></script>
+        <script src="assets/js/cloudLogin/cloudLogin.js"></script>
+        <script src="assets/js/cloudLogin/loginMixpanel.js"></script>
+        <!-- end of cloudLogin -->
+        <script type="text/javascript">UnitTest.setup();</script>
+    </body>
+</html>

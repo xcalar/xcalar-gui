@@ -1,0 +1,69 @@
+<!-- Monitor Sys Menu -->
+<div class="topSection">
+  <div class="titleSection">
+    <header>
+      <span><%= dicts.monitor.Monitor %></span>
+    </header>
+  </div>
+</div>
+<div id="monitorMenu-sys" class="mainSection">
+  <!-- displaySettings -->
+  <div class="displaySettings listWrap xc-expand-list active">
+    <div class="listInfo no-selection">
+      <span class="expand">
+        <i class="icon xi-down fa-13"></i>
+      </span>
+      <span class="text"><%= dicts.monitor.DisplaySettings %></span>
+    </div>
+    <ul class="no-selection">
+      <li class="graphSwitch">
+        <div class="text">Memory Usage</div>
+        <div class="xc-switch switch on">
+          <div class="slider"></div>
+        </div>
+      </li>
+      <li class="graphSwitch">
+        <div class="text">Swap Usage</div>
+        <div class="xc-switch switch on">
+          <div class="slider"></div>
+        </div>
+      </li>
+      <li class="graphSwitch">
+        <div class="text"><%= dicts.monitor.CPU %></div>
+        <div class="xc-switch switch on">
+            <div class="slider"></div>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="optionSet monitorIntervalOption">
+    <div class="label"><%= dicts.monitor.graphInterval %></div>
+    <div id="monitorIntervalSlider" class="optionSelector rangeSliderWrap">
+      <div class="rangeSlider">
+        <div class="leftArea">
+          <div class="slider"></div>
+        </div>
+        <div class="rightArea"></div>
+      </div>
+      <input class="value" value="60" type="number" min="1" max="60">
+      <span><%= dicts.common.seconds %></span>
+    </div>
+  </div>
+  <!-- end of displaySettings -->
+  <!-- support settings -->
+  <div class="support listWrap xc-expand-list active">
+    <div class="listInfo no-selection">
+      <span class="expand">
+        <i class="icon xi-down fa-13"></i>
+      </span>
+      <span class="text"><%= dicts.common.Supports %></span>
+    </div>
+    <ul class="no-selection">
+      <li id="monitor-delete">
+        <span class="text"><%= dicts.monitor.ReleaseMem %></span>
+        <i class="icon xc-icon-action xi-trash fa-14"></i>
+      </li>
+    </ul>
+  </div>
+  <!-- end of support settings -->
+</div>

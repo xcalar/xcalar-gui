@@ -1,0 +1,62 @@
+<!-- dsTarget create card -->
+<div id="dsTarget-create-card" class="modalContainer flex modalContainerNew large firstTouch">
+  <!-- header -->
+  <header class="modalHeader">
+    <span class="text">
+      <div class="backBtn xc-action-icon">
+        <i class="icon xi-load-back-popup"></i>
+      </div>
+      Add Connector
+    </span>
+    <div class="close" data-container="body" data-toggle="tooltip"
+      data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- cardMain -->
+  <section id="dsTarget-form" class="modalMain">
+    <div class="formSection name">
+      <div class="formRow">
+        <label class="label">Connector Name</label>
+        <input id="dsTarget-name" class="xc-input white" name="dsTarget-name" type="text" placeholder="" autocomplete="off" spellcheck="false" autofocus>
+      </div>
+    </div>
+    <div class="formSection type">
+      <div class="formRow">
+        <label class="label">Connector Type</label>
+        <div id="dsTarget-type" class="dropDownList clearfix">
+          <input class="text" type="text" value="" spellcheck="false" disabled>
+          <div class="iconWrapper">
+            <i class="icon xi-arrow-down"></i>
+          </div>
+          <div id="dsTarget-type-menu" class="list">
+            <ul></ul>
+            include "../../util/menuScrollArea.html"
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="formSection description xc-hidden">
+      <div class="formRow">
+        <label class="label"><%= dicts.common.Descrip %></label>
+      </div>
+      <div class="formContent">
+
+          <div id="dsTarget-description">
+          </div>
+      </div>
+    </div>
+    <div class="formSection params xc-hidden">
+      <div class="formRow">
+        <label class="label">Configuration</label>
+      </div>
+      <div class="formContent"></div>
+    </div>
+  </section>
+  <!-- end card main -->
+  <section class="modalBottom">
+      <button id="dsTarget-reset" class="btn btn-clear btn-new btn-secondary" type="reset"><%= dicts.common.Clear %></button>
+      <button id="dsTarget-submit" class="btn btn-submit btn-new" type="submit"><%= dicts.common.Add %></button>
+  </section>
+</div>
+<!-- end of dsTarget create card -->

@@ -1,0 +1,111 @@
+<div id="dagView" class="dagContainer noSelection monochrome">
+    <div class="categoryBar sectionBar">
+        <div class="label sectionHeader"></div><!-- populated in JS -->
+        <div class="categorySection">
+            <div class="searchArea dropDownList">
+                <div class="searchBox xc-search-input">
+                    <input type="text" class="searchInput xc-input white" placeholder="<%= dicts.common.SearchTools %>" spellcheck="false" autocomplete="off">
+                    <i class="icon xi-search"></i>
+                </div>
+                <div class="list">
+                    <ul></ul>
+                    include "../../util/menuScrollArea.html"
+                </div>
+            </div>
+            <div class="categoryArea">
+                <div class="categoryWrap">
+                    <div class="categories"></div>
+                </div>
+                <div class="categoryScroll">
+                    <i class="icon arrow left xi-arrow-left-outline"></i>
+                    <i class="icon arrow right xi-arrow-right-outline"></i>
+                </div>
+            </div>
+        </div>
+        <div class="rightText"><%= dicts.dag.ReadOnly %></div>
+        <div class="altRightText"><%= dicts.dag.ExecuteOnly %></div>
+        <div class="rightIconArea">
+            <i id="dagSearchTrigger" class="icon xc-icon-action search xi-search" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="Search"></i>
+            <i class="icon xc-icon-action undock xi_popout" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="Undock"></i>
+            <i class="icon xc-icon-action stackResult xi-stack-workspace-vert" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="Stack Vertically"></i>
+            <i class="icon xc-icon-action collapseResult xi-stack-workspace" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="Collapse Result"></i>
+            <i class="icon xc-icon-action close xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+        </div>
+    </div>
+    <div class="operatorBar">
+      <div class="actionWrap xc-hidden">
+        <div class="actions">
+          <div class="iconWrap selRename"><i class="icon xi-edit"></i></div>
+          <div class="iconWrap selDel"><i class="icon xi-trash"></i></div>
+        </div>
+        <div class="divider"></div>
+      </div>
+      <div class="operatorWrap"></div>
+      <div class="operatorBarOptions">
+        <div class="pinArea xc-icon-action">
+            <i class="icon pin xi-unpinned" data-container="body" data-placement="auto top"
+            data-toggle="tooltip" data-original-title="Pin the operator bar"></i>
+            <i class="icon unpin xi-pinned" data-container="body" data-placement="auto top"
+            data-toggle="tooltip" data-original-title="Unpin the operator bar"></i>
+        </div>
+      </div>
+    </div>
+    include "dagGraphBar.html"
+    <div class="dataflowMainArea">
+      <div class="watermarkArea">
+        <div class="row">
+          <div class="watermark"><%= dicts.common.ReadOnly %></div>
+          <!-- <div class="watermark"><%= dicts.common.ReadOnly %></div> -->
+        </div>
+        <!-- <div class="row">
+            <div class="watermark"><%= dicts.common.ReadOnly %></div>
+            <div class="watermark"><%= dicts.common.ReadOnly %></div>
+          </div> -->
+      </div>
+      <div class="dataflowWrap">
+        <div class="innerDataflowWrap"></div>
+      </div>
+      <div class="dataflowWrapBackground xc-hidden">
+        <div class="newTab">
+          <button class="btn iconBtn btn-submit btn-secondary">
+            <i class="icon xi-plus fa-11"></i>
+            <span><%= dicts.resouceMenu.AddModule %></span>
+          </button>
+        </div>
+      </div>
+
+      <div id="dagNodeOperatorsMenuWrap" class="collapsed">
+        <div class="controlBtn">
+          <i class="icon xi-plus" data-placement="auto right" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.MenuTStr.ClickForOperator %>"></i>
+          <i class="icon xi-minus"data-placement="auto right" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.MenuTStr.ClickToHide %>"></i>
+        </div>
+        <div id="dagNodeOperatorsMenu" class="menu" data-submenu="dagNodeOperatorsSubMenu">
+            <ul>
+            </ul>
+        </div>
+        <div class="viewOnlyText" data-placement="auto right" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.dag.ViewOnlyHint %>"></div>
+      </div>
+      <div id="dagNodeOperatorsSubMenu" class="menu subMenu">
+          <ul class="sortByName">
+              <li class="sizeToHeader">
+                  <%= dicts.MenuTStr.ResizeHeaders %>
+              </li>
+              <li class="sizeToContents">
+                  <%= dicts.MenuTStr.ResizeToContents %>
+              </li>
+          </ul>
+          include "../../util/menuScrollArea.html"
+      </div>
+    </div>
+    <!-- dag schema popup is autogenerated -->
+    <ul class="optionsMenu menu">
+        <li class="noTabRequired parameters">
+          <i class="icon xi-parameter"></i>
+          <span class="label"><%= dicts.dataflow.OpenParamSetting %></span>
+        </li>
+        <li class="aggregates">
+          <i class="icon xi-aggregate"></i>
+          <span class="label"><%= dicts.dataflow.OpenAggSetting %></span>
+        </li>
+    </ul>
+</div>

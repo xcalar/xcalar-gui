@@ -1,0 +1,331 @@
+@cloudFormWidth: 550px;
+
+html,
+body {
+    min-height: 750px;
+}
+
+body {
+    font-weight: normal;
+}
+
+#loginContainer {
+    height: 650px;
+}
+
+#userGuide {
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+
+    .icon {
+        font-size: 15px;
+    }
+}
+
+header {
+    width: @cloudFormWidth;
+}
+
+.hidden {
+    display: none;
+}
+
+.signupSection {
+    text-align: right;
+    margin-top: 1.25em;
+}
+
+.loginSection {
+    margin-top: 1.25em;
+    font-weight: 400;
+}
+
+.already-have-account {
+    max-width: 147px;
+    display: inline-block;
+    text-align: center;
+
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.authForm {
+    display: none;
+    width: 100%;
+}
+
+.section {
+    .input {
+        width: 100%;
+    }
+}
+
+.section .label {
+    z-index: 1;
+}
+
+#signupForm {
+    .input {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 150px;
+    }
+}
+
+#loginForm {
+    .input {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 120px;
+    }
+}
+
+#forgotPasswordForm {
+    .input {
+        margin-left: 0;
+        padding-left: 120px;
+    }
+}
+
+#confirmForgotPasswordForm {
+    .input {
+        width: 100%;
+        margin-left: 0;
+        padding-left: 180px;
+    }
+}
+
+#verify-code {
+    width: 100%;
+    margin-left: 0;
+    padding-left: 150px;
+}
+
+.radioButtonGroup {
+    display: block;
+}
+
+#forgotSection {
+    margin-top: 16px;
+    margin-left: 3px;
+    position: absolute;
+    z-index: 1;
+}
+
+.auth-section {
+    a:hover {
+        text-decoration: underline;
+    }
+}
+
+.buttonSection {
+    height: 76px;
+}
+
+.logOutLink {
+    margin-right: 50px;
+}
+
+a {
+    color: white;
+    cursor: pointer;
+
+    &:visited {
+        color: white;
+    }
+}
+
+.submitSection .termPart .checkbox {
+    margin-top: 0;
+}
+
+
+
+.title {
+    font-size: 16px;
+    margin-top: 15px;
+    margin-bottom: 40px;
+}
+
+#clusterForm {
+    .choice {
+        margin-bottom: 15px;
+
+        .label {
+            font-size: 16px;
+        }
+    }
+}
+
+.formMessage {
+    .icon {
+        font-size: 16px;
+    }
+
+    .text {
+        position: relative;
+        top: -2px;
+        left: 3px;
+        cursor: default;
+    }
+}
+
+i.icon.xi-error:before {
+    color: #FFACA3;
+}
+
+.resend-code {
+    position: absolute;
+    margin-top: 45px;
+    z-index: 1;
+    cursor: default;
+
+    span {
+        text-decoration: underline;
+        font-weight: bold;
+        cursor: pointer
+    }
+}
+
+#progressBarBorder {
+    box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.95);
+    border-radius: 10px;
+
+    #progressBar {
+        background-color: rgba(255, 255, 255, 0.95);
+        border-radius: 10px;
+        width: 5%;
+        height: 24px;
+    }
+}
+
+#formArea {
+    width: @cloudFormWidth;
+    padding-left: 0;
+}
+
+.btn:focus {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.input-tooltip {
+    display: none;
+    width: 250px;
+    background-color: white;
+    opacity: 0.9;
+    color: #05273f;
+    border-radius: 2px;
+    padding: 10px;
+    padding-right: 30px;
+    position: absolute;
+    top: calc(~"50% + 8px");
+    transform: translateY(-50%);
+    left: calc(~"100% + 16px");
+
+    .passwordRequirementsHeader {
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+
+    .errorTooltipRow {
+        color: red !important;
+    }
+
+    .xi-success {
+        color: green;
+    }
+
+    i.icon {
+        font-size: 14px;
+        margin-top: 5px;
+    }
+
+    .tootipRowText {
+        position: relative;
+        left: 20px;
+        top: -14px;
+    }
+}
+
+.input-tooltip::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -10px;
+    border-width: 10px;
+    border-style: solid;
+    border-color: transparent white transparent transparent;
+}
+
+.label {
+    .icon {
+        font-size: 11px;
+        position: absolute;
+        right: 4px;
+        top: 10px;
+        display: none;
+    }
+}
+
+.submitSection .termPart {
+    margin-top: 2.7em;
+
+    .icon {
+        font-size: 16px;
+        display: none;
+        position: absolute;
+        left: -26px;
+    }
+}
+
+.btn {
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+    .loading-dots {
+        position: absolute;
+    }
+}
+
+.section label {
+    height: auto;
+}
+
+#signup-submit {
+    margin-top: 2.5em;
+}
+
+.clearfix {
+    height: auto;
+}
+
+#clusterFormMessage {
+    margin-bottom: 34px;
+    font-size: 14px;
+}
+
+#noCreditsForm {
+    .no-credits-title {
+        font-size: 16px;
+        line-height: 1.3;
+    }
+
+    .logOutLink {
+        margin-right: 0;
+    }
+}
+
+#signup-term {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.auth-link-disabled {
+    text-decoration: none;
+    pointer-events: none;
+    opacity: 0.25;
+}

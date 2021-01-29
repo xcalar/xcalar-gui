@@ -1,0 +1,8 @@
+{
+    "LibLogTestFuncStressThreads" : 0,
+    "LibLogTestBigFileSize" : 1,
+    "LibLogTestNumLogPerThread" : 2,
+    "LibLogTestDataFileDir" : 3,
+    "LibLogTestDataFileDirAux" : 4
+}
+

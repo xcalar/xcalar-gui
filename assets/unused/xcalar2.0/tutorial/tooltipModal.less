@@ -1,0 +1,42 @@
+#tooltipModal {
+    // XXX TODO: Revisit this UI with Maggie once more than two walkthroughs exist.
+    @h-without-main: @modal-header-h;
+    .size(@height: 335px);
+
+    .modalMain {
+        padding: 0;
+        overflow-y: auto;
+        .font(@size: 12px, @align: left);
+        .size(@height: ~"calc(100% - @{modal-header-h})");
+
+        .item {
+            width: 100%;
+            height: 94px;
+            border-bottom: 1px solid @color-profile-gray;
+            .leftPart {
+                float: left;
+                padding: 25px 24px;
+                width:  ~"calc(100% - 162px)";
+                .tooltipName {
+                    font-size: 18px;
+                    font-weight: 600;
+                }
+                .detail {
+                    font-size: 14px;
+                    word-wrap: break-word;
+                }
+            }
+            .rightPart {
+                padding-top: 32px;
+                float: right;
+                padding-right: 22px;
+                .btn {
+                    width: 130px;
+                }
+            }
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+    }
+}

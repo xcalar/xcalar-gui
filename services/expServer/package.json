@@ -1,0 +1,85 @@
+{
+  "name": "xcalarnodeservice",
+  "version": "0.9.14",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "expServer.js",
+  "scripts": {
+    "start": "node --experimental-worker expServer.js",
+    "debug": "node --experimental-worker --inspect expServer.js",
+    "test": "NODE_ENV=test XCE_INSTALLER_ROOT=/tmp TMPDIR=/tmp nyc ../../../node_modules/mocha/bin/_mocha './test/**/*Spec.js' --bail"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git:/gitrepos/xcalar-gui.git"
+  },
+  "dependencies": {
+    "ajv": "^6.4.0",
+    "antlr4": "^4.7.1",
+    "async-require": "^1.2.2",
+    "atob": "^2.0.3",
+    "aws-sdk": "*",
+    "body-parser": "^1.15.0",
+    "btoa": "^1.2.1",
+    "connect-dynamodb": "^2.0.3",
+    "console-stamp": "^0.2.9",
+    "cookie": "^0.4.0",
+    "cookie-parser": "^1.4.3",
+    "cookie-signature": "1.0.6",
+    "cors": "^2.8.3",
+    "express": "^4.13.4",
+    "express-http-proxy": "1.2.0",
+    "express-session": "^1.15.6",
+    "express-socket.io-session": "^1.3.3",
+    "google-protobuf": "^3.6.1",
+    "http-proxy": "^1.17.0",
+    "jquery": "^1.5.1",
+    "jsdom": "^11.10.0",
+    "jsonwebtoken": "^8.2.1",
+    "jwk-to-pem": "^2.0.0",
+    "ldapjs": "^1.0.0",
+    "node-cache": "^4.2.0",
+    "request": "^2.88.0",
+    "request-promise-native": "^1.0.7",
+    "require.async": "^0.1.1",
+    "session-file-store": "^1.2.0",
+    "shelljs": "^0.6.0",
+    "socket.io": "^1.7.3",
+    "ssl-root-cas": "^1.2.3",
+    "xcalar": "file:xcalar-0.0.1.tgz",
+    "xcalarsdk": "file:xcalarsdk-0.0.1.tgz"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "nyc": "^14.1.1"
+  },
+  "nyc": {
+    "include": [
+      "*"
+    ],
+    "excludeNodeModules": true,
+    "watermarks": {
+      "lines": [
+        85,
+        95
+      ],
+      "functions": [
+        85,
+        95
+      ],
+      "branches": [
+        85,
+        95
+      ],
+      "statements": [
+        85,
+        95
+      ]
+    },
+    "reporter": [
+      "lcov",
+      "text-summary"
+    ],
+    "report-dir": "./test/report"
+  }
+}

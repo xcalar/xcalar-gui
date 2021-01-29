@@ -1,0 +1,15 @@
+{
+  "description": "Xcalar JS SDK",
+  "devDependencies": {},
+  "license": "ISC",
+  "main": "index.js",
+  "name": "xcalarsdk",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "0.0.1",
+  "dependencies": {
+  }
+}

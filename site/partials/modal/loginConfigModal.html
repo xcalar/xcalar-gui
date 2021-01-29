@@ -1,0 +1,229 @@
+<!-- Login Configuration Modal -->
+<div id="loginConfigModal" class="modalContainer large">
+  <!-- Header -->
+  <header class="modalHeader has-subHeader">
+    <span class="text"><%= dicts.loginConfig.title %></span>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+    <div class="subHeader"><%= dicts.loginConfig.instructions %></div>
+  </header>
+  <div class="modalMain">
+    <!-- Default Admin User -->
+    <section class="modalMainSection">
+      <div class="loginSectionToggle optionSet formRow" id="loginConfigEnableDefaultAdmin">
+        <div class="label"><%= dicts.loginConfig.enableDefaultAdminUser %></div>
+        <div class="optionSelector">
+          <div class="checkbox">
+            <i class="icon xi-ckbox-empty fa-13"></i>
+            <i class="icon xi-ckbox-selected fa-13"></i>
+          </div>
+        </div>
+      </div>
+      <div class="loginSectionBody optionSet xc-hidden">
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adminUsername %></div>
+            <input type="text" name="fake" style="display:none"> <!-- Stop autofill -->
+            <input name="fake" id="loginConfigAdminUsername" type="text" class="xc-input" autocomplete="off">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adminEmail %></div>
+            <input type="text" name="fake" style="display:none"> <!-- Stop autofill -->
+            <input name="fake" id="loginConfigAdminEmail" type="text" class="xc-input" autocomplete="off">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formBiRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adminPassword %></div>
+            <input type="password" name="fake" style="display:none"> <!-- Stop autofill -->
+            <input name="fake" id="loginConfigAdminPassword" type="password" class="xc-input" autocomplete="off">
+            <div id="passwordStrengthHint"></div>
+          </div>
+          <div class="formBiRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adminConfirmPassword %></div>
+            <input type="password" name="fake" style="display:none"> <!-- Stop autofill -->
+            <input name="fake" id="loginConfigAdminConfirmPassword" type="password" class="xc-input" autocomplete="off">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LDAP Authentication -->
+    <section class="modalMainSection">
+      <div class="loginSectionToggle optionSet formRow" id="loginConfigEnableLdapAuth">
+        <div class="label"><%= dicts.loginConfig.enableLdapAuth %></div>
+        <div class="optionSelector">
+          <div class="checkbox">
+            <i class="icon xi-ckbox-empty fa-13"></i>
+            <i class="icon xi-ckbox-selected fa-13"></i>
+          </div>
+        </div>
+      </div>
+      <div class="loginSectionBody optionSet xc-hidden">
+        <div class="radioButtonGroup" id="ldapChoice">
+          <div class="radioButton" data-option="ad">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="radioLabel"><%= dicts.loginConfig.activeDirectory %></div>
+          </div>
+
+          <div class="radioButton active" data-option="ldap">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <div class="radioLabel"><%= dicts.loginConfig.openLdap %></div>
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.ldapUrl %></div>
+            <input id="loginConfigLdapUrl" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.userDn %></div>
+            <input id="loginConfigLdapUserDn" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.searchFilter %></div>
+            <input id="loginConfigLdapSearchFilter" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.serverKeyFile %></div>
+            <input id="loginConfigLdapServerKeyFile" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix adOnly">
+          <div class="formBiRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adUserGroup %></div>
+            <input id="loginConfigADUserGroup" type="text" class="xc-input">
+          </div>
+          <div class="formBiRow inputRow adOnly">
+            <div class="label"><%= dicts.loginConfig.adAdminGroup %></div>
+            <input id="loginConfigADAdminGroup" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix adOnly">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adDomain %></div>
+            <input id="loginConfigADDomain" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="optionSet formRow adOnly">
+          <div class="label"><%= dicts.loginConfig.enableADGroupChain %></div>
+          <div class="optionSelector">
+            <div id="loginConfigEnableADGroupChain" class="checkbox">
+              <i class="icon xi-ckbox-empty fa-13"></i>
+              <i class="icon xi-ckbox-selected fa-13"></i>
+            </div>
+          </div>
+        </div>
+        <div class="optionSet formRow adOnly">
+          <div class="label"><%= dicts.loginConfig.enableADSearchShortName %></div>
+          <div class="optionSelector">
+            <div id="loginConfigEnableADSearchShortName" class="checkbox">
+              <i class="icon xi-ckbox-empty fa-13"></i>
+              <i class="icon xi-ckbox-selected fa-13"></i>
+            </div>
+          </div>
+        </div>
+        <div class="optionSet formRow">
+          <div class="label"><%= dicts.loginConfig.enableTLS %></div>
+          <div class="optionSelector">
+            <div id="loginConfigLdapEnableTLS" class="checkbox">
+              <i class="icon xi-ckbox-empty fa-13"></i>
+              <i class="icon xi-ckbox-selected fa-13"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MSAL Authentication -->
+    <section class="modalMainSection">
+      <div class="loginSectionToggle optionSet formRow" id="loginConfigEnableMSAL">
+        <div class="label"><%= dicts.loginConfig.enableMSAL %></div>
+        <div class="optionSelector">
+          <div class="checkbox">
+            <i class="icon xi-ckbox-empty fa-13"></i>
+            <i class="icon xi-ckbox-selected fa-13"></i>
+          </div>
+        </div>
+      </div>
+      <div class="loginSectionBody optionSet xc-hidden">
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.clientId %></div>
+            <input id="loginConfigMSALClientId" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.webApi %></div>
+            <input id="loginConfigMSALWebApi" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.authority %></div>
+            <input id="loginConfigMSALAuthority" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.azureEndpoint %></div>
+            <input id="loginConfigMSALAzureEndpoint" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.azureScopes %></div>
+            <input id="loginConfigMSALAzureScopes" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.userScope %></div>
+            <input id="loginConfigMSALUserScope" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.adminScope %></div>
+            <input id="loginConfigMSALAdminScope" type="text" class="xc-input">
+          </div>
+        </div>
+        <div class="clearfix">
+          <div class="formRow inputRow">
+            <div class="label"><%= dicts.loginConfig.useB2C %></div>
+            <div class="optionSelector">
+              <div id="loginConfigMSALEnableB2C" class="checkbox">
+                <i class="icon xi-ckbox-empty fa-13"></i>
+                <i class="icon xi-ckbox-selected fa-13"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.ConfirmSave %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+
+<!-- End of Login Configuration Modal -->

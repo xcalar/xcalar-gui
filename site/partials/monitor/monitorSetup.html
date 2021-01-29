@@ -1,0 +1,57 @@
+<div id="configCard" class="cardContainer">
+  <header class="cardHeader">
+    <span class="title"><%= dicts.monitor.ConfigParam %></span>
+    <div class="toggleSize">
+      <div class="headerBtn minimize" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Minimize %>">
+        <i class="icon xi-exit-fullscreen"></i>
+      </div>
+      <div class="headerBtn maximize" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Maximize %>">
+        <i class="icon xi-fullscreen"></i>
+      </div>
+    </div>
+  </header>
+  <div class="cardMain">
+    <div class="configHeader">
+      <div class="formRow">
+        <label class="argWrap paramNameWrap">
+          <span class="text"><%= dicts.monitor.ConfigParamName %></span>
+        </label>
+        <label class="argWrap curValWrap">
+          <span class="text"><%= dicts.monitor.CurVal %></span>
+        </label>
+        <label class="argWrap newValWrap">
+          <span class="text"><%= dicts.monitor.NewVal %></span>
+        </label>
+        <label class="argWrap restartWrap">
+          <span class="text"><%= dicts.monitor.RestartRequired %></span>
+        </label>
+      </div>
+    </div>
+    <div class="configTable">
+      <div class="formRow placeholder" title="Add Config Parameter" data-toggle="tooltip">
+        <label class="argWrap paramNameWrap">
+          <div class="xc-input">
+            <i class="icon xi-plus"></i>
+          </div>
+        </label>
+        <label class="argWrap curValWrap">
+          <div class="xc-input">
+            <i class="icon xi-plus"></i>
+          </div>
+        </label>
+        <label class="argWrap">
+          <div class="xc-input">
+            <i class="icon xi-plus"></i>
+          </div>
+        </label>
+         <label class="argWrap restartWrap">
+        </label>
+      </div>
+    </div>
+
+  </div>
+  <div class="cardBottom">
+    <button class="btn btn-submit settingSave"><%= dicts.common.Save %></button>
+    <button class="btn btn-cancel resetAll"><%= dicts.common.Cancel %></button>
+  </div>
+</div>

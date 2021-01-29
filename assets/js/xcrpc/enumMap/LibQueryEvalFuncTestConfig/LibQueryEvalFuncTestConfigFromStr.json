@@ -1,0 +1,8 @@
+{
+    "LibQueryEvalThreadsPerCore" : 0,
+    "LibQueryEvalRunsPerThread" : 1,
+    "LibQueryEvalNumberOfCores" : 2,
+    "LibQueryEvalEvaluateTestEnabled" : 3,
+    "LibQueryEvalStepThroughTestEnabled" : 4
+}
+

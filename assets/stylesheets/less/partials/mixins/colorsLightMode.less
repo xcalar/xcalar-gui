@@ -1,0 +1,437 @@
+ /* ========== Constants ========== */
+
+ /* Standard */
+ @color-bg-default: #FFFFFF;
+ @color-bg-defaultStrong: #FFFFFF; // lightMode = FFF, darkMode = 000
+ /* Shadow */
+ @color-black-invisible: rgba(0, 0, 0, 0);
+
+ /* Backgrounds */
+ @color-background-udfError: #FFFFAA; // XXX only used once
+ @color-background-error: #E45B52;
+
+ /* Dag */
+ @color-dag-schema-selected: rgba(99, 178, 225, 0.25);
+ @color-dagTab-optimized: #ecead8; // XXX only used once (optimized dag tab)
+ @color-dagTab-sql: #dae7d8; // XXX only used once (dag node sql)
+ @color-dagTab-custom: #f0dbd9; // XXX only used once (dag node custom)
+ @color-dag-yellow: #FFFF00;
+ @color-dag-red: #FF0000;
+ @color-dag-blue: #0000FF;
+
+ /* Dropdown menu colors */
+ @color-selectedCell-dark: #D1DEE6;
+ @color-selectedCell-light: #DDEAF2;
+ @color-table-selectedCell-light: #DDEAF2;
+ @color-selectedCell-lighter: #e1f2f9;
+ @color-menu-shadow: rgba(0,0,0,0.1); // XXX only used twice
+
+ /* Text */
+ @color-text-lightGray: #B6B6B6; // XXX only used twice
+ @color-text-midlightGray: #787878;
+ @color-text-error: @color-background-error;
+ @color-text-placeholder: #E1E1E1; // XXX only used twice
+ @color-text-graySoft: #AFAFAF; // XXX only used twice
+ @color-text-udfError: #ff4d31; // XXX only used twice
+ @color-text-macaroniAndCheese: @color-macaroni-and-cheese;
+
+ /* Table Color Scheme */
+ @color-table-red: #F46D73;
+ @color-table-lightGray: #F5F5F5; // XXX only used twice
+ @color-table-midGray: #EDEDED; // XXX only used twice
+ @color-table-col-darkGray: #dbdbdb; // XXX only used twice
+ @color-table-col-lightGreen: #EAF5EA; // XXX only used twice
+ @color-table-col-green: #E3EDE2; // XXX only used twice
+ @color-table-indexed-lightBlue: #E9EFF4; // XXX only used twice
+ @color-table-indexed-blue: #E1E7EC; // XXX only used twice
+ @color-table-borderBlue: #266481;
+ @color-table-cover: rgba(0,0,0,0.3); // XXX only used once
+ @color-table-preview-highlight: rgba(91, 178, 233, 0.5);
+ @color-fauxCol-shadow: rgba(100,100,100,.05); // XXX only used once
+ @color-fauxTable-outline: rgba(0,0,0,.1);  // XXX only used once
+ @color-table-after-gray: #B8B8B8; // XXX only used once
+ @color-table-border-darkened: #C0C0C0; // XXX only used once
+ @color-table-border-gray: #9E9E9E; // XXX only used once
+ @color-table-dataCol-hover: #CCD7CC;
+ @color-table-selected-hover: #BFCCD4;
+ @color-table-indexed-hover: #CBD1D6;
+
+ /* JSON Modal */
+ @color-json-default: #FFA633; // XXX only used twice
+ @color-json-active-bar: #C5E1F1; // XXX only used once (jsonModal, active optionsBar)
+ @color-json-key: #002D41;  // XXX only used twice
+ @color-json-string: #2B594F; // XXX only used twice
+ @color-json-num: #E74A5F; // XXX only used twice
+ @color-json-array: #9B8920; // XXX only used twice
+ @color-json-partial: #F3DBDC; // XXX only used twice
+ @color-json-partial-shadow: #E56158; // XXX only used twice
+ @color-json-project-selected: #BDE6FF; // XXX only used once (jsonModal, keySelected background)
+
+ /* Profile Modal */
+ @color-profile-bar-extra: #505050; // XXX only used twice
+ @color-profile-bar-extra-highlight: #F1F1F1; // XXX only used once (profile modal)
+ @color-profile-bar-highlight: #B7E2F3;  // XXX only used once (profile modal)
+ @color-profile-bar-border-highlight: #25B0DE;
+ @color-profile-bar-selected-border: #2D7694; // XXX only used twice
+ @color-profile-bar-null-hover: #CA443B; // XXX only used once (profile modal)
+ @color-profile-selected-bar-extra: #bcccdc; // XXX only used once (profile modal)
+ @color-profile-bar: #2a93ee;
+ @color-profile-bar-hover: #0c76da;
+ @color-profile-bar-null: #E04C42;
+ @color-profile-selected-bar-null: #9E2F28; // XXX only used once (profile modal)
+
+ /* About Modal */
+ @color-about-gradient-top: #0D8BB2;
+ @color-about-gradient-bottom: #206688; // XXX only used once (about modal)
+
+ /* Random Colors */
+ @color-mercury: #E9E9E9; // XXX only used once (scroll bar gradient color)
+ @color-defaultGray: #888888;
+ @color-lightSilverChalice: #B1B1B1; // XXX only used once (placeholder)
+ @color-tasman: #CCD7CC; // XXX only used once (jsonElement background)
+ @color-nightShadz: #AF2F4D;
+
+ /* Colors for XPE guis */
+ @color-xpe-installer-light-blue: @color-bg-select-blue;
+ @color-xpe-installer-dark-blue: @color-bg-dusk-blue;
+ @color-xpe-installer-light-text: #FFFFFF;
+ @color-xpe-installer-dark-text: #000000;
+ @color-xpe-installer-eula-border: #D1D1D1;
+ @color-xpe-installer-install-step-text: #797979;
+ @color-xpe-installer-fail-red: rgba(245, 141, 127, 1);
+ @color-xpe-installer-range-slider-right: @color-bg-pinkish-grey2;
+ @color-xpe-range-slider-left: @color-about-gradient-top;
+ @color-xpe-installer-right-background: rgba(245, 251, 255, 0.1);
+ @color-xpe-docker-starter-bg: #EEF1F4;
+ @color-xpe-border-gray: #D3D3D3;
+ @color-xpe-progress-bar-bg-gray: #DFDFDF;
+ @color-xpe-image-table-failure-msg: #B53A1F;
+
+ /**
+  * ---------------------- NEW 2.0 COLORS ----------------------------------
+  * ---------------------- NEW 2.0 COLORS ----------------------------------
+  * ---------------------- NEW 2.0 COLORS ----------------------------------
+  * ---------------------- NEW 2.0 COLORS ----------------------------------
+  * ---------------------- NEW 2.0 COLORS ----------------------------------
+  * ---------------------- NEW 2.0 COLORS ----------------------------------
+  */
+ /* Backgrounds */
+ // whites and grays
+ @color-bg-modal: #FFFFFF;
+ @color-bg-white-two: #D8D8D8;
+ @color-bg-white-three: #F2F2F2;
+ @color-bg-white-five: #E6E6E6;
+ @color-bg-white-seven: #F8F8F8;
+ @color-bg-white-eight: #EAEAEA;
+ @color-bg-white-nine: #DDDDDD;
+ @color-bg-body-gray: #D6DCDF;
+ @color-bg-pinkish-grey: #BEBEBE;
+ @color-bg-pinkish-grey2: #CCCCCC;
+ @color-bg-topBarGray: @color-bg-white-eight;
+ @color-bg-topBarGray4: #F9FBFC;
+ @color-bg-unselect-gray: #9F9F9F;
+ @color-bg-99-grey: #999999;
+ @color-bg-white-gray: #E5E5E5; // XXX only used once (supTicketModal tableHeader)
+ @color-bg-dropdown-gray: #BBC7D1;
+ @color-bg-advSubTab-grey: #667989; // XXX only used once (developer mode, subTab)
+ @color-bg-advSubTab-drakerGrey: #4e5D69; // XXX only used twice
+ @color-bg-advSubTab-draketsGrey: #38434C; // XXX only used once (developer mode, active subTab's hover state)
+ @color-bg-cancel-gray: #798fa1;
+ @color-bg-cancel-gray-hover: #9fb3c8;
+ @color-bg-typeIcon: @color-border-softGray;
+ // green
+ @color-bg-apple-green: #64B053;
+ @color-bg-java-green: #259286;
+ // yellow
+ @color-bg-gold: #FECF33;
+ @color-bg-tahiti-gold: #E7762D;
+ @color-bg-monitor-gold: #F4D464; // XXX only used once (memory alert yellow)
+ @color-macaroni-and-cheese: #F5C22E;
+ @color-bg-warning: #f6b243; // XXX only used once
+ @color-highlight-gold: #f5e58a; // XXX only used twice
+ @color-highlight-stroke-gold: #eed12b; // XXX only used once
+ @color-highlight-selection-gold: #fcf9e9; // XXX only used once
+ // red
+ @color-error-border: #C71F36;
+ @color-error-border-light: #D76272;
+ @color-bg-red-hover: #8E1022; // XXX only used once (admin steam button stop steam color)
+ @color-bg-monitor-red: #F35F50; // XXX only used once (memory alert red)
+ @color-error-red: #f15840;
+ @color-red-forbid: #ff836f; // XXX only used once (sql history cancel button)
+
+ // blues
+ @color-bg-marine: #0A3549;
+ @color-bg-dark-marine: #062330; // XXX only used twice
+ @color-bg-select-blue: #0c76da;
+ @color-bg-cardHeader: #849CB0;
+ @color-bg-dusk-blue: #1E6688; // active main tab & mainmenu background
+ @color-bg-dusk-blue-up: #236E90; // XXX only used once
+ @color-bg-light-navy: #154f69; // inactive sub tab
+ @color-bg-btn-hover-blue: #046EA1; // XXX only used once
+ @color-bg-bright-blue: #378CB3;
+ @color-bg-brighter-blue: #5CB2E8;
+ @color-bg-bright-light-blue: #38CBFF; // help headings
+ @color-bg-limedSpruce: #36444D; // XXX only used once
+ @color-bg-light-blue-grey: #DDEAF2;
+ @color-bg-light-blue-grey-two: #D1DEE6;
+ @color-bg-graph-one: #B4DCD5;
+ @color-bg-graph-two: #5DB9C4;
+ @color-bg-graph-three: #5A9FC8;
+ @color-bg-graph-four: @color-hover-blue;
+ @color-bg-graph-gray: #EEEEEE;
+ @color-bg-highlight-blue-trans: rgba(221, 234, 242, 0.5); // XXX only used once
+ @color-bg-list-hover:#F5F8FA;
+ @color-bg-list-selected-blue:#E7EEF3; // XXX only used once
+ @color-bg-tableView-blue: #16506A; // XXX only used once
+ @color-bg-tab-blue: #c8d8e4; // XXX only used once
+
+ @color-bg-charcoal-grey: #2E3A42; // tooltip uses .9 opacity of this color
+ @color-bg-info-blue: #73AEC9;
+ @color-bg-lockedIcon-light: rgba(4, 110, 161, 0.7);
+ @color-bg-lockedIcon-lighter: rgba(4, 110, 161, 0.56);
+ @color-bg-lockedIcon-dark: #26617D;
+ @color-bg-lockedIcon-cancel-light: rgba(161, 4, 4, 0.7);
+ @color-bg-lockedIcon-cancel-lighter: rgba(161, 4, 4, 0.56);
+ @color-bg-lockedIcon-cancel-dark: #7D2626;
+ @color-bg-dropdown-hover-gray: @color-bg-list-hover;
+
+ /* Borders */
+ @color-border-softBlue: @color-hover-blue;
+ @color-border-select-blue: @color-bg-select-blue;
+ @color-border-activeBlue: @color-bg-marine;
+ @color-border-white-two: @color-bg-white-two;
+ @color-border-warmGray: #979797; // XXX only used twice
+ @color-border-pinkish-grey: @color-bg-pinkish-grey;
+ @color-border-pinkish-grey2: @color-bg-pinkish-grey2; // card border
+ @color-border-white-five: @color-bg-white-five;
+ @color-border-monitor-label: #D4D4D4; // XXX only used twice
+ @color-border-darkGray: #4D4D4D;
+ @color-border-softGray: #DBE1E6;
+ @color-border-softGray2: @color-bg-dropdown-gray;
+ @color-border-softGray3: #e3eaf0; // XXX only used once
+ @color-border-focus-blue: #55C4DE;
+ @color-border-menubar-grey: #c7d4df;
+ @color-border-bar: @color-bg-cancel-gray-hover;
+ @color-border-bar-white: #D4DCE3;
+ @color-border-grayBlue: #B9CBDB;
+ @color-border-menugray: #D7E0E7;
+ @color-editor-gutter: #F5F8FA;
+ @color-border-bar: @color-border-bar-white;
+ @color-border-operator: @color-bg-cardHeader;
+ @color-connector: @color-border-softGray2;
+@color-border-operator-hover: @color-bg-cardHeader;
+
+ /* Shadow */
+ @color-inset-shadow: rgba(0, 0, 0, 0.2); // XXX only used once
+ @color-tab-shadow: #6d8090; // XXX only used once
+ @color-subTab-shadow: #44525d; // XXX only used once
+
+ /* Table Color */
+ @color-table-header-gray: @color-bg-white-seven;
+ @color-table-evenRow-gray: #FAFAFA; // XXX only used twice
+ @color-table-oddSelectedCell-blue: #D7EFF9; // XXX only used once
+ @color-table-evenSelectedCell-blue: #CFEAF6; // XXX only used once
+ @color-table-hoverBg-gray: @color-border-softGray;
+ @color-table-headerSelected: #5fb7df;
+
+ /* Log Color Scheme */
+ @color-log-blue: @color-bg-select-blue;
+ @color-log-brown: #B58900;
+ @color-log-lightGreen: @color-bg-java-green;
+ @color-log-darkGreen: #536870; // XXX only used once
+ @color-log-orange: #CB4A05; // XXX only used once
+ @color-log-lightGray: @color-bg-unselect-gray;
+ @color-log-pink: #A647b4; // XXX only used once
+ @color-log-select: rgba(91, 178, 233, 0.3); // XXX only used once
+
+ /* Monitor Log color */
+ @color-monitorLog-outerSpace: #303942; // XXX only used once
+ @color-monitorLog-lucky: #A39817; // XXX only used once
+ @color-monitorLog-brown: #9B4500; // XXX only used once
+ @color-monitorLog-bostonBlue: #368CB3; // XXX only used once
+ @color-monitorLog-ultramarine: #180BA9; // XXX only used once
+ @color-monitorLog-cardinalPink: #890482; // XXX only used once
+ @color-monitorLog-lochinvar: @color-bg-java-green;
+ @color-monitorLog-guardsmanRed: #CA0000; // XXX only used once
+
+ // dataflow button colors
+ @color-connector: @color-bg-dropdown-gray;
+ @color-stop: #FF6E57; // XXX only used once
+
+ /* Prefix Colo Scheme */
+ @color-prefix-gray: #808080;
+
+ /* Fonts Color */
+ @color-font-white: #FFFFFF;
+ @color-font-black: #000000;
+ // grayish
+ @color-font-softGrayBlue: #ABC1CC;
+ @color-font-pinkish-grey: @color-bg-pinkish-grey;
+ @color-font-pinkish-grey2: @color-bg-pinkish-grey2;
+ @color-font-greyish-brown: #4A4A4A;
+ @color-font-navy: #36454E;
+ @color-font-gray36: #5C5C5C;
+ @color-font-warm-grey-two: @color-bg-unselect-gray;
+ @color-font-darkGray: #282828;
+ @color-font-dagTabInactive: #282828;
+ @color-font-form: #44515C;
+ @color-font-default: #000000;
+ @color-font-defaultInverse: #FFFFFF;
+ @color-font-dropdown-gray: #8C9CB0;
+ @color-font-secondary-button-hover: #f4f7fa;
+ @color-font-secondary-button-active: #f9f9fa;
+ @color-secondary-button-shadow: #627483;
+ @color-border-nodeEdge: #627483;
+
+ // blues
+ @color-font-softBlue: @color-hover-blue;
+ @color-font-select-blue: @color-bg-select-blue;
+ @color-font-bright-light-blue: @color-bg-bright-light-blue;
+ @color-font-dusk-blue: @color-bg-dusk-blue;
+ @color-font-edge: #627483;
+ @color-font-dropdown: #627483;
+
+ @color-font-light-blue: #6eb9db; // XXX only used twice
+ @color-font-button-hover: #2a93ee;
+ @color-font-checkbox-hover: #0c76da;
+
+
+ /* Pie Chart Colors */
+ @color-arc-1: #67b9a1;
+ @color-arc-2: #cfe8d1;
+ @color-arc-3: #14b3b3;
+ @color-arc-4: #97e9df;
+ @color-arc-5: #97cce9;
+ @color-arc-6: #d7fdb1;
+ @color-arc-7: #91b7b0;
+ @color-arc-8: @color-hover-blue;
+ @color-arc-9: #f7f7f7;
+ @color-arc-10: #DDEAF2;
+ @color-arc-11: #1ec89f;
+ @color-arc-12: #4E76B0; // Used for Published Table Memory
+ @color-arc-other: #9b9b9b;
+ @color-arc-sysfree: #DCE1E6;
+ @color-arc-sysused: @color-bg-cardHeader;
+ @color-arc-xdbfree: #BBC7D0;
+ @color-arc-otherusers: #024E7C;
+ @color-arc-yourtables: #36B0E5;
+ @color-arc-pubtables: #017D7C;
+ @color-arc-shareddata: #2ABDBB;
+
+ /* Operator icon colors */
+ @color-operator-favorites: @color-bg-dropdown-gray;
+ @color-operator-in: #F4B48A;
+ @color-operator-out: #E7DC98;
+ @color-operator-value: #F896A9;
+ @color-operator-operations: #7FD4B5;
+ @color-operator-column: #89D0E0;
+ @color-operator-join: #92B1DA;
+ @color-operator-set: #CCAADD;
+ @color-operator-SQL: #AACE8F;
+ @color-operator-extensions: #EAABD3;
+ @color-operator-custom: #F8A296;
+
+ /* Color for xcalar adventure */
+ @color-flame-pea: #E26340;
+ @color-river-bed: #4d5b67;
+
+ /* Color for LiveChat */
+ @color-confirm-yellow: #fedf98;
+ @color-tick-green: @color-bg-apple-green;
+ @color-send-border-grey: #707D8A;
+
+ /* Color for admin password */
+ @color-invalid: @color-error-border;
+ @color-very-weak: #F0822E;
+ @color-weak: @color-macaroni-and-cheese;
+ @color-strong: @color-bg-select-blue;
+ @color-very-strong: @color-bg-apple-green;
+
+
+
+ /**
+  * ---------------------- NEW 2.3 COLORS ----------------------------------
+  * ---------------------- NEW 2.3 COLORS ----------------------------------
+  * ---------------------- NEW 2.3 COLORS ----------------------------------
+  * ---------------------- NEW 2.3 COLORS ----------------------------------
+  * ---------------------- NEW 2.3 COLORS ----------------------------------
+  * ---------------------- NEW 2.3 COLORS ----------------------------------
+ */
+ @color-profile-gray: #d9e2ec;
+ @color-wkbk-border-gray: #e3e9ef;
+ @color-icon-default: #334E68;
+ @color-icon-default-hover: #829AB1;
+ @color-icon-defaultBlue: #486581;
+ @color-icon-darkGreen: #1F7553;
+ @color-icon-hoverBg: rgba(0, 0, 0, 0.05);
+ @color-icon-hoverBgMed: rgba(0, 0, 0, 0.1);
+ @color-icon-hoverBgLight:  rgba(255, 255, 255, 0.7);
+ @color-link-blue: #0c76da;
+ @color-hover-blue: #0a64b8;
+ @color-font-link-blue: @color-hover-blue;
+
+
+ @color-bg-2: #EEF1F4;
+ @color-bg-topBar: #EEF1F4;
+ @color-bg-bottomBar: #EEF1F4;
+ @color-bg-categoryBar: #EEF1F4;
+ @color-bg-dagTabInactive: @color-border-softGray;
+ @color-bg-dagTabActive: #FFFFFF;
+ @color-bg-sqlEditor: #FFFFFF;
+ @color-bg-logoBorder: #CFE9FD;
+ @color-font-logo: #1E6688;
+ @color-icon-menuBar: #334E68;
+ @color-icon-menuBarActive: #FFFFFF;
+ @color-border-light: #B9CBDB;
+ @color-bg-leftPanel: #FFFFFF;
+ @color-bg-tableIcon: #CCCCCC;
+ @color-bg-dagTip: @color-bg-list-hover;
+ @color-bg-dagTipStrong: #FFFFFF;
+ @color-bg-graphBar: #FFFFFF;
+ @color-bg-dagTabBar: #EEF1F4;
+ @color-bg-dgTabInactive: @color-border-softGray;
+ @color-bg-default: #FFFFFF;
+ @color-bg-menuBar: #0A64B8;
+ @color-bg-formWaiting: rgba(255, 255, 255, 0.6);
+ @color-bg-menu: #FFFFFF;
+ @color-bg-input: @color-bg-white-three;
+ @color-bg-nodeSelecting: @color-bg-white-seven;
+ @color-bg-dataColHeader: @color-border-menugray;
+ @color-border-menuBar: #C0CED9;
+ @color-font-btn-secondary: #0a64b8;
+ @color-border-btn-secondary: #798fa1;
+ @color-border-xdGridList: #DBE1E6;
+ @color-scrollBarLight: @color-mercury;
+ @color-scrollBarDark: #FFFFFF;
+ @color-scrollBarThumb: @color-border-grayBlue;
+ @color-bg-tableIconActive: @color-icon-defaultBlue;
+ @color-bg-tooltip: @color-bg-charcoal-grey;
+ @color-border-menuItem: #DBE1E6;
+ @color-border-medium: #B9CBDB;
+ @color-border-medium2: #DBE1E6;
+ @color-bg-radio: #BEBEBE;
+ @color-bg-schemaHeading: #F5F8FA;
+ @color-bg-schemaHover: #F5F8FA;
+ @color-bg-paramModalCell: rgba(255, 255, 255, 0.5);
+ @color-font-typeIcon: #BEBEBE;
+ @color-bg-dialog: rgba(47, 47, 47, 0.6);
+ @color-border-modal: transparent;
+ @color-bg-actionIcon: #DBE1E6;
+ @color-border-nodeEdgeSelected: #444444;
+ @color-bg-innerIconAction: @color-bg-cardHeader;
+ @color-bg-mapMenuActive: @color-bg-light-blue-grey;
+
+
+ @color-bg-opaque3: rgba(0, 0, 0, 0.3);
+ @color-bg-opaque5: rgba(0, 0, 0, 0.5);
+ @color-bg-opaqueInverse5: rgba(255, 255, 255, 0.5);
+ @color-bg-opaqueInverse8: rgba(255, 255, 255, 0.8);
+
+
+@color-bg-opaque1: rgba(0, 0, 0, 0.1);
+@color-bg-opaque2: rgba(0, 0, 0, 0.2);
+@color-bg-opaque3: rgba(0, 0, 0, 0.3);
+@color-bg-opaque4: rgba(0, 0, 0, 0.4);
+@color-bg-opaque5: rgba(0, 0, 0, 0.5);
+@color-bg-opaqueInverse5: rgba(255, 255, 255, 0.5);
+@color-bg-opaqueInverse8: rgba(255, 255, 255, 0.8);

@@ -1,0 +1,5 @@
+{
+    "LibQueryParserThreadsPerCore" : 0,
+    "LibQueryParserRunsPerThread" : 1
+}
+

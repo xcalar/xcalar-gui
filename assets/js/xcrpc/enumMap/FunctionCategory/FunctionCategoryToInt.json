@@ -1,0 +1,14 @@
+{
+    "FunctionCategoryArithmetic" : 0,
+    "FunctionCategoryBitwise" : 1,
+    "FunctionCategoryTrigonometry" : 2,
+    "FunctionCategoryConversion" : 3,
+    "FunctionCategoryString" : 4,
+    "FunctionCategoryMisc" : 5,
+    "FunctionCategoryCondition" : 6,
+    "FunctionCategoryAggregate" : 7,
+    "FunctionCategoryCast" : 8,
+    "FunctionCategoryUdf" : 9,
+    "FunctionCategoryTimestamp" : 10
+}
+

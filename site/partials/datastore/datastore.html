@@ -1,0 +1,46 @@
+<!-- DATASTORE PANEL -->
+<div id="datastorePanel" class="mainPanel in">
+  include "dsHeader.html"
+  <!-- Main Content -->
+  <div class="mainContent">
+    <div id="datastoreMenu" class="commonSection leftSection" data-tab="dataStoresTab">
+        <section class="menuSection table xc-hidden">
+            include "../table/tblMenu.html"
+        </section>
+        <section class="menuSection target xc-hidden">
+            include "dsTargetMenu.html"
+        </section>
+    </div>
+    <div class="rightSection">
+         <!-- Import View -->
+        <div id="datastore-in-view" class="subPanel in import">
+            <div id="datastore-in-view-topBar">
+              <div class="tabs">
+                <!-- reverse the order for z-index of style to work -->
+                <div class="tab result">3. Dataset</div>
+                <div class="tab preview">2. Format</div>
+                <div class="tab source">1. Source</div>
+              </div>
+            </div>
+            <div id="dsFormView" class="viewSection">
+              include "dsForm.html"
+              include "fileBrowser/fileBrowser.html"
+              include "dsConfig.html"
+            </div>
+            <div id="pTblView" class="viewSection xc-hidden">
+              include "../table/tblPreview.html"
+            </div>
+        </div>
+        <!-- data target view -->
+        <div id="datastore-target-view" class="firstTouch subPanel target">
+            include "dsTarget.html"
+        </div>
+
+        <div id="loadWizard" class="loadWizard subPanel"></div>
+        <div id="loadHistory" class="loadHistory subPanel"></div>
+      </div> <!-- END RIGHT SECTION -->
+
+  </div><!-- END MAIN CONTENT-->
+</div>
+<!-- END DATASTORE PANEL -->
+

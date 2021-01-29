@@ -1,0 +1,3858 @@
+#configNodeContainer {
+    @title-height: 32px;
+    @header-height: 58px;
+    @header-h: 14px; // for draggable top bar
+
+    overflow: hidden;
+    height: 100%;
+    z-index: 0; // to keep .functionsInput behind elements outside of confignodecontainer
+
+    &.undocked {
+        overflow: visible;
+        padding-top: @header-h;
+
+        .draggableHeader {
+            display: block;
+            position: absolute;
+            height: @header-h;
+            width: 100%;
+            top: 0;
+            background-color: @color-table-selected-hover;
+            .cursor-move;
+        }
+
+        > .undock {
+            top: 5px + @header-h;
+        }
+
+        .opPanel > header .close {
+            top: @header-h;
+        }
+    }
+
+    > .undock {
+        position: absolute;
+        top: 5px;
+        right: 32px;
+        font-size: 14px;
+    }
+
+    .draggableHeader {
+        display: none;
+    }
+
+    .opPanel {
+        display: flex;
+        flex-direction: column;
+        > header {
+            flex: 0 0 auto;
+            height: 24px;
+            font-size: 16px;
+            line-height: 24px;
+            padding-left: 15px;
+            border-bottom: 1px solid @color-border-medium2;
+            overflow: hidden;
+
+            .row {
+                &:first-child {
+                    height: auto;
+                    display: flex;
+                    overflow: hidden;
+                    justify-content: flex-start;
+                    align-items: baseline;
+                    flex-wrap: wrap;
+                    width: ~"calc(100% - 30px)";
+                }
+            }
+
+            .title {
+                margin-right: 8px;
+            }
+            .close {
+                position: absolute;
+                top: 0;
+                right: 8px;
+            }
+        }
+    }
+
+    .modalTopMain {
+        padding: 0px;
+    }
+
+    .opSection, .advancedEditor, .bottomSection {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .xc-colSchema .listSection {
+        padding: 0px;
+        .addColumn {
+            margin-bottom: 8px;
+        }
+        .part > div {
+            width: 50% !important;
+        }
+    }
+
+    .checkboxSection {
+        font-size: 12px;
+    }
+}
+
+.opPanel {
+    height: 100%;
+    font-weight: 400;
+
+    @title-height: 32px;
+    @header-height: 58px;
+    @listHeight: 24px;
+    @headingHeight: 30px;
+    @standardFontSize: 12px;
+    @commonMargin: 10px; // margin left used on text and input padding
+    @functionsListZindex: 10;
+
+    .input-box(100%, @listHeight);
+
+    .divider {
+        background-color: @color-bg-2;
+        height: 1px;
+        margin: 4px 0;
+    }
+
+    .switch {
+        background-color: @color-bg-default;
+        position: relative;
+        top: 2px;
+        margin-left: 10px;
+        margin-right: 10px;
+
+        .slider {
+            background-color: @color-font-default;
+        }
+    }
+
+    > header {
+        height: @header-height;
+        line-height: @title-height;
+        font-size: 22px;
+
+        .title {
+            color: @color-font-darkGray;
+            float: left;
+            .textOverflowOneLine;
+        }
+
+        .headerIcons {
+            float: right;
+            color: @color-icon-default;
+            margin-left: auto;
+
+            .icon {
+                line-height: @title-height;
+                margin-left: 10px;
+                float: right;
+                font-size: 16px;
+                cursor: pointer;
+                opacity: @opacity-unhover;
+                &:hover {
+                    opacity: @opacity-hover;
+                }
+            }
+        }
+
+        .close {
+            line-height: 24px;
+            float: right;
+            font-size: 14px;
+            color: @color-icon-default;
+            cursor: pointer;
+            opacity: @opacity-unhover;
+            margin-left: auto;
+
+            &:hover {
+                opacity: @opacity-hover;
+            }
+        }
+
+        .subTitle {
+            font-size: 12px;
+            .textOverflowOneLine;
+            margin-right: 8px;
+            color: @color-font-darkGray;
+        }
+    }
+
+    .semiHidden {
+        height: 0px !important;
+        overflow: hidden !important;
+        &.inputWrap {
+            margin-top: 0px !important;
+        }
+    }
+
+    .mainContent {
+        font-size: @standardFontSize;
+        overflow: auto;
+        .flex-display;
+        .flex-direction(column);
+        flex: 1 1 auto;
+    }
+
+    .opSection {
+        .flex(1 1 auto);
+    }
+
+    p {
+        padding: 0px 0px 8px 0px;
+        font-size: 11px;
+    }
+
+    input {
+        font-size: @standardFontSize;
+        border: 1px solid @color-border-medium2;
+    }
+
+    // TODO: remove styling if we change the default btn class styling
+    .btn {
+        width: 120px;
+    }
+
+    .qMark {
+        position: relative;
+        top: -1px;
+    }
+
+    .instrText-format {
+        white-space: pre-line;
+    }
+
+    button.center {
+        display: block;
+        margin: 0 auto;
+    }
+
+    .addArgWrap {
+        display: flex;
+
+        &.addArgWrapSmall {
+            @h: 16px;
+            height: @h;
+
+            .btn {
+                .size(@h, @h);
+                float: left;
+                padding: 0;
+                line-height: @h - 2;
+
+                .icon {
+                    line-height: @h;
+                    font-size: 9px;
+                    width: 9px;
+                }
+            }
+        }
+
+        &.addArgWrapLarge {
+            padding-left: 0px;
+            margin-top: 12px;
+            width: 100%;
+
+            .btn {
+                height: 28px;
+                width: 180px;
+                display: block;
+                margin: 0 auto;
+            }
+
+            .text {
+                font-size: 12px;
+            }
+        }
+    }
+
+    .dropDownList {
+        .styleDropDownList(100%, @listHeight);
+
+        .text {
+            font-size: @standardFontSize;
+            .size(@width: 100%, @height: @listHeight);
+            padding-right: 24px;
+            padding-left: @commonMargin;
+            .input-placeholder(@color-text-placeholder);
+            font-size: @standardFontSize;
+            border: 1px solid @color-border-medium2;
+        }
+
+        .list {
+            top: @listHeight;
+            box-shadow: 0 1px 1px 0 @color-bg-dropdown-gray;
+
+            &.genFunctionMenu {
+                .size(@width: ~"calc(100% - @{listHeight})");
+            }
+
+            &.hint {
+                .size(@width: 100%);
+                position: absolute;
+                top: @listHeight !important;
+                left: 0px !important;
+                text-transform: none;
+            }
+        }
+
+        li {
+            font-size: @standardFontSize;
+            padding-left: @commonMargin;
+            display: flex;
+        }
+
+        &.disabled {
+            pointer-events: none;
+            .iconWrapper {
+                display: none;
+            }
+        }
+
+        .textNoCap {
+            text-transform: none !important;
+        }
+
+        .iconWrapper {
+            .position(absolute, @top: 0px, @right: 0);
+            .size(@height: 24px);
+            border-color: @color-border-medium2;
+        }
+    }
+
+    .checkboxSection {
+        display: flex;
+        .textOverflowOneLine;
+    }
+
+    .checkboxWrap {
+        .noSelection;
+    }
+
+    .checkbox {
+        .size(16px, 15px);
+        padding: 2px;
+        float: right;
+        position: relative;
+
+        .icon {
+            .size(12px, 11px);
+        }
+    }
+
+    .selectAllWrap {
+        margin-bottom: 8px;
+        float: right;
+        .clearfix;
+        .text {
+            float: right;
+            cursor: pointer;
+        }
+        .checkbox {
+            top: 0px;
+            margin-left: 5px;
+            margin-right: 3px;
+        }
+    }
+
+    .columnsWrap {
+        ul {
+            float: left;
+            width: 50%;
+            &:first-child {
+                border-right: 1px solid @color-border-medium2;
+            }
+            &.rightCols {
+                width: ~"calc(50% - 1px)"; // -1px for border
+            }
+        }
+        li {
+            .size(100%, @listHeight);
+            line-height: @listHeight;
+            padding-left: @commonMargin;
+            border-bottom: 1px solid @color-border-medium2;
+            cursor: pointer;
+
+            &:first-child {
+                border-top: 1px solid @color-border-medium2;
+            }
+
+            .text {
+                display: inline-block;
+                width: ~"calc(100% - 22px)";
+                .textOverflowOneLine;
+            }
+        }
+
+        .checkbox {
+            float: right;
+            position: relative;
+            margin-top: 2px;
+            margin-right: 7px;
+            padding: 1px;
+        }
+
+        &.flexWrap {
+            ul {
+                .flex-display;
+                .flex-wrap(wrap);
+                width: 100%;
+
+                background-color: transparent;
+                &:first-child {
+                    border-right-width: 0px;
+                }
+            }
+            li {
+                float: left;
+                border-right: 1px solid @color-border-medium2;
+                border-top: 1px solid @color-border-medium2;
+                border-left: 1px solid @color-border-medium2;
+                padding-right: 22px;
+                position: relative;
+                .flex(1 1 120px);
+                width: 120px;
+                margin-top: -1px; // fixes double thickness of the bottom of a
+                                // cell's border when next to the top border
+                                // of another cell
+                margin-left: -1px; // to hide double thick borders
+                .text {
+                    width: 100%;
+                }
+
+                .checkbox {
+                    position: absolute;
+                }
+            }
+            .flexSpace {
+                border-right: 1px solid transparent;
+                .flex(1 1 120px);
+                width: 120px;
+                height: 0px;
+                padding-left: 10px;
+                padding-right: 22px;
+                overflow: hidden;
+                visibility: hidden;
+            }
+        }
+    }
+
+    .mainInstructions {
+        padding-top: 4px;
+        padding-bottom: 4px;
+        overflow: hidden;
+    }
+    .instructions {
+        padding-top: 8px;
+        padding-bottom: 8px;
+        color: @color-font-darkGray;;
+    }
+    .tableInstruction {
+        font-size: 11px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        color: @color-font-darkGray;;
+    }
+
+    .opSection {
+        overflow-y: auto;
+
+        &.filter {
+            .argsSection {
+                margin-bottom: 20px;
+            }
+        }
+
+        .icvContainer {
+            height: 30px;
+        }
+        // xx need to generalize
+        .icvMode, .gbCheckboxRow > div, .keepTableCheckbox {
+            padding-left: 38px;
+            &.inactive {
+                visibility: hidden;
+            }
+            .text {
+                display: inline;
+                margin-right: 5px;
+                font-weight: 400;
+                line-height: 23px;
+                font-size: 11px;
+            }
+            .checkbox {
+                margin-top: 5px;
+                float: left;
+
+                .icon {
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+
+    .advancedSection {
+        margin-top: 10px;
+
+        &.inactive {
+            display: none;
+        }
+        &.collapsed {
+            .xi-minus-circle-outline {
+                display: none;
+            }
+            .optionsSection {
+                display: none;
+            }
+            .restore {
+                display: none;
+            }
+        }
+        &.expanded {
+            .xi-plus-circle-outline {
+                display: none;
+            }
+            .optionsSection {
+                display: block;
+            }
+            .restore {
+                display: inline-block;
+            }
+        }
+
+        .advancedIcon {
+            cursor: pointer;
+            font-size: 16px;
+            position: relative;
+            top: 2px;
+        }
+
+        .advancedTitle {
+            > div {
+                width: 100%;
+            }
+            .text {
+                cursor: pointer;
+                margin-left: 7px;
+            }
+        }
+    }
+
+    .subHeading {
+        margin-top: 4px;
+        overflow: hidden;
+
+        > div, > span {
+            float: left;
+            width: auto;
+            height: @headingHeight;
+            line-height: @headingHeight + 4;
+
+            &.checkboxWrap {
+                height: 24px;
+                line-height: 24px;
+                position: relative;
+                top: 8px;
+            }
+        }
+        > .focusTable {
+            padding-left: 6px;
+        }
+        .altFnTitle {
+            display: none;
+        }
+
+        .qMark {
+            float: left;
+            margin-left: 4px;
+            margin-top: 12px;
+        }
+    }
+
+    .subSubHeading {
+        margin-top: 6px;
+        > div, > span {
+            float: left;
+            width: 50%;
+            height: @headingHeight - 10px;
+            line-height: @headingHeight - 6;
+            padding-bottom: 4px;
+            padding-left: 9px;
+
+            > .qMark {
+                top: -1px !important;
+            }
+        }
+    }
+
+    .functionType {
+        margin-top: 10px;
+    }
+
+    .functionsRow {
+        .label {
+            padding: 6px 0px;
+        }
+
+        .hasSubList {
+            .list > ul > li {
+                flex-direction: column;
+                height: auto;
+                padding: 0px;
+
+                &.noResultHint {
+                    padding-left: 10px;
+                }
+            }
+
+            .subHeading {
+                text-align: center;
+                color: #EAEAEA;
+                margin-top: 0px;
+                line-height: 20px;
+            }
+        }
+
+        .list li {
+            // display: flex;
+            // justify-content: space-between;
+
+            .template {
+                .textOverflowOneLine;
+                max-width: 70%;
+                text-align: right;
+                padding-right: 4px;
+                font-style: italic;
+                color: @color-font-warm-grey-two;
+                font-weight: 500;
+                .flex-display;
+            }
+
+            .argDesc {
+                display: inline-block;
+                max-width: 80px;
+                .textOverflowOneLine;
+                vertical-align: bottom;
+            }
+        }
+    }
+
+
+    .descriptionText {
+        .udfLink {
+            float: right;
+        }
+    }
+
+    .descriptionText, .strPreview {
+        padding: 10px 0px 4px 0px;
+    }
+
+    .strPreview {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-top: 8px;
+        padding-bottom: 8px;
+        user-select: text;
+
+        .strPreviewGroup {
+            display: block;
+        }
+
+        .aggCols, .groupByCols, .descArgs, .highlighted {
+            color: @color-font-form;
+        }
+        .char {
+            .transition(2s all ease-in);
+            &.visible {
+                background-color: @color-bg-gold;
+            }
+            &.space {
+                display: inline-block;
+                width: 3px;
+            }
+        }
+    }
+
+    .group {
+        border-top: 1px solid @color-border-medium2;
+
+        &.firstGroup {
+            border-width: 0px;
+            padding-top: 0px;
+            .removeExtraGroup {
+                display: none;
+            }
+            .minGroup {
+                margin-top: 0px;
+            }
+        }
+
+        .removeExtraGroup, .minGroup {
+            float: right;
+            color: @color-font-default;
+            font-size: 12px;
+            margin-top: -5px;
+            cursor: pointer;
+            opacity: @opacity-unhover;
+            &:hover {
+                opacity: @opacity-hover;
+            }
+        }
+
+        .minGroup {
+            margin-right: 10px;
+        }
+
+        // start minimized group styling
+        &.minimized {
+            .clearfix;
+            padding-top: 4px;
+            padding-bottom: 10px;
+
+            .subHeading, .descriptionText, .description, .minGroup, .functionType  {
+                display: none;
+            }
+            + .addArgWrap {
+                margin-top: 20px;
+            }
+
+            .catFuncHeadings {
+                display: none;
+            }
+
+            .functionsList {
+                // width: 25% !important;
+                background-color: transparent !important;
+                float: left !important;
+                width: auto;
+                max-width: ~"calc(100% - 30px)";
+                cursor: pointer;
+
+                .functionsInput {
+                    width: 100% !important;
+                    padding-right: 6px !important;
+                    background-color: transparent !important;
+                    border: none !important;
+                    outline: none;
+                    font-size: @standardFontSize !important;
+                    pointer-events: none;
+                }
+                .iconWrapper {
+                    display: none;
+                }
+            }
+            .argsSection, .groupOnSection {
+                float: left;
+                width: 100%;
+                margin-bottom: 0px;
+            }
+
+            .row {
+                float: left;
+                margin-top: 0px;
+                .arg {
+                    width: 100%;
+                    border-left: 1px solid @color-border-medium2;
+                    padding: 2px;
+                    text-align: center;
+                    text-overflow: ellipsis;
+                }
+
+                .colNameMenuIcon {
+                    display: none;
+                }
+
+                .emptyOptions {
+                    display: none;
+                }
+
+                .cast {
+                    .label {
+                        display: none;
+                    }
+                    .dropdown {
+                        display: none;
+                    }
+                    .text {
+                        text-align: center;
+                        border: none;
+                    }
+                    .dropDownList {
+                        width: 100% !important;
+                    }
+                }
+            }
+
+            &.fnInputEmpty {
+                .altFnTitle {
+                    display: block;
+                }
+                .argsSection, .groupOnSection, .functionType, .functionsRow {
+                    display: none;
+                }
+                .functionsList {
+                    visibility: hidden;
+                    height: 0px !important;
+                    overflow: hidden !important;
+                    position: relative;
+                    top: -28px; // so error messages will be positioned properly
+                }
+                input {
+                    // display: none; // we want to show so we can place error messages
+                    // next to the input
+                    visibility: hidden;
+                }
+            }
+
+            .inputWrap {
+                padding: 0px;
+            }
+
+            &[data-numargs="0"] {
+                .argsSection {
+                    display: none;
+                }
+            }
+
+            &[data-numargs="1"] {
+                .row {
+                    width: 100%;
+                }
+            }
+            &[data-numargs="2"] {
+                .row {
+                    width: 50%;
+                }
+            }
+            &[data-numargs="3"] {
+                .row {
+                    width: 33.3%;
+                }
+            }
+            &[data-numargs="4"] {
+                .row {
+                    width: 25%;
+                }
+            }
+        }
+        // end minimized group styling
+    }
+
+    .argsSection, .groupOnSection {
+        &.inactive {
+            visibility: hidden;
+            overflow: hidden;
+            // height: 40px;
+            .row {
+                display: none;
+            }
+        }
+
+        .row {
+            margin-top: 6px;
+        }
+        .description {
+            padding: 6px 0px;
+            padding-bottom: 4px;
+            line-height: 14px;
+        }
+        .cast {
+            width: 100%;
+            height: 0px;
+            overflow: hidden;
+            float: left;
+            position: relative;
+            .transition(all 0.3s);
+            margin-top: 0px;
+
+            &.hidden {
+                display: none;
+            }
+
+            &.noAnim {
+                .transition(none);
+            }
+
+            .label {
+                float: left;
+                display: block;
+                width: 40px;
+                height: 36px;
+                line-height: 26px;
+            }
+
+            .text {
+                &[data-casted=true] {
+                    color: @color-font-select-blue;
+                }
+            }
+
+            .dropDownList {
+                width: ~"calc(100% - 60px)" !important;
+
+                &.hidden {
+                    display: none;
+                }
+                .iconWrapper {
+                    float: left;
+                }
+
+                ul {
+                    position: absolute;
+                    left: 1px !important;
+                    top: 26px !important;
+                    width: ~"calc(100% - 27px)" !important;
+                }
+
+                li {
+                    color: @color-font-select-blue;
+                }
+
+                li.default {
+                    font-style: italic;
+                    color: @color-font-gray36;
+                }
+            }
+
+            &.showing {
+                height: 36px;
+                margin-top: 6px;
+                div.text {
+                    padding-left: 12px;
+                }
+            }
+            &.overflowVisible {
+                overflow: visible;
+            }
+        }
+
+        .inputWrap {
+            float: left;
+            width: 100%;
+
+            .dropDownList {
+                .list.hint {
+                    text-align: left;
+                    padding-left: 0px;
+                    text-transform: none;
+                    z-index: 101; // to get in front of cast dropdown
+                }
+            }
+        }
+        .dropDownList {
+            width: 100% !important; // ignore js input width increasing
+            background-color: transparent;
+
+            .arg {
+                .size(100%, @listHeight);
+                padding-left: @commonMargin;
+                font-size: @standardFontSize;
+                padding-right: 20px;
+            }
+            .colNameMenuIcon, .removeItemIcon {
+                position: absolute;
+                right: 0px;
+                font-size: 8px;
+                height: 100%;
+                width: 20px;
+                line-height: @listHeight;
+                text-align: center;
+                color: @color-icon-default;
+                cursor: pointer;
+            }
+            .removeItemIcon {
+                right: 20px;
+                width: 10px;
+                font-size: 10px;
+                display: none;
+            }
+            &.noSuggest, &.colNameSection {
+                .arg {
+                   padding-right:  @commonMargin;
+                }
+                .colNameMenuIcon {
+                    display: none;
+                }
+            }
+        }
+
+        .emptyOptions {
+            font-size: 11px;
+            .checkboxWrap {
+                width: 50%;
+                .checkbox {
+                    margin-top: 4px;
+                    .icon {
+                        font-size: 11px;
+                    }
+                }
+            }
+        }
+
+        .extraArg {
+            position: relative;
+
+           &.inputWrap { // for map
+                margin-top: 10px;
+            }
+
+            &.row { // for group by
+                margin-top: 10px;
+                .dropDownList ul {
+                    z-index: @functionsListZindex + 1;
+                }
+            }
+
+            .xi-cancel {
+                position: absolute;
+                left: 4px;
+                top: 5px;
+                color: @color-font-warm-grey-two;
+                font-size: 14px;
+                opacity: @opacity-unhover;
+                cursor: pointer;
+                z-index: 100; // place in front of dropdown list which has index 99
+
+                &:hover {
+                    opacity: @opacity-hover;
+                }
+            }
+
+            .arg {
+                padding-left: 22px;
+            }
+        }
+    }
+
+
+    .checkboxWrap {
+        float: left;
+        .size(@height: @listHeight);
+        display: block;
+        line-height: @listHeight;
+        cursor: pointer;
+        .noSelection;
+
+        .checkbox {
+            margin-right: 7px;
+            margin-top: 2px;
+            float: left;
+        }
+    }
+
+    .andOrToggle {
+    	display: none;
+
+        .instr {
+        	text-align: center;
+        }
+        .hint {
+        	cursor: pointer;
+        	position: relative;
+        	top: 1px;
+        	padding-left: 3px;
+        	.icon {
+        		color: @color-icon-default;
+        	}
+        	display: inline-block;
+        }
+        .switchWrap {
+        	.switchLabel {
+        		padding-top: 2px;
+        	}
+            margin: auto;
+            width: 90px;
+            > div {
+                display: inline-block;
+            }
+        }
+    }
+
+    .addArgWrap {
+        .btn {
+            .size(@listHeight, @listHeight);
+            padding: 0px;
+            line-height: @listHeight;
+            .icon {
+                line-height: @listHeight;
+                font-size: 14px;
+            }
+        }
+        .text {
+            font-size: @standardFontSize;
+            margin-left: @commonMargin;
+        }
+    }
+
+    .btnWrap {
+        overflow: hidden;
+        display: flex;
+        flex-direction: row-reverse;
+
+        .btn {
+            max-width: 100%;
+        }
+    }
+
+    .submit {
+        display: block;
+        margin: 0px auto;
+        // using left: 50%; translate -50% doesn't work well in IE
+    }
+    .bottomSection.flexWrap { // only used for dataset panel
+        margin: 25px 0px 35px;
+        .flex-display;
+        .flex-wrap(wrap);
+        .justify-content(center);
+        .flex-direction(row-reverse);;
+
+        button {
+            display: block;
+            margin-top: 10px;
+            margin-left: 9px;
+            margin-right: 9px;
+        }
+    }
+
+    .advancedEditor {
+        display: none;
+        margin: 10px 0px;
+        margin-top: 0px;
+        .flex(1 1 auto);
+        overflow: hidden;
+        height: 100%;
+
+        .refreshSection {
+            height: 30px;
+
+            .restoreOption {
+                float: left;
+                line-height: 30px;
+                height: 30px;
+                margin-left: 2px;
+                margin-right: 20px;
+                cursor: pointer;
+
+                .text {
+                    float: left;
+                }
+                .icon {
+                    margin-top: 3px;
+                    margin-left: 5px;
+                }
+            }
+        }
+
+        .CodeMirror {
+            height: ~"calc(100% - 30px)";
+            border: 1px solid @color-border-medium2;
+
+            .argDesc {
+                background-color: @color-bg-white-eight;
+                color: @color-font-warm-grey-two !important;
+                font-style: italic;
+                font-weight: 400;
+            }
+        }
+    }
+
+    .bottomSection {
+        @height-switcher: 18px;
+        @marginTop-switcher: 8px;
+        @padding: 8px;
+
+        margin: @padding 0px 0px;
+        padding: @padding 0px 0px;
+        border-top: 1px solid @color-bg-2;
+        .flex(0 0 auto);
+        min-height: 1px + @height-btn + @marginTop-switcher + (@padding * 2);
+        overflow: auto;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row-reverse;
+        flex-wrap: wrap;
+
+        .btnWrap {
+            margin-bottom: @padding;
+        }
+
+        .switcher {
+            .size(@height: @height-switcher);
+            margin-bottom: @marginTop-switcher;
+            width: 160px;
+            display: flex;
+            justify-content: center;
+
+            > div {
+                float: left;
+            }
+
+            .text {
+                .font(@color: @color-bg-cardHeader);
+            }
+
+            .switch {
+                .size(@width: 24px, @height: 14px);
+                .rounded(10px);
+                border: 1px solid @color-bg-cardHeader;
+
+
+                .slider {
+                    border: 1px solid @color-bg-cardHeader;
+                    top: -1px;
+                    .size(14px, 14px);
+                }
+            }
+
+            .advanced {
+                display: block !important;
+                opacity: 0.5;
+            }
+        }
+    }
+
+    &.advanced {
+        .opSection {
+            flex: 0 0 auto;
+            display: flex;
+            flex-direction: column;
+            > section, > div {
+                display: none !important;
+            }
+
+            .advancedEditor, .instructions {
+                display: block !important;
+            }
+            .bottomSection {
+                display: flex !important;
+            }
+
+            .advancedEditor {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+        }
+
+        .advancedEditor {
+            display: block !important;
+        }
+
+        .bottomSection {
+            border-top-color: transparent;
+            margin-top: 5px;
+            .switcher {
+                .standard {
+                    display: block !important;
+                    opacity: 0.5;
+                }
+
+                .advanced {
+                    opacity: 1;
+                }
+            }
+        }
+    }
+
+    .colSchemaSection {
+        position: relative;
+        top: -20px;
+
+        .addColumn {
+            .qMark {
+                margin-left: 4px;
+                margin-top: 3px;
+            }
+        }
+    }
+
+    .columnAssignmentSection {
+        .size(@width: 100%);
+        padding-top: 10px;
+        overflow-x: auto;
+        overflow-y: scroll;
+        .flex-display;
+        .flex-direction(column);
+        .header {
+            padding-bottom: 10px;
+        }
+        &:last-child {
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+
+        .dropDownList {
+            .iconWrapper {
+                border: none;
+            }
+        }
+
+        .tableSection, .resultSection, .candidateSection {
+            .addCol, .down {
+                .size(@width: 20px, @height: 100%);
+                .font(@size: 8px);
+                position: absolute;
+                color: @color-font-default;
+
+                &:before {
+                    .size(8px, 8px);
+                    display: block;
+                    .center-align;
+                }
+            }
+
+            .listSection, .actionSection {
+                .flex-display;
+                .size(@width: ~"calc(100% - 5px)");
+
+                .lists {
+                    .size(@min-width: 139px, @max-width: 50%);
+                    .flex(1 1 200px);
+                    margin-right: -1px;
+
+                    > div, > input {
+                        height: 26px;
+                        line-height: 24px;
+                        position: relative;
+                    }
+
+                    .inputCol {
+                        .position(relative);
+
+                        .colName, .list {
+                            .size(@width: 100%);
+                            padding-right: 2px;
+                        }
+
+                        .colName.highlight {
+                            color: @color-text-macaroniAndCheese;
+                        }
+                    }
+                }
+            }
+
+            .actionSection {
+                height: 24px;
+                margin-top: 6px;
+                .lists {
+                    >div {
+                        height: 100%;
+                        line-height: normal;
+                    }
+                    &.newTable {
+                        opacity: 1;
+                    }
+                }
+                .action-icon .icon {
+                    line-height: normal;
+                }
+            }
+
+            .action-icon {
+                // .flex-display(inline-flex);
+                .size(@width: auto, @height: auto);
+                cursor: pointer;
+                .icon {
+                    line-height: 28px;
+                }
+            }
+
+            .action-label {
+                padding-left: 10px;
+                width: 100%;
+            }
+        }
+
+        .tableSection {
+            .size(@height: 60px);
+            margin-top: 10px;
+            padding-right: 10px;
+
+            .header {
+                margin-bottom: 10px;
+                padding-left: 0px;
+                padding-bottom: 0px;
+            }
+
+            .lists {
+                text-align: center;
+            }
+        }
+
+        .resultSection {
+            .resultCol {
+                border: 1px solid @color-border-medium;
+                margin-top: -1px;
+                &.cast {
+                    height: 55px !important;
+                    margin-bottom: 3px;
+
+                    .typeList {
+                        display: block;
+                    }
+                }
+
+                .resultInput {
+                    padding-left: 10px;
+                    padding-right: 20px;
+
+
+                    &:focus {
+                        .size(@width: ~"calc(100% + 4px)");
+                        .position(@left: -2px);
+                        padding-left: 11px;
+
+                        ~ .dropDownList {
+                            .position(relative, @top: -2px);
+                        }
+                    }
+                }
+
+                .typeList {
+                    display: none;
+                    border-top: 1px solid @color-border-medium;
+
+                    .text {
+                        padding-left: 15px;
+                    }
+
+                    li {
+                        padding-left: 15px;
+                    }
+                }
+
+                .removeColInRow {
+                    .position(absolute, @top: 9px, @right: 8px);
+                }
+            }
+
+            .columnList {
+                .hint {
+                    text-align: center;
+                }
+
+                .iconWrapper {
+                    background-color: transparent;
+                }
+
+                ul {
+                    border-top: 1px solid @color-border-medium;
+
+                    li {
+                        .position(relative);
+                        padding-left: 4px;
+
+                        &.removeCol {
+                            padding-left: 10px;
+                        }
+
+                        &.used .colName, &.removeCol {
+                            opacity: 0.7;
+                        }
+
+                        &.search {
+                            padding: 0;
+                            margin: 3px 0;
+
+                            input {
+                                height: 24px;
+                                top: 0;
+                                border: 1px solid @color-border-medium2;
+                            }
+                        }
+
+                        .icon:not(.type) {
+                            display: none;
+                            .position(absolute, @top: 4px, @right: 3px);
+                        }
+                    }
+                }
+            }
+
+            input {
+               border: none;
+
+                &:focus {
+                    outline: 1px solid @color-hover-blue;
+                    border: 1px solid @color-bg-white-five;
+                    .size(@width: ~"calc(100% + 2px)", @height: 28px);
+                    .position(relative, @top: -2px, @left: -1px);
+                }
+            }
+
+            .inputCol {
+                border: 1px solid @color-border-medium;
+                margin-top: -1px;
+
+                &.cast {
+                    margin-bottom: 30px;
+                }
+
+                .text {
+                    padding-right: 20px;
+                    border: none;
+                    width: 100%;
+                }
+
+                .down {
+                    right: 0;
+                }
+            }
+
+            .searchArea {
+                border: 1px solid @color-border-medium;
+                &.placeholder {
+                    border-color: transparent;
+                    width: 100%;
+                    &::after {
+                        content: "New Name";
+                        padding-left: 10px;
+                    }
+                }
+
+                .icon {
+                    .position(absolute, @top: 7px, @right: 5px);
+                    color: @color-font-default;
+                }
+            }
+
+            .action-icon {
+                padding-right: 5px;
+            }
+        }
+
+        .candidateSection {
+            padding-top: 15px;
+            min-height: 120px; // for cast dropdowns
+
+            .subHeading {
+                .text {
+                    .size(@width: 100%);
+                }
+            }
+
+            .lists {
+                .size(@height: 100%);
+
+                &.newTable {
+                    padding-left: 10px;
+                    opacity: 0.6;
+                }
+
+                .typeIcon {
+                    padding-left: 20px;
+                }
+            }
+
+            .inputCol {
+                border: 1px solid @color-border-medium;
+                margin-top: -1px;
+                cursor: pointer;
+
+                .focusCol {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .typeIcon {
+        .typeIcon();
+        overflow: hidden;
+
+        .flexWrap {
+            &.flex-left, &.flex-right {
+                .flex(0 0 20px);
+                width: 20px;
+            }
+
+            &.flex-mid {
+                width: ~"calc(100% - 20px)";
+            }
+        }
+
+        .type.icon {
+            color: @color-font-typeIcon;
+            left: 40%;
+        }
+
+        &:hover {
+            .checkbox .icon {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .selDropdown {
+        input {
+            padding-right: 18px;
+        }
+        &.hasRemoveBtn {
+            &:hover {
+                input {
+                    padding-right: 32px;
+                }
+                .removeItemIcon {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+
+    .flexColListItem {
+        padding-left: 4px;
+        .colName {
+            padding-right: 2px;
+        }
+    }
+
+    &#groupByOpPanel, &#mapOpPanel, &#publishIMDOpPanel {
+        .colNameSection {
+            .iconWrapper {
+                left: 0px;
+                background-color: @color-bg-dagTabBar;
+                .icon {
+                    font-size: 14px;
+                    opacity: 1;
+                    position: static;
+                    .transform(none);
+                    .size(@width: @listHeight, @height: @listHeight);
+                    line-height: @listHeight - 2px;
+                    text-align: center;
+                    cursor: initial;
+                    color: @color-icon-default;
+                }
+            }
+
+            .arg {
+                .size(@width: ~"calc(100% - @{listHeight})");
+                margin-left: @listHeight;
+            }
+        }
+    }
+}
+
+// used only in map, filter, groupby, and aggregate
+.generalOpPanel {
+    @title-height: 32px;
+    @listHeight: 26px;
+    @standardFontSize: 12px;
+    @commonMargin: 10px;
+    @functionsListZindex: 10;
+
+    &#groupByOpPanel {
+        .catFuncHeadings {
+            position: relative;
+            .xi-close { // for closing group
+                .position(absolute, @top: 2px, @right: 0px);
+                .size(24px, 20px);
+                text-align: center;
+                line-height: 20px;
+                margin-right: 0px;
+            }
+        }
+        .groupbyFnTitle {
+            width: 100%;
+        }
+        .group + .group {
+            padding-top: 6px;
+            margin-top: 10px;
+        }
+        .argsSection, .groupOnSection {
+            .row.checkboxWrap {
+                float: none;
+                margin-top: 0px;
+
+                &.groupByAll {
+                    margin-top: 4px;
+                    margin-bottom: -10px;
+                }
+
+                .text {
+                    float: left;
+                }
+                .checkbox {
+                    margin-top: 3px;
+                }
+            }
+        }
+        .addArgWrapSmall {
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
+        .newTableNameRow {
+            margin-top: 6px;
+
+            .description {
+                padding: 6px;
+                padding-bottom: 4px;
+                line-height: 14px;
+            }
+
+            &.inactive {
+                display: none;
+            }
+        }
+        .icvContainer {
+            height: 26px;
+            .checkboxSection {
+                height: auto;
+            }
+        }
+        .gbCheckboxes, .keepTablesCBWrap {
+            height: auto;
+            .checkboxSection {
+                height: @listHeight;
+            }
+            &.inactive {
+                display: none;
+            }
+        }
+
+        .selectAllWrap {
+            margin-bottom: 8px;
+            float: right;
+
+            .clearfix;
+            .text {
+                float: right;
+                cursor: pointer;
+            }
+            .checkbox {
+                top: 1px;
+                margin-left: 5px;
+                margin-right: 5px;
+            }
+        }
+
+        .extraArg .xi-cancel {
+            z-index: 0 !important;
+        }
+    }
+
+    &#mapOpPanel, &#filterOpPanel {
+        .removeExtraGroup, .minGroup {
+            margin-top: 5px;
+            margin-bottom: 0px;
+        }
+        .altFnTitle {
+            display: none;
+            clear: both;
+        }
+        .filterMapFuncArea {
+            position: relative;
+            clear: both;
+            .clear {
+                display: none;
+                .size(@width: 20px, @height: @listHeight);
+                .position(absolute, @top: 4px, @right: -3px);
+
+                .icon {
+                    line-height: @listHeight;
+                }
+            }
+            &:hover {
+                .clear {
+                    display: block;
+                }
+            }
+        }
+        .mapFilter {
+            margin-top: 4px;
+            padding-right: 20px;
+
+            &:focus {
+                ~ .clear {
+                    display: block;
+                }
+            }
+        }
+        .icvContainer {
+            margin-top: 10px;
+        }
+
+        .addExtraGroup {
+            margin-top: 12px;
+            cursor: pointer;
+        }
+
+        .extraGroup {
+            margin-top: 20px;
+        }
+
+         // start minimized group styling
+        .group.minimized {
+            .clearfix;
+            padding-bottom: 0px;
+
+            &.firstGroup {
+                padding-top: 4px;
+            }
+
+            .subHeading, .descriptionText, .description, .minGroup  {
+                display: none;
+            }
+
+            .filterMapFuncArea, .cateFuncHeadings, .categoryMenu,
+            .functionsMenu li, .addArgWrap, .resultantColNameRow {
+                display: none;
+            }
+
+            .catFuncMenus {
+                border: none;
+            }
+
+            .functionsMenu {
+                width: 100%;
+                height: @listHeight;
+                padding: 0px;
+            }
+
+            .functionsMenu li.active {
+                display: block;
+                cursor: pointer;
+                width: 100% !important;
+                padding-right: 6px !important;
+                background-color: transparent !important;
+                border: none !important;
+                outline: none;
+                font-size: @standardFontSize !important;
+                pointer-events: none;
+            }
+
+            .argsSection {
+                float: left;
+                width: 100%;
+                margin-bottom: 0px;
+            }
+
+            .row {
+                float: left;
+                margin-top: -1px; // to hide bottom borders
+                margin-left: -1px; // to hide left borders
+                width: 25%;
+
+                .arg {
+                    width: 100%;
+                    border-left: 1px solid @color-border-medium2;
+                    padding: 2px;
+                    text-align: center;
+                    text-overflow: ellipsis;
+
+                    &.mapExtraArg {
+                        padding-left: 22px;
+                    }
+                }
+
+                .emptyOptions {
+                    display: none;
+                }
+
+                .cast {
+                    .label {
+                        display: none;
+                    }
+                    .dropdown {
+                        display: none;
+                    }
+                    .text {
+                        padding-right: 10px;
+                        text-align: center;
+                        border: none;
+                    }
+                    .dropDownList {
+                        width: 100% !important;
+                    }
+                }
+            }
+
+            .extraArg {
+                .xi-cancel {
+                    left: 4px;
+                }
+            }
+
+            &.fnInputEmpty {
+                .altFnTitle {
+                    display: block;
+                    height: 20px;
+                    line-height: 20px;
+                }
+                .argsSection, .catFuncMenus {
+                    display: none;
+                }
+            }
+
+            .inputWrap {
+                padding: 0px;
+            }
+
+            &[data-numargs="0"] {
+                .argsSection {
+                    display: none;
+                }
+            }
+
+            &[data-numargs="1"] {
+                .row {
+                    width: 100%;
+                }
+            }
+            &[data-numargs="2"] {
+                .row {
+                    width: 50%;
+                }
+            }
+            &[data-numargs="3"] {
+                .row {
+                    width: 33.3%;
+                }
+            }
+            &[data-numargs="4"] {
+                .row {
+                    width: 25%;
+                }
+            }
+        }
+        // end minimized group styling
+    }
+
+    &#mapOpPanel {
+        .addExtraGroup {
+            padding-top: 6px;
+            border-top: 1px solid @color-border-medium;
+            height: 22px;
+        }
+    }
+
+    .dropDownList {
+        .textNoCap {
+            text-transform: none !important;
+        }
+
+        .text {
+            .size(@width: 100%, @height: @listHeight);
+            padding-right: 26px;
+            padding-left: @commonMargin;
+            .input-placeholder(@color-text-placeholder);
+            text-transform: capitalize;
+            font-size: @standardFontSize;
+            border: 1px solid @color-border-medium2;
+        }
+
+        .list {
+            text-transform: capitalize;
+
+            &.genFunctionMenu {
+                .size(@width: ~"calc(100% - @{listHeight})");
+            }
+
+            &.hint {
+                .size(@width: 100%);
+                position: absolute;
+                top: @listHeight !important;
+                left: 0px !important;
+                text-transform: none;
+            }
+
+            li {
+                // display: none;
+                font-size: @standardFontSize;
+            }
+
+            &:not(.autoHighlight) {
+                li {
+                    &:hover {
+                        background-color: transparent;
+                    }
+                    &.highlighted {
+                        background-color: @color-selectedCell-light;
+                    }
+                }
+            }
+        }
+
+        .iconWrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 26px;
+        }
+
+        &.functionsList {
+            float: none;
+            input {
+                position: relative;
+                z-index: @functionsListZindex;
+                text-transform: none;
+            }
+            .dropdown {
+                z-index: @functionsListZindex + 1;
+            }
+            .list {
+                z-index: @functionsListZindex + 1;
+            }
+        }
+    }
+
+    .tempDisabled {
+        opacity: @opacity-disabled !important;
+    }
+
+    .colNameSection {
+        .colNameMenuIcon {
+            display: none;
+        }
+
+        .iconWrapper {
+            border: 1px solid @color-border-medium2;
+            border-right: none;
+            height: 24px;
+        }
+    }
+
+    .subHeading > div > .qMark {
+        float: none;
+    }
+}
+
+#aggOpPanel {
+    .row.option {
+        margin-top: 10px;
+        .checkbox {
+            margin-top: 6px;
+        }
+        .checkboxWrap {
+            .text {
+                margin-left: 1px;
+            }
+        }
+    }
+
+    .emptyOptions {
+        // ENG-8471: None option doesn't work for Agg
+        .noArgWrap {
+            display: none;
+        }
+    }
+}
+
+#publishIMDOpPanel {
+
+    .dropDownList {
+        text-transform: none;
+    }
+    .xi-cancel {
+        position: absolute;
+        left: 7px;
+        top: 5px;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .IMDNameInput {
+        text-transform: uppercase;
+    }
+
+    .primaryKeyList + .primaryKeyList .primaryKeyInput {
+        padding-left: 26px;
+    }
+
+    .btnWrap.formRow {
+        clear: both;
+
+        .addArgWrap {
+            width: 100%;
+            margin-top: 8px;
+        }
+    }
+
+    .disableKey {
+        float: right;
+        .text {
+            float: right;
+        }
+    }
+
+    .IMDOverwrite {
+        margin-top: 8px;
+
+        .checkboxWrap {
+            float: none;
+        }
+    }
+
+    .btn-100-rounded .xi-plus {
+        width: 10px;
+    }
+
+    #publishIMDColumns {
+        clear: both;
+        .subHeading .qMark {
+            float: none;
+        }
+        .selectAllWrap {
+            float: right;
+
+            .clearfix;
+            .text {
+                float: right;
+            }
+        }
+        .columnsToPublish {
+            .cols {
+                padding-top: 1px;
+                overflow-y: auto;
+                max-height: 240px;
+
+                &.minimized {
+                    max-height: 101px;
+                }
+
+                .col {
+                    border: 1px solid @color-border-medium2;
+                    line-height: unset;
+                    margin-left: 0px;
+
+                    .text {
+                        padding-top: 4px;
+                    }
+                }
+
+            }
+        }
+    }
+
+    .previewBtnWrap {
+        display: none;
+    }
+}
+
+#setOpPanel {
+    @instr-h: 36px;
+    @top-h: 80px;
+    @bottom-h: 117px;
+    @rest-h: (@instr-h + @top-h + @bottom-h);
+
+    .subHeading {
+        .size(@height: 24px);
+        margin-top: 6px;
+
+        > span {
+            .size(@height: 15px);
+            .font(@line-height: 15px);
+        }
+    }
+
+    .mainContent {
+        overflow: hidden;
+    }
+
+    .opSection {
+        display: flex;
+        flex-direction: column;
+        .size(@height: 100%);
+    }
+
+    .mainInstructions {
+        flex: 0 0 auto;
+    }
+
+    .searchArea .icon, .down .icon, .addCol, .editCol, .removeColInRow {
+        .font(@color: @color-bg-unselect-gray);
+    }
+
+    .topSection {
+        padding-top: 10px;
+        display: flex;
+        flex-direction: column;
+        flex: 0 0 auto;
+
+        .operationSection {
+
+            .header {
+                .size(@width: 70px);
+                float: left;
+                .font(@line-height: 26px);
+            }
+
+            .dropDownList, button {
+                .size(@width: ~"calc(100% - 85px)", @max-width: 425px);
+            }
+        }
+
+        .radioButtonGroup {
+            margin-top: 10px;
+            .size(@max-width: 425px);
+            overflow: hidden;
+
+            .header {
+                float: left;
+                line-height: 20px;
+            }
+
+            .radioButton {
+                margin-left: 8px;
+                flex: 0 0 50px;
+
+                > div {
+                    float: left;
+                }
+            }
+        }
+    }
+
+    .columnAssignmentSection {
+        padding-top: 0px;
+        .size(@width: 100%);
+        flex: 1 1 auto;
+
+        .tableSection {
+            height: 90px;
+
+            .header {
+                margin-bottom: 0;
+            }
+
+            .checkboxSection {
+                float: right;
+                margin-bottom: 10px;
+                max-width: 100%;
+
+                .checkbox {
+                    height: 100%;
+                }
+            }
+
+            .listSection {
+                width: 100%;
+                .lists.newTable {
+                    padding-left: 10px;
+                }
+            }
+        }
+    }
+
+    .resultSection, .candidateSection {
+        .listSection {
+            .size(@width: ~"calc(100% - 10px)");
+        }
+    }
+
+    .resultSection {
+        .listSection {
+            .searchArea.placeholder::after {
+                padding-left: 0;
+            }
+            .lists.newTable {
+                padding-left: 10px;
+            }
+        }
+    }
+
+    .newTable {
+        margin-right: 3px !important;
+    }
+}
+
+#datasetOpPanel {
+    overflow: auto;
+
+    &.loading {
+        .bottomSection {
+            opacity: @opacity-disabled;
+            pointer-events: none;
+        }
+    }
+
+    .instrText {
+        .link {
+            text-decoration: underline;
+            cursor: pointer;
+            color: @color-font-link-blue;
+        }
+    }
+
+    .colSchemaSection {
+        .buttonSection {
+            height: 40px;
+
+            .prefixSection {
+                float: none;
+            }
+        }
+    }
+
+    .opSection {
+        display: flex;
+        flex-direction: column;
+
+        .mainInstructions {
+            flex: 0 0 auto;
+        }
+        .modalTopMain{
+            flex: 1 1 auto;
+            display: flex;
+            flex-direction: column;
+        }
+        .dataSource {
+            display: flex;
+            flex-direction: column;
+        }
+        #datasetOpBrowser {
+            .pathSection {
+                border-top: 1px solid @color-bg-2;
+                padding-left: 10px;
+                padding-bottom: 5px;
+                padding-top: 8px;
+                min-height: 38px;
+
+                .path {
+                    color: @color-font-edge;
+                }
+            }
+
+            .sortSection {
+                padding-left: 10px;
+                text-align: left;
+
+                .divider {
+                    height: 20px;
+                    margin: 0 3px;
+                }
+
+                .sortOption {
+                    &.key {
+                        opacity: 0.5;
+                        cursor: default;
+                    }
+                }
+            }
+
+            .listView {
+                border-top: 1px solid @color-bg-2;
+                border-bottom: 1px solid @color-bg-2;
+
+                &::-webkit-scrollbar-track {
+                    background: rgba(0, 0, 0, 0);
+                }
+
+                ul {
+
+                    li {
+                        border-top: 1px solid @color-bg-2;
+                        border-bottom: 1px solid @color-bg-2;
+
+
+                        .name {
+                            max-width: ~"calc(100% - 10px - 60px)"; // 100% - padding - room for icon or activate text
+                            height: 26px;
+                        }
+
+                        &.inActivated {
+                            .name {
+                                max-width: ~"calc(100% - 10px - 80px)";
+                            }
+                            .name, .icon {
+                                opacity: 0.7;
+                                color: @color-icon-default;
+                            }
+                        }
+
+                        .icon {
+                            font-size: 15px;
+
+                            &.viewTable {
+                                float: right;
+                            }
+                        }
+
+                        .actButton {
+                            float: right;
+                            text-decoration: underline;
+                            color: @color-font-link-blue;
+                        }
+
+                        .activating {
+                            float: right;
+                        }
+
+                        &:hover {
+                            background-color: @color-bg-list-hover;
+                            border-top: 1px solid @color-border-medium2;
+                            border-bottom: 1px solid @color-border-medium2;
+                            + li {
+                                border-top: 1px solid @color-border-medium2;
+                            }
+                            &.folderName {
+                                .name {
+                                    border-bottom: 1px solid @color-font-edge;
+                                }
+                            }
+                        }
+
+                        &.active {
+                            background-color: @color-bg-list-selected-blue;
+                            border-top: 1px solid @color-border-medium2;
+                            border-bottom: 1px solid @color-border-medium2;
+                            + li {
+                                border-top: 1px solid @color-border-medium2;
+                            }
+                        }
+
+                        &:first-child {
+                            border-top: none !important;
+                        }
+                        &:last-child {
+                            border-bottom: none !important;
+                        }
+                    }
+                }
+            }
+        }
+
+        .datasetPrefix {
+            .inputWrap {
+                padding: 0px 10px;
+                .arg {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .advancedEditor.xc-hidden {
+        // to override default display of display: block !important;
+        display: none !important;
+    }
+
+    .bottomSection {
+        .btn {
+            margin: 10px auto 0 auto;
+            display: block;
+        }
+    }
+}
+
+#datasetOpColumnAssignment {
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+    .dropDownList {
+        .text, li {
+            text-transform: initial;
+        }
+        li {
+            &:hover, &.hover {
+                background-color: @color-selectedCell-light;
+            }
+        }
+    }
+
+    .columnAssignmentSection {
+        flex: 1 1 auto;
+        overflow-x: auto;
+        overflow-y: auto;
+        display: block;
+
+        .iconWrapper {
+            border: none;
+        }
+    }
+
+    .tableSection {
+        .header {
+            margin-bottom: 15px;
+        }
+    }
+
+    .resultInput {
+        &:focus {
+            width: calc(100% + 3px);
+            left: -1px;
+        }
+    }
+
+    .addRowBtn {
+        width: 120px;
+    }
+
+    &.candidateAddDisabled {
+        .resultInput {
+            padding-right: 10px;
+        }
+        .removeColInRow {
+            display: none;
+        }
+
+        .candidateSection {
+            .inputCol {
+                cursor: initial;
+                border: none;
+                .addCol {
+                    display: none;
+                }
+            }
+        }
+    }
+    &.noSourceCols {
+        .lists {
+            max-width: none;
+            &:first-child {
+                .flex(1 1 33%);
+            }
+            &:last-child {
+                .flex(1 1 67%);
+                min-width: 280px;
+            }
+        }
+
+        .tableSection {
+            height: 30px;
+            min-width: 420px;
+            .header {
+                display: none;
+            }
+            .lists:first-child {
+                display: block;
+                width: 33%;
+                float: left;
+            }
+            .listSection {
+                display: block;
+
+                .newTable {
+                    display: block;
+                    width: 33%;
+                    float: right;
+                    min-width: auto;
+                    &:after {
+                        content: "New Data Type";
+                    }
+                }
+            }
+        }
+
+        .resultInput, .typeList {
+            width: 50%;
+            float: left;
+        }
+        .inputCol {
+            margin-bottom: 0px;
+        }
+        .searchArea.placeholder {
+            width: 50%;
+            text-align: center;
+            &:after {
+                content: "New Name";
+                top: -35px;
+                position: relative;
+                padding-left: 0px;
+            }
+        }
+        .resultCol {
+            .clearfix();
+            margin-bottom: -1px;
+            ::after {
+                content: " ";
+            }
+            .removeColInRow {
+                right: ~"calc(50% + 5px)";
+            }
+            &.cast {
+                height: auto !important;
+            }
+            .resultInput {
+                &:focus {
+                    top: 0px;
+                    left: 0px;
+                    padding-left: 10px;
+                    border: none;
+                    height: 26px;
+                    outline-offset: -1px;
+                }
+            }
+            .typeList {
+                border-left: 1px solid @color-border-medium;
+                top: -1px !important;
+                &.originalType {
+                    .text {
+                        color: @color-font-greyish-brown;
+                    }
+                }
+
+                .text {
+                    color: @color-font-select-blue;
+                }
+                li.originalType {
+                    color: @color-font-greyish-brown;
+                }
+            }
+        }
+    }
+}
+
+#filterOpPanel {
+    .argsSection {
+        margin-bottom: 20px;
+    }
+
+    .addArgWrap {
+        margin-top: 20px;
+    }
+
+    .group.minimized {
+        padding-top: 0px;
+        .catFuncHeadings {
+            display: block !important;
+        }
+    }
+    .extraArg .xi-cancel {
+        z-index: 0 !important;
+    }
+}
+
+.projectOpPanel {
+    .prefixedSection, .derivedSection {
+        margin-bottom: 10px;
+        &.empty {
+            display: none;
+        }
+    }
+    .searchBox {
+        .icon {
+            .position(relative, @top: -19px, @right: 5px);
+            float: right;
+            font-size: 14px;
+            color: @color-border-bar;
+        }
+    }
+
+    .filterHint {
+        color: @color-border-bar;
+        padding-bottom: 2px;
+    }
+
+    .selectAllWrap {
+        float: right;
+    }
+    .derivedSection {
+        .subHeading {
+            width: 50%;
+            float: left;
+        }
+    }
+    .prefixedSection {
+        .subHeading {
+            margin-bottom: 4px;
+            display: inline-block;
+            .xi-help {
+                color: @color-bg-select-blue;
+                position: relative;
+                top: 1px;
+                margin-left: 2px;
+                border-radius: 100%;
+            }
+        }
+        .prefixGroup {
+            margin-bottom: 10px;
+            li {
+                padding-right: 10px;
+                cursor: initial;
+            }
+        }
+        .prefixName {
+            float: left;
+            margin-top: 4px;
+            max-width: ~"calc(100% - 100px)";
+            .textOverflowOneLine;
+        }
+    }
+
+    .columnsWrap {
+        &.flexWrap {
+            .cols {
+                border-left: 1px solid @color-border-medium2;
+            }
+
+            li {
+                padding-right: 0;
+                border-right: 1px solid @color-border-medium2;
+                .text {
+                    .size(@width: ~"calc(100% - 22px)");
+                }
+            }
+        }
+    }
+}
+
+.joinOpPanel {
+    @listHeight: 26px;
+    @standardFontSize: 12px;
+    @middleIconWidth: 26px;
+    @headingHeight: 30px;
+
+    .advancedEditor {
+        .flex(1 1 auto);
+        overflow: hidden;
+        height: 100%;
+    }
+
+    .btnWrap {
+        .btn {
+            margin-left: 8px;
+        }
+    }
+
+    .advancedTitle {
+        .col {
+            position: relative;
+            top: 7px;
+        }
+    }
+
+    .renameSection {
+        .rename {
+            .position(relative);
+            .size(@width: 100%, @height: @listHeight);
+
+            .columnName {
+                .size(@width: ~"calc(50% + 1px)", @height: @listHeight);
+                .font(@size: @standardFontSize, @line-height: @listHeight);
+                padding: 0px 8px;
+                text-align: center;
+                float: left;
+                outline: none;
+                border-bottom: 1px solid @color-border-pinkish-grey2;
+
+                &:focus {
+                    border-bottom: 1px solid @color-border-softBlue;
+                }
+
+                &.newName {
+                    .size(@width: ~"calc(50% - 1px)");
+                }
+
+                &:first-child {
+                    border-right: 1px solid @color-border-pinkish-grey2;
+                }
+            }
+        }
+    }
+
+    .mainContent {
+        .row {
+            .size(@height: 100%);
+            .flex-container();
+            .flex-flow(nowrap);
+            .align-items(center);
+            position: relative;
+
+            &.option {
+                margin-top: 6px;
+            }
+        }
+
+        .col {
+            .flex(1);
+            .size(@height: 100%);
+            .flex-container();
+            .align-items(center);
+            white-space: nowrap;
+        }
+
+        .gen-columns(@n; @i:1) when (@i <= @n) {
+            .col-@{i} {
+                .flex(@i);
+            }
+            .gen-columns(@n; (@i + 1));
+        }
+        .gen-columns(12);
+
+        .col-left, .col-right {
+            .col-6();
+            .size(@width: ~"calc(50% - @{middleIconWidth})");
+            > .qMark {
+                margin-left: 4px;
+            }
+        }
+
+        .col-fixed {
+            flex-grow: 0;
+            flex-shrink: 0;
+        }
+
+        .col-checkbox {
+            padding-right: 8px;
+            .col-fixed();
+        }
+
+        .col-qmark {
+            padding-left: 3px;
+        }
+
+        .row-rename {
+            margin-top: -1px;
+        }
+
+        .dropDownList {
+            .list.hint {
+                .size(@width: 100%);
+            }
+            .colNameMenuIcon {
+                position: absolute;
+                right: 0px;
+                font-size: 8px;
+                .size(@height: 100%, @width: 20px);
+                line-height: @listHeight;
+                text-align: center;
+                color: @color-icon-default;
+                cursor: pointer;
+            }
+        }
+
+        .dropdownList-join, .dropdownList-cast {
+            float: none;
+            .size(@height: @listHeight + 2px);
+            line-height: @listHeight;
+            border: 1px solid @color-border-medium2;
+
+            .list {
+                .size(@width: 100%);
+                li {
+                    border-top: 1px solid @color-border-medium2;
+                }
+            }
+            .text {
+                border: none;
+            }
+            .iconWrapper {
+                background-color: transparent;
+                border: none;
+            }
+        }
+
+        .dropdownList-cast {
+            border-bottom: none;
+        }
+
+        .col-middle {
+            .size(@width: @middleIconWidth, @height: @listHeight);
+        }
+
+        .col-middle-wrapper {
+            .size(14px, 14px);
+            .center-align;
+            border-radius: 100%;
+            top: @listHeight/2;
+        }
+
+        .removeIcon, .renameIcon {
+            .col-middle();
+            cursor: pointer;
+
+            .iconWrapper {
+                .col-middle-wrapper();
+            }
+        }
+
+        .removeIcon {
+            &:hover .icon {
+                .transform(rotate(45deg));
+                &::before {
+                        content: "\e9b2"; // plus circle
+                }
+            }
+        }
+
+        .removeIcon-nodel {
+            pointer-events: none;
+            &:hover .icon {
+                .transform(rotate(0deg));
+                &::before {
+                    content: "\e9b0"; // equal circle
+                }
+            }
+        }
+
+        .joinClause {
+            padding-bottom: 2px;
+
+            .dropDownList li {
+                padding-left: 2px;
+            }
+        }
+
+        .addClause {
+            .flex-display;
+            .flex-wrap(wrap);
+            .justify-content(center);
+
+            .btn {
+                width: auto;
+                padding: 0 8px;
+            }
+        }
+
+        .castErr {
+            position: relative;
+            margin-bottom: 2px;
+
+            .tooltip-inner {
+                border: 1px solid @color-error-border-light;
+                background-color: @color-bg-default;
+                max-width: 100%;
+                color:@color-font-default;
+                box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+            }
+
+            .icon {
+                .position(absolute, @left: ~"calc(50% - 4px)");
+                color: @color-error-border-light;
+                background-color: transparent;
+                opacity: 0.9;
+                margin-top: -1px;
+            }
+        }
+
+        .dropdown-detach, .text-detach {
+            border-color: @color-error-border-light;
+        }
+
+        .strPreview {
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .bulkIcon {
+            .col-middle();
+            cursor: pointer;
+            .optionWrap {
+                .col-middle-wrapper();
+
+                .option {
+                    .size(100%, 100%);
+                    background-color: @color-icon-default;
+                    .rounded(50%);
+                    text-align: center;
+                    .font(@line-height: 7px, @color: @color-font-defaultInverse);
+                    cursor: pointer;
+                }
+
+                .menu {
+                    .position(absolute);
+                    .size(@width: 130px, @height: 70px);
+
+                    li {
+                        .size(@height: 20px);
+                        line-height: 20px;
+                        padding: 2px 8px;
+
+                        &.copyAppend {
+                            .size(@height: 50px);
+                        }
+                    }
+
+                    span, input {
+                        .size(@width: 100%, @height: 20px);
+                        display: block;
+                    }
+
+                    input {
+                        text-align: left;
+                    }
+                }
+            }
+        }
+
+        .tableHeader {
+            padding-top: 4px;
+            padding-bottom: 4px;
+            .title {
+                .size(@width: 100%);
+                > .qMark {
+                    margin-left: 4px;
+                }
+            }
+        }
+
+        .clickable {
+            cursor: pointer;
+        }
+
+        .checkboxWrap {
+            float: none;
+            .clickable();
+            .checkbox {
+                margin-right: 5px;
+                margin-left: 0;
+            }
+        }
+
+        .columnList {
+            .size(@width: 50%);
+            margin-right: -1px;
+
+            .column {
+                .flexContainer();
+                .size(@height: @listHeight, @width: 100%);
+                line-height: @listHeight - 2;
+                border: 1px solid @color-border-medium2;
+                margin-top: -1px;
+            }
+
+            .column-clickable {
+                .clickable();
+            }
+
+            .column-title {
+                border: none;
+                overflow: hidden;
+                .title-text {
+                    .col();
+                }
+                .title-icon {
+                    padding-left: 8px;
+                    .col();
+                    .col-6();
+                    .action-icon {
+                        cursor: pointer;
+                        opacity: @opacity-unhover;
+                        &:hover {
+                            opacity: @opacity-hover;
+                        }
+                    }
+                }
+            }
+
+            .actionWrap {
+                padding-left: 4px;
+                padding-right: 4px;
+                .size(@width: 20px);
+            }
+
+            .colNameWrap {
+                .size(@width: 100%);
+            }
+        }
+
+        .columnList-full {
+            .size(@width: 100%);
+        }
+
+        .advancedSection {
+            .advancedIcon {
+                margin: 0;
+                left: 0;
+            }
+            .optionsSection {
+                padding-left: 26px;
+
+                .checkboxSection {
+                    cursor: auto;
+                    > div {
+                        float: none;
+                        margin: 0;
+                    }
+                }
+                .text {
+                    font-size: 11px;
+                }
+            }
+        }
+    }
+}
+
+.opPanelErr {
+    position: relative;
+    margin-bottom: 2px;
+    margin-top: 5px;
+
+    .tooltip-inner {
+        border: 1px solid @color-error-border-light;
+        background-color: @color-bg-default;
+        max-width: 100%;
+        color: @color-font-default;
+        box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.2);
+    }
+
+    .icon {
+        .position(absolute, @left: ~"calc(50% - 4px)");
+        color: @color-error-border-light;
+        background-color: transparent;
+        opacity: 0.9;
+        margin-top: -1px;
+    }
+}
+
+#castOpPanel {
+    .opSection {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mainInstructions, .bottomSection {
+        flex: 0 0 auto;
+    }
+
+    .columnAssignmentSection {
+        flex: 1 1 auto;
+        overflow-x: auto;
+        overflow-y: auto;
+        display: block;
+    }
+    .lists {
+        max-width: none;
+        &:first-child {
+            .flex(1 1 33%);
+        }
+        &:last-child {
+            .flex(1 1 67%);
+            min-width: 280px;
+        }
+    }
+
+    .columnAssignmentSection {
+        > div {
+            min-width: 420px;
+        }
+    }
+    .tableSection {
+        height: 30px;
+
+        .header {
+            display: none;
+        }
+        .lists:first-child {
+            display: block;
+            width: 33%;
+            float: left;
+            > div {
+                line-height: normal;
+            }
+        }
+        .listSection {
+            display: block;
+
+            .newTable {
+                display: block;
+                width: 33%;
+                float: right;
+                min-width: auto;
+                &:after {
+                    content: "New Data Type";
+                }
+            }
+        }
+    }
+
+    .resultInput, .typeList {
+        width: 50%;
+        float: left;
+    }
+    .inputCol {
+        margin-bottom: 0px;
+    }
+    .searchArea.placeholder {
+        width: 50%;
+        text-align: center;
+        &:after {
+            content: "New Name";
+            top: -35px;
+            position: relative;
+            padding-left: 0px;
+        }
+    }
+    .resultCol {
+        .clearfix();
+        margin-bottom: -1px;
+        ::after {
+            content: " ";
+        }
+        .removeColInRow {
+            right: ~"calc(50% + 5px)";
+        }
+        &.cast {
+            height: auto !important;
+        }
+        .resultInput {
+            &:focus {
+                top: 0px;
+                left: 0px;
+                padding-left: 10px;
+                border: none;
+                height: 24px;
+                outline-offset: -1px;
+            }
+        }
+        .typeList {
+            border-left: 1px solid @color-border-medium;
+            top: -1px !important;
+            &.originalType {
+                .text {
+                    color: @color-font-darkGray;
+                }
+            }
+
+            li.originalType {
+                color: @color-font-darkGray;
+            }
+        }
+    }
+    .candidateSection {
+        .lists {
+            max-width: none;
+            &:first-child {
+                .flex(1 1 67%);
+                min-width: 280px;
+            }
+            &:last-child {
+                .flex(1 1 33%);
+                min-width: auto;
+            }
+        }
+    }
+}
+
+#synthesizeOpPanel {
+    .opSection {
+        height: 100%;
+    }
+
+    .bottomSection {
+        .switcher {
+            display: none;
+        }
+    }
+}
+
+#IMDTableOpPanel {
+    overflow-x: hidden;
+
+    &.loading {
+        .mainContent {
+            .xc-disabled;
+        }
+    }
+
+    .addColumn {
+        // don't allow manual edit column in table node
+        display: none;
+    }
+
+    .dropDownList {
+        text-transform: none;
+        .text {
+            padding-right: 10px;
+            .versionText {
+                float: left;
+            }
+            .dateText {
+                float: right;
+            }
+        }
+    }
+}
+
+#exportOpPanel {
+    @listHeight: 26px;
+
+    #exportOpColumns {
+        .columnsToExport {
+            // ::-webkit-scrollbar-thumb {
+            //     background: @color-bg-2 !important;
+            // }
+            // ::-webkit-scrollbar-track {
+            //     background: @color-bg-default;
+            // }
+            .searchBox {
+                .icon {
+                    .position(relative, @top: -19px, @right: 5px);
+                    float: right;
+                    font-size: 14px;
+                    color: @color-border-bar;
+                }
+            }
+
+            .filterHint {
+                color: @color-border-bar;
+            }
+
+            .cols {
+                padding-top: 1px;
+                overflow-y: auto;
+
+                &.minimized {
+                    max-height: 101px;
+                }
+
+                .col {
+                    border: 1px solid @color-bg-white-five;
+                    min-width: 50%;
+                    line-height: unset;
+                    margin-left: 0px;
+
+                    .text {
+                        padding-top: 4px;
+                    }
+                }
+
+            }
+            .dropDownList {
+                .openList {
+                    max-height: 200px !important;
+                    overflow-y: auto;
+                    width: 100%;
+                }
+                .searchCol {
+                    width: 100%;
+                }
+            }
+        }
+    }
+
+    .toggleColumnCollapse {
+        float: left;
+        cursor: pointer;
+        padding: 0 5px;
+        height: 26px;
+
+        &.minimized {
+            .xi-minus {
+                display: none;
+            }
+            .xi-plus {
+                display: block;
+            }
+        }
+
+        .xi-plus {
+            display: none;
+        }
+
+        .icon {
+            font-size: 10px;
+            color: @color-icon-default;
+            line-height: 26px;
+        }
+    }
+
+    .selectAllWrap {
+        float: right;
+        .clearfix;
+    }
+
+    .argsSection {
+        .exportDescription {
+            padding-top: 20px;
+        }
+        .exportArg .subHeading .label {
+            text-transform: capitalize;
+        }
+    }
+    .previewBtnWrap {
+        display: none;
+    }
+}
+
+#dfLinkInPanel {
+    &.advanced {
+        .opSection {
+            display: none;
+        }
+    }
+
+    .dropDownList .list {
+        text-transform: none;
+    }
+
+    .radioButton {
+        height: auto;
+        flex: 0 0 150px;
+    }
+
+    .sourceTableName {
+        display: none; // hidden by default
+
+        .description {
+            text-transform: capitalize;
+        }
+    }
+
+    &.withSource {
+        .opSection {
+            .row {
+                &.dataflowName, &.linkOutNodeName {
+                    display: none;
+                }
+            }
+        }
+
+        .sourceTableName {
+            display: block;
+        }
+    }
+}
+
+#dfLinkOutPanel {
+    .option {
+        .checkboxSection {
+            height: auto;
+            align-items: center;
+
+           .checkbox {
+               height: 30px;
+               float: left;
+           }
+
+           .text {
+               font-size: 11px;
+               margin-left: 2px;
+               white-space: normal;
+               line-height: 12px;
+            }
+
+           .qMark {
+               margin-left: 4px;
+           }
+        }
+    }
+
+    .previewBtnWrap {
+        display: none;
+    }
+}
+// old
+.sqlOpPanel {
+    @bottom-h: 85px;
+    @title-h: 32px;
+
+    .list {
+        text-transform: none;
+    }
+    .opSection {
+        overflow-x: hidden;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mainInstructions {
+        flex: 0 0 auto;
+    }
+
+    .tableSection {
+        @instruct-h: 34px;
+        @add-id-h: 24px;
+        @add-id-margin: 8px;
+        @instruct-margin-bot: 8px;
+        @instruct-margin-top: 0px;
+        @source-header-w: 60px;
+        @source-header-h: 15px;
+        @padding-l: 0;
+        padding: 0 @padding-l;
+        display: flex;
+        flex-direction: column;
+        flex: 1 1 auto;
+        margin-bottom: 8px;
+
+        .title {
+            font-size: 12px;
+            flex: 0 0 auto;
+        }
+        .header {
+            font-size: 11px;
+            display: flex;
+            flex: 0 0 auto;
+        }
+        .instruction {
+            margin-bottom: 8px;
+            color: @color-font-darkGray;
+            flex: 0 0 auto;
+            font-size: 11px;
+        }
+        .sourceHeader {
+            .size(@source-header-w, @source-header-h);
+        }
+        .destHeader {
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .identifiers {
+            @rest-h: @instruct-h + @add-id-h + @add-id-margin * 2 + @instruct-margin-bot + @instruct-margin-top + @source-header-h;
+            display: flex;
+            flex-wrap: wrap;
+            flex: 1 1 auto;
+            overflow-y: auto;
+            flex-direction: column;
+
+            li {
+                display: flex;
+                align-items: center;
+                margin-top: 5px;
+
+                @source-w: 30px;
+                @source-margin-r: 11px;
+                .source {
+                    max-width: @source-w;
+                    margin-right: 11px;
+                    width: 30px;
+                    flex: 0 0 auto;
+
+                    &:hover {
+                        .icon {
+                            color: @color-font-checkbox-hover;
+                        }
+                    }
+
+                    .iconWrapper {
+                        @icon-h: 10px;
+                        @icon-r: 3px;
+                        .size(@icon-h, @icon-h);
+                        right: @icon-r;
+                        top: ~"calc(100% - @{icon-h} - @{icon-r})";
+                        background: transparent;
+                        border: none;
+                    }
+                    .icon {
+                        color: @color-icon-default;
+                        transform: rotate(135deg);
+                    }
+                    .text {
+                        padding-right: 0px;
+                        border: none;
+                    }
+                }
+                @equal-w: 8px;
+                @equal-margin-r: 11px;
+                .xi-equal {
+                    font-size: @equal-w;
+                    margin-right: @equal-margin-r;
+                }
+                @trash-w: 15px;
+                @trash-margin-l: 6px;
+                .xi-trash {
+                    font-size: @trash-w;
+                    margin-left: @trash-margin-l;
+                    color: @color-icon-default;
+                    cursor: pointer;
+                }
+                @input-w: (@source-w + @source-margin-r + @equal-w + @equal-margin-r + @trash-w + @trash-margin-l);
+                input {
+                    width: 100%;
+                }
+                .list {
+                    width: @source-w;
+                    ul {
+                        position: fixed;
+                        width: @source-w;
+                    }
+                    li {
+                        margin-top: 0px;
+                        border: 1px solid @color-border-medium2;
+                        border-top: none;
+                        &:hover {
+                            background-color: @color-border-softGray;
+                        }
+                    }
+                }
+            }
+        }
+
+        .addIdentifier {
+            height: @add-id-h;
+            line-height: @add-id-h;
+            width: 160px;
+            margin-top: @add-id-margin;
+            margin-bottom: @add-id-margin;
+        }
+    }
+
+    .editorWrapper {
+        flex: 1 0 60px;
+        width: ~"calc(100% + 30px)";
+        margin-left: -15px;
+    }
+
+    .editSection {
+        .size(100%, 100%);
+        .position(relative);
+        overflow: hidden;
+        font-size: 14px;
+
+        .editArea {
+            .size(@width: 100%, @height: 100%);
+            .position(relative);
+        }
+    }
+
+    .tableTitle, .editorTitle {
+        height: @title-h;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 0 0 auto;
+    }
+
+    .tableTitle {
+        position: relative;
+
+        .qMark {
+            position: absolute;
+            left: 92px;
+        }
+    }
+
+    .dropAsYouGo {
+        flex: 0 0 auto;
+
+        .checkbox {
+            top: 5px;
+        }
+
+        .text {
+            margin-right: 5px;
+        }
+
+        .qMark {
+            position: relative;
+            top: 9px;
+        }
+    }
+    .maximize {
+        .icon {
+            font-size: 10px;
+            cursor: pointer;
+        }
+    }
+    .bottomSection {
+        margin-top: 0px;
+    }
+    &.advanced {
+        .opSection {
+            height: 0px;
+        }
+    }
+
+    .CodeMirror {
+        height: 100%;
+    }
+}
+// new
+#sqlOpPanel {
+    @title-h: 32px;
+
+    .noSQLHint {
+        color: @color-text-error;
+    }
+    .nextForm {
+        display: flex;
+        flex-direction: column;
+        margin-top: 4px;
+    }
+    .editorWrapper {
+        white-space: pre-wrap;
+        width: 100%;
+        margin-left: 0px;
+    }
+    .identifiersSection {
+        &.disabled {
+            pointer-events: none;
+        }
+        .header, .identifiersList {
+            display: flex;
+            > div {
+                width: 50%;
+            }
+        }
+        .header {
+            padding: 4px 0px;
+        }
+        li.hint {
+            opacity: 0.5;
+            font-style: italic;
+        }
+        .col {
+            > div {
+                height: 28px;
+                padding-top: 2px;
+                line-height: 24px;
+            }
+        }
+        .source {
+            .textOverflowOneLine;
+            padding-right: 4px;
+        }
+        .notSpecified {
+            opacity: @opacity-disabled;
+            font-style: italic;
+        }
+    }
+    .nextForm {
+        margin-top: 4px;
+    }
+    .editorTitle {
+        flex-wrap: wrap;
+        display: none;
+        border-top: 1px solid @color-border-medium2;
+        margin-bottom: 4px;
+        min-height: @title-h;
+        height: auto;
+        padding-top: 4px;
+
+        .title {
+            color: @color-text-error;
+        }
+
+        .xi-error-outline {
+            margin-right: 4px;
+            font-size: 14px;
+            position: relative;
+            top: 1px;
+        }
+
+        .refreshSnippet {
+            cursor: pointer;
+            border: 1px solid @color-font-default;
+            border-radius: 4px;
+            padding: 4px;
+            margin-top: 2px;
+
+            .icon {
+                font-size: 12px;
+                position: relative;
+                top: 1px;
+                margin-left: 2px;
+            }
+        }
+
+    }
+
+    .editorWrapper {
+        display: none;
+    }
+
+    .dropDownList {
+        .text .qMark {
+            top: -1px;
+            left: 4px;
+        }
+        li .qMark {
+            top: 6px;
+            left: 4px;
+        }
+    }
+}
+
+.autoGenOpPanel {
+    @listHeight: 26px;
+    @iconWidth: 26px;
+
+    .mainContent {
+        .flex-display;
+        .flex-direction(column);
+    }
+
+    .opSection {
+        .flex(1 1 auto);
+    }
+
+    p {
+        padding: 0;
+        > .qMark {
+            margin-left: 4px;
+        }
+    }
+
+    .field {
+        .description, .inputWrap {
+            padding-left: 0;
+            padding-right: 0;
+        }
+        .description .qMark {
+            margin-left: 4px;
+        }
+    }
+
+    .checkboxWrap {
+        width: 100%;
+    }
+
+    .flexrow {
+        .size(@height: 100%);
+        .flex-container();
+        .flex-flow(nowrap);
+        .align-items(center);
+        position: relative;
+    }
+
+    .flexCol {
+        .flex(1);
+        .size(@height: 100%);
+        .flex-container();
+        .align-items(center);
+        white-space: nowrap;
+    }
+
+    .flexCol-left, .flexCol-right {
+        .flex(6);
+    }
+
+    .flexCol-middle {
+        .size(@width: @iconWidth, @height: @listHeight);
+    }
+
+    .row-rename {
+        margin-bottom: 5px;
+    }
+
+    .noEdit {
+        border: none;
+        // padding: 0;
+    }
+
+    .renameIcon {
+        .flexCol-middle();
+        // cursor: pointer;
+
+        .iconWrap {
+            .size(14px, 14px);
+            .center-align;
+            border-radius: 100%;
+            top: @listHeight/2;
+        }
+
+        .icon {
+            color: @color-font-dropdown-gray;
+        }
+    }
+    .selDropdown .list {
+        width: 100%;
+    }
+}
+
+#sortOpPanel {
+    .row-columnCombo {
+        > .flexrow {
+            margin-bottom: 5px;
+            .flexCol-right {
+                max-width: 150px;
+                input {
+                    border-left: none;
+                }
+            }
+        }
+    }
+}
+
+#deskewOpPanel {
+    .colNameMenuIcon {
+        top: 0;
+    }
+}

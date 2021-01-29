@@ -1,0 +1,262 @@
+<!-- File Browser -->
+<div id="fileBrowser" class="cardContainer xc-hidden fileBrowser">
+  <!-- File Browser Header -->
+  <header class="cardHeader">
+    <div class="title"><%= dicts.fileBrowser.header %></div>
+  </header>
+  <!-- File Browser Instruction -->
+  <section class="cardInstruction oneLine">
+    <i class="icon xi-info-circle"></i>
+    <div class="text">
+      <span><%= dicts.fileBrowser.instr %></span>
+    </div>
+  </section>
+  <!-- File Browser Menu Bar -->
+  <section class="cardTopMain">
+    <!-- Location -->
+    <div class="label"><%= dicts.common.Location %>:</div>
+    <!-- up -->
+    <button id="fileBrowserUp" class="btn btn-small icon-up disabled" title="<%= dicts.fileBrowser.Up %>" data-toggle="tooltip" data-placement="auto top" data-container="body">
+      <i class="icon xi-upload-folder"></i>
+    </button>
+    <div id="fileBrowserPath" class="dropDownList">
+      <div class="targetName"></div>
+      <input class="text" spellcheck="false">
+      <div class="iconWrapper" title="<%= dicts.fileBrowser.filePathHint %>" data-toggle="tooltip" data-placement="auto top" data-container="body">
+        <i class="icon xi-arrow-down"></i>
+      </div>
+      <ul id="fileBrowserPathMenu" class="list"></ul>
+    </div>
+    <!-- search section -->
+    <div id="fileBrowserSearch" class="searchSection dropDownList">
+      <input type="text" placeholder="<%= dicts.fileBrowser.SearchHint %>" spellcheck="false">
+      <div class="clear">
+        <i class="icon fa-14 xi-close xc-action"></i>
+      </div>
+      <ul id="fileSearchDropdown" class="list">
+        <li><%= dicts.MenuTStr.RegexMatch %><span class="regMatch"></span></li>
+        <li><%= dicts.MenuTStr.RegexContains %><span class="regContain"></span></li>
+        <li><%= dicts.MenuTStr.GlobMatch %><span class="globMatch"></span></li>
+        <li><%= dicts.MenuTStr.GlobContains %><span class="globContain"></span></li>
+      </ul>
+    </div>
+    <!-- Icon Options -->
+    <div class="iconSection">
+      <!-- sort -->
+      <span id="fileBrowserSort" class="xc-iconWrap-action sort clickable" title="<%= dicts.MenuTStr.Sort %>" data-toggle="tooltip" data-placement="auto top" data-container="body">
+        <i class="icon xi-sort"></i>
+      </span>
+      <ul id="fileBrowserSortMenu" class="menu">
+        <li data-sortkey="name">
+          <span class="text"><%= dicts.common.Name %></span>
+          <i class="icon xi-tick fa-12"></i>
+        </li>
+        <li data-sortkey="size">
+          <span class="text"><%= dicts.common.Size %></span>
+          <i class="icon xi-tick fa-12"></i>
+        </li>
+        <li data-sortkey="type">
+            <span class="text"><%= dicts.common.Type %></span>
+            <i class="icon xi-tick fa-12"></i>
+        </li>
+        <li class="cdate" data-sortkey="cdate">
+          <span class="text"><%= dicts.common.DateCreated %></span>
+          <i class="icon xi-tick fa-12"></i>
+        </li>
+        <li data-sortkey="mdate">
+          <span class="text"><%= dicts.common.DateModified %></span>
+          <i class="icon xi-tick fa-12"></i>
+        </li>
+      </ul>
+      <!-- refresh -->
+      <span id="fileBrowserRefresh" class="xc-iconWrap-action refresh" title="<%= dicts.common.Refresh %>" data-toggle="tooltip" data-placement="auto top" data-container="body">
+        <i class="icon xi-refresh"></i>
+      </span>
+    </div>
+  </section>
+  <section class="cardMain">
+    <!-- File Browser Main Section -->
+    <div id="fileBrowserMain" class="xc-grid leftMain gridView fileBrowserMain">
+        <!-- Loading Sectoin -->
+        <section class="loadingSection">
+          <div class="waitingIcon"></div>
+        </section>
+        <section class="searchLoadingSection">
+        </section>
+        <!-- Main Content -->
+        <section id="fileBrowserContainer" class="mainSection fileBrowserContainer">
+          <div class="cloudUploadSection">
+            <div>
+              <input id="dsForm-source-upload" type="file" style="display:none">
+              <i class="icon xi-cloud-upload"></i>
+              <span>
+                <span class="upload xc-action">Choose a file to upload</span> or drag it here.
+              </span>
+            </div>
+          </div>
+          <!-- Titles -->
+          <div class="titleSection">
+            <div class="checkBox selectAll">
+                <i class="icon xi-ckbox-empty"></i>
+            </div>
+            <div class="title gridIcon"></div>
+            <!-- file name -->
+            <div class="title fileName" data-sortkey="name">
+              <span class="label"><%= dicts.common.Name %></span>
+              <i class="icon xi-sort fa-15 xc-action"></i>
+              <div class="colGrab"></div>
+            </div>
+            <!-- file date created -->
+            <div class="title fileDate cdate" data-sortkey="cdate">
+              <span class="label"><%= dicts.common.DateCreated %></span>
+              <i class="icon xi-sort fa-15 xc-action"></i>
+            </div>
+            <!-- file date modified-->
+            <div class="title fileDate mdate" data-sortkey="mdate">
+              <span class="label"><%= dicts.common.DateModified %></span>
+              <i class="icon xi-sort fa-15 xc-action"></i>
+            </div>
+            <!-- file size -->
+            <div class="title fileSize" data-sortkey="size">
+              <span class="label"><%= dicts.common.Size %></span>
+             <i class="icon xi-sort fa-15 xc-action"></i>
+            </div>
+          </div>
+          <div class="wrapper">
+            <div id="innerFileBrowserContainer" class="clearfix innerFileBrowserContainer"></div>
+          </div>
+          <!-- Active File Path -->
+          <div class="filePathBottom">
+
+            <span class="content"></span>
+            <div class="paginationRow">
+                <div class="pageBtn prev xc-action">&lt; Previous</div>
+                <div class="pageBtn next xc-action">Next &gt;</div>
+                <div class="pageNumber">Page <span class="text">1</span></div>
+            </div>
+          </div>
+        </section>
+        <!-- File Info -->
+        <section id="fileInfoContainer" class="fileInfoContainer">
+            <div id="fileInfoTop" class="fileInfoTop">
+                <div class="fileInfoSection">
+                    <div>
+                        <span class="fileName"></span>
+                        <span> | </span>
+                        <span class="fileType content"></span>
+                    </div>
+                    <div class="fileInfoDetails">
+                        <div class="fileInfoIcon">
+                            <i class="icon fileIcon"></i>
+                        </div>
+                        <div class="fileInfoText">
+                            <div class="fileDate fileInfo mdate">
+                                <i class="icon xi-menu-scheduler"></i>
+                                <div class="contentWrapper">
+                                    <span><%= dicts.common.DateModified %>:</span>
+                                    <span class="content"></span>
+                                </div>
+                            </div>
+                            <!-- <div class="fileDate fileInfo cdate">
+                                <i class="icon xi-menu-add-scheduler"></i>
+                                <div class="contentWrapper">
+                                <span><%= dicts.common.DateCreated %>:</span>
+                                <span class="content"></span>
+                                </div>
+                            </div> -->
+                            <div class="fileSize fileInfo">
+                                <i class="icon xi-compare"></i>
+                                <div class="contentWrapper">
+                                    <span><%= dicts.common.Size %>:</span>
+                                    <span class="content"></span>
+                                </div>
+                            </div>
+                            <div class="folderNumItems fileInfo">
+                                <i class="icon xi-workbook"></i>
+                                <div class="contentWrapper">
+                                    <span><%= dicts.fileBrowser.NumItems %>:</span>
+                                    <span class="content">N/A</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="fileRawData">
+                        <button id="fileRawData" class="btn btn-clear iconBtn">
+                        <i class="icon xi-show"></i>
+                        <span><%= dicts.common.ViewRawData %></span>
+                        </button>
+                    </div>
+                </div>
+                <div class="pathInfoSection">
+                    <div>
+                        <span>--</span>
+                        <span> | </span>
+                        <span class="content">--</span>
+                    </div>
+                    <div class="fileInfoDetails">
+                        <div class="fileInfoIcon">
+                            <i class="xi-folder icon fileIcon"></i>
+                        </div>
+                        <div class="fileInfoText">
+                            <div class="path">
+                                <i class="icon xi-info-circle-outline"></i>
+                                <div class="contentWrapper">
+                                    <span class="label">Location:</span>
+                                    <span class="content"></span>
+                                </div>
+                            </div>
+                            <div class="numItems">
+                                <i class="icon xi-workbook"></i>
+                                <div class="contentWrapper">
+                                    <span class="label">Total Items:</span>
+                                    <span class="content"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+          </div>
+          <div id="fileInfoMid" class="fileInfoMid">
+            <div class="infoTitle">
+              <span><%= dicts.common.SelectedFiles %></span>
+              <button class="addRegex btn btn-secondary">
+                Add regex
+              </button>
+            </div>
+            <div class="pickedFiles">
+              <span class="numSelectedFiles">0 items selected</span>
+              <span class="clearAll xc-action">
+                  <%= dicts.common.ClearAll %>
+                  <i class="icon xi-trash"></i>
+              </span>
+            </div>
+            <div class="fileList">
+              <ul class="pickedFileList"></ul>
+            </div>
+          </div>
+          <div id="fileInfoBottom" class="fileInfoBottom">
+            <div class="infoTitle">
+              <span><%= dicts.common.ImportInto %>:</span>
+            </div>
+            <div class="switchWrap">
+              <div class="switchLabel highlighted">
+                <%= dicts.common.OneDataset %>
+              </div>
+              <div class="xc-switch switch">
+                <div class="slider"></div>
+              </div>
+              <div class="switchLabel">
+                <%= dicts.common.MultiDatasets %>
+              </div>
+            </div>
+            <div class="buttonSection">
+              <button type="button" class="btn btn-cancel cancel"><%= dicts.common.Cancel %></button>
+              <button type="button" class="btn btn-submit confirm xc-disabled"><%= dicts.common.Next %></button>
+            </div>
+          </div>
+        </section>
+    </div>
+  </section>
+  include "fileBrowserMenu.html"
+</div>
+<!-- End File Browser -->

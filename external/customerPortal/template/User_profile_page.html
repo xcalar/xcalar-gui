@@ -1,0 +1,274 @@
+<header class="profile-header">
+  <div class="profile-info">
+    <div class="profile-avatar {{#if user.agent}}profile-avatar-agent{{/if}}">
+      <img class="avatar" src="{{'//p6.zdassets.com/hc/theme_assets/1162526/200342807/btn-user-up-copy-2_3x.png'}}" alt="Avatar"/>
+    </div>
+    <div class="basic-info">
+      <h1 class="name">
+        {{#if user.url}}
+          <a href="{{user.url}}" target="_zendesk_lotus" title="{{t 'open_user_in_support'}}">{{user.name}}</a>
+        {{else}}
+          {{user.name}}
+        {{/if}}
+      </h1>
+    </div>
+    <div class="options">
+      {{#if private_profile}}
+        <span class="profile-private-badge">{{t 'private'}}</span>
+      {{/if}}
+      {{edit}}
+      {{subscribe}}
+    </div>
+
+    {{#if description}}
+      <p class="description">{{description}}</p>
+    {{/if}}
+
+    <ul class="profile-stats profile-stats-activity">
+      <li class="stat">
+        <span class="stat-label">{{t 'total_activity'}}</span>
+        <span class="stat-value">{{total_activity}}</span>
+      </li>
+      <li class="stat">
+        <span class="stat-label">{{t 'last_activity'}}</span>
+        <span class="stat-value">
+          {{#if last_activity_at}}
+            {{date last_activity_at timeago=true}}
+          {{else}}
+            {{t 'no_activity_yet'}}
+          {{/if}}
+        </span>
+      </li>
+      <li class="stat">
+        <span class="stat-label">{{t 'member_since'}}</span>
+        <span class="stat-value">
+          {{#if member_since}}
+            {{date member_since format='medium'}}
+          {{else}}
+            {{t 'no_activity_yet'}}
+          {{/if}}
+        </span>
+      </li>
+    </ul>
+  </div>
+  <ul class="profile-stats profile-stats-counters">
+    <li class="stat">
+      <span class="stat-label">{{t 'following'}}</span>
+      <span class="stat-value">{{t 'users_count' count=following_count}}</span>
+    </li>
+    <li class="stat">
+      <span class="stat-label">{{t 'followed_by'}}</span>
+      <span class="stat-value">{{t 'users_count' count=follower_count}}</span>
+    </li>
+    <li class="stat">
+      <span class="stat-label">{{t 'votes'}}</span>
+      <span class="stat-value">{{vote_count}}</span>
+    </li>
+    <li class="stat">
+      <span class="stat-label">{{t 'subscriptions'}}</span>
+      <span class="stat-value">{{subscription_count}}</span>
+    </li>
+  </ul>
+</header>
+
+{{#if visible}}
+
+  {{#if member_since}}
+
+    <nav class="profile-nav nav-spaced">
+      <ul class="collapsible-nav-list">
+        {{#each filters}}
+          {{#if selected}}
+            <li aria-selected=true>{{name}}</li>
+          {{else}}
+            <li><a href="{{url}}">{{name}}</a></li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </nav>
+
+    {{#is filter_by 'activities'}}
+      <section class="profile-section">
+
+        {{#if activities}}
+
+          <header class="profile-section-header">
+            <h2 class="profile-section-title">{{t 'activity_overview'}}</h2>
+            <span class="profile-section-description">{{t 'latest_activity' name=user.name}}</span>
+          </header>
+
+          <ul class="profile-activity-list">
+            {{#each activities}}
+
+              <li class="profile-activity profile-activity-{{type}}">
+                <header class="profile-activity-header">
+                  <img class="avatar" src="{{'//p6.zdassets.com/hc/theme_assets/1162526/200342807/btn-user-up-copy-2_3x.png'}}" alt="Avatar"/>
+                  <p class="profile-activity-description">{{label}}</p>
+                </header>
+
+                {{#with contribution}}
+                  <div class="profile-activity-contribution profile-contribution">
+                    <header class="profile-contribution-header">
+                      {{#isnt object_type 'comment'}}
+                        <h3 class="profile-contribution-title"><a href="{{url}}">{{title}}</a></h3>
+                      {{/isnt}}
+
+                      {{#isnt status 'none'}}
+                        <span class="contribution-status contribution-{{status_dasherized}}">{{status_name}}</span>
+                      {{/isnt}}
+
+                      {{#if pending}}
+                        <span class="contribution-pending">{{t 'pending_approval'}}</span>
+                      {{/if}}
+
+                      {{#if official}}
+                        <span class="contribution-official">{{t 'official_comment'}}</span>
+                      {{/if}}
+                    </header>
+
+                    <ol class="breadcrumbs profile-contribution-breadcrumbs">
+                      {{#each path_steps}}
+                        <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
+                      {{/each}}
+                    </ol>
+
+                    <p class="profile-contribution-body">{{excerpt body characters=200}}</p>
+
+                    <ul class="profile-contribution-meta">
+                      {{#is object_type 'comment'}}
+                        <li class="meta-data">
+                          <a class="comment-link" href={{url}}>{{t 'view_comment'}}</a>
+                        </li>
+                      {{/is}}
+                      <li class="meta-data">{{author.name}}</li>
+                      <li class="meta-data">
+                        {{#if editor}}
+                          {{t 'edited'}} {{date edited_at timeago=true}}
+                        {{else}}
+                          {{t 'created'}} {{date created_at timeago=true}}
+                        {{/if}}
+                      </li>
+                      {{#each stats}}
+                        <li class="meta-data">{{label}}</li>
+                      {{/each}}
+                    </ul>
+                  </div>
+                {{/with}}
+              </li>
+
+            {{/each}}
+          </ul>
+
+        {{/if}}
+
+        {{#unless activities}}
+          <span class="no-activity">{{t 'no_contributions'}}</span>
+        {{/unless}}
+
+      </section>
+    {{/is}}
+
+    {{#isnt filter_by 'activities'}}
+      <section class="profile-section">
+
+        {{#if contributions}}
+
+          <header class="profile-section-header">
+            <h2 class="profile-section-title">{{t filter_by}}</h2>
+            {{#if sorters}}
+              <span class="profile-section-description">{{sorter_description}}</span>
+              <span class="profile-section-sorter dropdown">
+                <span class="dropdown-toggle">
+                  {{current_sorter.label}}
+                </span>
+                <span class="dropdown-menu" role="menu">
+                  {{#each sorters}}
+                    <a href="{{url}}" aria-selected="{{selected}}" role="menuitem">
+                      {{name}}
+                    </a>
+                  {{/each}}
+                </span>
+              </span>
+            {{/if}}
+          </header>
+
+          <ul class="profile-contribution-list profile-{{filter_by}}">
+            {{#each contributions}}
+
+              <li class="profile-contribution">
+                <header class="profile-contribution-header">
+                  {{#isnt object_type 'comment'}}
+                    <h3 class="profile-contribution-title"><a href="{{url}}">{{title}}</a></h3>
+                  {{/isnt}}
+
+                  {{#isnt status 'none'}}
+                    <span class="contribution-status contribution-{{status_dasherized}}">{{status_name}}</span>
+                  {{/isnt}}
+
+                  {{#if pending}}
+                    <span class="contribution-pending">{{t 'pending_approval'}}</span>
+                  {{/if}}
+
+                  {{#if official}}
+                    <span class="contribution-official">{{t 'official_comment'}}</span>
+                  {{/if}}
+                </header>
+
+                <ol class="breadcrumbs profile-contribution-breadcrumbs">
+                  {{#each path_steps}}
+                    <li title="{{name}}"><a href="{{url}}">{{name}}</a></li>
+                  {{/each}}
+                </ol>
+
+                <p class="profile-contribution-body">{{excerpt body characters=200}}</p>
+
+                <ul class="profile-contribution-meta">
+                  {{#is object_type 'comment'}}
+                    <li class="meta-data">
+                      <a class="comment-link" href={{url}}>{{t 'view_comment'}}</a>
+                    </li>
+                  {{/is}}
+                  <li class="meta-data">{{author.name}}</li>
+                  <li class="meta-data">
+                    {{#if editor}}
+                      {{t 'edited'}} {{date edited_at timeago=true}}
+                    {{else}}
+                      {{t 'created'}} {{date created_at timeago=true}}
+                    {{/if}}
+                  </li>
+                  {{#each stats}}
+                    <li class="meta-data">{{label}}</li>
+                  {{/each}}
+                </ul>
+              </li>
+
+            {{/each}}
+          </ul>
+
+          {{pagination}}
+
+        {{/if}}
+
+        {{#unless contributions}}
+          <span class="no-activity">{{t 'no_contributions'}}</span>
+        {{/unless}}
+
+      </section>
+
+    {{/isnt}}
+
+  {{/if}}
+
+  {{#unless member_since}}
+    <section class="profile-section">
+      <span class="no-activity">{{t 'no_content_yet'}}</span>
+    </section>
+  {{/unless}}
+
+{{/if}}
+
+{{#unless visible}}
+  <section class="profile-section">
+    <span class="private-activity">{{t 'private_activity'}}</span>
+  </section>
+{{/unless}}

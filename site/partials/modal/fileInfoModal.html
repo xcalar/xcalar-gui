@@ -1,0 +1,39 @@
+<!-- File Info Modal -->
+<div id="fileInfoModal" class="modalContainer xc-viewMode">
+  <header class="modalHeader">
+    <span class="text"></span>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- modalMain -->
+  <section class="modalMain">
+    <div>
+      <span class="fileName"></span>
+      <span> | </span>
+      <span class="fileType content"></span>
+    </div>
+    <div class="fileInfoDetails">
+      <div class="fileInfoIcon">
+        <i class="icon fileIcon"></i>
+      </div>
+      <div class="fileInfoText">
+        <div class="fileDate fileInfo mdate">
+          <i class="icon xi-menu-scheduler"></i>
+          <div class="contentWrapper">
+            <span><%= dicts.common.DateModified %>:</span>
+            <span class="content"></span>
+          </div>
+        </div>
+        <div class="fileSize fileInfo">
+          <i class="icon xi-compare"></i>
+          <div class="contentWrapper">
+            <span><%= dicts.common.Size %>:</span>
+            <span class="content"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+<!-- End of DS Info Modal -->

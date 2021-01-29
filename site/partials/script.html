@@ -1,0 +1,588 @@
+<% var tag = dicts.isUnitTest ? 'data-cover' : '' %>
+
+<!-- vars set by Grunt at build time to be consumed by jsTStr, etc. -->
+<script src="assets/lang/en/globalAutogen.js" type="text/javascript"></script>
+<!-- 3rd Party Stuff -->
+<script src="3rd/d3.min.js" charset="utf-8"></script>
+<script src="3rd/microsoft-authentication-library-for-js/dist/msal.min.js" type="text/javascript"></script>
+<script src="3rd/tableau-2.0.3.min.js" type="text/javascript"></script>
+<script src="3rd/jquery-ui.js" charset="utf-8"></script>
+<script src="3rd/jquery.mousewheel.min.js"></script>
+<script src="3rd/bower_components/bootstrap/js/tooltip.js"></script>
+<script src="3rd/jquery.caret-master/src/jquery.caret.js" type="text/javascript"></script>
+<script src="3rd/jQuery-MD5-master/jquery.md5.js" type="text/javascript"></script>
+<script src="3rd/jquery-scrollintoview-master/jquery.scrollintoview.js" type="text/javascript"></script>
+<script src="3rd/socket.io.min.js" type="text/javascript"></script>
+<script src="3rd/bower_components/crypto-js/crypto-js.js"></script>
+<script src="3rd/bower_components/cron-parser/lib/date.js"></script>
+<script src="3rd/bower_components/cron-parser/lib/expression.js"></script>
+<script src="3rd/bower_components/cron-parser/lib/parser.js"></script>
+<script src="3rd/bower_components/cron-parser/lib/umd.js"></script>
+<script src="3rd/bower_components/dom-to-image/dist/dom-to-image.min.js"></script>
+<script src="3rd/bower_components/pako/dist/pako.min.js"></script>
+<script src="3rd/azure-storage-js-2.10.101/azure-storage.blob.min.js"></script>
+<script src="3rd/AJV/ajv.js"></script> <!-- json schema validator -->
+<script src="3rd/FileSaver.min.js"></script>
+
+<!-- 3rd party CodeMirror -->
+<script src="3rd/bower_components/CodeMirror/lib/codemirror.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/edit/matchbrackets.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/edit/closebrackets.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/display/placeholder.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/hint/show-hint.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/hint/python-hint.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/hint/sql-hint.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/search/search.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/search/searchcursor.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/dialog/dialog.js"></script>
+<link rel="stylesheet" href="3rd/bower_components/CodeMirror/addon/lint/lint.css">
+<script src="3rd/bower_components/CodeMirror/addon/jsonlint.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/lint/lint.js"></script>
+<script src="3rd/bower_components/CodeMirror/addon/lint/json-lint.js"></script>
+<link rel="stylesheet" type="text/css" href="3rd/bower_components/CodeMirror/addon/hint/show-hint.css">
+<link rel="stylesheet" type="text/css" href="3rd/bower_components/CodeMirror/addon/dialog/dialog.css">
+<script src="3rd/bower_components/CodeMirror/mode/python/python.js"></script>
+<script src="3rd/bower_components/CodeMirror/mode/sql/sql.js"></script>
+<script src="3rd/bower_components/CodeMirror/mode/javascript/javascript.js"></script>
+<script src="3rd/bower_components/CodeMirror/mode/spreadsheetXcalarCustom/spreadsheet.js"></script>
+<script src="3rd/bower_components/moment/min/moment.min.js"></script>
+
+
+<!-- Backend Thrift Stuff -->
+<script src="assets/js/thrift/thrift.js" type="text/javascript"></script>
+<script src="assets/js/thrift/CsvLoadArgsEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/LibApisEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/QueryStateEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DataFormatEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/JoinOpEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/UnionOpEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/Status_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/LibApisCommon_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/LibApisConstants_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/FunctionCategory_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DagStateEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApiService.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApiServiceAsync.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DataTargetEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DataTargetTypes_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/SourceTypeEnum_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarEvalEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DagTypes_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/UdfTypes_types.js" type="text/javascript"></script>
+<script src="assets/js/config.js" type="text/javascript"></script>
+<script src="assets/js/loginConfig.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApiVersionSignature_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/OrderingEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApi.js" type="text/javascript"></script>
+<!-- auto template script tags only added in production mode -->
+<!-- start auto template tags -->
+<!-- end auto template tags -->
+
+<!-- Start Xcalar Design stuff -->
+<script src="assets/lang/<%=lang%>/jsTStr.js" type="text/javascript"></script>
+<script src="assets/lang/<%=lang%>/helpText.js" type="text/javascript"></script>
+<script src="assets/js/globalEnums.js" type="text/javascript"></script>
+<script src="assets/js/env/cloudEnv.js" type="text/javascript"></script>
+<script src="assets/js/env/buildEnv.js" type="text/javascript"></script>
+<script src="assets/js/xd_idl/Durable.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/durable/table/ColFunc.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/table/ProgCol.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/table/TableMeta.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/MetaInfo.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/UserInfo.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/XcLog.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/GenSettings.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/UserPref.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/WKBK.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/ProfileInfo.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/DSObj.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/XcQuery.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/durable/KVVersion.js" type="text/javascript" <%= tag %>></script>
+
+<script src="assets/js/shared/setup/compatible.js" type="text/javascript"></script>
+<script src="assets/js/shared/setup/script.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/setup/enums.js" type="text/javascript"></script>
+<script src="assets/js/shared/setup/xcGlobal.js" type="text/javascript"></script>
+<script src="assets/js/shared/setup/xvm.js"></script>
+<script src="assets/js/shared/setup/xcManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/setup/authentication.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/setup/CloudManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/setup/CodeMirrorManager.js" type="text/javascript" <%= tag %>></script>
+
+<!-- helperClasses -->
+<script src="assets/js/shared/helperClasses/ListScroller.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/Mutex.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/MouseEvents.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/SearchBar.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/FormHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/RangeSlider.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/MenuHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/InputSuggest.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/InputDropdownHint.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/XcStorage.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/ProgressCircle.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/RectSelection.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/InfList.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/concurrency.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/kvStore.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/Redo.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/repeat.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/statusBox.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/statusMessage.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/transaction.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/Undo.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/xcMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/xcSocket.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/xcUser.js" type="text/javascript"></script>
+<script src="assets/js/shared/helperClasses/dragDropUploader.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/adminTools.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/FileLister.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/XcEvent.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/ProgressBar.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/helperClasses/ResourceMenu.js" type="text/javascript" <%= tag %>></script>
+
+<script src="assets/js/components/AppList.js" type="text/javascript" <%= tag %>></script>
+<!-- workbook file -->
+<script src="assets/js/components/workbook/workbookManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/workbook/workbookPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/workbook/workbookSet.js" type="text/javascript" <%= tag %>></script>
+<!-- end of workbook file -->
+<!-- menu file -->
+<script src="assets/js/components/menu/AbstractMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menu/TableMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menu/ColMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menu/CellMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menu/UserMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menu/HelpMenu.js" type="text/javascript" <%= tag %>></script>
+<!-- end of menu file -->
+<!-- table file -->
+<script src="assets/js/components/table/TableComponent.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/TableMenuManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/TblFunc.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/TblManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/RowManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/RowInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/TableSkew.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/TableSearchBar.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/table/TableSearchPanel.js" type="text/javascript" <%= tag %>></script>
+<!-- end of table file -->
+
+<!-- worksheet file -->
+<script src="assets/js/components/worksheet/xdfManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/XDFService.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/TblAnim.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/ColManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/BaseOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/BaseOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/common/OpPanelDropdown.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/common/OpPanelDataRepo.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/common/OpPanelTemplateManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/common/OpPanelNodeDefFactory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/common/OpPanelNodeRenderFactory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/common/OpPanelComponentFactory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/DatasetOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SetOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SetOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/OpPanelArg.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/GeneralOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/GeneralOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/FilterOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/FilterOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/PublishIMDOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/IMDTableOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/MapOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/MapOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/AggOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/AggOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/GroupByOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/GroupByOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ProjectOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ProjectOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ExplodeOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ExplodeOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SortOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SortOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/JoinOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/JoinOpPanelStep1.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/JoinOpPanelStep2.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/JoinOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ColAssignmentView.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ColAssignmentModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/DatasetColRenamePanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/CastOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/DFLinkInOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ColSchemaSection.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/DFLinkOutOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ExportOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/ExportOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+
+<script src="assets/js/components/worksheet/oppanel/SQLOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SQLOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SplitOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SplitOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/RoundOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/RoundOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/RowNumOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/RowNumOpPanelModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SQLFuncInOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/SynthesizeOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/oppanel/DeskewOpPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/worksheet/dagDrag.js" type="text/javascript" <%= tag %>></script>
+
+<!-- end of worksheet file -->
+
+<script src="assets/js/components/menuBar/PanelHistory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menuBar/LoadScreen.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menuBar/HomeScreen.js" type="text/javascript" <%= tag %>></script>
+
+<!--menu files -->
+<script src="assets/js/components/menuBar/MainMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menuBar/UDFPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menuBar/CustomFunctionTestForm.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/menuBar/Log.js" type="text/javascript" <%= tag %>></script>
+<!-- menu files -->
+
+<!-- data source file -->
+<script src="assets/js/components/dataSource/DataSourceManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dataSource/DataSourceSchema.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dataSource/TblSource.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dataSource/TblSourcePreview.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dataSource/LoadApp.js" type="text/javascript" <%= tag %>></script>
+<!-- end of data source file -->
+
+<!-- datastore file -->
+<script src="assets/js/components/datastore/dsFormController.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/DSForm.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/FileBrowser.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/CloudFileBrowser.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/DSConfig.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/ParquetFileForm.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/DS.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/datastore/DSTargetManager.js" type="text/javascript" <%= tag %>></script>
+<!-- end of datastore file -->
+
+<!-- system panel file-->
+<!-- file manager file-->
+<script src="assets/js/components/system/fileManager/FileManagerPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/fileManager/UDFFileManager.js" type="text/javascript" <%= tag %>></script>
+<!-- end of file manager file-->
+<script src="assets/js/components/system/statsObj/StatsObj.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/statsObj/StatsObjMem.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/statsObj/StatsObjSwap.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/statsObj/StatsObjCPU.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/statsObj/StatsObjNetwork.js" type="text/javascript" <%= tag %>></script>
+<!-- monitor file -->
+<script src="assets/js/components/system/monitor/MonitorGraph.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/monitor/MonitorDonuts.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/monitor/MonitorPanel.js" type="text/javascript" <%= tag %>></script>
+<!-- end of monitor file -->
+<script src="assets/js/components/system/UserSettings.js" type="text/javascript" <%= tag %>></script>
+<!-- operations file -->
+<script src="assets/js/components/system/operations/xcSubQuery.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/operations/XcQueryLog.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/operations/queryManager.js" type="text/javascript" <%= tag %>></script>
+<!-- end of operations file -->
+<!-- admin file -->
+<script src="assets/js/components/system/admin/MonitorConfig.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/admin/MonitorLog.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/admin/adminAlertCard.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/admin/Admin.js" type="text/javascript" <%= tag %>></script>
+<!-- end of admin file -->
+<script src="assets/js/components/system/memoryAlert.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/DebugPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/system/ShellPanel.js" type="text/javascript" <%= tag %>></script>
+<!-- end of system panel file -->
+
+<script src="assets/js/cloudEnums.js" type="text/javascript" <%= tag %>></script>
+
+<!-- modal file -->
+<script src="assets/js/components/modal/modalHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/JSONModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/alert.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/AggModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/AbstractChartBuilder.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/BarChartBuilder.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/PieChartBuilder.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/Profile.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/ProfileEngine.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/ProfileChart.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/profile/ProfileSelector.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/LicenseModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/SupTicketModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/AboutModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/LogoutModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/FileInfoModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/SkewInfoModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/workbookInfoModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/LoginConfigModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/sqlQueryHistModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/DagCustomRenameModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/DFUploadModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/DFDownloadModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/DFNodeLineagePopup.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/FileManagerSaveAsModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/SchemaSelectionModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/CreatePublishTableModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/SQLFuncSettingModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/ExportSQLTableModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/ClusterStatusModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/RawFileModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/modal/CreateAppModal.js" type="text/javascript" <%= tag %>></script>
+<!-- end of modal file -->
+
+<!-- shared file -->
+<!-- util -->
+<script src="assets/js/shared/util/xcAssert.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/xcConsole.js" type="text/javascript"></script>
+<script src="assets/js/shared/util/xcFunction.js" type="text/javascript"></script>
+<script src="assets/js/shared/util/xcHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/xcStringHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/xcUIHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/xcTimeHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/xcTooltip.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/xcSupport.js" type="text/javascript"></script>
+<script src="assets/js/shared/util/XcUID.js" type="text/javascript"></script>
+<!-- api -->
+<script src="assets/js/XcalarThrift.js" type="text/javascript"></script>
+<script src="assets/js/shared/api/xiApi.js" type="text/javascript"></script>
+<!-- end of shared file -->
+<script src="assets/js/promiseHelper.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/httpStatus.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/HTTPService.js" type="text/javascript" <%= tag %>></script>
+<!-- published table file -->
+<script src="assets/js/components/publishedTable/PbTblInfo.js" type="text/javascript"></script>
+<script src="assets/js/components/publishedTable/PTblManager.js" type="text/javascript"></script>
+<script src="assets/js/components/publishedTable/PTblSchema.js" type="text/javascript"></script>
+<!-- end of published table file -->
+<!-- sql basic files -->
+<script src="assets/js/components/sql/node/treeNode.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/node/treeNodeFactory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/node/xcOpNode.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/node/xcOpGraph.js" type="text/javascript" <%= tag %>></script>
+<!-- end of sql basic files-->
+<!-- optimizer rules -->
+<script src="assets/js/components/sql/rules/addIndex.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/rules/dedupPlan.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/rules/dropAsYouGo.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/rules/parquetPushDown.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/rules/selectPushDown.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/rules/synthesizePushDown.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/rules/filterPushUp.js" type="text/javascript" <%= tag %>></script>
+<!-- end of optimizer rules-->
+<!-- sql file -->
+<script src="assets/js/components/sql/SQLEnum.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLQuery.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLUtil.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLAggregate.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLExpand.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLFilter.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLGlobalLimit.js" type="text/javascript" <%= tag %>></script></script>
+<script src="assets/js/components/sql/operators/SQLGroupBy.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLIgnore.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLJoin.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLLocalRelation.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLProject.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLSort.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLUnion.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SQLWindow.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/operators/SnowflakePredicate.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLCompiler.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLExecutor.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLSimulator.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLEditor.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/logicalOptimizer.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/sqlQueryHistory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SqlQueryHistoryPanel/DynaTable.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SqlQueryHistoryPanel/BaseCard.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SqlQueryHistoryPanel/Card.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SqlQueryHistoryPanel/ExtCard.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLSnippet.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/SQLDagExecutor.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLEditorSpace.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLTable.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/AbstractSQLResultView.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLTableLister.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLTableSchema.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLResultSpace.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLHistorySpace.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/sql/workspace/SQLWorkSpace.js" type="text/javascript" <%= tag %>></script>
+<!-- end of sql file -->
+
+<!-- pop up file -->
+<script src="assets/js/components/popup/PopupManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/popup/PopupPanel.js" type="text/javascript" <%= tag %>></script>
+<!-- end of pop up file -->
+<!-- parser -->
+<script src="assets/js/shared/parser/antlrParser.js" type="text/javascript"></script>
+<!-- end of parser file -->
+
+<!-- xcrpc -->
+<script src="assets/js/shared/librpc.js" type="text/javascript"></script>
+
+<!-- suggest file -->
+<script src="assets/js/shared/util/suggest/xcSuggest.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/shared/util/suggest/skRFPredictor.js" type="text/javascript"></script>
+<script src="assets/js/shared/util/suggest/skRFModels.js" type="text/javascript"></script>
+<!-- end of suggest file -->
+
+<!-- tutorial file -->
+<script src="assets/js/components/tutorial/Walkthroughs.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/tutorial/tooltipManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/tutorial/tooltipWalkthroughs.js" type="text/javascript" <%= tag %>></script>
+<!-- end of tutorial file -->
+
+<!-- viewer -->
+<script src="assets/js/components/viewer/XcViewer.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/viewer/XcTableViewer.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/viewer/XcDatasetViewer.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/viewer/XcDagTableViewer.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/viewer/XcPbTableViewer.js" type="text/javascript" <%= tag %>></script>
+<!-- end of viewer -->
+<!-- tab -->
+<script src="assets/js/components/tab/AbstractTabManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/tab/DagTabManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/tab/SQLTabManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/tab/UDFTabManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/tab/TableTabManager.js" type="text/javascript" <%= tag %>></script>
+<!-- end of tab -->
+<!-- dag -->
+<script src="assets/js/components/dag/DagPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagEnums.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagList.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagNodeInfoPanel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTab.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabUser.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabPublished.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagGraphExecutor.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagNodeExecutor.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagNodeFactory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagLineage.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagTable.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagRuntime.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabService.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagAggService.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagListService.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagParamService.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagServiceFactory.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagQueryConverter.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/modals/DagConfigNodeModal.js" type="text/javascript" <%= tag %>></script>
+<!-- dag nodes -->
+<script src="assets/js/components/dag/node/DagNode.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeIn.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeOut.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeOutOptimizable.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeAggregate.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeDataset.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeDFIn.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeDFOut.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeExport.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeFilter.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeGroupBy.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeIMDTable.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeJoin.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeMap.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSplit.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeExplode.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeRound.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeProject.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodePublishIMD.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSet.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSQL.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSQLSubInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSQLSubOutput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeRowNum.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeCustom.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeCustomInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeCustomOutput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeIndex.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSort.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeDeskew.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodePlaceholder.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeInstruction.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSynthesize.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSQLFuncIn.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeSQLFuncOut.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/DagNodeModule.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/node/CommentNode.js" type="text/javascript" <%= tag %>></script>
+
+<!-- dag node inputs -->
+<script src="assets/js/components/dag/nodeInput/DagNodeInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeAggregateInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeDatasetInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeDFInInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeDFOutInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeExportInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeFilterInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeIndexInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeSortInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeDeskewInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeGroupByInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeIMDTableInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeJoinInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeMapInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeProjectInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodePublishIMDInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeSetInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeSQLInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeRowNumInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodePlaceholderInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeSynthesizeInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeSQLFuncInInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeSQLFuncOutInput.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/nodeInput/DagNodeModuleInput.js" type="text/javascript" <%= tag %>></script>
+
+
+<script src="assets/js/components/dag/DagGraph.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagSubGraph.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagOptimizedGraph.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagGraphBar.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagCategories.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagCategoryNode.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagCategoryBar.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagView.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagViewManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/search/DagSearch.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/search/DagSearchModel.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/search/DagSearchEntry.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagSchemaPopup.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagNodeMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagNodeOperatorsMenu.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/modals/DagDescriptionModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/modals/DagUDFErrorModal.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagComment.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabCustom.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabProgress.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabOptimized.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabQuery.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabMain.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagParamManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagAggManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagAggPopup.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagParamPopup.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagTblManager.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabSQL.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabSQLFunc.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabExecuteOnly.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabSQLExecute.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/dagTab/DagTabScalarFnExecute.js" type="text/javascript" <%= tag %>></script>
+<script src="assets/js/components/dag/DagUtil.js" type="text/javascript" <%= tag %>></script>
+<!-- end of dag -->
+
+<!-- react -->
+<script src="assets/js/react.js" type="text/javascript"></script>
+<script src="assets/js/loadWizard/vendors.js" type="text/javascript"></script>
+<script src="assets/js/loadWizard/loadWizardXD.js" type="text/javascript"></script>
+<!-- end of react -->
+
+<!-- mixpanel -->
+<script src="assets/js/mixpanel/xcMixpanel.js" type="text/javascript"></script>
+<!-- end of mixpanel -->
+
+<!-- tests -->
+<script src="assets/test/testSuite.js" type="text/javascript"></script>
+<script src="assets/test/behaviorTest/flightTest.js" type="text/javascript"></script>
+<script src="assets/js/components/sql/sqlTest.js" type="text/javascript"></script>
+<!-- end of tests -->
+
+<script src="assets/js/shared/setup/testDataLocation.js" type="text/javascript"></script>
+<!-- Start up script -->

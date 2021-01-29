@@ -1,0 +1,62 @@
+<div id="sqlEditorSpace" class="contentSection">
+  <header class="sectionBar">
+    <div class="title sectionHeader">
+      <%= dicts.SQL.Editor %>
+    </div>
+    <div class="savingText"><%= dicts.common.Saving %>...</div>
+    <div class="tempTabText">Editing SQL Graph Node</div>
+    <div class="nodeInfo xc-hidden">NodeInfo</div> <!-- WIP -->
+    <div class="engine" >
+      <div class="text"><%= dicts.SQL.Engine %>: <span><%= dicts.SQL.NativeEngine %></span></div>
+      <div class="iconWrapper" data-toggle="tooltip" data-container="body" data-placement="auto top" data-title="<%= dicts.SQL.EngineHint %>">
+        <i class="icon xi-down"></i>
+      </div>
+    </div>
+    <div id="sqlEditorConnectorMenu" class="menu" data-submenu="sqlEditorSnowflakeSubMenu">
+      <ul>
+        <li class="active" data-action="native"><%= dicts.SQL.NativeEngine %></li>
+        <li class="parentMenu hint" data-submenu="snowflake"><%= dicts.SQL.SnowflakeEngine %></li>
+      </ul>
+    </div>
+    <div id="sqlEditorSnowflakeSubMenu" class="menu subMenu">
+      <ul class="snowflake">
+      </ul>
+    </div>
+    <i class="icon xi-play-outline hintDisable execute xc-action"
+    data-toggle="tooltip"
+    data-placement="auto top"
+    data-container="body"
+    data-title="<%= dicts.SQLEditor.RunHint %>"></i>
+    <i class="icon xi-save hintDisable saveFile xc-action"
+    data-toggle="tooltip"
+    data-placement="auto top"
+    data-container="body"
+    data-title="<%= dicts.TooltipTStr.SaveChanges %>"></i>
+    <button class="btn btn-secondary more dropDownList">
+        <i class="icon xi-ellipsis-h xc-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="More"></i>
+      <div class="list">
+        <ul>
+          <li data-action="addUDF"><%= dicts.resouceMenu.AddUDF %></li>
+          <li data-action="addToModule"><%= dicts.resouceMenu.UseInModule %></li>
+          <li data-action="download"><%= dicts.fileManager.Download %></li>
+          <li data-action="convertToSQLFuc">Convert to table function</li>
+          <li data-action="history"><%= dicts.SQL.HistoryTab %></li>
+          <li data-action="showTables"><%= dicts.Table.Show %></li>
+          <li id="viewSQLEditorShortCuts" data-action="viewShortcuts">View Keyboard Shortcuts</li>
+          include "../../util/menuScrollArea.html"
+        </ul>
+      </div>
+    </button>
+  </header>
+  <i class="icon xc-icon-action xi_popout undock" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.bottomMenu.popOutBtn %>"></i>
+  <i class="icon xi-close close xc-icon-action" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+  <section class="hintHidden editSection">
+    <div class="editArea">
+      <textarea id="sqlEditorSpace-editor"></textarea>
+    </div>
+    include "sqlHintMenu.html"
+  </section>
+  <section class="hintSection">
+    To get started, open an existing SQL statement or <span class="newSQL action xc-action">create a new one</span>
+  </section>
+</div>

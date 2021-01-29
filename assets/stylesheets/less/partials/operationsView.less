@@ -1,0 +1,31 @@
+// Currently, this less sheet is used for all worksheet forms
+// map, filter, agg, groupby, join, export etc
+
+// general styling
+//
+
+html.firefox {
+    #setOpPanel {
+        .resultSection {
+            input:focus {
+                .size(@width: 100%, @height: 26px);
+                line-height: 24px;
+                .position(@top: 0, @left: 0);
+                z-index: @z-index-opView + 1;
+            }
+        }
+    }
+}
+
+.leftSection.expanded {
+    .columnsWrap.flexWrap {
+        li {
+            .flex(1 1 200px);
+            width: 200px;
+        }
+        .flexSpace {
+            .flex(1 1 200px);
+            width: 200px;
+        }
+    }
+}

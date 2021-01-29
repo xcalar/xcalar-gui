@@ -1,0 +1,78 @@
+<div id="monitorLogCard" class="cardContainer">
+  <!-- Header -->
+  <header class="cardHeader">
+    <span class="title">Logs</span>
+  </header>
+  <!-- Main Section -->
+  <div class="cardMain">
+      <section class="inputSection">
+        <div class="logName column">
+          <label class="text"><%= dicts.admin.logName %></label>
+          <div class="inputWrap">
+            <input class="xc-input" type="text" spellcheck="false" autocomplete="off" placeholder="node.*.log" value="node.*.log">
+          </div>
+        </div>
+        <div class="lastRow column">
+          <label class="text"><%= dicts.admin.lastNRow %></label>
+          <div class="inputWrap">
+            <input class="xc-input" type="number" min="1" max="500" spellcheck="false" autocomplete="off" placeholder="1 to 500" data-toggle="tooltip" data-container="body" data-original-title="Number of rows to fetch">
+            <div class="btn btn-small inputAction xc-action getRecentLogs">
+              <i class="icon xi-tick fa-11"></i>
+            </div>
+          </div>
+        </div>
+        <div class="hostnamePattern column">
+          <label class="text"><%= dicts.admin.hostnamePattern %></label>
+          <div class="inputWrap">
+            <input class="xc-input" spellcheck="false" autocomplete="off" placeholder="Host Name Regex" data-toggle="tooltip" data-container="body" data-original-title="Enter a regex to find the correct hostname">
+          </div>
+        </div>
+        <div class="buttons column">
+          <div class="streamBtns">
+            <button type="button" class="btn btn-submit startStream">Start Log Stream</button>
+            <button type="button" class="btn stopStream">Stop Log Stream</button>
+          </div>
+          <button type="button" class="btn clear btn-clear"><%= dicts.common.Clear %> Logs</button>
+        </div>
+      </section>
+      <section class="tabSection">
+        <div class="tabWrapper">
+          <div class="leftEnd end xc-disabled">
+            <i class="icon xi-previous fa-12">
+          </div>
+          <div class="tabAreaWrapper">
+            <div class="tabArea">
+            </div>
+          </div>
+          <div class="rightEnd end xc-disabled">
+            <i class="icon xi-previous fa-12">
+          </div>
+        </div>
+      </section>
+      <section class="barSection xc-hidden">
+        <div class="downloadLog">
+          <i class="icon xi-download fa-16" title="" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.admin.downloadLog %>">
+          </i>
+        </div>
+        <div class="copyLog">
+          <i class="icon xi-copy-clipboard fa-16" title="" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.admin.copyLog %>">
+          </i>
+        </div>
+      </section>
+      <section class="logSection">
+        <div class="content">
+        </div>
+      </section>
+      <!-- <div class="formGroup removeSessGroup">
+        <label>
+          <span class="text">Remove Session Files:</span>
+          <div class="inputWrap">
+            <input class="xc-input" type="text" spellcheck="false" placeholder="pattern">
+            <div class="btn btn-small inputAction xc-action removeSessionFiles">
+              <i class="icon xi-tick fa-11"></i>
+            </div>
+          </div>
+        </label>
+      </div> -->
+</div>
+<!-- End of Support Ticket Modal -->

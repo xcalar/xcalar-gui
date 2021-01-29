@@ -1,0 +1,14 @@
+{
+    "Arithmetic functions" : 0,
+    "Bitwise functions" : 1,
+    "Trigonometric functions" : 2,
+    "Conversion functions" : 3,
+    "String functions" : 4,
+    "Miscellaneous functions" : 5,
+    "Conditional functions" : 6,
+    "Aggregate functions" : 7,
+    "Type-casting functions" : 8,
+    "User-defined functions" : 9,
+    "Timestamp functions" : 10
+}
+

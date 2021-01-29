@@ -1,0 +1,44 @@
+<!-- Skew Info Modal -->
+<div id="skewInfoModal" class="modalContainer flex">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.skewInfoModal.Title %></span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-container="body" data-toggle="tooltip" title="" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Instruction Section -->
+  <section class="modalInstruction">
+    <div class="text"><%= dicts.skewInfoModal.instr %></div>
+  </section>
+  <!-- Info Section -->
+  <section class="modalTopMain">
+      <div class="tableName">
+        <span><%= dicts.common.Table %>:</span>
+        <span class="text"></span>
+      </div>
+    <div class="size">
+      <span><%= dicts.common.Size %>:</span>
+      <span class="text"></span>
+    </div>
+    <div class="totalRows">
+      <span><%= dicts.queryGraph.numRows %>:</span>
+      <span class="text"></span>
+    </div>
+    <div class="skew">
+      <span><%= dicts.workspaceBar.Skew %>:</span>
+      <span class="text"></span>
+    </div>
+  </section>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <svg class="chart"></svg>
+  </section>
+</div>
+<!-- End Of Skew Info Modal -->

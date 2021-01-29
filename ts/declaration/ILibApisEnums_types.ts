@@ -1,0 +1,1 @@
+declare const XcalarApisT: { [key: string]: number };

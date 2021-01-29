@@ -1,0 +1,135 @@
+#!/bin/bash
+
+USAGE="$0 <user@host> -t -p <port> -o <option>"
+
+DIR="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+
+say () {
+    echo >&2 "$*"
+}
+
+die () {
+    echo >&2 "ERROR: $*"
+    exit 1
+}
+
+noop () {
+    return 0
+}
+
+joinBy() { local IFS="$1"; shift; echo "$*"; }
+
+#
+# strip xcalar-wetty-bin out of the path to gain proper access to ssh
+#
+
+IFS=':' read -r -a old_path_array <<< "$PATH"
+new_path_array=()
+
+for old_path in "${old_path_array[@]}"; do
+    if [ "${old_path%/xcalar-wetty-bin}" = "$old_path" ]; then
+        new_path_array+=("$old_path")
+    fi
+done
+
+PATH="$(joinBy ':' "${new_path_array[@]}")"
+
+#
+# Process the command line
+#
+# Model invocation
+# ssh <user@host> -t -p <port> -o <option> -o <option>
+#
+
+uservar="$(echo "$1" | cut -d '@' -f1)"
+host="$(echo "$1" | cut -d '@' -f2)"
+shift
+
+while [ $# -gt 0 ]; do
+    opt="$1"
+    shift
+    case "$opt" in
+        -t)
+            noop
+            ;;
+        -p)
+            # we need to ignore the ssh port
+            shift
+            ;;
+        -o)
+            noop
+            shift
+            ;;
+        *)
+            echo "Usage: $USAGE"
+            die "Unknown argument: $opt"
+            ;;
+    esac
+done
+
+#
+# Read the authentication password
+#
+
+XCE_XSHELL_PASSLEN="${XCE_XSHELL_PASSLEN:-64}"
+
+if ! [[ "$XCE_XSHELL_PASSLEN" =~ ^[0-9]+$ ]]; then
+    say "maximum password length is not an integer: $XCE_XSHELL_PASSLEN"
+    say "using default length"
+    XCE_XSHELL_PASSLEN=64
+fi
+
+read -n "$XCE_XSHELL_PASSLEN" -sp 'Password: ' passvar
+echo
+
+#
+# Setup the variables to call the auth handler
+#
+
+uservar="${uservar:-username}"
+passvar="${passvar:-password}"
+host="${host:-localhost}"
+default_port="${XCE_HTTPS_PORT:-443}"
+
+if [ "$host" = "localhost" ]; then
+    protocol="http"
+    port="${port:-12124}"
+    path="/login"
+else
+    protocol="https"
+    port="${port:-$default_port}"
+    path="/app/login"
+fi
+
+XCE_LOGIN_CHARSET="${XCE_LOGIN_CHARSET:-utf-8}"
+
+TMP="${TMP:-/tmp}"
+
+auth_resp="$(uservar="$uservar" passvar="$passvar" "$DIR"/xcalar-wetty-auth.py -p "$protocol" -o "$host" -r "$port" -a "$path")"
+auth_rc=$?
+
+if [ "$auth_rc" != 0 ]; then
+    die "authentication command failed with error code $auth_rc: ${auth_resp:-request produced no output}"
+fi
+
+auth_status="$(echo "$auth_resp" | tail -1)"
+
+auth_status_val=$(echo "$auth_status" | cut -d ':' -f1)
+auth_status_path=$(echo "$auth_status" | cut -d ':' -f2)
+
+if $auth_status_val; then
+    echo "Valid"
+    export XCE_COOKIE_JAR_FILE="$auth_status_path"
+else
+    echo "Invalid"
+    exit 1
+fi
+
+#
+# Here is where we run whatever we need to run
+#
+
+TMPDIR="${TMPDIR:-/tmp}"
+XCE_LOGDIR="${XCE_LOGDIR:-$TMPDIR}"
+
+exec python3.6 "$XLRDIR"/lib/python3.6/site-packages/xcalar/solutions/tools/xcalar_shell.py

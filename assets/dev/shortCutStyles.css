@@ -1,0 +1,32 @@
+#shortcutMenuIcon {
+    position: absolute;
+    z-index:10;
+    top: 3px;
+    right: 50px;
+    height: 25px;
+    width: 25px;
+    display: inline-block;
+    border-radius: 5px;
+    border: 3px solid white;
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.menuOption {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    padding: 0px 10px;
+    background-color: lightgray;
+    display: inline-block;
+    height: 100%;
+    line-height: 30px;
+    border-right: 1px solid gray;
+}
+.menuOption:nth-child(2) {
+    right:34px;
+}
+
+#shortcutSubMenu li:hover .menuOption {
+    background-color: #BBBFC3;
+}

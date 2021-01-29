@@ -1,0 +1,11 @@
+{
+    "max" : 0,
+    "min" : 1,
+    "count" : 2,
+    "avg" : 3,
+    "avgNumeric" : 4,
+    "sum" : 5,
+    "sumInteger" : 6,
+    "sumNumeric" : 7
+}
+

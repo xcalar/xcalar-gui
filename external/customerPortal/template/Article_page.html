@@ -1,0 +1,143 @@
+<nav class="sub-nav clearfix">
+<h1 class="help-center-name">{{help_center.name}}</h1>
+  {{search}}
+</nav>
+
+<div class="clearfix">
+  <article class="main-column">
+    <div class="article-subscribe-wrapper">
+      {{subscribe}}
+    </div>
+    <div class="article-wrapper">
+    <header class="article-header clearfix">
+      <h1>
+        {{#if article.internal}}
+          <span class="visibility-internal" data-title="{{t 'internal'}}">
+            <span class="visibility-internal-icon"></span>
+          </span>
+        {{/if}}
+        {{article.title}}
+      </h1>
+      <div class="article-metadata">
+        <div class="article-updated">{{date article.updated_at}}</div>
+        <div class="article-breadcrumbs">{{breadcrumbs}}</div>
+      </div>
+    </header>
+      
+        {{#with article}}
+            {{#is title 'License Keys'}}
+                {{dc "license_frame"}}
+            <head>
+            <style>
+              .article-body {
+                display: none;
+              }
+            </style>
+          </head>
+        {{/is}}
+      {{#is title 'Dashboards'}}
+              {{dc "tableau_frame"}}
+          <head>
+            <style>
+              .article-body {
+                  display: none;
+              }
+              .main-column {
+                  position: relative;
+                  width: 1100px;
+            </style>
+          </head>
+        {{/is}}
+        {{/with}}
+     
+
+    <div class="content-body article-body">
+      {{article.body}}
+    </div>
+            <div class="article-attachments">
+      <ul class="attachments">
+        {{#each attachments}}
+          <li>
+            <a href="{{url}}" target="_blank">{{name}}</a>
+            <span>({{size}})</span>
+          </li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+  
+
+   
+    <section class="article-comments">
+      <div class="comment-list-header">
+        <h4>{{article.comment_count}} {{t 'comments' count=article.comment_count}}</h4>
+        <div class="comment-sorter">
+          {{#each comment_sorters}}
+            <a aria-selected="{{selected}}" href="{{url}}">{{name}}</a>
+          {{/each}}
+        </div>
+      </div>
+      <div class="article-comments-inner">
+        {{#if comments}}
+          <ul id="comments" class="comment-list">
+            {{#each comments}}
+              <li id="{{anchor}}" class="comment">
+                <div class="comment-avatar {{#if author.agent}} comment-avatar-agent {{/if}}">
+                  <img src="{{'//p6.zdassets.com/hc/theme_assets/1162526/200342807/btn-user-up-copy-2_3x.png'}}" alt="Avatar">
+                </div>
+                <div class="comment-container">
+                  <header class="comment-header">
+                    <strong class="comment-author" title="{{author.name}}">
+                      {{#link 'user_profile' id=author.id}}
+                        {{author.name}}
+                      {{/link}}
+                    </strong>
+                    <span class="comment-published">{{date created_at}}</span>
+                    {{#if pending}}
+                      <span class="comment-pending">{{t 'pending_approval'}}</span>
+                    {{/if}}
+                  </header>
+                  <div class="content-body comment-body">{{body}}</div>
+                  {{#if editor}}
+                    <div class="comment-edited meta">
+                      {{t 'comment_edited' editor_name=editor.name}} {{date edited_at timeago=true}}
+                    </div>
+                  {{/if}}
+                  <footer class="comment-footer">
+                    <span class="comment-actions">
+                      {{#with ticket}}
+                        <a href="{{url}}" target="_zendesk_lotus" class="escalation-badge">
+                          #{{id}}
+                        </a>
+                      {{/with}}
+                      {{actions}}
+                    </span>
+                  </footer>
+                </div>
+              </li>
+            {{/each}}
+          </ul>
+        {{/if}}
+
+        {{pagination}}
+
+        <div>{{comment_callout}}</div>
+
+        {{#form 'comment' class='comment-form'}}
+          <div class="comment-avatar">
+            {{user_avatar class='user-avatar'}}
+          </div>
+
+          <div class="comment-container">
+            {{wysiwyg 'body'}}
+            <div class="comment-form-controls">
+              {{input type='submit'}}
+            </div>
+          </div>
+        {{/form}}
+      </div>
+    </section>
+
+  </article>
+
+</div>

@@ -1,0 +1,42 @@
+<!-- Dataflow Download Modal-->
+<div id="dfDownloadModal" class="modalContainer">
+  <!-- Header -->
+  <header class="modalHeader">
+    <span class="text"><%= dicts.dataflow.DownloadDF %></span>
+    <div class="close" data-container="body" data-toggle="tooltip" 
+    data-original-title="<%= dicts.common.Close %>">
+    <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Instruction -->
+  <section class="modalInstruction">
+    <div class="text"><%= dicts.dataflow.DownloadDFInstr %></div>
+  </section>
+  <!-- Main Section -->
+  <section class="modalMain">
+    <div class="row label"><%= dicts.dataflow.DownloadAs %>:</div>
+    <div class="row format">
+      <div class="dropDownList">
+        <div class="text"></div>
+        <div class="iconWrapper">
+          <i class="icon xi-arrow-down"></i>
+        </div>
+        <div class="list">
+          <ul></ul>
+        </div>
+      </div>
+    </div>
+    <div class="row label"><%= dicts.dataflow.DestFileName %>:</div>
+    <!-- include share UDF checkbox -->
+    <div class="row name">
+        <input class="xc-input white" type="text" autocomplete="off">
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Download %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Cancel %></button>
+  </section>
+</div>
+<!-- End of Dataflow Download Modal -->
+  

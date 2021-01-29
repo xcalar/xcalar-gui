@@ -1,0 +1,45 @@
+// Grid system generation
+
+@grid-count : 10;
+
+.position-grids() {
+    //initial
+    .col(@index) {
+        @item: ~".grid-@{index}";
+        .col((@index + 1), @item);
+    }
+    //add 2~11 to it, connect with ','
+    .col(@index, @list) when (@index =< @grid-count) {
+        @item: ~".grid-@{index}";
+        .col((@index + 1), ~"@{list}, @{item}");
+    }
+    // generate the final list
+    .col(@index, @list) when (@index > @grid-count) {
+        @{list} {
+            float: left;
+            position: relative;
+            // Prevent columns from collapsing when empty
+            min-height: 1px;
+        }
+    }
+    .col(1);
+}
+
+// loop and calculate the width of each grid
+.calc-grid(@index, @type) when (@type = width) and (@index > 0) {
+    .grid-@{index} {
+        width: percentage((@index / @grid-count));
+    }
+}
+.loop-grids(@index, @type) when (@index >= 0) {
+    .calc-grid(@index, @type);
+    // next iteration
+    .loop-grids((@index - 1), @type);
+}
+
+.make-grids() {
+    .position-grids();
+    .loop-grids(@grid-count, width);
+}
+
+

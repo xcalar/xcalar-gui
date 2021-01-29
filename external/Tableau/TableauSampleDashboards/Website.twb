@@ -1,0 +1,487 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20182.18.0627.2230                               -->
+<workbook original-version='18.1' source-build='2018.2.0 (20182.18.0627.2230)' source-platform='mac' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <datasources>
+    <datasource caption='gademodata (default.gademodata) (default)' inline='true' name='federated.11f43v80xefxzx13qcfz51meidks' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='wenhou-jiyuan-dev-vm' name='spark.10tm1i41lsctj31d40mt60hiass7'>
+            <connection authentication='yes' authentication-type='3' class='spark' connection-type='3' dbname='' http-path='' kerberos-host='' kerberos-realm='' kerberos-service='' odbc-connect-string-extras='TrustedCerts=Users/tab/Documents/xlrjdbc.pem;CAIssuedCertNamesMismatch=1' one-time-sql='' port='10000' schema='default' server='wenhou-jiyuan-dev-vm' sslcert='' sslfile='' sslmode='' transport-type='1' use-native-query='1' username='admin'>
+              <connection-customization class='spark' enabled='false' version='18.1'>
+                <vendor name='spark' />
+                <driver name='spark' />
+                <customizations>
+                  <customization name='odbc-connect-string-extras' value='TrustedCerts=Users/tab/Documents/xlrjdbc.pem;CAIssuedCertNamesMismatch=1' />
+                </customizations>
+              </connection-customization>
+            </connection>
+          </named-connection>
+        </named-connections>
+        <relation connection='spark.10tm1i41lsctj31d40mt60hiass7' name='gademodata' table='[default].[gademodata]' type='table' />
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>recordId</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[recordId]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>recordId</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>City</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[City]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>City</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Country/Region</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Country/Region]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Country/Region</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Date</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Date]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Date</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Exits</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Exits]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Exits</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Medium</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Medium]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Medium</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Number of Records</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Number of Records]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Number of Records</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Page</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Page]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Page</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Pageviews</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Pageviews]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Pageviews</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Section</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Section]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Section</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <width>255</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='binary' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_VARCHAR&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_CHAR&quot;</attribute>
+              <attribute datatype='string' name='TypeIsVarchar'>&quot;true&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Time on Page</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Time on Page]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Time on Page</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total Downloads</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Total Downloads]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Total Downloads</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Unique Visitors</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Unique Visitors]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Unique Visitors</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Visits</remote-name>
+            <remote-type>5</remote-type>
+            <local-name>[Visits]</local-name>
+            <parent-name>[gademodata]</parent-name>
+            <remote-alias>Visits</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>real</local-type>
+            <aggregation>Sum</aggregation>
+            <precision>4</precision>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;SQL_DOUBLE&quot;</attribute>
+              <attribute datatype='string' name='DebugWireType'>&quot;SQL_C_DOUBLE&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[City]' role='dimension' semantic-role='[City].[Name]' type='nominal' />
+      <column caption='Country/Region1' datatype='string' name='[Country/Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column aggregation='Count' datatype='date' datatype-customized='true' name='[Date]' role='dimension' type='ordinal' />
+      <column datatype='string' name='[Section]' role='dimension' type='nominal' />
+      <column caption='Record Id' datatype='real' name='[recordId]' role='dimension' type='ordinal' />
+      <group name='[Section &amp; Country/Region (Combined)]' name-style='unqualified' user:ui-builder='nest-group'>
+        <groupfilter function='crossjoin'>
+          <groupfilter function='level-members' level='[Section]' />
+          <groupfilter function='level-members' level='[Country/Region]' />
+        </groupfilter>
+      </group>
+      <drill-paths>
+        <drill-path name='Country/Region, City'>
+          <field>[Country/Region]</field>
+          <field>[City]</field>
+        </drill-path>
+      </drill-paths>
+      <layout dim-ordering='alphabetic' dim-percentage='0.478632' measure-ordering='alphabetic' measure-percentage='0.521368' show-structure='true' user-set-layout='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='gademodata (default.gademodata) (default)' name='federated.11f43v80xefxzx13qcfz51meidks' />
+          </datasources>
+          <datasource-dependencies datasource='federated.11f43v80xefxzx13qcfz51meidks'>
+            <column caption='Country/Region1' datatype='string' name='[Country/Region]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+            <column aggregation='Count' datatype='date' datatype-customized='true' name='[Date]' role='dimension' type='ordinal' />
+            <column datatype='string' name='[Section]' role='dimension' type='nominal' />
+            <column datatype='real' name='[Visits]' role='measure' type='quantitative' />
+            <column-instance column='[Country/Region]' derivation='None' name='[none:Country/Region:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Visits]' derivation='Sum' name='[sum:Visits:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Date]' derivation='Week' name='[wk:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[federated.11f43v80xefxzx13qcfz51meidks].[Section &amp; Country/Region (Combined)]'>
+            <groupfilter function='crossjoin' user:ui-enumeration='all' user:ui-marker='enumerate'>
+              <groupfilter function='level-members' level='[Section]' />
+              <groupfilter function='level-members' level='[Country/Region]' />
+            </groupfilter>
+          </filter>
+          <filter class='categorical' column='[federated.11f43v80xefxzx13qcfz51meidks].[none:Country/Region:nk]'>
+            <groupfilter function='level-members' level='[none:Country/Region:nk]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <filter class='categorical' column='[federated.11f43v80xefxzx13qcfz51meidks].[wk:Date:ok]'>
+            <groupfilter function='level-members' level='[wk:Date:ok]' user:ui-enumeration='all' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[federated.11f43v80xefxzx13qcfz51meidks].[none:Country/Region:nk]</column>
+            <column>[federated.11f43v80xefxzx13qcfz51meidks].[wk:Date:ok]</column>
+            <column>[federated.11f43v80xefxzx13qcfz51meidks].[Section &amp; Country/Region (Combined)]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+            <encodings>
+              <text column='[federated.11f43v80xefxzx13qcfz51meidks].[sum:Visits:qk]' />
+            </encodings>
+            <style>
+              <style-rule element='mark'>
+                <format attr='mark-labels-show' value='true' />
+                <format attr='mark-labels-cull' value='true' />
+              </style-rule>
+            </style>
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 2'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows source-height='30'>
+    <window class='worksheet' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <viewpoint>
+        <highlight>
+          <color-one-way>
+            <field>[federated.11f43v80xefxzx13qcfz51meidks].[Section &amp; Country/Region (Combined)]</field>
+            <field>[federated.11f43v80xefxzx13qcfz51meidks].[none:Country/Region:nk]</field>
+            <field>[federated.11f43v80xefxzx13qcfz51meidks].[wk:Date:ok]</field>
+          </color-one-way>
+        </highlight>
+      </viewpoint>
+    </window>
+    <window class='worksheet' maximized='true' name='Sheet 2'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='31'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='48' name='Sheet 1' width='128'>
+      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
+    </thumbnail>
+    <thumbnail height='384' name='Sheet 2' width='384'>
+      iVBORw0KGgoAAAANSUhEUgAAAYAAAAGACAYAAACkx7W/AAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAAFXUlEQVR4nO3VMQEAIAzAMMC/5yFjRxMF/XpnZg4AOW87AIAdBgAQZQAAUQYAEGUAAFEG
+      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
+      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
+      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
+      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABR
+      BgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUA
+      AFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQ
+      ZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEG
+      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
+      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
+      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
+      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABR
+      BgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUA
+      AFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQ
+      ZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEG
+      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
+      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
+      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
+      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABR
+      BgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUA
+      AFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQ
+      ZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEG
+      ABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAA
+      UQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBl
+      AABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEGABBlAABRBgAQZQAAUQYA
+      EGUAAFEGABBlAABRBgAQZQAAUQYAEGUAAFEfFxoG/IiMv0YAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

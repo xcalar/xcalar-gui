@@ -1,0 +1,160 @@
+<section id="groupByOpPanel" class="xc-hidden opPanel generalOpPanel">
+    <header>
+        <div class="row">
+            <div class="title"><%= dicts.opsView.groupBy %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <div class="mainContent">
+        <div class="opSection">
+            <p class="mainInstructions instrText">
+                <%= dicts.opsView.groupbyInstr %>
+            </p>
+            <div class="group groupbyGroup firstGroup">
+                <div class="groupOnSection">
+                    <div class="description">
+                        <%= dicts.opsView.fieldsToGroup %>:
+                        <i class="qMark icon xi-unknown"
+                        data-toggle="tooltip"
+                        data-container="body"
+                        data-placement="auto top"
+                        data-title="The name of the column on which to apply the aggregate function.">
+                        </i>
+                    </div>
+                    <div class="row gbOnRow original clearfix">
+                        <div class="inputWrap">
+                            <div class="dropDownList">
+                                <input class="arg gbOnArg" type="text" tabindex="10" spellcheck="false" autocomplete="off" data-typeid="-1">
+                                <div class="list hint">
+                                    <ul></ul>
+                                    include "../../util/menuScrollArea.html"
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cast new">
+                            <span class="label">
+                                <%= dicts.opsView.cast %>: </span>
+                            <div class="dropDownList hidden">
+                                <input class="text nonEditable" value="default" disabled>
+                                <div class="iconWrapper dropdown">
+                                    <i class="icon xi-arrow-down"></i>
+                                </div>
+                                <ul class="list"></ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row checkboxWrap groupByAll">
+                        <div class="checkbox">
+                            <i class="icon xi-ckbox-empty fa-11"></i>
+                            <i class="icon xi-ckbox-selected fa-11"></i>
+                        </div>
+                        <div class="text">
+                            <%= dicts.opsView.groupAll %>
+                            <i class="hint qMark icon xi-unknown new" data-toggle="tooltip" data-container="body"
+                                data-placement="auto top" data-original-title="<%= dicts.opsView.groupAllHint %>"></i>
+                        </div>
+                    </div>
+                    <div class="btnWrap" style="width:100%;">
+                        <div class="addArgWrap addArgWrapLarge">
+                            <button class="btn btn-secondary addArg addGroupArg ">
+                                <span class="text">
+                                    <%= dicts.opsView.AddAnotherColumn %></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="catFuncHeadings clearfix subHeading">
+                    <div class="groupbyFnTitle">
+                        <%= dicts.opsView.funcToGroup %>:
+                        <i class="qMark icon xi-unknown"
+                        data-toggle="tooltip"
+                        data-container="body"
+                        data-placement="auto top"
+                        data-title="A predefined formula that performs calculations on column values.">
+                        </i>
+                      </div>
+                    <div class="altFnTitle">
+                        <%= dicts.opsView.noFunc %>
+                    </div>
+                </div>
+                <div class="dropDownList firstList functionsList" data-fnlistnum="0">
+                    <input class="text inputable autocomplete functionsInput" autocomplete="off" data-fninputnum="0" tabindex="10"
+                        spellcheck="false">
+                    <div class="iconWrapper dropdown">
+                        <i class="icon xi-arrow-down"></i>
+                    </div>
+                    <div class="list genFunctionsMenu">
+                        <ul data-fnmenunum="0">
+                            <!-- list of group by functions will be filled in here -->
+                        </ul>
+                        include "../../util/menuScrollArea.html"
+                    </div>
+                </div>
+                <div class="descriptionText"></div>
+                <div class="argsSection inactive"></div>
+            </div>
+            <div class="addArgWrap addArgWrapSmall addGroup addExtraGroup">
+                <button class="btn btn-secondary btn-100-rounded addArg addGBGroup">
+                    <i class="icon xi-plus"
+                    data-container="body" data-toggle="tooltip" data-placement="auto top"
+                    data-title="Adds another Aggregate Function field for applying additional calculations."></i>
+                </button>
+                <span class="text">
+                    <%= dicts.opsView.additionalFunc %></span>
+            </div>
+            <div class="advancedSection collapsed">
+                <div class="advancedTitle minimized subHeading clearfix">
+                    <div>
+                        <i class="icon xi-plus-circle-outline advancedIcon minimized" data-container="body" data-toggle="tooltip"
+                            title="<%= dicts.TooltipTStr.ToggleAdvanced %>"></i>
+                        <i class="icon xi-minus-circle-outline advancedIcon minimized" data-container="body"
+                            data-toggle="tooltip" title="<%= dicts.TooltipTStr.ToggleAdvanced %>"></i>
+                        <span class="text">
+                            <%= dicts.common.AdvancedOpts %></span>
+                    </div>
+                </div>
+                <div class="optionsSection">
+                    <div class="icvContainer">
+                        <div class="icvMode checkboxSection">
+                            <div class="checkbox">
+                                <i class="icon xi-ckbox-empty fa-11"></i>
+                                <i class="icon xi-ckbox-selected fa-11"></i>
+                            </div>
+                            <div class="text">
+                                <%= dicts.opsView.erroneousRows %>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="gbCheckboxes">
+                        <div class="gbCheckboxRow clearfix">
+                            <div class="joinBack checkboxSection clearfix">
+                                    <div class="checkbox">
+                                        <i class="icon xi-ckbox-empty fa-11"></i>
+                                        <i class="icon xi-ckbox-selected fa-11"></i>
+                                    </div>
+                                <div class="text"><%= dicts.opsView.joinBack %></div>
+                            </div>
+                        </div>
+                        <div class="gbCheckboxRow clearfix">
+                            <div class="incSample checkboxSection clearfix">
+                                <div class="checkbox">
+                                    <i class="icon xi-ckbox-empty fa-11"></i>
+                                    <i class="icon xi-ckbox-selected fa-11"></i>
+                                </div>
+                                <div class="text">
+                                    <%= dicts.opsView.includeSample2 %>
+                                    <i class="qMark icon xi-unknown" data-toggle="tooltip" data-container="body"
+                                        data-original-title="<%= dicts.opsView.incSampleTip %>"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="strPreview"></div> <!-- this gets filled by JS -->
+            </div>
+        </div>
+        include "opPanelAdvancedSection.html"
+        include "opPanelBottomSection.html"
+    </div>
+</section>

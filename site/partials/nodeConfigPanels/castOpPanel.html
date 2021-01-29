@@ -1,0 +1,27 @@
+<!-- Cast Op Panel -->
+<section id="castOpPanel" class="xc-hidden opPanel">
+  <!-- Header -->
+  <header class="headerSection">
+    <div class="row">
+      <div class="title">Cast</div>
+      <div class="subTitle"></div>
+    </div>
+    <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+  </header>
+  <!-- content -->
+  <div class="mainContent">
+    <div class="opSection">
+      <p class="mainInstructions instrText">Converts a column’s data from one data type to another. <i class="qMark icon xi-unknown"
+        data-toggle="tooltip"
+        data-container="body"
+        data-placement="auto top"
+        data-title="Convert a column’s data from one data type to another by searching or selecting from the Retained Columns section the column whose data requires converting, providing a name for resultant column, and then from the New Type list, selecting a data type.
+        ">
+        </i></p>
+      include "colAssignmentView.html"
+      include "opPanelAdvancedSection.html"
+      include "opPanelBottomSection.html"
+    </div>
+  </div>
+</section>
+<!-- End Of Cast Op Panel -->

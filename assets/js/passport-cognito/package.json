@@ -1,0 +1,55 @@
+{
+  "name": "passport-cognito",
+  "version": "1.0.0",
+  "description": "AWS Cognito authentication strategy for Passport.",
+  "keywords": [
+    "passport",
+    "cognito",
+    "auth",
+    "authn",
+    "authentication",
+    "username",
+    "password"
+  ],
+  "author": {
+    "name": "Ted Haining",
+    "email": "thaining@xcalar.com",
+    "url": "http://www.xcalar.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/xcalar/passport-cognito.git"
+  },
+  "bugs": {
+    "url": "http://github.com/xcalar/passport-cognito/issues"
+  },
+  "license": "MIT",
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://www.opensource.org/licenses/MIT"
+    }
+  ],
+  "main": "./lib",
+  "dependencies": {
+    "passport-strategy": "1.x.x",
+    "amazon-cognito-identity-js": "^3.0.15",
+    "aws-sdk": "^2.510.0",
+    "base64url": "^3.0.1",
+    "node-fetch": "^2.6.0",
+    "@panva/jose": "^1.9.0",
+    "request": "^2.88.0",
+    "window-mock": "^0.1.0"
+  },
+  "devDependencies": {
+    "mocha": "1.x.x",
+    "chai": "1.x.x",
+    "chai-passport-strategy": "0.1.x"
+  },
+  "engines": {
+    "node": ">= 0.4.0"
+  },
+  "scripts": {
+    "test": "node_modules/.bin/mocha --reporter spec --require test/bootstrap/node test/*.test.js"
+  }
+}

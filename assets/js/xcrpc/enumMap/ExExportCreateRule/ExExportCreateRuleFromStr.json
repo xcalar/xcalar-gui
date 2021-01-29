@@ -1,0 +1,8 @@
+{
+    "unknown" : 0,
+    "createOnly" : 1,
+    "createOrAppend" : 2,
+    "appendOnly" : 3,
+    "deleteAndReplace" : 4
+}
+

@@ -1,0 +1,44 @@
+<!-- Alert Modal -->
+<div id="alertModal" class="modalContainer" style="display:none;">
+  <!-- Alert Modal Header -->
+  <header id="alertHeader" class="modalHeader">
+      <i class="infoIcon icon xi-warning"></i>
+    <span class="text"></span>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <!-- Alert Modal Instruction -->
+  <section id="alertInstruction" class="modalInstruction">
+    <div class="text"></div>
+  </section>
+  <!-- Alert Modal Content -->
+  <section class="content">
+    <section id="alertContent" class="modalTopMain">
+      <div class="text"></div>
+    </section>
+    <section id="alertDetail" class="modalTopMain detail">
+        <div class="detailTitle">
+        <span class="detailAction xc-action"><%= dicts.MenuTStr.ViewDetails %></span>
+        </div>
+        <div class="detailContent"></div>
+    </section>
+  </section>
+
+  <!-- Alert Checkbox -->
+  <section id="alertOption" class="modalMain">
+    <div id="alertCheckBox" class="checkboxSection">
+      <div class="checkbox">
+        <i class="icon xi-ckbox-empty"></i>
+        <i class="icon xi-ckbox-selected"></i>
+      </div>
+      <div class="text"><%= dicts.common.DontShow %></div>
+    </div>
+  </section>
+  <!-- Button Section -->
+  <section id="alertActions" class="modalBottom">
+    <button type="button" class="btn confirm"><%= dicts.common.Confirm %></button>
+    <button type="button" class="btn cancel"><%= dicts.common.Clear %></button>
+  </section>
+</div>
+<!-- End of Alert Modal -->

@@ -1,0 +1,47 @@
+<!-- Backend Thrift Stuff -->
+<script src="assets/js/thrift/thrift.js" type="text/javascript"></script>
+<script src="assets/js/thrift/CsvLoadArgsEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/LibApisEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/QueryStateEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DataFormatEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/JoinOpEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/UnionOpEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/Status_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/LibApisCommon_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/LibApisConstants_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/FunctionCategory_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DagStateEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApiService.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApiServiceAsync.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DataTargetEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DataTargetTypes_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/SourceTypeEnum_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarEvalEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/DagTypes_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/UdfTypes_types.js" type="text/javascript"></script>
+<script src="assets/js/config.js" type="text/javascript"></script>
+<script src="assets/js/loginConfig.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApiVersionSignature_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/OrderingEnums_types.js" type="text/javascript"></script>
+<script src="assets/js/thrift/XcalarApi.js" type="text/javascript"></script>
+
+<!-- Thrift API -->
+<script>
+    // Log hack
+    Log = { errorLog: () => {} };
+    // Transaction hack
+    Transaction = {
+        checkCanceled: () => false,
+        isSimulate: () => false,
+        startSubQuery: () => {},
+        log: () => {}
+    };
+</script>
+<script src="assets/js/shared/setup/xcGlobal.js" type="text/javascript"></script>
+<script src="assets/js/httpStatus.js" type="text/javascript"></script>
+<script src="assets/js/shared/util/xcHelper.js" type="text/javascript"></script>
+<script src="assets/js/promiseHelper.js" type="text/javascript"></script>
+<script src="assets/js/XcalarThrift.js" type="text/javascript"></script>
+
+<!-- xcrpc -->
+<script src="assets/js/shared/librpc.js" type="text/javascript"></script>

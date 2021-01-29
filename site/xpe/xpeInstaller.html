@@ -1,0 +1,179 @@
+<html>
+<head>
+  <title><%= dicts.common.XD %> Installation</title>
+  include "xpeCommonHeadTags.html"
+</head>
+
+<body>
+  <div class="parent">
+    <div class="leftPanel">
+      <div class="steps">
+        <div id="requirementsStep" class="step">
+          <span class="stepIcon">
+            <i class="icon xi-installerscreen-opencircle"></i>
+          </span>
+          <span class="stepTitle">
+            System requirements
+          </span>
+        </div>
+        <div id="licenseStep" class="step">
+          <span class="stepIcon">
+            <i class="icon xi-installerscreen-opencircle"></i>
+          </span>
+          <span class="stepTitle">
+            License Key
+          </span>
+        </div>
+        <div id="eulaStep" class="step">
+          <span class="stepIcon">
+            <i class="icon xi-installerscreen-opencircle"></i>
+          </span>
+          <span class="stepTitle">
+            Terms &#38; Conditions
+          </span>
+        </div>
+        <div id="configurationStep" class="step">
+          <span class="stepIcon">
+            <i class="icon xi-installerscreen-opencircle"></i>
+          </span>
+          <span class="stepTitle">
+            Docker configurations
+          </span>
+        </div>
+        <div id="installStep" class="step">
+          <span class="stepIcon">
+            <i class="icon xi-installerscreen-opencircle"></i>
+          </span>
+          <span class="stepTitle">
+            Installing
+          </span>
+        </div>
+      </div>
+      <div class="leftPanelBranding">
+        <img src="../assets/images/xdlogo.png" width="200px" alt="Xcalar icon">
+      </div>
+    </div>
+
+    <div class="rightPanel">
+      <div class="content">
+
+        <!-- step 1: system requirement checks -->
+        <div id="1" class="stepContent requirements">
+          <div class="header">Checking OS Requirements</div>
+          <div class="data">
+            <div id="requirementsUpdate">
+              <span id="requirementsMsg"></span>
+            </div>
+            <div id="requirementsRetryInstructions" style="display: none;">
+              <br><br>(Click the 'RE-CHECK' button to recheck your system requirements)
+            </div>
+          </div>
+        </div>
+
+        <!-- step 2: license key (input) -->
+        <div id="2" class="stepContent licenseInputPage" style="display: none;">
+          <div id="licenseInput">
+            <div class="header">Enter your License Key</div>
+            <div class="data">
+              <div class="licenseBox">
+                <textarea id="licenseText" class="licenseFileBox" placeholder="Enter your license file here"></textarea>
+              </div>
+              <div id="licenseFailure" style="display: none;">
+                Your license is invalid.  Please enter a new license a press 'Next' again.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- step 3: license key (accept page) -->
+        <div id="3" class="stepContent licenseSummaryPage" style="display: none;">
+          <div id="licenseSummary">
+            <div class="header">License Summary</div>
+            <div class="data">
+              <div id="summaryDesc">
+                Please look over the details of your license, and click 'Next' to confirm and continue.
+                To submit a different license, click 'Previous'.
+              </div>
+              <div id="licenseSummaryBox"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- step 4: EULA -->
+        <div id="4" class="stepContent eula" style="display: none;">
+          <div class="header">End User License Agreement</div>
+          <div class="data">
+            include "eulaPart.html"
+            <div id="acceptEula">
+              <div id="eulaTick" class="checkbox">
+                <i class="icon xi-ckbox-empty fa-16"></i>
+                <i class="icon xi-ckbox-selected fa-16"></i>
+              </div>
+              <div id="eulaTerms">
+                I agree to the terms and conditions
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- step 5: configuration settings -->
+        <div id="5" class="stepContent configuration" style="display: none;">
+          <div class="header">Select RAM and cores for your container.</div>
+          <div class="data">
+            <div class="sliders">
+              <div id="ramSlider" class="optionSelector rangeSliderWrap">
+                <div class="sliderHeader">RAM</div>
+                <div class="rangeSlider">
+                  <div class="leftArea ui-resizable"></div>
+                  <div class="rightArea"></div>
+                </div>
+                <div class="sliderValue">
+                  Value Selected: <input id="ram" class="value" value="" type="number" min="1" max="">
+                </div>
+              </div>
+              <div id="coresSlider" class="optionSelector rangeSliderWrap">
+                <div class="sliderHeader">Cores</div>
+                <div class="rangeSlider">
+                  <div class="leftArea ui-resizable"></div>
+                  <div class="rightArea"></div>
+                </div>
+                <div class="sliderValue">
+                  Value Selected: <input id="cores" class="value" value="" type="number" min="1" max="">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- step 6: install progress -->
+        <div id="6" class="stepContent install" style="display: none;">
+          <div class="header"><%= dicts.common.XD %> is being installed</div>
+          <div class="data">
+            <!-- progress bar and percent ests for install process -->
+            include "progressBarSetup.html"
+          </div>
+        </div>
+
+        <!-- step 7: completion/launch -->
+        <div id="7" class="stepContent final" style="display: none;">
+          <div class="header">Installation Complete</div>
+          <div class="data">
+            Click the 'launch' button below to launch <%= dicts.common.XD %>!  (You can click the 'x' button to close this installer and not open <%= dicts.common.XD %>.)
+          </div>
+        </div>
+
+      </div>
+      <div class="navButtonPanel">
+        <button class="btn btn-secondary" type="button" id="prev" style="display:none;">PREVIOUS</button>
+        <button class="btn" type="button" id="next">NEXT</button>
+        <button class="btn" type="button" id="launch" style="display:none;">LAUNCH</button>
+        <button class="btn" type="button" id="retry" style="display:none;">RETRY INSTALL</button>
+        <button class="btn" type="button" id="recheck" style="display:none;">RE-CHECK</button>
+      </div>
+    </div>
+    <div class="backgroundImg"></div>
+  </div>
+    include "xpeCommonScriptImports.html"
+    <script src="../assets/js/xpe/xpeInstallClient.js"></script>
+</body>
+</html>

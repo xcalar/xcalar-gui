@@ -1,0 +1,23 @@
+<div id="sqlTableListerArea" class="noBottom">
+  <div class="topSection sectionBar">
+    <span class="label sectionHeader">Table Details</span>
+    <span class="searchbarArea">
+        <input type="text" autocomplete="off" placeholder="<%= dicts.SQL.SearchByName %>">
+        <i class="icon xi-search"></i>
+    </span>
+    <span class="actionArea">
+      <div class="xc-iconWrap-action refresh action"
+        title="<%= dicts.common.Refresh %>" data-container="body"
+        data-toggle="tooltip" data-placement="auto top">
+        <i class="icon xi-refresh"></i>
+      </div>
+      <div class="tooltipWrapper action">
+        <div class="xc-iconWrap-action viewSchema">
+          <i class="icon xi-show"></i>
+          <span><%= dicts.dag.viewSchema %></span>
+        </div>
+      </div>
+    </span>
+  </div>
+  <div class="mainSection xc-gridList"></div>
+</div>

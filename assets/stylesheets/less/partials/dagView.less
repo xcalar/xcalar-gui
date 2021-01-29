@@ -1,0 +1,3669 @@
+#dagView {
+    @category-height: @height-sectionBar;
+    @operator-height: 26px;
+    @operator-width: 67px;
+
+    position: relative;
+    overflow: hidden; // keeps categorybar and dagGraphBar from overflowing
+
+    &.showingOperatorBar, &.operatorBarLocked, &.operatorBarPinned {
+        .operatorBar {
+            top: @category-height;
+            transition: 0.2s top;
+        }
+
+        .categoryBar {
+            .category {
+                &.active {
+                    .innerCategory {
+                        background-color: @color-bg-default;
+                        border-top-left-radius: 5px;
+                        border-top-right-radius: 5px;
+                        border-bottom-right-radius: 0px;
+                        border-bottom-left-radius: 0px;
+                        height: @category-height - 3px;
+                    }
+
+                    .text {
+                        text-shadow: 0px 0px #222222;
+                    }
+                }
+            }
+        }
+    }
+
+    &.operatorBarPinned {
+        .operatorBar {
+            background: @color-bg-default;
+            box-shadow: inset 0px 0.25px 0px @color-border-operator, inset 0px -0.25px 0px @color-border-operator;
+            position: relative;
+            top: 0px;
+            transition: 0s top;
+
+            .pin {
+                display: none;
+            }
+            .unpin {
+                display: block !important;
+            }
+        }
+    }
+
+    &.sortingTabs {
+        .categoryBar, .operatorBar {
+            pointer-events: none;
+        }
+    }
+
+    &.undocked {
+        .categoryBar {
+            .label {
+                .cursor-move;
+            }
+        }
+    }
+
+    &.mainFunc {
+        .operatorBar, .categorySection {
+            display: none !important;
+        }
+        .run.dropDownList .iconWrapper {
+            display: none;
+        }
+    }
+
+    &.viewOnly {
+        .operatorBar, .categorySection {
+            display: none !important;
+        }
+        .categoryBar {
+            .rightText {
+                display: block;
+            }
+            .rightIconArea {
+                margin-left: 0px;
+            }
+        }
+        .dataflowMainArea {
+            .watermarkArea {
+                display: flex;
+            }
+        }
+        #dagNodeOperatorsMenuWrap {
+            .menu {
+                .xc-disabled;
+            }
+            .viewOnlyText {
+                display: block;
+            }
+        }
+    }
+
+    &.optimized {
+        .categoryBar {
+            .rightText {
+                display: none;
+            }
+            .altRightText {
+                display: block;
+            }
+        }
+    }
+
+
+    .ui-resizable-w {
+        display: block !important;
+    }
+
+    .categoryBar {
+        @icon-height: 20px;
+        @search-width: 135px;
+        @labelWidth: 100px;
+
+        background-color: @color-bg-categoryBar;
+        line-height: @category-height;
+        .flex-display;
+        position: relative;
+        z-index: @z-index-categoryBar;
+        border-bottom: none;
+
+        > .label {
+            margin-left: 8px;
+            line-height: @category-height;
+            flex: 0 0 @labelWidth;
+        }
+
+        .searchArea {
+            padding: ((@category-height - 24px) / 2) 4px ((@category-height - 24px) / 2) 10px;
+            background-color: transparent;
+
+            .searchBox {
+                width: @search-width;
+
+                .searchInput {
+                    float: left;
+                }
+            }
+
+            .list {
+                min-width: @search-width - 2px;
+                .position(@top: 32px, @left: 11px);
+                .font(@size: 12px);
+            }
+        }
+
+        .categoryScroll {
+            display: none;
+            min-width: 50px;
+            .position(absolute, @right: 0px);
+            box-shadow: -3px 0 2px -2px rgba(0, 0, 0, 0.1);
+            .icon {
+                width: 50%;
+                font-size: 14px;
+                line-height: @category-height;
+                text-align: center;
+                color: @color-icon-default;
+                cursor: pointer;
+            }
+        }
+
+        .categorySection {
+            .flex-display;
+            position: relative;
+            width: ~"calc(100% - (@{labelWidth} + 16px + 74px))";
+
+
+            &.scrollable {
+                .searchArea {
+                    box-shadow: 3px 0px 2px -2px rgba(0, 0, 0, 0.1);
+                }
+                .categoryScroll {
+                   .flex-display;
+                }
+            }
+        }
+
+        .categoryArea {
+            display: flex;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .categoryWrap {
+            overflow: hidden;
+            margin-bottom: -1px;
+            margin-right: 50px;
+        }
+
+        .categories {
+            .flex-display;
+        }
+
+        .category {
+            padding: 2px 4px 0px;
+            .flex-display;
+            height: 28px;
+            line-height: 24px;
+            font-size: 12px;
+            position: relative;
+            top: 1px;
+            border-radius: 5px;
+
+            .innerCategory {
+                padding: 1px 8px;
+                .flex-display;
+                height: 25px;
+                line-height: 24px;
+                font-size: 12px;
+                position: relative;
+                top: 1px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            &:hover {
+                .innerCategory {
+                    background-color: @color-icon-hoverBg;
+                }
+            }
+
+            .text {
+                white-space: nowrap;
+            }
+
+            &.category-hidden {
+                display: none;
+            }
+        }
+
+        .spacer {
+            // padding right or margin right doesn't work within flexbox
+            // so using an actual div to create space
+            min-width: 10px;
+        }
+
+        .rightText, .altRightText {
+            margin-left: auto;
+            padding: 0px 6px;
+            display: none;
+        }
+
+        .rightIconArea {
+            margin-left: auto;
+            padding: 0px 6px;
+
+            .icon {
+                font-size: 14px;
+                line-height: @category-height;
+                margin: 0px 2px;
+            }
+        }
+    }
+
+    .operatorBar {
+        @operatorBar-height: 44px;
+        .size(@height: @operatorBar-height, @min-height: @operatorBar-height);
+        background: @color-bg-default;
+        box-shadow: 0px 0.25px 0px @color-border-operator, 0px 3px 3px rgba(0,0,0,0.1);
+        z-index: @z-index-operatorBar;
+        position: absolute;
+        top: @category-height - @operatorBar-height - 5px; // extra 5 to hide shadow
+        width: 100%;
+        transition: 0.3s top;
+        display: flex;
+
+        .actionWrap {
+            .flex-display;
+
+            .actions {
+                .iconWrap {
+                    .size(@width: 18px, @height: 18px);
+                    padding: 0 3px;
+                    margin: 2px 5px;
+                    border-radius: 2px;
+                    background-color:  @color-bg-actionIcon;
+                    color: @color-icon-default;
+                    cursor: pointer;
+
+                    &:hover {
+                        background-color: @color-border-nodeEdge;
+                        color: @color-font-defaultInverse;
+                    }
+                }
+
+                &.disabled {
+                    .iconWrap {
+                        background-color: @color-bg-2;
+                        color:  @color-bg-actionIcon;
+                        cursor: not-allowed;
+                    }
+                }
+
+                .icon {
+                    font-size: 13px;
+                    line-height: 18px;
+                }
+            }
+
+            .divider {
+                width: 1px;
+                height: 100%;
+                background-color: @color-border-softGray;
+            }
+        }
+
+        .operatorWrap {
+            .size(@height: @operatorBar-height, @width: 100%);
+            overflow: hidden;
+        }
+
+        .category {
+            width: 100%;
+            height: @operatorBar-height;
+            overflow: hidden;
+            display: none;
+            position: relative;
+
+            .svgWrap {
+                height: @operatorBar-height;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            &.active {
+                display: block;
+            }
+
+            .scrollArea {
+                .arrow {
+                    width: 100%;
+                    height: 19px;
+                    line-height: 19px;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .operator {
+            margin-top: 8px;
+            margin-left: 8px;
+            margin-right: 8px;
+            float: left;
+
+            .statusIcon {
+                display: none;
+            }
+        }
+
+        .operatorBarOptions {
+            display: flex;
+            align-items: center;
+            border-left: 1px solid @color-border-softGray;
+
+            .pinArea {
+                padding: 4px;
+                margin: 4px;
+                .icon {
+                    font-size: 18px;
+                }
+                .unpin {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .optionsMenu {
+        .icon {
+            font-size: 10px;
+            line-height: 26px;
+            margin-right: 10px;
+            display: inline-block;
+            width: 8px;
+        }
+        .xi-setting {
+            font-size: 12px;
+        }
+        .xi-parameter {
+            font-size: 13px;
+        }
+    }
+
+    &.monochrome {
+        .categoryBar .category .categoryIcon {
+            background-color: @color-font-button-hover;
+        }
+    }
+}
+
+.dagContainer {
+    .flex-display;
+    .flex-direction(column);
+    height: 100%;
+
+    // TODO: move to constants.less when colors are finalized
+
+    @operator-height: 26px;
+    @operator-width: 67px;
+
+    &.showProgressTips {
+        .dagTableTip.runStats, .dagTableTip.nodeStats {
+            display: block;
+        }
+        .operator.state-Complete {
+            .graphHead {
+                margin-top: 0px;
+            }
+        }
+    }
+
+    &.hideProgressTips {
+        .dagTableTip.runStats, .dagTableTip.nodeStats {
+            display: none;
+        }
+    }
+
+    &:not(.showConfigInfo) {
+        .paramTitle {
+            display: none;
+        }
+    }
+
+    &:not(.showTableName) {
+        .tableName {
+            display: none;
+        }
+    }
+
+    &:not(.showLabels) {
+        .nodeTitle {
+            display: none;
+        }
+        .paramTitle {
+            transform: translate((@operator-width + 15) / 2, @operator-height + 16);
+        }
+    }
+
+    &.sqlMode {
+        .dagTab .name {
+            text-transform: lowercase;
+        }
+    }
+
+    > .loadingSection {
+        .flex-display;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+        justify-content: center;
+        background: @color-bg-opaqueInverse5;
+
+        .animatedEllipsisWrapper {
+            height: 20px;
+        }
+    }
+
+    .operator {
+        height: @operator-height;
+        position: relative;
+
+        .main {
+            .cursor-move();
+            overflow: hidden;
+            position: relative; // places main section in front of connectors
+            z-index: 1;
+        }
+
+        &.locked {
+            opacity: 0.6;
+        }
+
+        &.configLocked {
+            > * {
+                opacity: 0.6;
+            }
+            .configIcon {
+                opacity: 1;
+            }
+            .opTitle {
+                fill: @color-dag-yellow;
+            }
+        }
+
+        &.hasUdfError {
+            .iconArea {
+                pointer-events: initial;
+                cursor: pointer;
+                fill: @color-error-red !important;
+            }
+        }
+
+        &.instruction {
+            opacity: 0.8;
+            &.selected {
+                opacity: 1;
+                .main {
+                    stroke-width: 2;
+                    stroke: @color-border-nodeEdgeSelected;
+                }
+                .main, .opTitle {
+                    stroke: @color-border-nodeEdgeSelected;
+                }
+            }
+
+            .main {
+                stroke-width: 2;
+                stroke-dasharray: 5 5;
+                fill: transparent;
+                cursor: pointer;
+            }
+            .connInGroup, .connOut {
+                opacity: 0.8;
+            }
+            .nodeTitle {
+                display: block !important;
+            }
+            .opTitle {
+                fill: @color-border-nodeEdge;
+                font-size: 30px;
+                font-weight: 700;
+                transform: translate(0px, 6px);
+            }
+
+            .statusIcon, .selection {
+                display: none;
+            }
+        }
+
+        &.Module {
+            .nodeTitle {
+                display: none;
+            }
+            .paramTitle {
+                transform: translate((@operator-width + 15) / 2, @operator-height + 16);
+            }
+        }
+
+        &.selected:not(.tableSelected) {
+            .main {
+                stroke: @color-outline-blue;
+                stroke-width: 2;
+            }
+            .connInGroup:not(.noIn) .connectorInVisible {
+                stroke: @color-outline-blue;
+                stroke-width: 2;
+            }
+
+            &.icv {
+                .connectorInVisible, .main {
+                    stroke: darken(@color-error-red, 10%);
+                }
+            }
+        }
+
+        &.tableSelected {
+            .connectorOutVisible {
+                stroke: @color-outline-blue;
+            }
+            .mainTableIcon {
+                fill: @color-outline-blue;
+            }
+            &.icv {
+                .mainTableIcon, .connectorOutVisible {
+                    stroke: darken(@color-error-red, 10%);
+                }
+                .mainTableIcon {
+                    fill:darken(@color-error-red, 10%);
+                    stroke: darken(@color-error-red, 10%);
+                }
+            }
+        }
+
+        .opTitle, .iconArea, .icon, .opSubTypeTitle {
+            pointer-events: none;
+        }
+
+        .nodeid {
+            font-size: 8px;
+            text-align: center;
+            width: @operator-width + 10;
+        }
+
+        .nodeTitle {
+            tspan {
+                white-space: pre;
+            }
+        }
+
+        .searchHighLightSelection, .graphHighLightSelection  {
+            stroke: @color-highlight-stroke-gold;
+            fill: transparent;
+            &~ .selection {
+                display: none;
+            }
+        }
+
+        .selection {
+            fill: @color-outline-blue;
+            stroke: none;
+            opacity: 0.25;
+        }
+
+        rect {
+            &.searchHighLight {
+                fill: @color-highlight-gold;
+            }
+        }
+
+        .paramTitle, .nodeTitle {
+            tspan {
+                text-shadow: 0px 0px 5px @color-font-defaultInverse, 0px 0px 5px @color-font-defaultInverse; // to show better over lines
+            }
+        }
+
+        .paramTitle {
+            cursor: pointer;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .descriptionIcon {
+            display: none; // XXX request that this not be shown
+            cursor: pointer;
+        }
+
+        .udfErrorIcon {
+            cursor: pointer;
+        }
+
+        .tableLine {
+            cursor: initial;
+        }
+
+        .mainTableIcon {
+            fill: @color-bg-tableIcon;
+            cursor: pointer;
+        }
+
+        &.icv {
+            .tableLine, .connectorOutVisible, .connectorInVisible, .main {
+                stroke:  @color-error-red;
+            }
+            .mainTableIcon {
+                fill: @color-error-red;
+            }
+        }
+
+        .graphHead {
+            position: relative;
+            display: inline-block;
+            background-color: #424242;
+            font-size: 0px; // removes white space
+            margin-top: 22px; // 0px when progress tips are visible
+
+            .graphHeadInner, .hiddenGraphHead {
+                display: inline-block;
+                font-size: 10px;
+                padding: 2px 4px;
+                .textOverflowOneLine;
+                max-width: 164px;
+                min-width: 18px;
+            }
+
+            .graphHeadInner {
+                position: absolute;
+                left: 0px;
+            }
+
+            // keeps the size of the outer div
+            .hiddenGraphHead {
+                visibility: hidden;
+            }
+
+            .xi-edit {
+                font-size: 10px;
+                display: none;
+                position: absolute;
+                right: 4px;
+                top: 4px;
+            }
+
+            &:hover {
+                box-shadow: 0px 0px 0px 1px #787878;
+                .graphHeadInner {
+                    width: ~"calc(100% - 14px)";
+                }
+                .xi-edit {
+                    display: block;
+                }
+            }
+        }
+
+
+
+        &.lineageSelected, &.lineageStart {
+            .main, .iconArea, .statusIcon, .tableLine {
+                stroke: @color-border-focus-blue;
+                stroke-width: 2;
+            }
+            .mainTableIcon {
+                fill: @color-border-focus-blue;
+            }
+            .tableLine {
+                stroke-width: 3;
+            }
+        }
+
+        &.selecting {
+            .main {
+                fill: @color-bg-nodeSelecting;
+                stroke-width: 2;
+            }
+            .mainTableIcon {
+                stroke: @color-bg-tableIcon;
+                stroke-width: 0.5;
+            }
+        }
+
+        &.SQLSubInput, &.SQLSubOutput, &.customInput, &.customOutput {
+            .statusIcon, .opProgress {
+                display: none;
+            }
+        }
+
+        &.state-Unused {
+            .statusIcon {
+                fill: @color-bg-default;
+            }
+        }
+        &.state-Configured {
+            .statusIcon {
+                fill: @color-dag-yellow;
+            }
+        }
+        &.state-Complete {
+            .statusIcon {
+                fill: @color-dag-blue;
+            }
+        }
+        &.state-Error {
+            .statusIcon {
+                fill: @color-dag-red;
+            }
+        }
+    }
+
+    .connInGroup {
+        overflow: visible;
+
+    }
+    .connIn {
+        cursor: pointer;
+        overflow: visible;
+        &:hover {
+            .connectorInVisible {
+                fill: @color-border-operator-hover;
+            }
+        }
+
+        .connectorInVisible {
+            pointer-events: none;
+        }
+    }
+    .connOut {
+        cursor: pointer;
+
+        &:hover {
+            .connectorOutVisible {
+                fill: @color-border-operator-hover;
+            }
+        }
+
+        .connectorOutVisible {
+            pointer-events: none;
+        }
+    }
+
+    .connector {
+        &.in {
+            cursor: pointer;
+        }
+        &.out {
+            position: relative;
+            cursor: pointer;
+        }
+    }
+
+    &.monochrome {
+        .operator {
+            .iconArea {
+                fill: @color-font-button-hover;
+            }
+            .mainTableIcon {
+
+            }
+        }
+    }
+
+    .dataflowWrapBackground, .dataflowWrap, .innerDataflowWrap {
+        .flex(1 1 auto);
+        .flex-display;
+        background-color: @color-bg-sqlEditor;
+        position: relative;
+        overflow: auto;
+    }
+
+
+    .dataflowWrapBackground {
+        height: 1px; // weird to have it, but without it vertial align not work
+
+        .newTab {
+            color: @color-link-blue;
+            .size(@width: 100%, @height: 30px);
+            text-align: center;
+            .vertical-align;
+
+            button {
+                width: auto;
+            }
+        }
+    }
+    .dataflowWrap {
+        overflow: hidden;
+    }
+    .innerDataflowWrap {
+
+        .dataflowArea {
+            min-height: 100%;
+            min-width: 100%;
+            width: 100%;
+            position: relative;
+            display: none;
+            background-size: 10px;
+            overflow: auto;
+
+
+            &.largeHidden {
+                .dataflowAreaWrapper, .runStats, .nodeStats {
+                    display: none !important;
+                }
+                .largeMsg {
+                    height: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    .innerContent {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        max-width: 400px;
+                    }
+                    .btn {
+                        margin-top: 24px;
+                    }
+                }
+            }
+
+            &.active {
+                display: block;
+            }
+
+            &.drawing {
+                pointer-events: none;
+            }
+
+            &.configLocked {
+                // make the grids appear slightly more gray
+                .dataflowAreaWrapper {
+                    box-shadow: inset 0 0 0 10000000px rgba(150, 150, 150, 0.1);
+                }
+            }
+
+            &.viewOnly, &.proressGraph {
+                // make the grids appear slightly more gray
+                .dataflowAreaWrapper {
+                    box-shadow: inset 0 0 0 10000000px rgba(212, 234, 249, .06);
+                }
+            }
+
+            &.progressGraph {
+                .dagTableTip.runStats, .dagTableTip.nodeStats {
+                    display: block;
+                }
+                .paramTitle {
+                    cursor: default;
+
+                    &:hover {
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        .dataflowAreaWrapper {
+            min-height: 100%;
+            min-width: 100%;
+            height: 100%;
+            width: 100%;
+            // background: transparent url("../../images/dagIcons/dag-backgroundA.png") repeat left top;
+            background: transparent url("../../images/dagIcons/darkGrid.png") repeat left top;
+            // background: @color-bg-sqlEditor;
+        }
+
+        .operator {
+            position: absolute;
+        }
+    }
+    .dragContainer {
+        position: absolute;
+        z-index: 2;
+        pointer-events: none;
+        opacity: 0.7;
+        transform-origin: top left;
+
+        .innerDragContainer {
+            width: 100%;
+            height: 100%;
+        }
+
+        svg, .innerDragContainer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            overflow: visible;
+        }
+
+        .dragSvg > .connOut > .connector.out,
+        .dragSvg > .connOut > .connectorOutVisible {
+            transform: translate(-127px, 0px);
+        }
+
+        .operator {
+            position: absolute;
+        }
+
+        &.clone {
+            .statusIcon {
+                display: none;
+            }
+        }
+    }
+
+    .operatorSvg {
+        transform-origin: top left;
+        pointer-events: none;
+        .operator {
+            pointer-events: auto;
+        }
+    }
+
+    .edgeSvg {
+        transform-origin: top left;
+        pointer-events: none;
+        .edge {
+            pointer-events: auto;
+        }
+    }
+
+    .commentArea, .tempCommentArea {
+        transform-origin: top left;
+        overflow: visible;
+        .position(absolute, @left: 0px, @top: 0px);
+    }
+
+    .tempCommentArea {
+        z-index: 1; // to place in front of stats tooltips
+        pointer-events: none;
+        .comment {
+            pointer-events: initial;
+        }
+        .ui-icon-gripsmall-diagonal-se {
+            opacity: 1;
+        }
+    }
+
+    .comment {
+        position: absolute;
+        // using shadow instead of border because jquery resizable
+        // messes up with border width
+        box-shadow: inset 0px 0px 0px 1px @color-border-operator;
+        min-width: 20px;
+        min-height: 20px;
+        overflow: visible;
+        background:  @color-bg-default;
+        .cursor-move();
+        transform-origin: top left;
+
+        &.focused {
+            box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.2), inset 0px 0px 0px 2px @color-border-focus-blue !important;
+            z-index: 1;
+            .ui-resizable-handle {
+                z-index: 1 !important;
+            }
+        }
+
+        &.selected , &.selecting {
+            box-shadow: inset 0px 0px 0px 1px @color-border-focus-blue;
+        }
+
+        &.selecting {
+            background-color: @color-bg-white-seven;
+            textarea {
+                background-color: @color-bg-white-seven;
+            }
+        }
+
+
+        .ui-icon-gripsmall-diagonal-se {
+            opacity: 0;
+        }
+
+        &:hover, &.focused {
+            .ui-icon-gripsmall-diagonal-se {
+                opacity: 1;
+            }
+        }
+
+        textarea {
+            // we use this particular margin and padding to allow some areas
+            // to be be grabbed and moved
+            width: ~"calc(100% - 8px)";
+            height: ~"calc(100% - 8px)";
+            margin: 6px 0px 0px 6px;
+            padding: 0px 6px 6px 0px;
+            resize: none;
+            overflow: auto;
+            font-size: 12px;
+            word-wrap: normal;
+            .input-placeholder(@color-text-placeholder);
+            background-color: @color-bg-default;
+            color: @color-font-default;
+
+            &:focus {
+                outline: none;
+            }
+
+            &.searchHighLight {
+                background-color: @color-highlight-gold;
+            }
+        }
+        .ui-resizable-handle {
+            z-index: 0 !important;
+            &.ui-resizable-se {
+                bottom: -8px;
+                right: -8px;
+            }
+        }
+    }
+
+    .operatorSvg, .edgeSvg, .secondarySvg, .commentArea, .tempCommentArea {
+        overflow: visible;
+        .position(absolute, @top: 0px, @left: 0px);
+        z-index: 1; // above watermark
+
+        .edge {
+            cursor: pointer;
+
+            .visibleLine {
+                stroke: @color-border-nodeEdge;
+                stroke-width: 1px;
+                fill: none;
+                stroke-linecap: round;
+            }
+
+            .invisibleLine {
+                stroke: transparent;
+                stroke-width: 9px;
+                fill: none;
+            }
+
+
+            &:hover, &.selected {
+                .visibleLine {
+                    stroke: @color-border-nodeEdgeSelected;
+                    stroke-width: 2px;
+                }
+                .connectorIndex {
+                    fill: @color-border-nodeEdgeSelected;
+                    font-size: 13px;
+                }
+            }
+
+            &.lineageSelected {
+                .visibleLine {
+                    stroke: @color-border-focus-blue;
+                    stroke-width: 3px;
+                }
+            }
+        }
+    }
+
+    .secondarySvg {
+        // used and removed during connector drag
+        .position(absolute, 0, 0);
+        z-index: 1;
+        transform-origin: top left;
+    }
+
+    .dagTableTip {
+        background-color: @color-bg-dagTip;
+        line-height: 12px;
+        .position(absolute);
+        white-space: nowrap;
+        border: 1px solid @color-bg-cardHeader;
+        font-size: 9px;
+        padding: 2px 4px 2px;
+        .rounded(3px);
+        margin-left: -3px;
+        text-align: left;
+        z-index: 1; // above watermark
+
+        &.lineageTip {
+            padding: 3px 6px;
+        }
+
+        &.runStats, &.nodeStats {
+            padding: 1px 2px;
+            display: none;
+            opacity: 0.95;
+
+            &.visible {
+                display: block;
+            }
+
+            &.Processing {
+                background-color: @color-bg-dagTipStrong;
+                box-shadow: 0px 0px 3px rgb(108, 164, 197);
+                opacity: 1;
+
+                th {
+                    color: @color-font-default;
+                    font-weight: 600;
+                }
+            }
+
+            table {
+                border-collapse: collapse;
+            }
+
+
+            th, td {
+                font-size: 9px;
+                padding: 0 2px;
+                text-align: center;
+                line-height: 10px;
+            }
+            th {
+                color: @color-icon-default;
+            }
+
+            .skewTh, .skewTd {
+                cursor: pointer;
+            }
+            .skewUnavailable {
+                pointer-events: none;
+            }
+            &.hoveringSkew {
+                .skewTh, .skewTd {
+                    background-color: @color-selectedCell-light;
+                }
+            }
+        }
+
+        &.nodeStats {
+            padding: 2px 2px;
+            > div {
+                font-size: 9px;
+                padding: 0 2px;
+                line-height: 10px;
+            }
+        }
+
+        &.datasetActivateTip {
+            width: 100px;
+            table {
+                width: 100%;
+                border-collapse: collapse;
+            }
+            th, td {
+                padding: 0 1px;
+            }
+            .dsName {
+                max-width: 70px;
+                .textOverflowOneLine;
+            }
+        }
+
+        &.error {
+            color: @color-error-border;
+        }
+
+        &:after, &:before {
+            top: 100%;
+            left: 50%;
+            border: solid transparent;
+            content: " ";
+            height: 0;
+            width: 0;
+            position: absolute;
+            pointer-events: none;
+        }
+
+        &:after {
+            border-color: transparent;
+            border-top-color: @color-bg-dagTip;
+            border-width: 6px;
+            margin-left: -6px;
+        }
+        &:before {
+            border-color: transparent;
+            border-top-color: @color-bg-cardHeader;
+            border-width: 7px;
+            margin-left: -7px;
+        }
+
+        .heading {
+            text-align: center;
+            width: 100%;
+            font-weight: 600;
+        }
+    }
+
+    .editableNodeTitle {
+        position: absolute;
+        border-top: 1px solid transparent;
+        border-bottom: 2px solid transparent;
+        border-left: 4px solid transparent;
+        border-right: 4px solid transparent;
+        white-space: nowrap;
+        text-align: center;
+        resize: none;
+        width: 90px;
+        height: 17px;
+        transform: translateX(-50%);
+        font-size: 10px;
+        line-height: 11px;
+        outline-offset: 0px;
+        outline: 1px solid @color-border-focus-blue;
+        overflow: hidden;
+
+        &.graphHeadEdit {
+            border-top-width: 2px;
+            border-left-width: 0px;
+            border-right-width: 0px;
+            padding-left: 1px;
+            padding-right: 1px;
+            height: 14px;
+            line-height: 14px;
+            transform: translateX(0%);
+        }
+    }
+
+    .dataflowMainArea {
+        .flex(1 1 auto);
+        .flex-display;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+        height: 100%;
+
+        .watermarkArea {
+            display: none; // flex when #dagView.readonly
+            justify-content: space-between;
+            flex-direction: column;
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            pointer-events: none;
+            opacity: 0.05;
+            color: @color-font-default;
+            z-index: 1; // above grid background
+            padding: 10px 20px 20px;
+
+            .row {
+                display: flex;
+                // justify-content: space-between;
+                justify-content: center;
+                flex-direction: row;
+                height: 100%;
+            }
+
+            .watermark {
+                font-size: 60px;
+                font-weight: bold;
+                transform: rotate(-30deg);
+                align-self: center;
+
+                // &:nth-child(2), &:last-child {
+                //     align-self: flex-end;
+                // }
+            }
+        }
+
+
+        .dataflowWrap {
+            height: 100% !important;
+            top: 0px !important;
+            > .ui-resizable-handle {
+                display: none !important;
+            }
+        }
+
+        &.resizing {
+            #dagViewTableArea, .dataflowArea {
+                pointer-events: none;
+            }
+        }
+    }
+    .dataflowWrap {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        > .ui-resizable-handle {
+            z-index: 3 !important;
+        }
+    }
+}
+
+#dagGraphBar {
+    @dagGraphBarHeight: 32px;
+    .flex-direction(row);
+    // z-index: 0;
+    min-height: @dagGraphBarHeight;
+    max-height: @dagGraphBarHeight;
+    padding-left: 8px;
+    background-color: @color-bg-graphBar;
+    color: @color-font-default;
+    font-size: 12px;
+    display: flex;
+    flex-wrap: nowrap;
+
+    &.locked {
+        .run {
+            display: none !important;
+        }
+        .configuring {
+            .flex-display !important;
+            opacity: @opacity-disabled;
+        }
+    }
+
+    &.sqlFunc {
+        .useInSQL {
+            display: block;
+            margin-top: 0px !important;
+        }
+
+        .run {
+            .iconWrapper {
+                display: none;
+            }
+        }
+    }
+
+    &.mainFunc {
+        .listFns {
+            display: block;
+        }
+        &.noNodes {
+            .run {
+                display: none;
+            }
+        }
+    }
+
+    .useInSQL {
+        display: none;
+        width: auto;
+        position: relative;
+        top: 4px;
+    }
+
+    .listFns {
+        display: none;
+    }
+
+    .topButtons {
+        float: right;
+        .flex-display;
+        height: 100%;
+        padding-right: 8px;
+
+        &.left {
+            float: left;
+            padding-right: 0px;
+        }
+        &.right {
+            margin-left: auto;
+            .topButton {
+                flex: 0 0 auto;
+            }
+        }
+    }
+
+    .topButton {
+        cursor: pointer;
+        padding: 0px 1px;
+
+        .actionIcon {
+            height: 24px;
+            width: 22px;
+            line-height: 24px;
+            text-align: center;
+            .vertical-align;
+            font-size: 16px;
+            .rounded(4px);
+        }
+
+        &:hover {
+            .actionIcon {
+                background-color: rgba(0, 0, 0, 0.05);
+            }
+            &.disabled {
+                .actionIcon {
+                    background-color: transparent;
+                }
+            }
+        }
+        &:active {
+            .actionIcon {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+            &.disabled {
+                .actionIcon {
+                    background-color: transparent;
+                }
+            }
+        }
+
+        &.run, &.stop, &.rerunOptimized, &.listFns, &.configuring, &.publish {
+            .rounded(4px);
+            line-height: @dagGraphBarHeight - 8px;
+            height: @dagGraphBarHeight - 8px;
+            margin-top: 4px;
+
+            .icon {
+                font-size: 12px;
+            }
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.05);
+                .actionIcon {
+                    background-color: transparent;
+                }
+
+                &.disabled {
+                    background-color: transparent;
+                }
+            }
+            .text {
+                float: left;
+                margin-right: 4px;
+                margin-left: 4px;
+                font-size: 12px;
+                border: none;
+                background-color: inherit;
+            }
+        }
+
+        &.publish {
+            > span {
+                display: inline-block;
+                height: 100%;
+
+                &:hover {
+                    background-color: @color-font-secondary-button-hover;
+                }
+
+                &:active {
+                    background-color: @color-font-secondary-button-active;
+                }
+            }
+        }
+
+        &.run, &.listFns, &.configuring, &.rerunOptimized {
+            overflow: visible;
+
+            &.running {
+                display: none;
+                .animatedEllipsisWrapper {
+                    display: block;
+                }
+                .actionIcon {
+                    display: none;
+                }
+            }
+
+            > span {
+                display: inline-block;
+                height: 100%;
+
+                &:hover {
+                    background-color: @color-font-secondary-button-hover;
+                }
+
+                &:active {
+                    background-color: @color-font-secondary-button-active;
+                }
+
+                .actionIcon {
+                    color: @color-icon-darkGreen;
+                }
+            }
+
+            .iconWrapper {
+                border-right: none;
+                border-top: none;
+                border-bottom: none;
+                border-top-right-radius: 3px;
+                border-bottom-right-radius: 3px;
+                width: 18px;
+                height: 22px;
+
+                &:hover {
+                    background-color: @color-font-secondary-button-hover;
+                }
+                &.active {
+                    background-color: @color-font-secondary-button-active;
+                }
+
+                .icon {
+                    font-size: 10px;
+                }
+            }
+
+            .list {
+                top: 27px;
+                width: 130px;
+
+                li {
+                    text-align: left;
+                }
+            }
+        }
+        &.stop {
+            display: none;
+            &.running {
+                display: block;
+            }
+
+            &:hover {
+                background-color: @color-font-secondary-button-hover;
+            }
+
+            &:active {
+                background-color: @color-font-secondary-button-active;
+            }
+
+            .icon {
+                color: @color-stop;
+            }
+        }
+
+        &.disabled {
+            cursor: not-allowed;
+            opacity: @opacity-disabled;
+        }
+        &.repeatable {
+            cursor: pointer;
+        }
+        &.locked {
+            cursor: not-allowed;
+            .icon {
+                color: @color-connector;
+            }
+        }
+
+        &.autoSave {
+            > div {
+                float: left;
+                font-size: 12px;
+                .vertical-align;
+                text-transform: initial;
+                margin-right: 5px;
+            }
+        }
+
+        &.zoomOut, &.zoomIn {
+            .icon {
+                font-size: 10px;
+            }
+        }
+
+        &.zoomPercent {
+            position: relative;
+            padding: 0 0;
+            .zoomPercentInput {
+                font-size: 12px;
+                height: 28px;
+                line-height: 28px;
+                margin-top: 2px;
+                padding: 0 0;
+                padding-right: 16px;
+                width: 40px;
+                text-align: right;
+                border: none;
+            }
+            .percent-sign {
+                position: absolute;
+                z-index: 0;
+                top: 7px;
+                right: 2px;
+                cursor: default;
+            }
+        }
+        &.configuring {
+            display: none;
+        }
+        .animatedEllipsisWrapper {
+            display: none;
+            width: 90px;
+            color: @color-icon-darkGreen;
+        }
+    }
+
+    .divider {
+        height: @dagGraphBarHeight - 12px;
+        width: 1px;
+        margin: auto 5px;
+        background-color: @color-border-bar;
+    }
+
+   .btn:not(.action) {
+        background-color: transparent;
+        color: @color-border-bar;
+        padding: 0px 8px;
+        height: @dagGraphBarHeight - 10px;
+        line-height: @dagGraphBarHeight - 10px;
+        border: 1px solid  @color-border-bar;
+        .rounded(3px);
+        margin-top: 5px;
+        text-transform: uppercase;
+        width: auto;
+        margin-right: 8px;
+        &:hover {
+            background-color: rgba(20, 20, 20, .05);
+        }
+    }
+
+    .infoSection {
+        float: left;
+        height: @dagGraphBarHeight;
+        line-height: @dagGraphBarHeight;
+        color: @color-font-default;
+        display: flex;
+        flex: 0 1 auto;
+        min-width: 0px;
+
+        .divider {
+            // margin-left: 8px;
+            margin-right: 8px;
+        }
+
+        .numNodesSection {
+            display: flex;
+            flex: 0 1 auto;
+            min-width: 0px;
+            .textOverflowOneLine;
+
+            .label {
+                .textOverflowOneLine;
+            }
+            .numNodes {
+                flex: 0 0 auto;
+                padding-left: 4px;
+            }
+        }
+
+    }
+    .viewOnly {
+        display: none;
+        font-style: italic;
+        color: @color-font-default;
+        height: @dagGraphBarHeight;
+        line-height: @dagGraphBarHeight;
+        margin-left: 4px;
+        margin-right: 4px;
+        cursor: default;
+    }
+
+    &.viewOnly {
+        &.executeOnly {
+            .editSQLGraph {
+                display: block;
+            }
+        }
+        .viewOnly {
+            display: flex;
+        }
+        .run, .editSQLGraph, .publish {
+            display: none;
+        }
+    }
+    &.optimized {
+        .rerunOptimized {
+            display: block;
+        }
+        .categoryBar {
+            .rightText {
+                display: none;
+            }
+            .altRightText {
+                display: block;
+            }
+        }
+    }
+    .rerunOptimized {
+        display: none;
+    }
+    .runStatus {
+        display: none;
+        flex: 0 1 auto;
+        min-width: 0px;
+        .textOverflowOneLine;
+
+        .operatorName {
+            text-decoration: underline;
+            color: @color-font-link-blue;
+            cursor: pointer;
+        }
+
+        .altText {
+            display: none;
+        }
+    }
+    &.running {
+        .runStatus {
+            display: flex;
+        }
+        &.canceling {
+            .runStatus {
+                .text {
+                    display: none;
+                }
+                .altText {
+                    display: block;
+                }
+            }
+            .stop {
+                opacity: @opacity-disabled !important;
+                background-color: inherit !important;
+            }
+        }
+    }
+    .optionsBtn {
+        width: 24px;
+        height: 20px;
+        padding: 0;
+        margin-left: 4px;
+        margin-right: 4px;
+        margin-top: 6px;
+        outline: none;
+        border-radius: 4px;
+        border: none;
+        .icon {
+            font-size: 14px;
+            line-height: 20px;
+        }
+    }
+}
+
+/* ========== Dag Table Viewer Tabs ========== */
+#dagViewTableArea {
+    @tableBar-h: 30px;
+
+    .size(@height: 30%);
+
+    .refreshIcon {
+        width: 75%;
+        height: 25%;
+        top: unset;
+        left: unset;
+    }
+
+    &.dataset {
+        .rowInputArea, .tableMenu, .skewInfoArea {
+            display: none;
+        }
+    }
+
+    .tableBar {
+        background-color: @color-bg-2;
+        .size(@height: @tableBar-h);
+        padding: 5px 15px 5px 5px;
+    }
+
+    .viewWrap {
+        .size(@height: ~"calc(100% - @{tableBar-h})", @width: 100%);
+        &.modalOpen {
+            position: relative;
+            z-index: @z-index-modalBackground + 1;
+        }
+
+        #fauxCol {
+            top: 64px;
+        }
+    }
+}
+
+#notebookBottomContainer.noResult {
+    .tableIcon.tblIcon {
+        display: none;
+    }
+}
+
+/* ========== Dag Tabs ========== */
+#container {
+    &.formOpen {
+        #dagNodeMenu, #dagTableNodeMenu {
+            .exitOp {
+                display: list-item;
+            }
+            &.edgeMenu {
+                .exitOp {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+#dagNodeMenu, #dagNodeSubMenu, #dagTableNodeMenu, #dagNodeInstructionSubMenu,
+#dagNodeInstructionMenu, #dagTableNodeSubMenu, #dagTableNodeSubSubMenu,
+#dagNodeOperatorsMenu,  #dagNodeOperatorsSubMenu, #dagNodeOperatorsMenuWrap {
+    z-index: @z-index-popupUndocked + 5;
+    border-radius: 5px;
+    box-shadow:  0px 0px 0px 1px rgba(255, 255, 255, 0.2), 0px 1px 3px 1px rgba(0, 0, 0, 0.2);
+}
+
+#dagNodeMenu, #dagNodeSubMenu, #dagTableNodeMenu {
+    width: 175px;
+
+
+    @liHeight: 24px;
+    @iconWidth: 10px;
+    @iconMargin: 8px;
+
+    li {
+        display: none;
+        border-bottom: 1px solid @color-border-menuItem;
+        height: @liHeight;
+        .font(@size: 10px, @line-height: @liHeight);
+        padding-top: 0px;
+        padding-bottom: 0px;
+        &.selected {
+            background-color: @color-selectedCell-light;
+        }
+        &.unavailable {
+            opacity: 1;
+            .icon, .label {
+                .xc-unavailable;
+            }
+        }
+
+        .icon, .label {
+            float: left;
+        }
+        .icon {
+            .font(@size: 10px, @line-height: @liHeight + 2);
+            margin-right: @iconMargin;
+            display: inline-block;
+            width: @iconMargin;
+            &.xi-duplicate, &.xi-play-circle, &.xi-copy, &.xi-copy-clipboard {
+                font-size: 11px;
+            }
+            &.xi-select-mode, &.xi-cut {
+                font-size: 12px;
+            }
+            &.xi-close-no-circle {
+                font-size: 8px;
+            }
+            &.xi-close-no-circle, &.xi-trash {
+                color: @color-background-error;
+            }
+            &.xi-rearrange {
+                font-size: 13px;
+                margin-left: -2px;
+                margin-right: 10px;
+            }
+            &.qMark {
+                float: right;
+                margin-left: 4px;
+                margin-right: 0px;
+                margin-top: 6px;
+                width: 12px;
+                line-height: 12px;
+                color: white !important;
+                font-size: 7px;
+            }
+        }
+        .label {
+            max-width: ~"calc(100% - (@{iconWidth} + @{iconMargin}))";
+            .textOverflowOneLine;
+        }
+
+        &.parentMenu {
+            &::after {
+                border-right: 6px solid @color-border-nodeEdge;
+            }
+        }
+    }
+}
+
+#dagNodeMenu, #dagTableNodeMenu {
+    @liHeight: 24px;
+    @iconWidth: 10px;
+    @iconMargin: 8px;
+
+    &.operatorMenu {
+        .removeNode, .copyNodes, .cutNodes, .executeNode, .resetNode, .executeNodeOptimized,
+        .viewOptimizedDataflow, .deleteTable, .deleteParentTable, .reexecuteNode, .description,
+        .configureNode, .viewResult, .generateResult,
+        .viewSchema, .viewSchemaChanges, .viewOptions, .customNodeOptions, .autoAlign,
+        .unpinTable, .pinTable, .createCustom, .selectAll,
+        .viewUDFErrors, .viewSkew, .addOperation, .copyTableName {
+            display: list-item;
+        }
+        .findLinkOut, .restoreSource {
+            display: none;
+        }
+        &.multiple {
+            .description, .configureNode, .viewResult, .viewOptimizedDataflow,
+            .generateResult, .viewSchema, .viewSchemaChanges, .shareCustom, .viewUDFErrors, .addOperation {
+                display: none;
+            }
+            .createCustom, .createNodeOptimized {
+                display: list-item;
+            }
+        }
+        &.agg {
+            .generateResult {
+                display: none;
+            }
+            .xi-table-2:before {
+                content: "\e939";
+            }
+            .xi-table-locked:before {
+                content: "\e940";
+                font-size: 10px;
+                position: static;
+            }
+        }
+        &.customOpMenu {
+            .shareCustom, .editCustom, .expandCustom {
+                display: list-item;
+            }
+            .configureNode, .createCustom {
+                display: none;
+            }
+        }
+        &.nonEditableSubgraph {
+            .configureNode, .removeNode, .copyNodes, .cutNodes,
+            .executeNode, .addOperation {
+                display: none;
+            }
+
+            &.userTab {
+                .configureNode, .copyNodes, .executeNode {
+                    display: list-item;
+                }
+                .createCustom {
+                    display: none;
+                }
+            }
+
+            &.customTab {
+                .configureNode {
+                    display: list-item;
+                }
+            }
+
+            &.multiple {
+                .createCustom {
+                    display: none;
+                }
+            }
+        }
+        &.viewOnly {
+            li {
+                display: none;
+            }
+            .autoAlign, .selectAll, .viewResult, .viewSkew, .viewUDFErrors {
+                display: list-item;
+            }
+            &.SQLTab, &.executeOnlyTab {
+                .viewSchema, .viewSchemaChanges, .copyTableName {
+                    display: list-item;
+                }
+            }
+            &.executeOnlyTab {
+                .generateResult, .executeNode, .copyNodes, .editSQLGraph {
+                    display: list-item;
+                }
+            }
+        }
+        &.SQLFuncTab, &.executeOnlyTab {
+            .createCustom {
+                display: none;
+            }
+        }
+        &.optimizedTab, &.statsTab {
+            .viewSchema, .viewSchemaChanges, .findSourceNode {
+                display: list-item;
+            }
+        }
+    }
+    &.connectorMenu, &.edgeMenu {
+        .removeInConnection {
+            display: list-item;
+        }
+    }
+    &.backgroundMenu {
+        .removeAllNodes, .executeAllNodes, .createNodeOptimized,
+        .deleteAllTables, .selectAll, .pasteNodes,
+        .autoAlign, .newComment, .download, .duplicateDf,
+        .restoreAllSource, .search {
+            display: list-item;
+        }
+
+        &.nonEditableSubgraph {
+            .removeAllNodes, .newComment, .executeAllNodes, .pasteNodes, .restoreAllSource {
+                display: none;
+            }
+        }
+        &.viewOnly {
+            li {
+                display: none;
+            }
+            .selectAll, .autoAlign, .download, .search {
+                display: list-item;
+            }
+            &.optimizedTab {
+                .findOptimizedSource {
+                    display: list-item;
+                }
+            }
+        }
+        &.published {
+            .newComment, .autoAlign, .removeAllNodes, .pasteNodes {
+                display: none;
+            }
+        }
+        &.customTab {
+            .download, .duplicateDf {
+                display: none;
+            }
+        }
+        &.nonEditableSubgraph {
+            &.customTab, &.published {
+                .restoreAllSource {
+                    display: list-item;
+                }
+            }
+        }
+    }
+    &.commentMenu {
+        .removeNode, .copyNodes, .cutNodes {
+            display: list-item;
+        }
+        .executeNode, .executeNodeOptimized, .description, .configureNode,
+        .viewResult, .generateResult, .viewSchema, .viewSchemaChanges,
+        .autoAlign, .unpinTable, .pinTable {
+            display: none;
+        }
+        &.backgroundMenu {
+            .removeNode {
+                display: none;
+            }
+        }
+        &.operatorMenu {
+            .executeNode, .autoAlign {
+                display: list-item;
+            }
+        }
+        &.commentMenuOnly {
+            li {
+                display: none;
+            }
+            .removeNode, .copyNodes, .cutNodes {
+                display: list-item;
+            }
+        }
+    }
+    &.linkInMenu {
+        .findLinkOut {
+            .icon {
+                color: darken(@color-operator-in, 30%);
+            }
+
+            display: list-item;
+        }
+    }
+    &.optimizableMenu {
+        .createNodeOptimized {
+            display: list-item;
+        }
+    }
+    &.datasetMenu, &.imdTableMenu {
+        .restoreSource {
+            display: list-item;
+            .icon {
+                color: darken(@color-operator-in, 30%);
+            }
+        }
+    }
+    &.publishMenu {
+        .viewResult, .generateResult, .viewSchema, .viewSchemaChanges, .unpinTable, .pinTable {
+            display: none;
+        }
+    }
+    &.SQLOpMenu {
+        .inspectSQL, .expandSQL {
+            .icon {
+                color: darken(@color-operator-SQL, 20%);
+            }
+            display: list-item;
+        }
+    }
+
+    .nodeCustom {
+        .icon {
+            color: darken(@color-operator-custom, 5%);
+        }
+    }
+
+    .executeNodeOptimized {
+        .icon {
+            color: darken(@color-operator-out, 15%);
+        }
+    }
+    .viewOptimizedDataflow {
+        .icon {
+            color: darken(@color-operator-out, 25%);
+        }
+    }
+
+    .createNodeOptimized {
+        .icon {
+            color: darken(@color-operator-out, 15%);
+        }
+    }
+
+    .icon {
+        &.xi-edit {
+            font-size: 9px;
+        }
+        &.xi-expandnode {
+            font-size: 15px;
+            position: relative;
+            left: -3px;
+        }
+        &.xi-activated-share-icon {
+            font-size: 12px;
+            position: relative;
+            left: -2px;
+        }
+        &.xi-reset, &.xi-restore {
+            font-size: 11px;
+            position: relative;
+            left: -1px;
+        }
+        &.xi-table-locked {
+            font-size: 15px;
+            position: relative;
+            top: -2px;
+            left: -1px;
+        }
+        &.xi-error {
+            font-size: 11px;
+            position: relative;
+            left: -1px;
+        }
+    }
+}
+
+#dagNodeSubMenu {
+    max-height: none;
+
+    > ul {
+        display: none;
+        visibility: visible;
+        left: 0px;
+        margin-top: 0px;
+        position: static;
+
+        li {
+            display: list-item;
+        }
+    }
+}
+
+#dagTableNodeMenu {
+    &.noChildAllowed {
+        .addOperation {
+            display: none;
+        }
+    }
+    li {
+        .icon {
+            &.xi-trash {
+                color: inherit;
+            }
+        }
+    }
+}
+
+#dagTableNodeSubMenu {
+    .category-in {
+        display: none;
+    }
+}
+
+// TODO: remove these bars from html & js
+.operatorBar, .categorySection {
+    display: none !important;
+}
+
+#dagNodeOperatorsMenuWrap {
+    width: 24px;
+    border-radius: 0px;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    overflow: hidden;
+    background-color: @color-bg-menu;
+
+    .controlBtn {
+        background-color: @color-icon-default;
+        color: @color-font-defaultInverse;
+        height: 24px;
+        width: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+
+        .icon {
+            font-size: 14px;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            &::before {
+                position: relative;
+                top: 5px;
+            }
+        }
+        .xi-plus {
+            display: none;
+        }
+    }
+
+    &.collapsed {
+        .xi-plus {
+            display: block;
+        }
+        .xi-minus {
+            display: none;
+        }
+        #dagNodeOperatorsMenu {
+            display: none !important;
+        }
+    }
+
+    &.dragging {
+        .controlBtn, .menu {
+            pointer-events: none;
+        }
+    }
+
+    .viewOnlyText  {
+        display: none;
+        height: ~"calc(100% - 24px)";
+        width: 100%;
+        position: absolute;
+        top: 24px;
+    }
+}
+
+#dagNodeOperatorsMenu {
+    width: 24px;
+    display: block !important;
+    border-radius: 0px;
+    position: relative;
+    box-shadow: none;
+
+    li {
+        padding: 0px;
+        height: 24px;
+
+        .icon {
+            font-size: 14px;
+            margin-left: 4px;
+        }
+    }
+    .parentMenu::after {
+        right: 0px;
+        bottom: 0px;
+        border-right: 5px solid @color-icon-default;
+        border-top: 5px solid transparent;
+    }
+}
+
+#dagNodeOperatorsSubMenu {
+    border-radius: 0px;
+    width: 120px;
+
+    &.left {
+        margin-left: -145px;
+    }
+
+    &.dragging {
+        display: none !important;
+    }
+
+    li {
+        display: flex;
+        overflow: hidden;
+
+        .label {
+            .textOverflowOneLine;
+        }
+    }
+}
+
+#dataflow-rectSelection {
+    z-index: 2;
+    background-color: rgb(230, 237, 242);
+    border-style: dashed;
+    border-width: 2px;
+}
+
+#compileBackground {
+    z-index: @z-index-popupUndocked - 1;
+}
+
+
+/* ========== Dataflow List Section ========== */
+#dagListSection {
+    padding-bottom: 8px;
+
+    .listWrap {
+        max-height: 42%;
+    }
+
+    li.dagListDetail {
+
+        &.unavailable {
+            .dropDown {
+                .xc-disabled;
+            }
+        }
+
+        .name {
+            .loadingSection {
+                float: right;
+                margin: 0 10px;
+            }
+        }
+
+        .statusIcon {
+            width: 8px;
+            height: 8px;
+            border-radius: 100%;
+            position: absolute;
+            top: 8px;
+            left: 5px;
+            background-color: @color-bg-default;
+
+            &.state-qrNotStarted {
+                background-color: @color-bg-default;
+                border: 1px solid @color-bg-white-nine;
+            }
+            &.state-qrProcessing {
+                background-color: @color-dag-yellow;
+                border: 1px solid shade(@color-dag-yellow, 10%);
+            }
+            &.state-qrFinished {
+                background-color: @color-dag-blue;
+            }
+            &.state-qrError, &.state-qrCancelled {
+                background-color: @color-dag-red;
+            }
+        }
+    }
+}
+
+#dagNodeInfoPanel {
+    display: flex;
+    flex-direction: column;
+    font-size: 11px;
+    border-top: 1px solid @color-border-medium;
+
+    @headingHeight: 16px;
+
+
+    .topSection {
+        min-height: 50px;
+        height: auto !important;
+        flex: 1 0 auto;
+
+        .iconSection {
+            .icon {
+                cursor: pointer;
+                float: right;
+            }
+            .closeBtn {
+                margin-right: 2px;
+                margin-top: 7px;
+            }
+        }
+    }
+    .nodeTitle {
+        font-weight: normal;
+        line-height: 16px;
+        font-size: 12px;
+        padding-bottom: 4px;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+    .restore {
+        line-height: 25px;
+        color: @color-font-select-blue;
+
+        span, i {
+            display: inline-block;
+        }
+
+        .icon {
+            margin-left: 5px;
+            .position(relative, @top: 4px);
+
+            &.hint {
+                top: 0px;
+            }
+        }
+    }
+
+    ol {
+        margin: 0;
+        padding: 0;
+        padding-left: 10px;
+        li {
+            padding-left: 4px;
+        }
+    }
+
+
+    .nodeInfoSection {
+        padding: 4px 8px 12px 15px;
+    }
+    .mainRow {
+        min-width: 150px;
+    }
+    .row {
+        border-bottom: 1px solid @color-bg-2;
+        padding-bottom: 3px;
+        margin-bottom: 3px;
+        display: flex;
+        flex-direction: column;
+        &:last-child {
+            border-bottom: none;
+        }
+        &.collapsible {
+            .rowHeading {
+                cursor: pointer;
+                .noSelection;
+            }
+            .xi-arrow-down {
+                font-size: 8px;
+                width: auto;
+            }
+        }
+        &.collapsed {
+            .rowSection {
+                display: none;
+            }
+            .xi-arrow-down {
+                transform: rotate(-90deg);
+            }
+        }
+    }
+
+    .rowHeading {
+        display: flex;
+        line-height: @headingHeight;
+        min-height: @headingHeight;
+
+        .icon {
+            font-size: 11px;
+            margin-right: 4px;
+            line-height: 16px;
+            width: 15px;
+        }
+        .label {
+            font-weight: 600;
+            color: @color-font-darkGray;
+            white-space: pre-wrap;
+            .flex(1 0 auto);
+        }
+        .rowSection {
+            padding: 0px;
+        }
+    }
+
+    .rowSection {
+        padding: 4px 10px;
+        word-break: break-word;
+    }
+
+    .configRow {
+        overflow: hidden;
+    }
+
+    .actionLink {
+        margin-left: 12px;
+        margin-right: 10px;
+        font-weight: 600;
+    }
+
+    .configSection, .columnChangeSection, .columnOrderingSection {
+        white-space: pre-wrap;
+        word-break: break-word;
+        overflow: auto;
+    }
+
+    .descriptionSection {
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+
+
+    .statusIcon {
+        width: 9px;
+        height: 9px;
+        border-radius: 100%;
+        background-color: @color-bg-default;
+        float: left;
+        margin-top: 3px;
+        margin-right: 5px;
+
+        &.state-Unused {
+            background-color: @color-bg-default;
+        }
+        &.state-Configured {
+            background-color: @color-dag-yellow;
+            border: 1px solid shade(@color-dag-yellow, 10%);
+        }
+        &.state-Complete {
+            background-color: @color-dag-blue;
+        }
+        &.state-Error {
+            background-color: @color-dag-red;
+        }
+    }
+
+
+    .operationStats {
+        border-bottom: 1px solid @color-bg-2;
+        margin-bottom: 2px;
+        padding-bottom: 2px;
+
+        &:last-child {
+            margin-bottom: 0px;
+            padding-bottom: 0px;
+            border-bottom: none;
+        }
+    }
+
+    .statsSection {
+        padding-right: 0px;
+    }
+
+    .subRow {
+        display: flex;
+
+        &.row {
+            border-bottom: none;
+            padding-bottom: 0px;
+            margin-bottom: 0px
+        }
+
+        .label {
+            font-weight: 600;
+            color: @color-font-darkGray;
+            flex: 0 0 68px;
+        }
+
+        .value {
+            margin-left: 4px;
+        }
+    }
+
+    .message {
+        min-height: 38px;
+    }
+
+    .statsRow {
+        justify-content: space-between;
+
+        &.skewStatsRow {
+            cursor: pointer;
+        }
+
+        .rowHeading {
+            // display: flex;
+            // justify-content: space-between;
+            position: relative;
+
+            .value {
+                margin-right: 20px;
+            }
+            .label {
+                font-weight: 600;
+                color: @color-font-darkGray;
+                flex: 1 0 auto;
+            }
+            .xi-arrow-down {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+            }
+        }
+
+        .rowsPerNode {
+            padding-left: 10px;
+            padding-top: 0px;
+            .label {
+                font-weight: 600;
+                color: @color-font-darkGray;
+            }
+        }
+
+        .value {
+            margin-right: 10px;
+        }
+        .label {
+            flex: 1 0 auto;
+        }
+    }
+
+    .semibold {
+        color: @color-font-darkGray;
+    }
+}
+
+#tableSearchPanel {
+    @searchArea-h: 24px;
+    border-top: 1px solid @color-border-medium;
+
+    .qMark {
+        position: relative;
+        top: -2px;
+    }
+
+    .searchArea {
+        position: relative;
+        height: @searchArea-h;
+
+        &:hover {
+            .clear {
+                display: block;
+            }
+        }
+
+        input {
+            height: @searchArea-h;
+            line-height: @searchArea-h;
+            padding-right: 24px;
+            font-size: 12px;
+        }
+
+        .clear {
+            position: absolute;
+            right: 9px;
+            top: 5px;
+            display: none;
+        }
+    }
+
+    .resultArea {
+        @summary-h: 15px;
+        height: ~"calc(100% - @{searchArea-h})";
+        padding: 8px 0;
+
+        .summary {
+            padding: 0 15px;
+            height: @summary-h;
+            line-height: @summary-h;
+        }
+
+        .listSection {
+            height: ~"calc(100% - @{summary-h})";
+            overflow-y: auto;
+            padding-top: 4px;
+
+            li {
+                line-height: 24px;
+            }
+        }
+    }
+}
+
+// XXX TODO: move it to pop up style list
+#dagSearch {
+    @width: 296px;
+    width: @width;
+    min-width: @width;
+    position: absolute;
+    font-size: 12px;
+    z-index: @z-index-modalBackground - 1; // should be below modal
+    height: 235px;
+
+    .modalHeader {
+        .text {
+            font-size: 16px;
+            font-weight: 600;
+        }
+    }
+
+    .modalMain {
+        padding-top: 8px;
+        padding-bottom: @modal-padding-vertical;
+    }
+
+    .group {
+        margin-top: 16px;
+        margin-bottom: 16px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        b, .semibold {
+            margin-bottom: 8px;
+            display: inline-block;
+        }
+    }
+
+    .searchArea {
+        position: relative;
+        height: 25px;
+
+        input {
+            padding-right: 90px;
+            height: 25px;
+            line-height: 25px;
+            font-weight: normal;
+        }
+
+        .counter {
+            position: absolute;
+            right: 46px;
+            top: 4px;
+            color: @color-text-graySoft;
+            font-size: 12px;
+            pointer-events: none;
+        }
+
+        .arrows {
+            position: absolute;
+            top: 4px;
+            right: 8px;
+
+            .icon {
+                font-size: 10px;
+                margin-left: 6px;
+            }
+        }
+    }
+
+    .divider {
+        width: ~"calc(100% + 2 * @{modal-padding-horizontal})";
+        height: 1px;
+        background-color: @color-border-menugray;
+        position: relative;
+        left: -1 * @modal-padding-horizontal;
+    }
+
+    .advanceSection {
+        height: 19px;
+
+        &.expand {
+            &.status {
+                height: 77px;
+            }
+
+            &.type {
+                height: 175px;
+            }
+
+            .options {
+                .flex-display;
+            }
+
+            .scope {
+                display: block;
+            }
+
+            .sectionToggle {
+                .xi-plus {
+                    display: none;
+                }
+
+                .xi-minus {
+                    display: inline-block;
+                }
+            }
+        }
+
+        .options {
+            display: none;
+            flex-flow: wrap;
+            margin-top: 8px;
+
+            .cell {
+                .flex(0 0 115px);
+                margin-right: 9px;
+
+                &.Graph_Node_ID {
+                    flex: 0 0 109px;
+                }
+            }
+        }
+
+        .scope {
+            display: none;
+            margin-top: 8px;
+        }
+
+        .checkboxSection {
+            height: 25px;
+            line-height: 25px;
+            font-size: 12px;
+            font-weight: normal;
+        }
+
+        .sectionToggle {
+            .icon {
+                font-size: 11px;
+            }
+
+            .xi-minus {
+                display: none;
+            }
+        }
+
+        .radioButtonGroup {
+            display: block;
+
+            .radioButton {
+                margin-top: 4px;
+                font-size: 12px;
+
+                &:first-child {
+                    margin-top: 0;
+                }
+            }
+
+            .label {
+                font-weight: normal;
+            }
+        }
+
+        .action {
+            float: right;
+        }
+
+        .reset {
+            color: @color-font-link-blue;
+            text-decoration: underline;
+            margin-right: 16px;
+        }
+
+        .subTitle {
+            font-size: 14px;
+            font-weight: normal;
+        }
+    }
+}
+
+.dagSchemaPopup.modalContainer {
+    font-size: 12px;
+    @row-height: 28px;
+
+    // Box shadows:
+    @shadow-color: hsl(210, 60%, 12%);
+    @box-shadow--default:   -1px 3px 12px fade(@shadow-color, 15%),
+                            0 4px 12px fade(@shadow-color, 15%),
+                            -1px 2px 6px fade(@shadow-color, 20%);
+
+    @box-shadow--pinned:    -1px 1px 6px fade(@shadow-color, 15%),
+                            0 1px 4px fade(@shadow-color, 20%),
+                            0 1px 6px fade(@shadow-color, 20%);
+
+    @box-shadow--hover:     0 15px 32px fade(@shadow-color, 10%),
+                            0 10px 24px fade(@shadow-color, 15%),
+                            -2px 4px 8px fade(@shadow-color, 10%);
+
+    @header-h: 67px;
+
+    box-shadow: @box-shadow--default;
+    transition: box-shadow 0.3s cubic-bezier(.25,.8,.25,1);
+
+    &:hover, &:active, &:focus {
+        box-shadow: @box-shadow--hover;
+        &.pinned {
+            box-shadow: @box-shadow--pinned;
+        }
+    }
+
+    &.pinned {
+        box-shadow: @box-shadow--pinned;
+    }
+
+    &.active {
+        display: block !important;
+    }
+    &.hasHiddenCols {
+        .cell.hidden {
+            display: block;
+        }
+    }
+
+    .ui-icon-gripsmall-diagonal-se {
+        visibility: hidden;
+    }
+
+    &:hover {
+        .ui-icon-gripsmall-diagonal-se {
+            visibility: visible;
+        }
+    }
+
+    &.fromTable-false {
+        .copy {
+            display: none;
+        }
+    }
+
+    .header {
+        border-bottom: 1px solid @color-border-medium2;
+        border-top-left-radius: 18px;
+        border-top-right-radius: 18px;
+
+        height: 58px;
+        padding: 0px 22px;
+        line-height: 58px;
+
+
+        .title {
+            width: ~"calc(100% - 44px)";
+            .textOverflowOneLine;
+            font-size: 20px;
+            margin-top: 0px;
+            text-align: left;
+            height: 58px;
+
+            .text {
+                font-size: 20px;
+                font-weight: 600;
+                position: relative;
+                text-transform: none;
+                width: auto;
+                margin-left: 0px;
+                top: 0px;
+                height: 58px;
+                line-height: 58px;
+            }
+        }
+        .copy {
+            position: absolute;
+            top: 0px;
+            right: 68px;
+            line-height: 58px;
+            cursor: pointer;
+        }
+        .pinArea {
+            position: absolute;
+            top: 0px;
+            right: 44px;
+            height: 58px;
+            cursor: pointer;
+            .icon {
+                line-height: 58px;
+                font-size: 18px;
+            }
+        }
+
+        .close {
+            cursor: pointer;
+            position: absolute;
+            right: 16px;
+            line-height: @row-height;
+            top: 0px;
+            right: 16px;
+            .size(@width: 22px, @height: 58px);
+
+            .icon {
+                display: inline-block;
+                .position(absolute, @top: 0, @right: 0);
+                .size(@width: 22px, @height: 22px);
+                line-height: 58px;
+                font-size: 18px;
+            }
+        }
+    }
+
+    .xi-pinned {
+        display: none;
+    }
+    &.pinned {
+        .xi-pinned {
+            display: block;
+        }
+        .xi-unpinned {
+            display: none;
+        }
+    }
+
+    .modalMain {
+        height: ~"calc(100% - 58px)";
+        overflow: hidden;
+        border-bottom-left-radius: 18px;
+        border-bottom-right-radius: 18px;
+        padding: 0px;
+        .text-selection;
+    }
+    .heading {
+        height: @row-height;
+        line-height: @row-height;
+        display: flex;
+        background-color: @color-bg-schemaHeading;
+
+        > div {
+            text-align: center;
+        }
+    }
+    .type {
+        min-width: 106px;
+        max-width: 106px;
+        padding-right: 4px;
+    }
+    .field {
+        flex: 1 1 auto;
+        padding: 0px 6px;
+    }
+    .cell.hidden {
+        min-width: 70px;
+        max-width: 70px;
+        display: none;
+    }
+
+    .cell {
+        border-left: 1px solid #c7d4df;
+        border-bottom: 1px solid #c7d4df;
+        .textOverflowOneLine;
+    }
+
+    .cell:first-child {
+        border-left: none;
+    }
+
+    .searchbarArea {
+        input {
+            padding-left: 24px;
+        }
+    }
+
+    .content {
+        @rest-height: @row-height + 24; // search bar has 24px height
+        overflow: auto;
+        height: ~"calc(100% - @{rest-height})";
+    }
+
+    .replaceSection {
+        border-top: 1px solid @color-border-monitor-label;
+        border-bottom: 1px solid @color-border-monitor-label;
+        margin-top: -1px;
+        position: relative;
+
+        li {
+            line-height: 24px;
+            height: 24px;
+        }
+        .changeWrap {
+            visibility: hidden;
+        }
+        li .cell {
+            border-bottom: none;
+        }
+
+        li:nth-child(2) {
+            margin-top: -2px;
+        }
+
+        .arrow {
+            position: absolute;
+            left: 2px;
+            top: 10px;
+            color: @color-text-green;
+            font-weight: 600;
+            font-size: 16px;
+        }
+
+    }
+    .changeType-add {
+        color:@color-text-green;
+        > div:first-child, .icon {
+            color: @color-text-green;
+        }
+    }
+    .changeType-remove {
+        color: @color-error-red;
+        > div:first-child, .icon {
+            color: @color-error-red;
+        }
+
+    }
+    .changeType-replace {
+        color:  @color-text-green;
+        > div:first-child, .icon {
+            color: @color-text-green;
+        }
+        &.changeType-remove {
+            color: @color-error-red;
+            > div:first-child, .icon {
+                color: @color-error-red;
+            }
+        }
+    }
+
+    .xi-hide {
+        font-size: 18px;
+        text-align: center;
+        color: @color-icon-default !important;
+        width: 100%;
+        line-height: @row-height;
+    }
+
+    .changeWrap {
+        width: 2px;
+        min-height: 10px; // if no height, changeWrap with no content will not
+        // take up width
+        text-align: center;
+        margin-left: 3px;
+        float: left;
+    }
+    .iconWrap {
+        float: left;
+        width: 30px;
+        text-align: center;
+        margin-top: 2px;
+    }
+
+    li {
+        display: flex;
+        line-height: @row-height;
+        height: @row-height;
+        &:hover {
+            background-color: @color-bg-schemaHover;
+        }
+        &.selected {
+            outline: 1px solid @color-border-pinkish-grey2;
+            background-color: @color-dag-schema-selected;
+
+        }
+    }
+
+    .noFields {
+        display: inline-block;
+        float: left;
+        width: 100%;
+        line-height: 40px;
+        text-align: center;
+    }
+}
+
+.schemaPopup{
+    position: fixed;
+    top: 100px;
+    display: none;
+    background-color: @color-bg-default;
+    z-index: 101;
+    box-shadow: 0px 1px 2px 1px rgba(0, 0, 0, 0.3);
+    cursor: auto;
+    .noSelection;
+    cursor: default;
+
+    &.active {
+        .flex-display !important;
+        .flex-direction(column);
+    }
+
+    &.loadInfo {
+        .background, .subHeader, .heading, .nodeInfoHeader, .nodeInfoContent {
+            display: none !important;
+        }
+
+        .content {
+            white-space: pre;
+            height: ~"calc(100% - 24px)";
+            width: 100%;
+            overflow: auto;
+            font-family: @font-code;
+            padding: 10px;
+
+            > .jsonBlock {
+                margin-left: 14px;
+            }
+        }
+    }
+
+    &.expanded {
+        .subHeader .expand {
+            .transform(rotate(0deg));
+        }
+        .nodeInfoContent, .nodeInfoHeader {
+            display: block;
+        }
+    }
+
+    &.noNodeInfo {
+        .expand {
+            display: none;
+        }
+       .nodeInfoContent, .nodeInfoHeader {
+            display: none;
+        }
+    }
+
+    .title {
+        display: block;
+        text-align: center;
+        font-size: 13px;
+        color: @color-font-defaultInverse;
+        line-height: 22px;
+        height: 24px;
+        .flex(0 0 24px);
+        .textOverflow;
+        white-space: nowrap;
+        font-weight: 600;
+        background-color: @color-bg-cardHeader;
+        padding: 0 4px;
+        .cursor-move;
+
+
+        .titleContentWrap {
+            .flex-display;
+            .justify-content(center);
+            margin: 0 24px;
+        }
+
+        .close {
+            position: absolute;
+            right: 0px;
+            top: 0px;
+            width: 24px;
+            height: 24px;
+            text-align: center;
+            line-height: 24px;
+            cursor: pointer;
+            .icon {
+                font-size: 12px;
+            }
+        }
+
+        > span {
+            display: block;
+        }
+        .tableName {
+            .flex(0 1 auto);
+            .textOverflow;
+        }
+        .numCols {
+            .flex(0 0 auto);
+            overflow: hidden;
+            margin-left: 4px;
+        }
+    }
+
+    .background {
+        width: ~"calc(100% - 80px)";
+        height: 100%;
+        background-color: @color-bg-white-seven;
+        top: 0px;
+        left: 80px;
+        position: absolute;
+        z-index: -1;
+    }
+
+    &.empty .background {
+        height: 44px;
+    }
+
+    .subHeader {
+        font-size: 11px;
+        font-weight: 600;
+        margin-top: -1px;
+        height: 21px;
+        .flex(0 0 21px);
+        border-bottom: 1px solid @color-border-pinkish-grey2;
+        position: relative;
+
+        > div {
+            display: inline-block;
+            float: left;
+            margin: 0 4px;
+            white-space: nowrap;
+            text-align: left;
+            width: 70px;
+            line-height: 20px;
+            .textOverflow;
+
+            &:first-child {
+                text-indent: 5px;
+                color: @color-font-select-blue;
+            }
+
+            &:nth-child(2) {
+                text-indent: 4px;
+                width: 100px;
+            }
+        }
+        .expand {
+            color: @color-font-select-blue;
+            font-size: 8px;
+            .position(absolute, @top: 0px, @right: 0px);
+            line-height: 21px;
+            width: 20px;
+            text-align: center;
+            .transform(rotate(270deg));
+        }
+        .error {
+            font-size: 12px;
+            line-height: 21px;
+            margin-left: 2px;
+            display: none;
+            &.xi-warning {
+                color: @color-bg-tahiti-gold;
+            }
+            &.xi-error {
+                color: @color-error-border;
+            }
+        }
+    }
+    &.slightSkew {
+        .xi-warning {
+            display: inline-block;
+        }
+    }
+    &.heavySkew {
+        .xi-error {
+            display: inline-block;
+        }
+    }
+
+    .heading {
+        font-size: 11px;
+        font-weight: 600;
+        margin-top: -1px;
+        height: 21px;
+        .flex(0 0 21px);
+        border-bottom: 1px solid @color-border-pinkish-grey2;
+        > div {
+            display: inline-block;
+            float: left;
+            margin: 0 4px;
+            white-space: nowrap;
+            text-align: left;
+            width: 70px;
+            line-height: 20px;
+            .textOverflow;
+
+            &:first-child {
+                text-indent: 22px;
+                color: @color-font-select-blue;
+            }
+
+            &:nth-child(2) {
+                text-indent: 4px;
+            }
+        }
+    }
+    .content {
+        overflow-y: auto;
+        overflow-x: hidden;
+        padding: 0px;
+        padding-top: 0px;
+        text-align: left;
+        .flex(1 1 auto);
+        min-height: 20%;
+    }
+    ul {
+        li {
+            height: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            cursor: auto;
+            &:hover {
+                background-color: @color-bg-light-blue-grey;
+            }
+            &.selected {
+                outline: 1px solid @color-border-pinkish-grey2;
+                background-color: @color-dag-schema-selected;
+            }
+
+            &> div {
+                display: inline-block;
+                font-size: 11px;
+                font-weight: 600;
+                margin: 0 5px;
+                white-space: nowrap;
+                text-align: left;
+                line-height: 20px;
+                .textOverflow;
+                cursor: pointer;
+                padding-right: 10px;
+
+                &:first-child {
+                    color: @color-font-select-blue;
+                    margin-left: 2px;
+                    width: 75px;
+                    max-width: 75px;
+                    min-width: 75px;
+                    padding-right: 0px;
+                }
+            }
+        }
+        .noFields {
+            font-size: 11px;
+            display: inline-block;
+            float: left;
+            width: 100%;
+            line-height: 24px;
+            text-align: center;
+        }
+    }
+
+    .iconWrap {
+        width: 20px;
+        display: inline-block;
+        margin-right: 4px;
+        .icon {
+            color: @color-font-select-blue;
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            left: 3px;
+            top: 3px;
+        }
+    }
+}
+
+.canvas {
+    .position(absolute, @top: 0, @left: -40px);
+    z-index: 0;
+}
+
+.canvas.full {
+    opacity: 0;
+    visibility: hidden;
+    top: -50px;
+}
+
+/* ========== End of Dataflow List ========== */
+#paramPopUp, #aggManagerPopup {
+    display: none;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px 8px;
+    text-transform: none;
+    flex-direction: column;
+    height: 270px;
+    width: 600px;
+    padding: 10px 0px;
+    min-height: 270px;
+
+    &.active {
+        display: block;
+    }
+
+    .modalHeader {
+        height: 24px;
+        padding-top: 0;
+
+        .close {
+            top: 8px;
+        }
+    }
+
+    .inputSection {
+        .flex-display;
+        .flex(0 0 30px);
+        margin-bottom: 4px;
+        padding: 0 8px;
+
+        .newParam {
+            .flex(1 1 0);
+        }
+        .submitNewParam {
+            width: auto;
+            margin-top: 3px;
+            margin-left: 8px;
+        }
+    }
+
+    .tableContainer {
+        padding: 0 8px;
+        display: flex;
+        flex-direction: column;
+        height: ~"calc(100% - 120px)";
+
+        .tableWrapper {
+            min-height: 150px;
+            overflow-x: hidden;
+            overflow-y: scroll;
+
+            .unfilled {
+                .paramVal {
+                    pointer-events: none;
+                }
+            }
+
+            .unfilled .paramDelete, .unfilled .checkbox{
+                display: none !important;
+            }
+
+            .paramActionWrap, .aggActionWrap {
+                .paramDelete, .aggDelete {
+                    .position(absolute, @top: 50%, @left: 50%);
+                    transform: translate(-50%, -50%);
+                }
+                &.unavailable {
+                    .paramDelete, .aggDelete {
+                        pointer-events: none;
+                    }
+                }
+            }
+        }
+
+        .row {
+            &:hover {
+                .paramNameWrap, .aggNameWrap {
+                    padding-right: 46px;
+                    .icon {
+                        display: block;
+                    }
+                }
+            }
+        }
+        .paramNameWrap, .aggNameWrap {
+            &.noDataflow {
+                .find {
+                    opacity: @opacity-disabled;
+                    cursor: initial;
+                }
+            }
+            .icon {
+                cursor: pointer;
+                display: none;
+                .position(absolute, @right: 4px, @top: 0px);
+                line-height: 30px;
+                font-size: 18px;
+                &.find {
+                    right: 26px;
+                }
+            }
+        }
+    }
+
+    .cell {
+        &.paramNameWrap{
+            .size(@width: ~"calc(50% - 91px)");
+        }
+
+        .paramVal {
+            font-size: 14px;
+        }
+
+        &.paramValWrap, &.aggValWrap {
+            .size(@width: ~"calc(50% - 91px)");
+            padding: 0px 0px 0px 0px;
+            input {
+                .size(@width: 100%, @height: 100%);
+                float: left;
+                border: solid 1px transparent;
+                background: transparent;
+                text-overflow: ellipsis;
+
+                &:focus {
+                    background-color: @color-bg-default;
+                    border: solid 1px @color-font-softBlue;
+                }
+            }
+
+            .aggVal {
+                .textOverflowOneLine;
+            }
+        }
+
+        &.aggValWrap {
+            padding: 0px 10px;
+        }
+
+        &.aggNameWrap, &.aggGraphNameWrap, &.aggValWrap {
+            .size(@width: ~"calc(33.3% - 65px)");
+        }
+
+        &.paramActionWrap, &.paramNoValueWrap,
+                &.aggActionWrap, &.aggNoValueWrap {
+            text-align: center;
+            .size(@width: 80px);
+            padding: 0px 4px;
+            .checkbox {
+                .size(@width: 15px, @height: 15px);
+                .position(relative, @top: 2px);
+            }
+        }
+        &.paramActionWrap, &.aggActionWrap {
+            padding-right: 0px;
+        }
+    }
+
+
+    .tableHeader {
+        overflow-y: scroll;
+        padding: 0 8px;
+        padding-right: 0px;
+        width: ~"calc(100% - 8px)";
+
+        // &::-webkit-scrollbar-track {
+        //     background: @color-bg-default;
+        // }
+
+        .cell {
+            text-align: center;
+        }
+    }
+}
+
+#aggManagerPopup {
+    height: 235px;
+    min-height: 235px;
+
+    .tableContainer {
+        height: ~"calc(100% - 120px)";
+    }
+}
+
+
+// XXX temporary
+#userBox.dagMode {
+    width: 45px;
+    #memoryAlert {
+        display: none;
+    }
+}
+

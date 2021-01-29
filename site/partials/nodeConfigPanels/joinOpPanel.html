@@ -1,0 +1,134 @@
+<section id="joinOpPanel" class="xc-hidden opPanel joinOpPanel">
+    <header>
+      <div class="row">
+          <div class="title"><%= dicts.joinView.header %></div>
+          <!-- <div class="hint csHelp" data-topic="joinTables" title="" data-toggle="tooltip" data-container="body" data-original-title="<%= dicts.TooltipTStr.CSHelp %>">
+              <i class="icon xi-help fa-12"></i>
+          </div> -->
+          <div class="subTitle"></div>
+      </div>
+      <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <div class="mainContent">
+      <div class="join opSection">
+        <!-- first step -->
+        <section data-xcid="joinFirstStep" class="firstStep">
+            include "joinOpPanelJoinTemplate.html"
+            <p class="mainInstructions instrText joinInstr"></p>
+            <section class="topDropdowns clearfix">
+              <div class="subHeading clearfix">
+                <div><%= dicts.joinView.JoinType %>:</div>
+              </div>
+              <div data-xcid="joinType" class="dropDownList">
+                <div data-xcid="text" class="text"><%= dicts.joinView.InnerJoin %></div>
+                <div class="iconWrapper">
+                  <i class="icon xi-arrow-down"></i>
+                </div>
+                <ul data-xcid="menuItems" class="list"></ul>
+              </div>
+            </section>
+          <!-- Join Main Section -->
+          <section>
+            <div>
+                <div class="subHeading clearfix">
+                  <div class="label"><%= dicts.joinView.colSelectTitle %>:</div>
+                  <i data-xcid="colInstruction" class="colSelectInstr instrText qMark icon xi-unknown"
+                    data-toggle="tooltip"
+                    data-container="body"
+                    data-placement="auto top">
+                  </i>
+                </div>
+            </div>
+            <div data-xcid="clauseArea">
+              <div class="row row-subheading">
+                <div class="col col-left">#1 <%= dicts.joinView.LeftCols %>
+                  <i data-xcid="colLeft1Tip" class="colSelectInstr instrText qMark icon xi-unknown"
+                  data-toggle="tooltip"
+                  data-container="body"
+                  data-placement="auto top"
+                  data-title="The column name from Table 1 whose row values, according to the Join operation, are returned or not returned if they match the row values from the selected column of Table 2."
+                  >
+                </i>
+                </div>
+                <div class="col col-middle"></div>
+                <div class="col col-right">#2 <%= dicts.joinView.RightCols %>
+                  <i data-xcid="colLeft2Tip" class="colSelectInstr instrText qMark icon xi-unknown"
+                  data-toggle="tooltip"
+                  data-container="body"
+                  data-placement="auto top"
+                  data-title="The column name from Table 2 whose row values, according to the Join operation, are returned or not returned if they match the row values from the selected column of Table 1."
+                  >
+                </i>
+                </div>
+              </div>
+              <div class="mainTable">
+                <div data-xcid="clauseContainer"></div>
+                <div class="addClause placeholder addArgWrap addArgWrapLarge">
+                  <button data-xcid="addClauseBtn" class="btn btn-secondary">
+                    <%= dicts.joinView.ADDCLAUSE %>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <section class="advancedSection collapsed" data-xcid="advancedSection">
+              <div class="advancedTitle subHeading clearfix flexContainer clickable" data-xcid="toggleIcons">
+                  <div class="col col-fixed">
+                      <i class="advancedIcon icon xi-plus-circle-outline"></i>
+                      <i class="advancedIcon icon xi-minus-circle-outline"></i>
+                  </div>
+                  <span class="text"><%= dicts.joinView.JoinOptions %></span>
+              </div>
+              <div class="optionsSection">
+                  <!-- nullSafe checkbox -->
+                  <div class="checkboxSection flexContainer">
+                      <div class="clickable col col-fixed" data-xcid="nullSafeOption">
+                          <div class="col col-checkbox">
+                              <div class="checkbox" data-xcid="nullSafeCheckbox">
+                                  <i class="icon xi-ckbox-empty fa-11"></i>
+                                  <i class="icon xi-ckbox-selected fa-11"></i>
+                              </div>
+                          </div>
+                          <div class="col">
+                              <span class="text"><%= dicts.joinView.JoinPanelNullSafeTitle %></span>
+                          </div>
+                      </div>
+                      <div class="col col-qmark">
+                          <i class="qMark icon xi-unknown"
+                              data-toggle="tooltip"
+                              data-container="body"
+                              data-placement="auto top"
+                              data-title="<%= dicts.joinView.JoinPanelNullSafeTooltip %>">
+                          </i>
+                      </div>
+                  </div>
+              </div>
+            </section>
+            <div class="strPreview">
+              <span class="prevTitle"><%= dicts.joinView.Preview %></span>
+              <div class="joinPreview" data-xcid="joinPreview">
+                <span class="joinType keyword">Inner Join</span>
+                <span class="highlighted">table1</span>,<span class="highlighted">table2</span>
+                <br/><span class="keyword">ON </span>
+                <span class="highlighted">col1</span> = <span class="highlighted">col2</span>
+              </div>
+            </div>
+          </section>
+        </section>
+        <!-- second step -->
+        <section data-xcid="joinSecondStep" class="secondStep">
+          include "joinOpPanelRenameTemplate.html"
+          include "joinOpPanelColumnTemplate.html"
+          <p class="mainInstructions instrText joinInstr"></p>
+          <div data-xcid="columnSelectSection"></div>
+          <div data-xcid="columnRenameSection"></div>
+        </section>
+      </div>
+      <!-- Advanced form -->
+      include "opPanelAdvancedSection.html"
+      <!-- Buttons -->
+      <section data-xcid="bottomSection" class="bottomSection">
+        <div data-xcid="navButtons" class="btnWrap"></div>
+        include "../util/switcher.html"
+      </section>
+    </div>
+  </section>

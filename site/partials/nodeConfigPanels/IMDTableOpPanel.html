@@ -1,0 +1,53 @@
+<!-- IMD Table Operation Panel -->
+<div id="IMDTableOpPanel" class="xc-hidden opPanel">
+    <!-- Project Header -->
+    <header class="headerSection">
+        <div class="row">
+            <div class="title"><%= dicts.IMDTableOp.SourceTable %></div>
+            <div class="subTitle"></div>
+        </div>
+        <i class="close icon xi-close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>"></i>
+    </header>
+    <!-- content -->
+    <div class="mainContent">
+        <div class="IMDTable opSection">
+        <p class="instructions instrText"><%= dicts.IMDTableOp.IMDTableInstr %></p>
+        <!-- IMD Table View Top Section-->
+        <section class="modalTopMain">
+            <div class="IMDTableName formRow step1 clearfix">
+                <div class="subHeading clearfix">
+                <div class="label"><%= dicts.IMDTableOp.table %>:</div>
+                </div>
+                <div class="inputWrap" >
+                    <div id="pubTableList" class="dropDownList">
+                        <input class="text pubTableInput" type="text" value="" spellcheck="false" autocomplete="off">
+                        <div class="iconWrapper">
+                            <i class="icon xi-arrow-down"></i>
+                        </div>
+                        <div class="list">
+                            <ul class="pubTables"></ul>
+                            include "../../util/menuScrollArea.html"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- schema -->
+            <div class="schema">
+                <div class="subHeading clearfix">
+                    <div class="label"><%= dicts.DFLink.Schema %>:</div>
+                    <!-- <i class="qMark icon xi-unknown"
+                    data-toggle="tooltip"
+                    data-container="body"
+                    data-placement="auto top"
+                    data-title="<%= dicts.DFLink.SchemaHint %>">
+                    </i> -->
+                </div>
+                include "colSchemaView.html"
+            </div>
+        </section>
+        </div>
+        include "opPanelAdvancedSection.html"
+        include "opPanelBottomSection.html"
+    </div>
+</div>
+<!-- End of IMD Table View -->

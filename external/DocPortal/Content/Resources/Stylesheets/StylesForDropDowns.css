@@ -1,0 +1,1127 @@
+/* DROP DOWN COLUMN STYLING */
+
+@font-face {
+  font-family: 'icomoon';
+  src: url('../../Fonts/fonts/icomoon.eot?qfkfdd');
+  src: url('../../Fonts/fonts/icomoon.eot?qfkfdd#iefix') format('embedded-opentype'),
+       url('../../Fonts/fonts/icomoon.ttf?qfkfdd') format('truetype'),
+       url('../../Fonts/fonts/icomoon.woff?qfkfdd') format('woff'),
+       url('../../Fonts/fonts/icomoon.svg?qfkfdd#icomoon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+i.icon {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: normal;
+  font-variant: normal;
+  line-height: 1;
+  font-size: 20px;
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+i.icon.center {
+  display: inline-block;
+  position: relative;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+i.icon.fa-25 {
+  font-size: 25px;
+}
+i.icon.fa-7 {
+  font-size: 7px;
+}
+i.icon.fa-8 {
+  font-size: 8px;
+}
+i.icon.fa-9 {
+  font-size: 9px;
+}
+i.icon.fa-10 {
+  font-size: 10px;
+}
+i.icon.fa-11 {
+  font-size: 11px;
+}
+i.icon.fa-12 {
+  font-size: 12px;
+}
+i.icon.fa-13 {
+  font-size: 13px;
+}
+i.icon.fa-14 {
+  font-size: 14px;
+}
+i.icon.fa-15 {
+  font-size: 15px;
+}
+i.icon.fa-16 {
+  font-size: 16px;
+}
+i.icon.fa-17 {
+  font-size: 17px;
+}
+i.icon.fa-18 {
+  font-size: 18px;
+}
+i.icon.fa-22 {
+  font-size: 22px;
+}
+i.icon.blue {
+  color: #5CB2E8;
+}
+i.icon.xi-data-warning-1:before {
+  content: "\e9ff";
+}
+i.icon.xi-data-warning-2:before {
+  content: "\ea02";
+}
+i.icon.xi-add-app:before {
+  content: "\e9fd";
+}
+i.icon.xi-add-udf2:before {
+  content: "\e9fe";
+}
+i.icon.xi-edit-dataflow-2:before {
+  content: "\e9f8";
+}
+i.icon.xi-run-with-new:before {
+  content: "\e9f9";
+}
+i.icon.xi-run-and-replace:before {
+  content: "\e9fa";
+}
+i.icon.xd-logo-letteronly:before {
+  content: "\e9fb";
+}
+i.icon.xd-logo-outline:before {
+  content: "\e9fc";
+}
+i.icon.xd-logo-bw:before {
+  content: "\e9f6";
+}
+i.icon.xi-design-logo:before {
+  content: "\e9f7";
+}
+i.icon.xi-menu-add-scheduler:before {
+  content: "\e9f4";
+}
+i.icon.xi-human-admin:before {
+  content: "\e9f5";
+}
+i.icon.xi-restart-nodes:before {
+  content: "\e9f1";
+}
+i.icon.xi-view-as:before {
+  content: "\e9f2";
+}
+i.icon.xi-xcalar-full-logo:before {
+  content: "\e9f3";
+}
+i.icon.ico-wait:before {
+  content: "\e9f0";
+}
+i.icon.xi-add-parameters:before {
+  content: "\e9ee";
+}
+i.icon.xi-parameters:before {
+  content: "\e9ef";
+}
+i.icon.xi-filter-greaterthan-equalto:before {
+  content: "\e9e8";
+}
+i.icon.xi-filter-lessthan-equalto:before {
+  content: "\e9e9";
+}
+i.icon.xi-filter-greaterthan:before {
+  content: "\e9ea";
+}
+i.icon.xi-filter-lessthan:before {
+  content: "\e9eb";
+}
+i.icon.xi-filter-not-equal:before {
+  content: "\e9ec";
+}
+i.icon.xi-filter-equal:before {
+  content: "\e9ed";
+}
+i.icon.xi-forbid:before {
+  content: "\e9e0";
+}
+i.icon.xi-map:before {
+  content: "\e9e1";
+}
+i.icon.xi-horizontal-align-center:before {
+  content: "\e9e2";
+}
+i.icon.xi-vertical-align-center:before {
+  content: "\e9e3";
+}
+i.icon.xi-arrowtail-right:before {
+  content: "\e9e4";
+}
+i.icon.xi-arrowtail-left:before {
+  content: "\e9e5";
+}
+i.icon.xi-arrowtail-down:before {
+  content: "\e9e6";
+}
+i.icon.xi-arrowtail-up:before {
+  content: "\e9e7";
+}
+i.icon.xi-videocam:before {
+  content: "\e9db";
+}
+i.icon.xi-skip-previous:before {
+  content: "\e9dc";
+}
+i.icon.xi-skip-next:before {
+  content: "\e9dd";
+}
+i.icon.xi-fast-rewind:before {
+  content: "\e9de";
+}
+i.icon.xi-fast-forward:before {
+  content: "\e9df";
+}
+i.icon.xi-sand-clock:before {
+  content: "\e9d3";
+}
+i.icon.xi-heartbeat:before {
+  content: "\e9d4";
+}
+i.icon.xi-graph:before {
+  content: "\e9d5";
+}
+i.icon.xi-nametag:before {
+  content: "\e9d6";
+}
+i.icon.xi-delete-column:before {
+  content: "\e9d7";
+}
+i.icon.xi-compare:before {
+  content: "\e9d8";
+}
+i.icon.xi-compare-arrows:before {
+  content: "\e9d9";
+}
+i.icon.xi-data-update:before {
+  content: "\e9da";
+}
+i.icon.xi-workbook:before {
+  content: "\e9d0";
+}
+i.icon.xi-tutorials:before {
+  content: "\e9d1";
+}
+i.icon.xi-news:before {
+  content: "\e9d2";
+}
+i.icon.xi-projection-mode2:before {
+  content: "\e9cb";
+}
+i.icon.xi-select-mode:before {
+  content: "\e9cc";
+}
+i.icon.xi-use:before {
+  content: "\e9cd";
+}
+i.icon.xi-corr-coeff:before {
+  content: "\e9ce";
+}
+i.icon.xi-exclude:before {
+  content: "\e9cf";
+}
+i.icon.xi-link .path1:before {
+  content: "\e9ab";
+  color: #000000;
+  opacity: 0.0100;
+}
+i.icon.xi-link .path2:before {
+  content: "\e9ac";
+  margin-left: -0.86914062em;
+  color: #000000;
+}
+i.icon.xi-unlink:before {
+  content: "\e9ca";
+}
+i.icon.xi-loading:before {
+  content: "\e9aa";
+}
+i.icon.xi-equal-circle-outline:before {
+  content: "\e9ad";
+}
+i.icon.xi-minus-circle-outline:before {
+  content: "\e9ae";
+}
+i.icon.xi-plus-circle-outline:before {
+  content: "\e9af";
+}
+i.icon.xi-equal-circle:before {
+  content: "\e9b0";
+}
+i.icon.xi-minus-circle:before {
+  content: "\e9b1";
+}
+i.icon.xi-plus-circle:before {
+  content: "\e9b2";
+}
+i.icon.xi-upgrade:before {
+  content: "\e9b3";
+}
+i.icon.xi-stop-nodes:before {
+  content: "\e9b4";
+}
+i.icon.xi-start-nodes:before {
+  content: "\e9b5";
+}
+i.icon.xi_select-column:before {
+  content: "\e9b6";
+}
+i.icon.xi-generate-sub:before {
+  content: "\e9b7";
+}
+i.icon.xi-magic-wand:before {
+  content: "\e9b8";
+}
+i.icon.xi-chat-bubble-sad:before {
+  content: "\e9b9";
+}
+i.icon.xi-chat-bubble-happy:before {
+  content: "\e9ba";
+}
+i.icon.xi-empty-string:before {
+  content: "\e9bb";
+}
+i.icon.xi-cancel:before {
+  content: "\e9bc";
+}
+i.icon.xi-show-all:before {
+  content: "\e9bd";
+}
+i.icon.xi-module:before {
+  content: "\e9be";
+}
+i.icon.xi-browse:before {
+  content: "\e9bf";
+}
+i.icon.xi-upload-dot:before {
+  content: "\e9c0";
+}
+i.icon.xi-udf-manager-dot:before {
+  content: "\e9c1";
+}
+i.icon.xi-udf-manager:before {
+  content: "\e9c2";
+}
+i.icon.xi-add-udf:before {
+  content: "\e9c3";
+}
+i.icon.xi-progress:before {
+  content: "\e9c4";
+}
+i.icon.xi-critical:before {
+  content: "\e9c5";
+}
+i.icon.xi-success:before {
+  content: "\e9c6";
+}
+i.icon.xi-error-outline:before {
+  content: "\e9c7";
+}
+i.icon.xi-error:before {
+  content: "\e9c8";
+}
+i.icon.xi-alert:before {
+  content: "\e9c9";
+}
+i.icon.xi-radio-empty:before {
+  content: "\e965";
+}
+i.icon.xi-radio-selected:before {
+  content: "\e963";
+}
+i.icon.xi-ckbox-empty:before {
+  content: "\e962";
+}
+i.icon.xi-ckbox-selected:before {
+  content: "\e994";
+}
+i.icon.xi-add-data:before {
+  content: "\e90e";
+}
+i.icon.xi-add-dataflow:before {
+  content: "\e934";
+}
+i.icon.xi-add-folder:before {
+  content: "\e90b";
+}
+i.icon.xi-delete-folder:before {
+  content: "\e90a";
+}
+i.icon.xi-add-schedule:before {
+  content: "\e94b";
+}
+i.icon.xi-add-target:before {
+  content: "\e951";
+}
+i.icon.xi-add-workbook:before {
+  content: "\e958";
+}
+i.icon.xi-add-worksheet:before {
+  content: "\e954";
+}
+i.icon.xi-addextension:before {
+  content: "\e96e";
+}
+i.icon.xi-aggregate:before {
+  content: "\e939";
+}
+i.icon.xi-android:before {
+  content: "\e916";
+}
+i.icon.xi-android-dot:before {
+  content: "\e914";
+}
+i.icon.xi-archive:before {
+  content: "\e969";
+}
+i.icon.xi-array:before {
+  content: "\e942";
+}
+i.icon.xi-arrow-down:before {
+  content: "\e93c";
+}
+i.icon.xi-arrow-left:before {
+  content: "\e96a";
+}
+i.icon.xi-arrow-right:before {
+  content: "\e96f";
+}
+i.icon.xi-arrow-up:before {
+  content: "\e93a";
+}
+i.icon.xi-ascending:before {
+  content: "\e985";
+}
+i.icon.xi-descending:before {
+  content: "\e983";
+}
+i.icon.xi-back-to-worksheet:before {
+  content: "\e906";
+}
+i.icon.xi-bookmark:before {
+  content: "\e98b";
+}
+i.icon.xi-boolean:before {
+  content: "\e945";
+}
+i.icon.xi-clock:before {
+  content: "\e905";
+}
+i.icon.xi-auto-support:before {
+  content: "\e99d";
+}
+i.icon.xi-cloud-done:before {
+  content: "\e972";
+}
+i.icon.xi-cloud-download:before {
+  content: "\e971";
+}
+i.icon.xi-cloud-upload:before {
+  content: "\e970";
+}
+i.icon.xi-copy-clipboard:before {
+  content: "\e918";
+}
+i.icon.xi-cpu:before {
+  content: "\e9a4";
+}
+i.icon.xi-data-in:before {
+  content: "\e952";
+}
+i.icon.xi-data-out:before {
+  content: "\e955";
+}
+i.icon.xi-data-locked:before {
+  content: "\e93b";
+}
+i.icon.xi-data-target:before {
+  content: "\e950";
+}
+i.icon.xi-datacart:before {
+  content: "\e95b";
+}
+i.icon.xi-dataflow:before {
+  content: "\e9a2";
+}
+i.icon.xi-dataflowgroup:before {
+  content: "\e94d";
+}
+i.icon.xi-dataflowgroup-rectangle:before {
+  content: "\e904";
+}
+i.icon.xi-dfg2 {
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+i.icon.xi-dfg2:before {
+  content: "\e9a1";
+}
+i.icon.xi-disk:before {
+  content: "\e9a0";
+}
+i.icon.xi-down:before {
+  content: "\e900";
+}
+i.icon.xi-up:before {
+  content: "\e901";
+}
+i.icon.xi-previous:before {
+  content: "\e927";
+}
+i.icon.xi-next:before {
+  content: "\e928";
+}
+i.icon.xi-download:before {
+  content: "\e98c";
+}
+i.icon.xi-drag-handle:before {
+  content: "\e979";
+}
+i.icon.xi-duplicate:before {
+  content: "\e99a";
+}
+i.icon.xi-edit:before {
+  content: "\e91d";
+}
+i.icon.xi-ellipsis-h:before {
+  content: "\e92f";
+}
+i.icon.xi-ellipsis-h-circle:before {
+  content: "\e931";
+}
+i.icon.xi-ellipsis-v:before {
+  content: "\e92e";
+}
+i.icon.xi-ellipsis-v-circle:before {
+  content: "\e930";
+}
+i.icon.xi-equal:before {
+  content: "\e98f";
+}
+i.icon.xi-exit-fullscreen:before {
+  content: "\e926";
+}
+i.icon.xi-extension-custom:before {
+  content: "\e961";
+}
+i.icon.xi-extension-global:before {
+  content: "\e96c";
+}
+i.icon.xi-filter:before {
+  content: "\e938";
+}
+i.icon.xi-flash:before {
+  content: "\e99f";
+}
+i.icon.xi-folder:before {
+  content: "\e90d";
+}
+i.icon.xi-folder-opened:before {
+  content: "\e90c";
+}
+i.icon.xi-fullscreen:before {
+  content: "\e924";
+}
+i.icon.xi-fullscreen2:before {
+  content: "\e925";
+}
+i.icon.xi-grid-view:before {
+  content: "\e92b";
+}
+i.icon.xi-groupby:before {
+  content: "\e937";
+}
+i.icon.xi-help:before {
+  content: "\e992";
+}
+i.icon.xi-help-outline:before {
+  content: "\e991";
+}
+i.icon.xi-hide:before {
+  content: "\e91f";
+}
+i.icon.xi-highlight:before {
+  content: "\e999";
+}
+i.icon.xi-highlight2:before {
+  content: "\e949";
+}
+i.icon.xi-undo-highlight:before {
+  content: "\e998";
+}
+i.icon.xi-undo-highlight2:before {
+  content: "\e997";
+}
+i.icon.xi-human:before {
+  content: "\e917";
+}
+i.icon.xi-human-dot:before {
+  content: "\e915";
+}
+i.icon.xi-index:before {
+  content: "\e936";
+}
+i.icon.xi-info-circle:before {
+  content: "\e92d";
+}
+i.icon.xi-info-circle-outline:before {
+  content: "\e92c";
+}
+i.icon.xi-info-no-bg:before {
+  content: "\e966";
+}
+i.icon.xi-info-rectangle:before {
+  content: "\e91c";
+}
+i.icon.xi-info-rectangle-outline:before {
+  content: "\e967";
+}
+i.icon.xi-info-rectangle-outline2:before {
+  content: "\e96b";
+}
+i.icon.xi-initial-runtime-rectangle:before {
+  content: "\e902";
+}
+i.icon.xi-integer:before {
+  content: "\e943";
+}
+i.icon.xi-float:before {
+  content: "\e943";
+}
+i.icon.xi-join-inner:before {
+  content: "\e93e";
+}
+i.icon.xi-join-outer:before {
+  content: "\e944";
+}
+i.icon.xi-join-rightouter:before {
+  content: "\e93f";
+}
+i.icon.xi-list-view:before {
+  content: "\e929";
+}
+i.icon.xi-lock:before {
+  content: "\e940";
+}
+i.icon.xi-menu-cli:before {
+  content: "\e959";
+}
+i.icon.xi-menu-datastore:before {
+  content: "\e953";
+}
+i.icon.xi-menu-extension:before {
+  content: "\e96d";
+}
+i.icon.xi-menu-info:before {
+  content: "\e94a";
+}
+i.icon.xi-menu-monitoring:before {
+  content: "\e94e";
+}
+i.icon.xi-menu-scheduler:before {
+  content: "\e94f";
+}
+i.icon.xi-menu-sql:before {
+  content: "\e957";
+}
+i.icon.xi-menu-table-list:before {
+  content: "\e95a";
+}
+i.icon.xi-menu-udf:before {
+  content: "\e956";
+}
+i.icon.xi-menu-worksheet:before {
+  content: "\e95c";
+}
+i.icon.xi-minus:before {
+  content: "\e996";
+}
+i.icon.xi-mixed:before {
+  content: "\e946";
+}
+i.icon.xi-monitor:before {
+  content: "\e91e";
+}
+i.icon.xi-multi-join:before {
+  content: "\e987";
+}
+i.icon.xi-network:before {
+  content: "\e975";
+}
+i.icon.xi-object:before {
+  content: "\e941";
+}
+i.icon.xi-oin-leftouter:before {
+  content: "\e93d";
+}
+i.icon.xi-open-img-newtab:before {
+  content: "\e933";
+}
+i.icon.xi-original:before {
+  content: "\e982";
+}
+i.icon.xi-pause:before {
+  content: "\e97f";
+}
+i.icon.xi-pause-circle:before {
+  content: "\e97d";
+}
+i.icon.xi-run:before {
+  content: "\e91b";
+}
+i.icon.xi-play-circle:before {
+  content: "\e984";
+}
+i.icon.xi-stop:before {
+  content: "\e97c";
+}
+i.icon.xi-stop-circle:before {
+  content: "\e97b";
+}
+i.icon.xi-plus:before {
+  content: "\e990";
+}
+i.icon.xi-power:before {
+  content: "\e980";
+}
+i.icon.xi-preview:before {
+  content: "\e98e";
+}
+i.icon.xi-pull-all-field:before {
+  content: "\e99b";
+}
+i.icon.xi-quary:before {
+  content: "\e9a8";
+}
+i.icon.xi-ram:before {
+  content: "\e9a3";
+}
+i.icon.xi-redo:before {
+  content: "\e964";
+}
+i.icon.xi-refresh:before {
+  content: "\e922";
+}
+i.icon.xi-restore:before {
+  content: "\e981";
+}
+i.icon.xi-save:before {
+  content: "\e960";
+}
+i.icon.xi-save_img:before {
+  content: "\e932";
+}
+i.icon.xi-schedules:before {
+  content: "\e94c";
+}
+i.icon.xi-sd-card:before {
+  content: "\e977";
+}
+i.icon.xi-search:before {
+  content: "\e908";
+}
+i.icon.xi-search-schedule:before {
+  content: "\e99c";
+}
+i.icon.xi-select-all:before {
+  content: "\e913";
+}
+i.icon.xi-select-later:before {
+  content: "\e911";
+}
+i.icon.xi-select-none:before {
+  content: "\e912";
+}
+i.icon.xi-server:before {
+  content: "\e974";
+}
+i.icon.xi-server2:before {
+  content: "\e973";
+}
+i.icon.xi-setting:before {
+  content: "\e9a6";
+}
+i.icon.xi-setup:before {
+  content: "\e9a7";
+}
+i.icon.xi-show:before {
+  content: "\e920";
+}
+i.icon.xi-single-join:before {
+  content: "\e988";
+}
+i.icon.xi-sort:before {
+  content: "\e921";
+}
+i.icon.xi-status-rectangle:before {
+  content: "\e903";
+}
+i.icon.xi-string:before {
+  content: "\e947";
+}
+i.icon.xi-support-bundle:before {
+  content: "\e99e";
+}
+i.icon.xi-system:before {
+  content: "\e9a9";
+}
+i.icon.xi-table-locked:before {
+  content: "\e935";
+}
+i.icon.xi-tick:before {
+  content: "\e95d";
+}
+i.icon.xi-trash:before {
+  content: "\e909";
+}
+i.icon.xi-undo:before {
+  content: "\e95f";
+}
+i.icon.xi-undo-promote-header:before {
+  content: "\e97e";
+}
+i.icon.x-promote-header:before {
+  content: "\e97a";
+}
+i.icon.xi-unknown:before {
+  content: "\e948";
+}
+i.icon.xi-undefined:before {
+  content: "\e948";
+}
+i.icon.xi-unlock:before {
+  content: "\e978";
+}
+i.icon.xi-upload:before {
+  content: "\e98d";
+}
+i.icon.xi-usb:before {
+  content: "\e976";
+}
+i.icon.xi-user:before {
+  content: "\e95e";
+}
+i.icon.xi-user-setting:before {
+  content: "\e9a5";
+}
+i.icon.xi-warning:before {
+  content: "\e92a";
+}
+i.icon.xi-worksheet:before {
+  content: "\e907";
+}
+i.icon.xi-zip:before {
+  content: "\e995";
+}
+i.icon.xi_data:before {
+  content: "\e90f";
+}
+i.icon.xi_logo:before {
+  content: "\e968";
+}
+i.icon.xi_popin:before {
+  content: "\e91a";
+}
+i.icon.xi_popout:before {
+  content: "\e919";
+}
+i.icon.xi_smart:before {
+  content: "\e989";
+}
+i.icon.xi_split:before {
+  content: "\e993";
+}
+i.icon.xi_swap_horiz:before {
+  content: "\e98a";
+}
+i.icon.xi_swap_vert:before {
+  content: "\e986";
+}
+i.icon.xi_table:before {
+  content: "\e910";
+}
+i.icon.xi-data-in-2:before {
+  content: "\ea00";
+}
+i.icon.xi-expand:before {
+  content: "\ea03";
+}
+i.icon.xi-minimize:before {
+  content: "\ea04";
+}
+i.icon.xi-parse:before {
+  content: "\ea05";
+}
+i.icon.xi-recommend:before {
+  content: "\ea06";
+}
+i.icon.xi-table-2:before {
+  content: "\ea07";
+}
+i.icon.xi-table-blank:before {
+  content: "\ea01";
+}
+i.icon.xi-chat-bubble-waiting:before {
+  content: "\ea09";
+}
+i.icon.xi-move:before {
+  content: "\ea0a";
+}
+i.icon.xi-upload-folder:before {
+  content: "\ea01";
+}
+i.icon.xi-alpha-az:before {
+  content: "\ea0b";
+}
+i.icon.xi-alpha-za:before {
+  content: "\ea0c";
+}
+i.icon.xi-previous2:before {
+  content: "\ea0d";
+}
+i.icon.xi-next2:before {
+  content: "\ea0e";
+}
+i.icon.xi-close:before {
+  content: "\ea10";
+}
+i.icon.xi-close22:before {
+  content: "\ea10";
+}
+i.icon.xi-close-no-circle:before {
+  content: "\e923";
+}
+i.icon.xi-chat-bubble-waiting2:before {
+  content: "\ea0f";
+}
+i.icon.xi-menu-add-scheduler2:before {
+  content: "\ea11";
+}
+i.icon.xi-table-error1:before {
+  content: "\ea12";
+}
+i.icon.xi-table-error2:before {
+  content: "\ea13";
+}
+i.icon.xi-minimize2:before {
+  content: "\ea14";
+}
+i.icon.xi-expand2:before {
+  content: "\ea15";
+}
+i.icon.xi-gennum:before {
+  content: "\ea16";
+}
+i.icon.xi-system2:before {
+  content: "\ea17";
+}
+i.icon.xi-operations:before {
+  content: "\ea18";
+}
+i.icon.xi-menu-sql2:before {
+  content: "\ea19";
+}
+i.icon.xi-menu-log:before {
+  content: "\ea1a";
+}
+i.icon.xi-log-flush:before {
+  content: "\ea1b";
+}
+i.icon.xi-solid-circle:before {
+  content: '\ea1c';
+}
+i.icon.xi-documentation-paper:before {
+  content: '\ea1d';
+}
+i.icon.xi-envelope:before {
+  content: '\ea1e';
+}
+i.icon.xi-union:before {
+  content: "\ea2d";
+}
+i.icon.xi-lockwithkeyhole:before {
+  content: "\ea27";
+}
+i.icon.xi-bullseye:before {
+  content: "\ea2a";
+}
+i.icon.xi-tables-columnsicon:before {
+  content: "\ea28";
+}
+i.icon.xi-exiteditingmode:before {
+  content: "\ea2c";
+}
+
+#versionSelectorList {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 20px;
+}
+.dropDownList {
+  position: relative;
+  /* float: left; */
+  /* background-color: #FFFFFF; */
+  -webkit-touch-callout: none;
+  /* -webkit-user-select: none; */
+  -moz-user-select: none;
+  -ms-user-select: none;
+  /* user-select: none; */
+  /* cursor: default; */
+
+  width: 400px;
+  height: 30px;
+}
+.dropDownList .text {
+  color: #4A4A4A;
+  background-color: #F2F2F2;
+  border: 1px solid #dedede;
+  font-size: 16px !important;
+  padding-left: 10px;
+  float: left;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  width: calc(100% - 30px);
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  font-weight: 600;
+  font-family: "Open Sans", "Trebuchet MS", Arial, sans-serif;
+  cursor: pointer;
+}
+.dropDownList .text:not(.inputable) {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  font-size: 16px;
+}
+.dropDownList .iconWrapper {
+  background-color: rgba(4, 110, 161, 0.8);
+  cursor: pointer;
+  float: right;
+  width: 30px;
+  height: 30px;
+}
+.dropDownList .iconWrapper:hover {
+  background-color: #046EA1;
+}
+.dropDownList .iconWrapper:hover .icon {
+  opacity: 1;
+}
+.dropDownList .iconWrapper .icon {
+  width: 8px;
+  height: 8px;
+  position: relative;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  display: block;
+  top: 50%;
+  opacity: 0.8;
+  font-size: 8px;
+  color: #FFFFFF;
+}
+.dropDownList .iconWrapper .icon:before {
+  display: inline-block;
+}
+.dropDownList .list {
+  position: absolute;
+  top: 30px;
+  left: 0;
+  background-color: #FFFFFF;
+  cursor: default;
+  box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+  display: none;
+  width: calc(100% - 30px);
+}
+.dropDownList .list ul {
+  padding-left: 0px;
+  margin: 0px;
+}
+.dropDownList .list li {
+  padding-left: 10px;
+  z-index: 10;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 30px;
+  line-height: 30px;
+
+  color: #4A4A4A;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Open Sans", "Trebuchet MS", Arial, sans-serif;
+  cursor: pointer;
+}
+.dropDownList .list li:hover,
+.dropDownList .list li.hover {
+  background-color: #DDEAF2;
+}
+.dropDownList .list li.inactive {
+  opacity: 0.3;
+}
+.dropDownList .list li.inUse {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.dropDownList .list li.xcUDF {
+  display: none;
+}
+.dropDownList .list .scrollArea {
+  z-index: 11;
+}
+.dropDownList .hint {
+  color: #B6B6B6;
+}
+i.icon {
+  font-family: 'icomoon' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  text-transform: normal;
+  font-variant: normal;
+  line-height: 1;
+  font-size: 20px;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.version {
+  display: none;
+}

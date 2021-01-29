@@ -1,0 +1,25 @@
+<div id="fileManagerSaveAsModal" class="modalContainer">
+  <header class="modalHeader">
+    <span class="text">
+      <%= dicts.fileManager.COPYTO %>
+    </span>
+    <div class="close" data-container="body" data-toggle="tooltip" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+  </header>
+  <section class="modalMain">
+    <div class="row saveAs">
+      <span class="label">
+        <%= dicts.common.SaveAs %>:</span>
+      <input type="text" class="xc-input" spellcheck="false" autocomplete="off">
+    </div>
+    <div class="saveWarning"><%= dicts.fileManager.SaveWarning %></div>
+    include "../fileManager/fileManager.html"
+  </section>
+  <section class="modalBottom">
+    <button type="button" class="btn btn-submit save">
+      <%= dicts.common.Save %></button>
+    <button type="button" class="btn btn-cancel cancel">
+      <%= dicts.common.Cancel %></button>
+  </section>
+</div>

@@ -1,0 +1,71 @@
+<!-- HTML tempaltes for Columns To Keep section of Join panel -->
+<div data-xcid="templateColumnSelect" style="display:none">
+    <div class="joinSection">
+        <div class="subHeading clearfix">
+            <div><%= dicts.joinView.colKeepTitle %></div>
+            <i class="qMark icon xi-unknown"
+                data-toggle="tooltip"
+                data-container="body"
+                data-placement="auto top"
+                data-title="<%= dicts.joinView.colKeepInstr %>">
+            </i>
+        </div>
+        <APP-TABLEKEEP></APP-TABLEKEEP>
+        <APP-TABLEDROP></APP-TABLEDROP>
+    </div>
+</div>
+
+<div data-xcid="templateKeepAll" style="display:none">
+    <div class="flexContainer checkboxWrap" (click)="onClickKeepAll">
+        <div class="checkbox {{cssChecked}}">
+            <i class="icon xi-ckbox-empty fa-14"></i>
+            <i class="icon xi-ckbox-selected fa-14"></i>
+        </div>
+        <div class="text">{{title}}</div>
+    </div>
+</div>
+
+<div data-xcid="templateColumnTable" style="display:none">
+    <div class="flexContainer tableHeader">
+        <div class="flexWrap flex-left title">{{tableTitle}}
+            <i class="qMark icon xi-unknown"
+              data-toggle="tooltip"
+              data-container="body"
+              data-placement="auto top"
+              data-title="{{tableTitleTip}}">
+            </i>
+        </div>
+        <div class="flexWrap flex-mid"></div>
+    </div>
+    <div class="flexContainer">
+        <APP-LEFT></APP-LEFT>
+        <APP-RIGHT></APP-RIGHT>
+    </div>
+</div>
+
+<div data-xcid="templateColumnList" style="display:none">
+    <div class="columnList {{cssExtra}}">
+        <div class="column column-title">
+            <div class="title-text">{{title}}</div>
+            <div class="title-icon">
+                <div class="action-icon flexContainer {{cssActionDisabled}}" data-toggle="tooltip" data-placement="auto top" data-original-title="{{actionTitle}}" (click)="onClickAction"><i class="icon {{cssActionIcon}} fa-14"></i></div>
+            </div>
+        </div>
+        <APP-COLUMNS></APP-COLUMNS>
+    </div>
+</div>
+
+<div data-xcid="templateColumn" style="display:none">
+    <div class="column {{cssClickable}}" (click)="onClickAction">
+        <div class="actionWrap"><i class="icon {{cssActionType}} fa-8"></i></div>
+        <div class="colNameWrap typeIcon flexContainer flexRow {{cssColType}}">
+        <div class="flexWrap flex-left" data-toggle="tooltip" data-original-title="{{colType}}" data-container="body" data-placement="auto top">
+            <span class="iconHidden"></span>
+            <span class="type icon"></span>
+        </div>
+        <div class="flexWrap flex-mid">
+            <div class="textOverflowOneLine tooltipOverflow" data-toggle="tooltip" data-container="body" data-placement="auto top" data-original-title="{{colName}}">{{colName}}</div>
+        </div>
+        </div>
+    </div>
+</div>

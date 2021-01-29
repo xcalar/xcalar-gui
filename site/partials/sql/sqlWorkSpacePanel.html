@@ -1,0 +1,84 @@
+<div id="sqlWorkSpacePanel" class="mainPanel">
+  <div class="topBar">
+    <div class="title">Query</div>
+  </div>
+  <div class="mainContent">
+    <div id="dataflowMenu" class="leftSection commonSection">
+        include "../dataflow/dagList.html"
+        include "../table/tableSearchPanel.html"
+        include "../dataflow/dagNodeInfoPanel.html"
+    </div>
+    <section class="rightSection flexResizeContainer flexColumn">
+      <section class="mainPart flexResizeContainer flexColumn flexResizeItem">
+          <div class="topPart flexResizeContainer flexResizeItem">
+              <!-- sql section -->
+              <div class="section topLeftPart flexResizeContainer flexResizeItem">
+                  <div class="section sql xc-hidden flexResizeItem">
+                    include "sqlViewContainer.html"
+                  </div>
+                  <div class="section udf xc-hidden flexResizeItem">
+                    include "../udf/udfViewContainer.html"
+                  </div>
+              </div>
+              <div class="section configNode xc-hidden flexResizeItem">
+                  include "../nodeConfigPanels/configNodeContainer.html"
+              </div>
+          </div>
+          <div id="notebookBottomContainer" class="bottomPart flexResizeContainer flexResizeItem">
+            <!-- bottom left part -->
+            <div class="section bottomLeftPart xc-hidden flexResizeItem">
+              include "../worksheet/dagViewContainer.html"
+            </div>
+            <!-- bottom right part -->
+            <div class="section resultSection bottomRightPart flexResizeItem">
+              include "tableViewContainer.html"
+            </div>
+          </div>
+      </section>
+      <section class="debugPart flexResizeItem xc-hidden">
+        include "../debug/debugViewContainer.html"
+      </section>
+      include "../worksheet/dagNodeMenu.html"
+    </section>
+  </div>
+
+  <div id="paramPopUp" class="dataflowParameterPopup modalContainer">
+    <header class="modalHeader">
+        <div class="close" data-container="body" data-toggle="tooltip" data-original-title="Close">
+            <i class="icon xi-close"></i>
+        </div>
+    </header>
+    <div class="inputSection">
+      <input class="xc-input newParam" placeholder="<%= dicts.dataflow.InputNewParam %>" spellcheck="false" autocomplete="off">
+      <button class="btn btn-secondary submitNewParam"><%= dicts.dataflow.AddNewParam %></button>
+    </div>
+    <div class="tableHeader">
+        <div class="cell paramNameWrap"><%= dicts.dataflow.param %></div>
+        <div class="cell paramValWrap"><%= dicts.dataflow.val %></div>
+        <div class="cell paramNoValueWrap"><%= dicts.dataflow.noValue %></div>
+        <div class="cell paramActionWrap"><%= dicts.dataflow.action %></div>
+    </div>
+    <div class="tableContainer">
+        <div id="retLists" class="paramList tableWrapper"></div>
+    </div>
+</div>
+<!-- End of paramPopUp -->
+<div id="aggManagerPopup" class="dataflowAggPopup modalContainer">
+    <header class="modalHeader">
+        <div class="close" data-container="body" data-toggle="tooltip" data-original-title="Close">
+            <i class="icon xi-close"></i>
+        </div>
+    </header>
+    <div class="tableHeader">
+        <div class="cell aggNameWrap">Aggregate</div>
+        <div class="cell aggGraphNameWrap">Module</div>
+        <div class="cell aggValWrap">Value</div>
+        <div class="cell aggNoValueWrap">Not Run</div>
+        <div class="cell aggActionWrap">Action</div>
+    </div>
+    <div class="tableContainer">
+        <div id="aggRetLists" class="aggList tableWrapper"></div>
+    </div>
+</div>
+<!-- End of aggManagerPopup -->
+</div>

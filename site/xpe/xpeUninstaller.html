@@ -1,0 +1,83 @@
+<html>
+  <head>
+    <title><%= dicts.common.XD %> Uninstaller</title>
+    include "xpeCommonHeadTags.html"
+  </head>
+  <body>
+    <div class="parent">
+      <div class="leftPanel">
+        <div class="steps">
+          <div id="uninstallOptionsStep" class="step">
+            <span class="stepIcon">
+              <i class="icon xi-installerscreen-opencircle"></i>
+            </span>
+            <span class="stepTitle">
+              Uninstall Options
+            </span>
+          </div>
+          <div id="uninstallStep" class="step">
+            <span class="stepIcon">
+              <i class="icon xi-installerscreen-opencircle"></i>
+            </span>
+            <span class="stepTitle">
+              Uninstall <%= dicts.common.XD %>
+            </span>
+          </div>
+        </div>
+        <div class="leftPanelBranding">
+          <img src="../assets/images/xdlogo.png" width="200px" alt="Xcalar icon">
+        </div>
+      </div>
+      <div class="rightPanel">
+        <div class="content">
+          <div id="1" class="stepContent uninstallOptions">
+            <div class="header">Select your uninstall type</div>
+            <div class="data">
+              <div class="radioButtonGroup" id="uninstalltype">
+                <div class="radioButton xc-action active" data-option="partial">
+                  <div class="radio">
+                    <i class="icon xi-radio-selected"></i>
+                    <i class="icon xi-radio-empty"></i>
+                  </div>
+                  <div class="radioValHeader">
+                    <span>Partial Uninstall</span>
+                  </div>
+                  <div class="radioValSubtext">Removes docker images, keeps session data</div>
+                </div>
+                <br>
+                <br>
+                <div class="radioButton xc-action" data-option="full">
+                  <div class="radio">
+                    <i class="icon xi-radio-selected"></i>
+                    <i class="icon xi-radio-empty"></i>
+                  </div>
+                  <div class="radioValHeader">
+                    <span>Full Uninstall</span>
+                  </div>
+                  <div class="radioValSubtext">Removes docker images and all local session data</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="2" class="stepContent uninstall" style="display: none;">
+            <div class="header"><%= dicts.common.XD %> is being uninstalled</div>
+            <div class="data">
+              <!-- progress bar and percent ests for uninstall process -->
+              include "progressBarSetup.html"
+            </div>
+          </div>
+        </div>
+        <div class="navButtonPanel">
+          <button class="btn btn-secondary" type="button" id="prev" style="display:none;">PREVIOUS</button>
+          <button class="btn" type="button" id="uninstall"><span>UNINSTALL</span></button>
+          <button class="btn" type="button" id="close" style="display:none;">CLOSE</button>
+        </div>
+      </div>
+      <div class="backgroundImg"></div>
+    </div>
+    include "xpeCommonScriptImports.html"
+    <script src="../assets/js/shared/util/xcHelper.js"></script>
+    <script src="../assets/js/shared/util/xcStringHelper.js"></script>
+    <script src="../assets/js/xpe/xpeUninstallClient.js"></script>
+  </body>
+</html>

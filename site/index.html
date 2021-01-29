@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="<%= landCode %>">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= dicts.common.XD %></title>
+    <link id="favicon" rel="icon" type="image/png">
+    include "partials/link.html"
+  </head>
+  <% if (dicts.product == "XI") { %>
+  <body class="bodyXI">
+  <% } else { %>
+  <body>
+  <% } %>
+    <!-- prevent chrome autocomplete wrong field, see https://stackoverflow.com/questions/3828164/how-do-i-access-my-ssh-public-key -->
+    <div style="display:none;position: absolute; opacity: 0;">
+      <label for="_email">email</label><input name="_email" type="email">
+      <label for="_password">password</label><input name="_password" type="password">
+    </div>
+    include "partials/container.html"
+    include "partials/script.html"
+    <script>
+    documentReadyIndexFunction();</script>
+  </body>
+</html>

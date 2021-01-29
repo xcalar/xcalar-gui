@@ -1,0 +1,266 @@
+<!-- Profile Modal -->
+<div id="profileModal" class="modalContainer">
+  <!-- Profile Modal Header -->
+  <header class="modalHeader has-subHeader">
+    <span class="text"><%= dicts.profile.header %></span>
+    <span class="text secondary">Chart</span>
+    <div class="headerBtn exitFullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Minimize %>">
+      <i class="icon xi-exit-fullscreen"></i>
+    </div>
+    <div class="headerBtn fullScreen" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.common.Maximize %>">
+      <i class="icon xi-fullscreen"></i>
+    </div>
+    <div class="close" data-toggle="tooltip" data-placement="auto top" data-container="body" data-original-title="<%= dicts.common.Close %>">
+      <i class="icon xi-close"></i>
+    </div>
+    <div class="subHeader instr"></div>
+  </header>
+  <!-- Profile Modal Top Main Section, profile icons -->
+  <section class="modalTopMain modalLeft">
+    <div class="sortAndRangeSection">
+      <!-- sortSection -->
+      <div class="sortSection loadDisabled">
+        <div class="title"><%= dicts.profile.SortBy %></div>
+        <div class="radioButtonGroup">
+          <div class="radioButton xc-action asc" data-option="asc" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.TooltipTStr.ProfileSortInc %>">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <i class="sortIcon icon xi-ascending fa-15"></i>
+          </div>
+          <div class="radioButton xc-action desc" data-option="desc" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.TooltipTStr.ProfileSortDec %>">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <i class="sortIcon icon xi-descending fa-15"></i>
+          </div>
+          <div class="radioButton xc-action origin atoz" data-option="origin" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.TooltipTStr.ProfileSortAsc %>">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <i class="sortIcon icon xi-alpha-az fa-15"></i>
+          </div>
+          <div class="radioButton xc-action ztoa" data-option="ztoa" data-toggle="tooltip" data-container="body" data-placement="top auto" data-original-title="<%= dicts.TooltipTStr.ProfileSortDesc %>">
+            <div class="radio">
+              <i class="icon xi-radio-selected"></i>
+              <i class="icon xi-radio-empty"></i>
+            </div>
+            <i class="sortIcon icon xi-alpha-za fa-15"></i>
+          </div>
+        </div>
+      </div>
+      <!-- range section -->
+      <div class="rangeSection loadDisabled">
+        <div class="title"><%= dicts.profile.BucketTitle %></div>
+        <div class="group">
+          <div class="dropDownList range">
+            <input class="text xc-input" type="text" value="<%= dicts.profile.Single %>" spellcheck="false" disabled>
+            <div class="iconWrapper">
+              <i class="icon xi-arrow-down"></i>
+            </div>
+            <div class="list">
+              <ul>
+                <li name="single"><%= dicts.profile.Single %></li>
+                <li name="range"><%= dicts.profile.Range %></li>
+                <li name="rangeLog"><%= dicts.profile.RangeLog %></li>
+                <div class="divider"></div>
+                <li name="fitAll"><%= dicts.profile.FitAll %></li>
+              </ul>
+            </div>
+          </div>
+          <div class="input">
+            <input id="profile-range" class="xc-disabled" type="number" step="1" min="1" spellcheck="false" placeholder="<%= dicts.profile.BucketInstr %>">
+          </div>
+        </div>
+      </div>
+      <div class="switchSection row clearfix loadDisabled">
+        <div class="title">Graphs</div>
+          <div id="graphSwitcher" class="graphSwitch xc-switch default switch">
+          <div class="slider"></div>
+        </div>
+      </div>
+    </div>
+    <!-- inputsection -->
+    <div class="inputSection">
+      <!-- rowInput -->
+      <div class="rowInput">
+        <label for="profile-rowInput"><%= dicts.profile.SkipTo %></label>
+        <input id="profile-rowInput" class="min-range loadDisabled
+          " val="1" spellcheck="false">
+        <label class="loadHidden highlight"><%= dicts.common.of %></label>
+        <label for="profile-rowInput" class="max-range loadHidden highlight"></label>
+      </div>
+      <!-- decimal section -->
+      <div class="decimalInput selectInput loadDisabled">
+        <div class="text"><%= dicts.profile.Decimal %></div>
+        <input type="number">
+        <div class="control">
+          <div class="more xc-action action">
+            <i class="icon fa-8 xi-arrow-up"></i>
+          </div>
+          <div class="less xc-action action">
+            <i class="icon fa-8 xi-arrow-down"></i>
+          </div>
+        </div>
+      </div>
+      <!-- info section -->
+      <div class="displayInput selectInput loadDisabled">
+        <div class="text"><%= dicts.profile.Showing %></div>
+        <input class="numRows no-selection" type="number" disabled>
+        <div class="control">
+          <div class="more xc-action action">
+            <i class="icon fa-8 xi-arrow-up"></i>
+          </div>
+          <div class="less xc-action action">
+            <i class="icon fa-8 xi-arrow-down"></i>
+          </div>
+        </div>
+        <div class="text"><%= dicts.profile.results %></div>
+      </div>
+    </div>
+  </section>
+  <!-- Profile Modal Section, chart-->
+  <section id="profile-chart" class="modalMain modalLeft">
+    <!-- loading section -->
+    <div class="loadingSection">
+      <div class="waitingIcon"></div>
+    </div>
+    <!-- error section -->
+    <div class="errorSection hidden">
+      <div class="title"><%= dicts.profile.fail %></div>
+      <div class="text"></div>
+    </div>
+    <div class="yAxisSection">
+        <div class="row">
+            <span class="label">y-axis:</i></span>
+            <span class="yAxisName"></span>
+        </div>
+    </div>
+    <!-- groupby section -->
+
+    <div class="groupbyInfoSection loadHidden">
+      <i id="profile-download" class="download icon xi-download xc-icon-action" data-toggle="tooltip"  data-placement="auto top" data-container="body" data-title="<%= dicts.profile.download %>"></i>
+      <svg class="groupbyChart"></svg>
+      <i class="arrow left-arrow icon xi-arrow-left xc-action fa-15"></i>
+      <i class="arrow right-arrow icon xi-arrow-right xc-action fa-15"></i>
+    </div>
+    <div class="xAxisSection">
+        <div class="row">
+            <span class="label">x-axis:</span>
+            <div class="dropDownList xAxisList">
+                <input type="text" class="text arg xAxisValue" spellcheck="false" autocomplete="off" placeholder="Column name">
+                <div class="iconWrapper">
+                    <i class="icon xi-arrow-down"></i>
+                </div>
+                <div class="list">
+                    <ul>
+                    </ul>
+                    include "../../util/menuScrollArea.html"
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="profile-filterOption" class="filterOption">
+      <div class="option filter xc-action">
+        <i class="icon xi-filter fa-10"></i>
+        <span class="text single"><%= dicts.profile.filterSingle %></span>
+        <span class="text xc-hidden plural"><%= dicts.profile.filterPlural %></span>
+      </div>
+      <div class="option exclude xc-action">
+        <i class="icon xi-exclude fa-10"></i>
+        <span class="text"><%= dicts.profile.exclude %></span>
+      </div>
+      <div class="option cancel xc-action">
+        <i class="icon xi-trash fa-10"></i>
+        <span class="text"><%= dicts.common.ClearAll %></span>
+      </div>
+    </div>
+  </section>
+  <section class="modalBottom modalLeft">
+    <!-- scroll section -->
+    <div class="scrollSection loadHidden">
+      <div class="rowScrollArea">
+        <div class="scrollBar">
+          <div class="scroller"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- statistic section -->
+  <section id="profile-stats" class="infoSection">
+    <div class="popBar xc-action">
+      <i class="icon xi-next"></i>
+      <i class="icon xi-previous"></i>
+    </div>
+    <!-- agginfo -->
+    <div class="container aggInfo">
+      <div class="title"><%= dicts.profile.AggSummary %></div>
+      <div class="info aggCount">
+        <span class="label"><%= dicts.statistics.Count %>:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text count tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label"><%= dicts.statistics.Average %>:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text average tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label"><%= dicts.statistics.Min %>:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text min tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label"><%= dicts.statistics.Max %>:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text max tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label"><%= dicts.statistics.Sum %>:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text sum tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label"><%= dicts.statistics.SD %>:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text sd tooltipOverflow"></span>
+      </div>
+      <div class="button">
+        <button class="btn btn-secondary genAgg"><%= dicts.common.Generate %></button>
+      </div>
+    </div>
+    <!-- stats info -->
+    <div class="container statsInfo">
+      <div class="title"><%= dicts.profile.QuartileSummary %></div>
+      <div class="instruction"><%= dicts.profile.QuartileInstr %></div>
+      <div class="info">
+        <span class="label">0%:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text zeroQuartile tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label">25%:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text lowerQuartile tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label">50%:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text median tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label">75%:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text upperQuartile tooltipOverflow"></span>
+      </div>
+      <div class="info">
+        <span class="label">100%:</span>
+        <span data-toggle="tooltip" data-placement="auto top" data-container="body" class="text fullQuartile tooltipOverflow"></span>
+      </div>
+      <div class="button">
+        <button class="btn btn-secondary genStats"><%= dicts.common.Generate %></button>
+      </div>
+      <div class="warn"><%= dicts.profile.QuartileWarn %></div>
+    </div>
+    <div class="container corr">
+      <button id="profile-corr" class="btn btn-secondary" title="<%= dicts.profile.Corr %>" data-toggle="tooltip" data-container="body">
+        <i class="icon xi-corr-coeff"></i>
+        <%= dicts.aggModal.CorrTitle %>
+      </button>
+    </div>
+  </section>
+</div>
+<!-- End of Profile Modal -->

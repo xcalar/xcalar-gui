@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="UTF-8">
+    <title>Xcalar</title>
+    include "partials/link.html"
+    <script src="3rd/bower_components/crypto-js/crypto-js.js"></script>
+
+    <script src="assets/js/shared/helperClasses/Mutex.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/MouseEvents.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/Corrector.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/SearchBar.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/FormHelper.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/RangeSlider.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/MenuHelper.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/InputSuggest.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/InputDropdownHint.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/XcStorage.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/ProgressCircle.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/RectSelection.js" type="text/javascript"></script>
+    <script src="assets/js/shared/helperClasses/InfList.js" type="text/javascript"></script>
+
+    <script src="assets/test/testSuiteSetup.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      TestSuiteSetup.setup();
+    </script>
+  </head>
+  <body>
+    include "partials/container.html"
+    include "partials/script.html"
+    <script>
+      $(document).ready(() => {
+        TestSuiteSetup.initialize();
+      });
+    </script>
+  </body>
+</html>
